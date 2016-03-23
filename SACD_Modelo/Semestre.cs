@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SACD_Modelo
 {
-    public class CargaLaboral
+    public class Semestre
     {
-        private List<Asignacion> asignaciones;
+        private int id;
+        private int anio;
+        private int periodo;
     }
 }

@@ -9,5 +9,23 @@ namespace SACD_Modelo
     public class ActvAdmin : Actividad
     {
         private string nombre;
+
+
+        public ActvAdmin(int pId, string pTipo, float pHoras, string pNombre) : base(pId, pTipo, pHoras)
+        {
+            nombre = pNombre;
+        }
+
+        public string getNombre()
+        {
+            return nombre;
+        }
+
+        public void setNombre(string pNombre)
+        {
+            nombre = pNombre;
+        }
     }
+
+    
 }

@@ -10,8 +10,8 @@ namespace SACD_Modelo
     {
         private int id;
         private string nombre;
-        private float horasAsig;
-        private CargaLaboral carga;
-        private List<Plaza> plazas; 
+        private List<Asignacion> asignaciones;
+        //private float horasAsig;
+        private List<PlazaAsignada> plazasAsig; 
     }
 }

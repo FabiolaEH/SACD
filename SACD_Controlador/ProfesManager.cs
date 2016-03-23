@@ -16,13 +16,13 @@ namespace SACD_Controlador
         }
 
         //eliminar profesor
-        public void eliminar()
+        public void eliminar(int id)
         {
 
         }
 
         //editar profesor
-        public void editar()
+        public void editar(int id, Profesor pNuevoProf)
         {
 
         }
@@ -40,8 +40,15 @@ namespace SACD_Controlador
         }
 
         //calcular horas mín. laborales
-        public int calcHorasMin(Profesor pProfesor)
+        public float calcHorasMin(Profesor pProfesor)
         {
+            return 0;
+        }
+
+        //calcular total horas asignadas
+        public float calcHorasAsig(Profesor pProfesor)
+        {
+            //recorrer la lista de asignaciones
             return 0;
         }
         
