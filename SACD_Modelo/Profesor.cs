@@ -13,6 +13,5 @@ namespace SACD_Modelo
         private bool isPropietario;
         private float horasAsig;
         private CargaLaboral carga;
-        private int pruebaaaaaaaaaaaaaaaaaaaaaaaaaaa;
     }
 }
