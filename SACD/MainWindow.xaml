@@ -8,7 +8,6 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="186,143,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="309,227,0,0" TextWrapping="Wrap" Text="HOLA LOSERS" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
