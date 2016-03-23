@@ -30,5 +30,21 @@ namespace SACD
             InitializeComponent();   
         }
 
+
+        private void GoToPageExecuteHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            
+            frmContenido.NavigationService.Navigate(new Uri((string)e.Parameter, UriKind.Relative));
+        }
+
+        private void GoToPageCanExecuteHandler(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void frmContenido_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
     }  
 }
