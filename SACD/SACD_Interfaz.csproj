@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -100,6 +101,24 @@
       <Project>{45060d0d-0e39-4636-a5d6-17e54fadc9ed}</Project>
       <Name>SACD_Modelo</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Actividades.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Asignaciones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Inicio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Profesores.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Reportes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Semestres.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

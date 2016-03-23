@@ -27,10 +27,7 @@ namespace SACD
     {
         public MainWindow()
         {
-            InitializeComponent();
-
-            Plaza w = new Plaza();
-   
+            InitializeComponent();   
         }
 
     }  
