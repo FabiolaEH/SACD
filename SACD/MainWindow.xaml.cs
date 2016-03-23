@@ -13,6 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using SACD_Modelo;
+
+
+
+
 namespace SACD
 {
     /// <summary>
@@ -23,6 +28,10 @@ namespace SACD
         public MainWindow()
         {
             InitializeComponent();
+
+            Plaza w = new Plaza();
+   
         }
-    }
+
+    }  
 }
