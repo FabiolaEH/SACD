@@ -30,5 +30,15 @@ namespace SACD_Modelo
             numero = pNumero;
         }
 
+        public int getCantEstudiantes()
+        {
+            return cantEstudiantes;
+        }
+
+        public void setCantEstudiantes(int pCantEstudiantes)
+        {
+            cantEstudiantes = pCantEstudiantes;
+        }
+
     }
 }

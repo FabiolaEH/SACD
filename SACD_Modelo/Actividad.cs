@@ -12,13 +12,13 @@ namespace SACD_Modelo
         private string tipo; //cur - invest - admin
         private float horas;
 
+
         public Actividad(int pId, string pTipo, float pHoras)
         {
             id = pId;
             tipo = pTipo;
             horas = pHoras;
         }
-
 
         public int getId()
         {
