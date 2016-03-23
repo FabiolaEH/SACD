@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{45060D0D-0E39-4636-A5D6-17E54FADC9ED}</ProjectGuid>
+    <ProjectGuid>{31DF5AC8-BFE4-432D-AFE1-6A2C7EBC5ED9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SACD_Modelo</RootNamespace>
-    <AssemblyName>SACD_Modelo</AssemblyName>
+    <RootNamespace>SACD_Controlador</RootNamespace>
+    <AssemblyName>SACD_Controlador</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,18 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actividad.cs" />
-    <Compile Include="ActvAdmin.cs" />
-    <Compile Include="Ampliacion.cs" />
-    <Compile Include="Asignacion.cs" />
-    <Compile Include="CargaLaboral.cs" />
-    <Compile Include="Curso.cs" />
-    <Compile Include="Grupo.cs" />
-    <Compile Include="Investigacion.cs" />
-    <Compile Include="Plaza.cs" />
-    <Compile Include="PlazaAsignada.cs" />
-    <Compile Include="Profesor.cs" />
+    <Compile Include="ProfesManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SACD_Modelo\SACD_Modelo.csproj">
+      <Project>{45060d0d-0e39-4636-a5d6-17e54fadc9ed}</Project>
+      <Name>SACD_Modelo</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
