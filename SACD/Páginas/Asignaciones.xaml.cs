@@ -27,6 +27,27 @@ namespace SACD.Páginas
             // Populate list
             this.listView.Items.Add(new MyItem { Profesor = "Jhoen maria", Horas = 1 });
 
+
+            //tabla
+            int cols = 5;
+            int rows = 10;
+
+            for (int c = 0; c < cols; c++)
+                myTable.Columns.Add(new TableColumn());
+
+            for (int r = 0; r < rows; r++)
+            {
+                TableRow tr = new TableRow();
+
+                for (int c = 0; c < cols; c++)
+                    tr.Cells.Add(new TableCell(new Paragraph(new Run("Some Text"))));
+
+                TableRowGroup trg = new TableRowGroup();
+                trg.Rows.Add(tr);
+                myTable.RowGroups.Add(trg);
+            }
+
+
         }
 
         public class MyItem
