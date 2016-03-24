@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:SACD.Páginas"
       mc:Ignorable="d" 
       d:DesignHeight="300"
-      Title="Asignaciones" Width="562.5" >
+      Title="Asignaciones" Width="675" >
 
     <Grid>
         <Label x:Name="label" Content="Asignaciones" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Top" FontSize="24" FontStyle="Italic" Foreground="#FF666666" FontWeight="Bold"/>
