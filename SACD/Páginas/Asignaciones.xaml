@@ -8,7 +8,27 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="Asignaciones">
 
-    <Grid>
-        
+    <Grid Margin="0,0,-254,0">
+        <Label x:Name="label" Content="Asignaciones" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Top" FontSize="24" FontStyle="Italic" Foreground="#FF666666" FontWeight="Bold"/>
+        <Rectangle Fill="#FF27AE8D" HorizontalAlignment="Left" Height="486" Margin="265,-195,0,0" VerticalAlignment="Top" Width="4" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90.481"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="27" Margin="165,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" BorderBrush="#FFC8C8C8"/>
+        <Button x:Name="button" Content="" HorizontalAlignment="Left" Margin="385,72,0,0" VerticalAlignment="Top" Width="25" Height="25" RenderTransformOrigin="0.4,1.68">
+            <Button.Background>
+                <ImageBrush ImageSource="/SACD;component/Resources/Lupa.png"/>
+            </Button.Background>
+            <Button.BorderBrush>
+                <ImageBrush/>
+            </Button.BorderBrush>
+        </Button>
+
     </Grid>
 </Page>
