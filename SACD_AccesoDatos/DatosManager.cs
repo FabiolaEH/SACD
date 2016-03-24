@@ -72,5 +72,41 @@ namespace SACD_AccesoDatos
             else
                 Console.WriteLine("La conexión no ha sido creada");
         }
+
+        /*---------------------------------   CONSULTAR   -------------------------------------*/
+        public List<Object> getProfesoresList()
+        {
+            List<Object> profesList = new List<object>();        
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM Table_1", conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Object[] profeInfo = new Object[3];
+                    profeInfo[0] = reader.GetString(0);
+                    profeInfo[1] = reader.GetInt32(1);
+                    profeInfo[2] = reader.GetDouble(2);
+                    profesList.Add(profeInfo);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return profesList;
+        }
+
+
+        /*---------------------------------   MODIFICAR  --------------------------------------*/
+
+
+        /*---------------------------------   ELIMINAR  --------------------------------------*/
     }
 }
