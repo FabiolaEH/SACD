@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using SACD_AccesoDatos;
 
 
 namespace SACD
@@ -26,15 +25,6 @@ namespace SACD
         public Inicio()
         {
             InitializeComponent();
-
-            DatosManager dm = new DatosManager();
-
-            List<Object> profesList =  dm.getProfesoresList();
-
-            foreach (Object[] obj in profesList)
-            {
-                labelBD.Content = obj[0];
-            } 
         }
         
     }

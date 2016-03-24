@@ -23,6 +23,18 @@ namespace SACD.Páginas
         public Asignaciones()
         {
             InitializeComponent();
+
+            // Populate list
+            this.listView.Items.Add(new MyItem { Profesor = "Jhoen maria", Horas = 1 });
+
         }
+
+        public class MyItem
+        {
+            public string Profesor { get; set; }
+
+            public int Horas { get; set; }
+        }
+
     }
 }

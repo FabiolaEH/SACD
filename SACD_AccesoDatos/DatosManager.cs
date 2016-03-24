@@ -31,38 +31,6 @@ namespace SACD_AccesoDatos
                 return false;
             }
 
-            /*conn = new SqlConnection();
-            conn.ConnectionString = "Server =DESKTOP-78JIJ14; Database =Prueba; Trusted_Connection = true; Integrated Security=True";
-
-            try
-            {
-                conn.Open();
-                //return "Connected successfully";
-
-                //CONSULTA
-                SqlCommand command = new SqlCommand("SELECT * FROM Table_1", conn);
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-
-                    return reader.GetString(0);
-                }
-
-                reader.Close();
-
-
-            }
-            catch (SqlException ex)
-            {
-                return "ERROR DE BD" + ex.Message;
-                Console.WriteLine("ERROR DE BD" + ex.Message);
-            }
-
-            conn.Close();
-
-            return "";*/
-
         }
 
         public void cerrarConexion()
@@ -85,10 +53,11 @@ namespace SACD_AccesoDatos
 
                 while (reader.Read())
                 {
-                    Object[] profeInfo = new Object[3];
+                    Object[] profeInfo = new Object[4];
                     profeInfo[0] = reader.GetString(0);
                     profeInfo[1] = reader.GetInt32(1);
                     profeInfo[2] = reader.GetDouble(2);
+                    profeInfo[3] = reader.GetDecimal(3);
                     profesList.Add(profeInfo);
                 }
 

@@ -29,6 +29,15 @@
                 <ImageBrush/>
             </Button.BorderBrush>
         </Button>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="167" Margin="86,112,0,0" VerticalAlignment="Top" Width="375">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Profesor" DisplayMemberBinding="{Binding Profesor}" Width="100"/>
+                    <GridViewColumn Header="Horas" DisplayMemberBinding="{Binding Horas}"/>
+                </GridView>
+            </ListView.View>
+            <ListViewItem Content="ListViewItem" Margin="0"/>
+        </ListView>
 
     </Grid>
 </Page>

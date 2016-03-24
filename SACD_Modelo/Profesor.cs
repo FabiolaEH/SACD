@@ -12,6 +12,6 @@ namespace SACD_Modelo
         private string nombre;
         private List<Asignacion> asignaciones;
         //private float horasAsig;
-        private List<PlazaAsignada> plazasAsig; 
+        private List<PlazaAsignada> plazasAsig;
     }
 }
