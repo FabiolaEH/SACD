@@ -20,6 +20,7 @@
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="166,159,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Page>
