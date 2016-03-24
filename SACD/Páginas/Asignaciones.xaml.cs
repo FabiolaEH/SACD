@@ -28,7 +28,9 @@ namespace SACD.Páginas
 
         }
 
-        
-
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
