@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SACD.Páginas"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-      Title="Asignaciones">
+      d:DesignHeight="300"
+      Title="Asignaciones" Width="562.5" >
 
-    <Grid Margin="0,0,-254,0">
+    <Grid>
         <Label x:Name="label" Content="Asignaciones" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Top" FontSize="24" FontStyle="Italic" Foreground="#FF666666" FontWeight="Bold"/>
         <Rectangle Fill="#FF27AE8D" HorizontalAlignment="Left" Height="486" Margin="265,-195,0,0" VerticalAlignment="Top" Width="4" RenderTransformOrigin="0.5,0.5">
             <Rectangle.RenderTransform>
