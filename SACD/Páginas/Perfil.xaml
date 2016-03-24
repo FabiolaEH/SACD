@@ -1,4 +1,4 @@
-﻿<Page x:Class="SACD.Páginas.Asignaciones"
+﻿<Page x:Class="SACD.Páginas.Perfil"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:SACD.Páginas"
       mc:Ignorable="d" 
       d:DesignHeight="300"
-      Title="Asignaciones" Width="675" >
+      Title="Perfil" Width="675">
 
     <Grid>
         <Label x:Name="label" Content="Asignaciones" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Top" FontSize="24" FontStyle="Italic" Foreground="#FF666666" FontWeight="Bold"/>
@@ -20,15 +20,6 @@
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="27" Margin="165,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" BorderBrush="#FFC8C8C8"/>
-        <Button x:Name="button" Content="" HorizontalAlignment="Left" Margin="385,72,0,0" VerticalAlignment="Top" Width="25" Height="25" RenderTransformOrigin="0.4,1.68">
-            <Button.Background>
-                <ImageBrush ImageSource="/SACD;component/Resources/Lupa.png"/>
-            </Button.Background>
-            <Button.BorderBrush>
-                <ImageBrush/>
-            </Button.BorderBrush>
-        </Button>
 
     </Grid>
 </Page>
