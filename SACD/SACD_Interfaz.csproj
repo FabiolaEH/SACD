@@ -56,6 +56,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Páginas\Asignaciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Páginas\CrearSemestre.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -71,6 +75,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Páginas\Asignaciones.xaml.cs">
+      <DependentUpon>Asignaciones.xaml</DependentUpon>
     </Compile>
     <Compile Include="Páginas\CrearSemestre.xaml.cs">
       <DependentUpon>CrearSemestre.xaml</DependentUpon>
@@ -111,6 +118,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SACD_AccesoDatos\SACD_AccesoDatos.csproj">
+      <Project>{ba656549-df3d-47f8-8d56-d7d11e1076b1}</Project>
+      <Name>SACD_AccesoDatos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SACD_Modelo\SACD_Modelo.csproj">
       <Project>{45060d0d-0e39-4636-a5d6-17e54fadc9ed}</Project>
       <Name>SACD_Modelo</Name>

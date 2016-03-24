@@ -9,5 +9,23 @@ namespace SACD_Modelo
     public class Ampliacion : Asignacion
     {
         private bool isDoble;
+
+
+        public Ampliacion(float pValorHoras, Actividad pActividad, bool pIsDoble) : base(pValorHoras, pActividad)
+        {
+            isDoble = pIsDoble;
+        }
+
+        public bool getIsDouble()
+        {
+            return isDoble;
+        }
+
+        public void setIsDoble(bool pIsDouble)
+        {
+            isDoble = pIsDouble;
+        }
+
+
     }
 }

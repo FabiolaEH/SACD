@@ -18,5 +18,35 @@ namespace SACD_Modelo
         {
            
         }
+
+        public string getNombre()
+        {
+            return nombre;
+        }
+
+        public void setNombre(string pNombre)
+        {
+            nombre = pNombre;
+        }
+
+        public DateTime getInicio()
+        {
+            return inicio;
+        }
+
+        public void setInicio(DateTime pInicio)
+        {
+            inicio = pInicio;
+        }
+
+        public DateTime getFin()
+        {
+            return fin;
+        }
+
+        public void setFin(DateTime pFin)
+        {
+            fin = pFin;
+        }
     }
 }

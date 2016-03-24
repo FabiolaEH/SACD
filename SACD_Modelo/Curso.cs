@@ -12,4 +12,6 @@ namespace SACD_Modelo
         private string nombre;
         private string tipo; // teor - pract - teopract
     }
+
+
 }

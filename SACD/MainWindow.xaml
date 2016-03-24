@@ -105,5 +105,6 @@
         <Label x:Name="label1" Content="Sistema de Asignación de Carga Docente" HorizontalAlignment="Left" Margin="16,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.124,-0.109" FontSize="16" Foreground="#FF999999"/>
         <Rectangle Fill="#FF999999" HorizontalAlignment="Left" Height="543" Margin="316,96,0,0" VerticalAlignment="Top" Width="1"/>
         <Frame NavigationUIVisibility="Hidden" x:Name="frmContenido" Margin="350 90 0 0" Navigated="frmContenido_Navigated" Source="Páginas/Inicio.xaml"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="639,263,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>

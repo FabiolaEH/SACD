@@ -40,5 +40,15 @@ namespace SACD_Modelo
             cantEstudiantes = pCantEstudiantes;
         }
 
+        public Curso getCurso()
+        {
+            return curso;
+        }
+
+        public void setCurso(Curso pCurso)
+        {
+            curso = pCurso;
+        }
+
     }
 }

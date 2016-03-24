@@ -13,26 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using SACD_AccesoDatos;
-
-namespace SACD
+namespace SACD.Páginas
 {
     /// <summary>
-    /// Lógica de interacción para Inicio.xaml
+    /// Lógica de interacción para Asignaciones.xaml
     /// </summary>
-    public partial class Inicio : Page
+    public partial class Asignaciones : Page
     {
-        public Inicio()
+        public Asignaciones()
         {
             InitializeComponent();
-
-            DatosManager dm = new DatosManager();
-
-            labelBD.Content = dm.crearConexion();
-
-
-
         }
-        
     }
 }
