@@ -35,6 +35,5 @@
                 
             </DataGrid.CellStyle>
         </DataGrid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="110,25,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Page>
