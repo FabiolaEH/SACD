@@ -25,7 +25,18 @@ namespace SACD
         public Inicio()
         {
             InitializeComponent();
+            List<Profesor> users = new List<Profesor>();
+            users.Add(new Profesor() { Nombre = "John Doe", Horas = 22});
+            users.Add(new Profesor() { Nombre = "Jane Doe", Horas = 14});
+
+            dgProfesores.ItemsSource = users;
         }
-        
+
+        public class Profesor
+        {
+            public string Nombre { get; set; }
+
+            public int Horas { get; set; }
+        }
     }
 }
