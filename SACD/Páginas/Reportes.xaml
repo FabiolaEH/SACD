@@ -24,6 +24,7 @@
         <Label x:Name="label1_Copy" Content="Nombre" HorizontalAlignment="Left" Margin="121,98,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
         <Label x:Name="label1_Copy1" Content="Año" HorizontalAlignment="Left" Margin="371,98,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
         <Label x:Name="label1_Copy2" Content="Profesor" HorizontalAlignment="Left" Margin="121,202,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
+        <Button x:Name="button" Content=".l." HorizontalAlignment="Left" Margin="406,202,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
     </Grid>
 
 </Page>
