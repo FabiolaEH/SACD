@@ -82,36 +82,6 @@
 
     <Grid Margin="0,0,135,207">
         <Label x:Name="labelBD" Content="Hola" HorizontalAlignment="Left" Margin="76,162,0,0" VerticalAlignment="Top"/>
-        <DataGrid Name="dgProfesores" AutoGenerateColumns="False" Style="{DynamicResource DataGridStyle}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" />
-                <DataGridTextColumn Header="Horas" Binding="{Binding Horas}" />
-                <DataGridTextColumn Header="Ver" Binding="{Binding Id}" />
-            </DataGrid.Columns>
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate>
-                    <DockPanel Background="GhostWhite">
-                        <Grid Margin="0,10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Text="Nombre: " FontWeight="Bold" Grid.Row="1" />
-                            <TextBlock Text="{Binding Nombre}" Grid.Column="1" Grid.Row="1" />
-                            <TextBlock Text="Horas: " FontWeight="Bold" Grid.Row="2" />
-                            <TextBlock Text="{Binding Horas}" Grid.Column="1" Grid.Row="2" />
-
-                        </Grid>
-                    </DockPanel>
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
-        </DataGrid>
 
     </Grid>
 </Page>
