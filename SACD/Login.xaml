@@ -1,0 +1,24 @@
+﻿<Window x:Class="SACD.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SACD"
+        mc:Ignorable="d"
+        Title="Sistema de Asignación de Carga Docente" Height="700" Width="1000" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="334" Margin="296,168,0,0" Stroke="#FFB9B9B9" VerticalAlignment="Top" Width="356" RenderTransformOrigin="-1.325,-0.17"/>
+        <Label x:Name="label" Content="Iniciar Sesión" HorizontalAlignment="Left" Margin="323,187,0,0" VerticalAlignment="Top" FontSize="18.667"/>
+        <Rectangle Fill="#FF27AE8D" HorizontalAlignment="Left" Height="5" Margin="323,223,0,0" Stroke="#FF27AE8D" VerticalAlignment="Top" Width="306"/>
+        <Label x:Name="label_Copy" Content="Correo" HorizontalAlignment="Left" Margin="323,256,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF434343"/>
+        <Label x:Name="label_Copy1" Content="Contraseña" HorizontalAlignment="Left" Margin="323,336,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.53,5.443" Foreground="#FF434343"/>
+        <TextBox x:Name="tbxCorreo" HorizontalAlignment="Left" Height="30" Margin="323,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" VerticalContentAlignment="Center"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="323,366,0,0" VerticalAlignment="Top" Height="32" Width="306" VerticalContentAlignment="Center"/>
+        <TextBlock x:Name="textBlock1" Text="¿Olvidó su contraseña?" HorizontalAlignment="Left" Margin="323,403,0,0" VerticalAlignment="Top" Width="155" Foreground="#FF1665C3" FontSize="13.333" Cursor="Hand" Style="{StaticResource HoverUnderlineStyle}"/>
+        <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="534,451,0,0" VerticalAlignment="Top" Width="95" Height="33" FontSize="16" Style="{StaticResource RoundCorner}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="btnAceptar_Click"/>
+        <Label x:Name="label_Copy2" Content="SACD" HorizontalAlignment="Left" Margin="296,82,0,0" VerticalAlignment="Top" FontSize="26.667" FontWeight="Bold" Background="White" Foreground="#FF999999"/>
+        <Label x:Name="label1_Copy" Content="Sistema de Asignación de Carga Docente" HorizontalAlignment="Left" Margin="296,112,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.124,-0.109" FontSize="16" Foreground="#FF999999"/>
+
+    </Grid>
+</Window>
