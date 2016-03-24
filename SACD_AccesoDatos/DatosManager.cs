@@ -9,12 +9,29 @@ namespace SACD_AccesoDatos
 {
     public class DatosManager
     {
-        private SqlConnection conn;
+        private SqlConnection conn = null;
 
 
-        public string crearConexion()
+        public bool crearConexion()
         {
             conn = new SqlConnection();
+            conn.ConnectionString = "Server =DESKTOP-78JIJ14; Database =Prueba; Trusted_Connection = true; Integrated Security=True";
+            /*Server =[server_name]; Database =[database_name]; Trusted_Connection = true*/
+            try
+            {
+                conn.Open();
+                Console.WriteLine("Conexión exitosa");
+                return true;
+            }
+
+            catch (SqlException ex)
+            {
+                
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
+            /*conn = new SqlConnection();
             conn.ConnectionString = "Server =DESKTOP-78JIJ14; Database =Prueba; Trusted_Connection = true; Integrated Security=True";
 
             try
@@ -41,12 +58,19 @@ namespace SACD_AccesoDatos
                 return "ERROR DE BD" + ex.Message;
                 Console.WriteLine("ERROR DE BD" + ex.Message);
             }
-            
 
             conn.Close();
 
-            return "";
+            return "";*/
 
+        }
+
+        public void cerrarConexion()
+        {
+            if (conn != null)
+                conn.Close();
+            else
+                Console.WriteLine("La conexión no ha sido creada");
         }
     }
 }
