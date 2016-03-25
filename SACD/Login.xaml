@@ -16,7 +16,7 @@
         <TextBox x:Name="tbxCorreo" HorizontalAlignment="Left" Height="30" Margin="323,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" VerticalContentAlignment="Center"/>
         <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="323,366,0,0" VerticalAlignment="Top" Height="32" Width="306" VerticalContentAlignment="Center"/>
         <TextBlock x:Name="textBlock1" Text="¿Olvidó su contraseña?" HorizontalAlignment="Left" Margin="323,403,0,0" VerticalAlignment="Top" Width="155" Foreground="#FF1665C3" FontSize="13.333" Cursor="Hand" Style="{StaticResource HoverUnderlineStyle}"/>
-        <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="534,451,0,0" VerticalAlignment="Top" Width="95" Height="33" FontSize="16" Style="{StaticResource RoundCorner}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="btnAceptar_Click"/>
+        <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="534,451,0,0" VerticalAlignment="Top" Width="95" Height="33" FontSize="16" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="btnAceptar_Click"/>
         <Label x:Name="label_Copy2" Content="SACD" HorizontalAlignment="Left" Margin="296,82,0,0" VerticalAlignment="Top" FontSize="26.667" FontWeight="Bold" Background="White" Foreground="#FF999999"/>
         <Label x:Name="label1_Copy" Content="Sistema de Asignación de Carga Docente" HorizontalAlignment="Left" Margin="296,112,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.124,-0.109" FontSize="16" Foreground="#FF999999"/>
 
