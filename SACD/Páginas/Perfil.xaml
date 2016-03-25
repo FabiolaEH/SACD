@@ -91,7 +91,7 @@
                 </ListView.View>
             </ListView>
             <ListBox x:Name="listbx_Grupos" HorizontalAlignment="Left" Height="154" Margin="55,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <CheckBox x:Name="checkBox" Content="CheckBox"/>
+                <CheckBox x:Name="checkBox" Content="CheckBox" MouseRightButtonDown="checkBox_MouseRightButtonDown"/>
             </ListBox>
 
             <GroupBox x:Name="groupBox" Header="Asignación Carga" HorizontalAlignment="Left" Margin="34,505,0,0" VerticalAlignment="Top" Height="391" Width="533" Foreground="#FF666666"/>

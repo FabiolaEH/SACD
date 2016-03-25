@@ -93,5 +93,18 @@ namespace SACD.Páginas
             // Open the dialog box modally 
             dlg.ShowDialog();
         }
+
+        private void checkBox_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Instantiate the dialog box
+            Ventanas.Parametros dlg = new Ventanas.Parametros();
+
+            // Configure the dialog box
+            /* dlg.Owner = this;
+             dlg.DocumentMargin = this.documentTextBox.Margin;*/
+
+            // Open the dialog box modally 
+            dlg.ShowDialog();
+        }
     }
 }
