@@ -25,6 +25,9 @@ namespace SACD.Páginas
             InitializeComponent();
         }
 
-        
+        private void radioButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

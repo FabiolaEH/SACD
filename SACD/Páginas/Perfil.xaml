@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SACD.Páginas"
       mc:Ignorable="d"
-      Title="Perfil" Width="675" Height="594.389">
+      Title="Perfil" Width="675" Height="594">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,10,0">
-        <Grid Height="798">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,10,22">
+        <Grid Height="965">
             <Label x:Name="label" Content="Perfil" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Top" FontSize="24" FontStyle="Italic" Foreground="#FF666666" FontWeight="Bold"/>
             <Rectangle Fill="#FF27AE8D" HorizontalAlignment="Left" Height="486" Margin="265,-195,0,0" VerticalAlignment="Top" Width="4" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
@@ -36,17 +36,47 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Line xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="Separador" X1="10" Y1="10" X2="530" Y2="10" Stroke="#FFB6B6B6" StrokeDashArray="2, 4" Margin="20,470,0,0" />
+            <Line xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="Separador" X1="10" Y1="10" X2="550" Y2="10" Stroke="#FFB6B6B6" StrokeDashArray="2, 4" Margin="20,470,0,0" />
             <Label x:Name="label1_Copy4" Content="Actividades" HorizontalAlignment="Left" Margin="34,318,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-            <ListView x:Name="listView_Copy" HorizontalAlignment="Left" Height="80" Margin="107,360,0,0" VerticalAlignment="Top" Width="245">
+            <ListView x:Name="listView_Copy" HorizontalAlignment="Left" Height="80" Margin="107,360,0,0" VerticalAlignment="Top" Width="335">
                 <ListView.View>
                     <GridView AllowsColumnReorder="False">
-                        <GridViewColumn Header="Descripcion" Width="150"/>
+                        <GridViewColumn Header="Descripcion" Width="80"/>
                         <GridViewColumn Header="Horas" Width="80"/>
+                        <GridViewColumn Header="Ampl." Width="80"/>
+                        <GridViewColumn Header="Doble Ampl." Width="80"/>
 
                     </GridView>
                 </ListView.View>
             </ListView>
+            <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="154" Margin="55,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <CheckBox x:Name="checkBox" Content="CheckBox"/>
+            </ListBox>
+
+            <GroupBox x:Name="groupBox" Header="Asignación Carga" HorizontalAlignment="Left" Margin="34,505,0,0" VerticalAlignment="Top" Height="391" Width="533" Foreground="#FF666666"/>
+            <Label x:Name="label1_Copy5" Content="Modalidad" HorizontalAlignment="Left" Margin="55,532,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+            <RadioButton x:Name="radioButton" Content="Simple" HorizontalAlignment="Left" Margin="94,565,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="radioButton1" Content="Ampliación" HorizontalAlignment="Left" Margin="210,565,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="radioButton2" Content="Doble Ampliación" HorizontalAlignment="Left" Margin="329,565,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label1_Copy6" Content="Académicas" HorizontalAlignment="Left" Margin="85,612,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+            <Label x:Name="label1_Copy7" Content="Administrativas" HorizontalAlignment="Left" Margin="244,612,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+            <Label x:Name="label1_Copy8" Content="Investigaciones" HorizontalAlignment="Left" Margin="417,612,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+            <ListBox x:Name="listBox_Copy" HorizontalAlignment="Left" Height="154" Margin="401,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <CheckBox x:Name="checkBox1" Content="CheckBox"/>
+            </ListBox>
+            <ListBox x:Name="listBox_Copy1" HorizontalAlignment="Left" Height="154" Margin="227,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <CheckBox x:Name="checkBox2" Content="CheckBox"/>
+                <CheckBox x:Name="checkBox22" Content="CheckBox"/>
+                <CheckBox x:Name="checkBox222" Content="CheckBox"/>
+                <CheckBox x:Name="checkBox21" Content="CheckBox"/>
+                <CheckBox x:Name="checkBox23" Content="CheckBox"/>
+                <CheckBox x:Name="checkBox24" Content="CheckBox"/>
+                <CheckBox x:Name="checkBox25" Content="CheckBox"/>
+                <CheckBox x:Name="checkBox26" Content="CheckBox"/>
+                <CheckBox x:Name="checkBox27" Content="CheckBox"/>
+                <CheckBox x:Name="checkBox8" Content="CheckBox"/>
+            </ListBox>
+
         </Grid>
     </ScrollViewer>
 
