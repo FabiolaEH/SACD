@@ -24,5 +24,10 @@ namespace SACD.Páginas
         {
             InitializeComponent();
         }
+
+        private void btn_Aceptar_Click(object sender, RoutedEventArgs e)
+        {
+            popup_reporte.IsOpen = true;
+        }
     }
 }
