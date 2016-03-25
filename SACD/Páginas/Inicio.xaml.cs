@@ -36,5 +36,10 @@ namespace SACD
 
             public int horas { get; set; }
         }
+
+        public void ButtonCommand()
+        {
+            MessageBox.Show("Botón");
+        }
     }
 }

@@ -9,24 +9,40 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="Inicio">
     <Page.Resources>
-        
     </Page.Resources>
-
+    
     <Grid>
-        <DataGrid Name="dgProfesores" AutoGenerateColumns="False" Margin="10,68,14,46" Background="White" BorderBrush="White" FontSize="14.667" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF939393">
+        <DataGrid Name="dgProfesores" AutoGenerateColumns="False" Margin="39,70,34,44" Background="White" BorderBrush="#FFDDDDDD" FontSize="13.333" HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalGridLinesBrush="#FFDDDDDD" ColumnWidth="*" RowHeaderWidth = "0">
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#ECECEC"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Profesor" Binding="{Binding nombre}" />
                 <DataGridTextColumn Header="Horas" Binding="{Binding horas}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btn_Ver" Content="Ver" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="60" Height="33" FontSize="14" Style="{StaticResource RoundCorner}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
-
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader" >
+                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Padding" Value="10"/>
+                    <Setter Property="FontWeight" Value="Normal" />
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                 <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
