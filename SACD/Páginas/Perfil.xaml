@@ -4,22 +4,50 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SACD.Páginas"
-      mc:Ignorable="d" 
-      d:DesignHeight="300"
-      Title="Perfil" Width="675">
+      mc:Ignorable="d"
+      Title="Perfil" Width="675" Height="594.389">
 
-    <Grid>
-        <Label x:Name="label" Content="Asignaciones" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Top" FontSize="24" FontStyle="Italic" Foreground="#FF666666" FontWeight="Bold"/>
-        <Rectangle Fill="#FF27AE8D" HorizontalAlignment="Left" Height="486" Margin="265,-195,0,0" VerticalAlignment="Top" Width="4" RenderTransformOrigin="0.5,0.5">
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="90.481"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-        </Rectangle>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,10,0">
+        <Grid Height="798">
+            <Label x:Name="label" Content="Perfil" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Top" FontSize="24" FontStyle="Italic" Foreground="#FF666666" FontWeight="Bold"/>
+            <Rectangle Fill="#FF27AE8D" HorizontalAlignment="Left" Height="486" Margin="265,-195,0,0" VerticalAlignment="Top" Width="4" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90.481"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Label x:Name="label1_Copy" Content="Profesor" HorizontalAlignment="Left" Margin="34,79,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold"/>
+            <Label x:Name="label_Prof" Content="Nombre" HorizontalAlignment="Left" Margin="130,70,0,0" VerticalAlignment="Top" FontSize="21.333" Foreground="#FF666666"/>
+            <Label x:Name="label1_Copy2" Content="Horas Mínimas" HorizontalAlignment="Left" Margin="34,124,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+            <Label x:Name="label1_Copy3" Content="Horas Asignadas" HorizontalAlignment="Left" Margin="187,124,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+            <Label x:Name="label_HorasMin" Content="0" HorizontalAlignment="Left" Margin="74,157,0,0" VerticalAlignment="Top" FontSize="18.667" Foreground="#FF666666"/>
+            <Label x:Name="label_HorasAsig" Content="0" HorizontalAlignment="Left" Margin="225,157,0,0" VerticalAlignment="Top" FontSize="18.667" Foreground="#FF666666" RenderTransformOrigin="8.286,0.485"/>
+            <Label x:Name="label1_Copy1" Content="Plazas" HorizontalAlignment="Left" Margin="34,197,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+            <ListView x:Name="listView" HorizontalAlignment="Left" Height="80" Margin="107,218,0,0" VerticalAlignment="Top" Width="245">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False">
+                        <GridViewColumn Header="Num." Width="80"/>
+                        <GridViewColumn Header="Horas" Width="80"/>
+                        <GridViewColumn Header="Modalidad" Width="80"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Line xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="Separador" X1="10" Y1="10" X2="530" Y2="10" Stroke="#FFB6B6B6" StrokeDashArray="2, 4" Margin="20,470,0,0" />
+            <Label x:Name="label1_Copy4" Content="Actividades" HorizontalAlignment="Left" Margin="34,318,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+            <ListView x:Name="listView_Copy" HorizontalAlignment="Left" Height="80" Margin="107,360,0,0" VerticalAlignment="Top" Width="245">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False">
+                        <GridViewColumn Header="Descripcion" Width="150"/>
+                        <GridViewColumn Header="Horas" Width="80"/>
 
-    </Grid>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </ScrollViewer>
+
 </Page>

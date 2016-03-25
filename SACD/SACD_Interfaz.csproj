@@ -60,6 +60,9 @@
     <Compile Include="Páginas\Perfil.xaml.cs">
       <DependentUpon>Perfil.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Páginas\Prueba.xaml.cs">
+      <DependentUpon>Prueba.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Páginas\Reportes.xaml.cs">
       <DependentUpon>Reportes.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,10 @@
     <Page Include="Páginas\Perfil.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Páginas\Prueba.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Páginas\Reportes.xaml">
       <Generator>MSBuild:Compile</Generator>
