@@ -6,6 +6,47 @@
       xmlns:local="clr-namespace:SACD.Páginas"
       mc:Ignorable="d"
       Title="Perfil" Width="675" Height="594">
+    <Page.Resources>
+
+
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,10,22">
         <Grid Height="965">
@@ -55,9 +96,9 @@
 
             <GroupBox x:Name="groupBox" Header="Asignación Carga" HorizontalAlignment="Left" Margin="34,505,0,0" VerticalAlignment="Top" Height="391" Width="533" Foreground="#FF666666"/>
             <Label x:Name="label1_Copy5" Content="Modalidad" HorizontalAlignment="Left" Margin="55,532,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-            <RadioButton x:Name="radioButton" Content="Simple" HorizontalAlignment="Left" Margin="94,565,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="radioButton1" Content="Ampliación" HorizontalAlignment="Left" Margin="210,565,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="radioButton2" Content="Doble Ampliación" HorizontalAlignment="Left" Margin="329,565,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="radioButton" Content="Simple" HorizontalAlignment="Left" Margin="94,565,0,0" VerticalAlignment="Top" Foreground="#FF666666"/>
+            <RadioButton x:Name="radioButton1" Content="Ampliación" HorizontalAlignment="Left" Margin="210,565,0,0" VerticalAlignment="Top" Foreground="#FF666666"/>
+            <RadioButton x:Name="radioButton2" Content="Doble Ampliación" HorizontalAlignment="Left" Margin="329,565,0,0" VerticalAlignment="Top" Foreground="#FF666666"/>
             <Label x:Name="label1_Copy6" Content="Académicas" HorizontalAlignment="Left" Margin="85,612,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
             <Label x:Name="label1_Copy7" Content="Administrativas" HorizontalAlignment="Left" Margin="244,612,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
             <Label x:Name="label1_Copy8" Content="Investigaciones" HorizontalAlignment="Left" Margin="417,612,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
@@ -76,6 +117,8 @@
                 <CheckBox x:Name="checkBox27" Content="CheckBox"/>
                 <CheckBox x:Name="checkBox8" Content="CheckBox"/>
             </ListBox>
+            <Button x:Name="btn_Aceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="464,834,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" RenderTransformOrigin="0.518,1.2"/>
+
 
         </Grid>
     </ScrollViewer>
