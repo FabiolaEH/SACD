@@ -28,6 +28,16 @@ namespace SACD
             this.dgProfesores.Items.Add(new Profesor { nombre = "Jhoel Marenco", horas = 12 });
             this.dgProfesores.Items.Add(new Profesor { nombre = "Fabiola Espinoza", horas = 40 });
             this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
+            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
+            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
+            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
+            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
+            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
+            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
+            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
+            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
+            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
+            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
         }
 
         public class Profesor
