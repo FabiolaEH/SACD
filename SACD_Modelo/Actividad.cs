@@ -10,10 +10,10 @@ namespace SACD_Modelo
     {
         private int id;
         private string tipo; //cur - invest - admin
-        private float horas;
+        private decimal horas;
 
 
-        public Actividad(int pId, string pTipo, float pHoras)
+        public Actividad(int pId, string pTipo, decimal pHoras)
         {
             id = pId;
             tipo = pTipo;
@@ -40,12 +40,12 @@ namespace SACD_Modelo
             tipo = pTipo;
         }
 
-        public float getHoras()
+        public decimal getHoras()
         {
             return horas;
         }
 
-        public void setHoras(float pHoras)
+        public void setHoras(decimal pHoras)
         {
             horas = pHoras;
         }

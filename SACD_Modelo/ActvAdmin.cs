@@ -11,7 +11,7 @@ namespace SACD_Modelo
         private string nombre;
 
 
-        public ActvAdmin(int pId, string pTipo, float pHoras, string pNombre) : base(pId, pTipo, pHoras)
+        public ActvAdmin(int pId, string pTipo, decimal pHoras, string pNombre) : base(pId, pTipo, pHoras)
         {
             nombre = pNombre;
         }

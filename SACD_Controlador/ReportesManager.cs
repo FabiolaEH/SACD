@@ -12,15 +12,15 @@ using SACD_Modelo;
 
 namespace SACD_Controlador
 {
-    public class ReportesManager
+    public static class ReportesManager
     {
         //generar reporte individual
-        public void generarReporte(Profesor pProfesor, Semestre pSemestre)
+        public static void generarReporte(Profesor pProfesor, Semestre pSemestre)
         {
 
         }
 
-        public void generarReporteCompleto(Semestre pSemestre)
+        public static void generarReporteCompleto(Semestre pSemestre)
         {
 
         }

@@ -12,7 +12,7 @@ namespace SACD_Modelo
         private int cantEstudiantes;
         private Curso curso;
 
-        public Grupo(int pId, string pTipo, float pHoras, int pNumero, int pCantEstudiantes, 
+        public Grupo(int pId, string pTipo, decimal pHoras, int pNumero, int pCantEstudiantes, 
             Curso pCurso) : base(pId, pTipo, pHoras)
         {
             numero = pNumero;

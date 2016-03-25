@@ -13,10 +13,12 @@ namespace SACD_Modelo
         private DateTime fin;
 
 
-        public Investigacion(int pId, string pTipo, float pHoras, string pNombre,
+        public Investigacion(int pId, string pTipo, decimal pHoras, string pNombre,
             DateTime pInicio, DateTime pFin) : base(pId, pTipo, pHoras)
         {
-           
+            nombre = pNombre;
+            inicio = pInicio;
+            fin = pFin;
         }
 
         public string getNombre()

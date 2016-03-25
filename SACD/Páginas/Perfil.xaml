@@ -90,7 +90,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="154" Margin="55,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox x:Name="listbx_Grupos" HorizontalAlignment="Left" Height="154" Margin="55,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <CheckBox x:Name="checkBox" Content="CheckBox"/>
             </ListBox>
 
@@ -102,10 +102,8 @@
             <Label x:Name="label1_Copy6" Content="Académicas" HorizontalAlignment="Left" Margin="85,612,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
             <Label x:Name="label1_Copy7" Content="Administrativas" HorizontalAlignment="Left" Margin="244,612,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
             <Label x:Name="label1_Copy8" Content="Investigaciones" HorizontalAlignment="Left" Margin="417,612,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-            <ListBox x:Name="listBox_Copy" HorizontalAlignment="Left" Height="154" Margin="401,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <CheckBox x:Name="checkBox1" Content="CheckBox"/>
-            </ListBox>
-            <ListBox x:Name="listBox_Copy1" HorizontalAlignment="Left" Height="154" Margin="227,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox x:Name="listbx_Investig" HorizontalAlignment="Left" Height="154" Margin="401,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+            <ListBox x:Name="listbx_Admin" HorizontalAlignment="Left" Height="154" Margin="227,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <CheckBox x:Name="checkBox2" Content="CheckBox"/>
                 <CheckBox x:Name="checkBox22" Content="CheckBox"/>
                 <CheckBox x:Name="checkBox222" Content="CheckBox"/>
