@@ -16,17 +16,13 @@ using System.Windows.Shapes;
 namespace SACD.Páginas
 {
     /// <summary>
-    /// Lógica de interacción para Asignaciones.xaml
+    /// Lógica de interacción para Prueba.xaml
     /// </summary>
-    public partial class Asignaciones : Page
+    public partial class Prueba : Page
     {
-        public Asignaciones()
+        public Prueba()
         {
             InitializeComponent();
-
-            
-
         }
-
     }
 }

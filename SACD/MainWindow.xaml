@@ -79,8 +79,8 @@
             <MenuItem Header="Inicio" Margin="10" Padding="50,22,0,0" Width="202" Height="75" HorizontalAlignment="Center" FontSize="18.667" FontWeight="Bold" Foreground="White" Background="#FFB5D244" Template="{StaticResource MenuItemTemplate}" Command="NavigationCommands.GoToPage" CommandParameter="Páginas/Inicio.xaml" CommandTarget="{Binding ElementName=frmContenido}" />
 
             <MenuItem Header="Semestres" Margin="10" Padding="50,22,0,0" Width="202" Height="75" HorizontalAlignment="Center" FontSize="18.667" FontWeight="Bold" Foreground="White" Background="#FFB5D244" Template="{StaticResource MenuItemTemplate}">
-                <MenuItem Header="Crear" Foreground="Black" FontWeight="Normal" FontSize="16" Padding="5"  Command="NavigationCommands.GoToPage" CommandParameter="Páginas/CrearSemestre.xaml" CommandTarget="{Binding ElementName=frmContenido}"/>
-                <MenuItem Header="Eliminar" FontWeight="Normal" Foreground="Black" FontSize="16" Padding="5"/>
+                <MenuItem Header="Crear" Foreground="Black" FontWeight="Normal" FontSize="16" Padding="5"  Command="NavigationCommands.GoToPage" CommandParameter="Páginas/Perfil.xaml" CommandTarget="{Binding ElementName=frmContenido}"/>
+                <MenuItem Header="Eliminar" FontWeight="Normal" Foreground="Black" FontSize="16" Padding="5" Command="NavigationCommands.GoToPage" CommandParameter="Páginas/Prueba.xaml" CommandTarget="{Binding ElementName=frmContenido}"/>
             </MenuItem>
 
             <MenuItem Header="Profesores"  Margin="10" Padding="50,22,0,0" Width="202" Height="75" HorizontalAlignment="Center" FontSize="18.667" FontWeight="Bold" Foreground="White" Background="#FFB5D244"  Template="{StaticResource MenuItemTemplate}" Command="NavigationCommands.GoToPage" CommandParameter="Profesores.xaml" CommandTarget="{Binding ElementName=frmContenido}">
@@ -108,6 +108,8 @@
         <Label x:Name="label" Content="SACD" HorizontalAlignment="Left" Margin="16,10,0,0" VerticalAlignment="Top" FontSize="26.667" FontWeight="Bold" Background="White" Foreground="#FF999999"/>
         <Label x:Name="label1" Content="Sistema de Asignación de Carga Docente" HorizontalAlignment="Left" Margin="16,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.124,-0.109" FontSize="16" Foreground="#FF999999" Grid.ColumnSpan="2"/>
         <Rectangle Fill="#FFC1C1C1" HorizontalAlignment="Left" Height="543" Margin="149,96,0,0" VerticalAlignment="Top" Width="1" Grid.Column="1"/>
-        <Frame NavigationUIVisibility="Hidden" x:Name="frmContenido" Margin="183,90,0,0" Navigated="frmContenido_Navigated" Source="Páginas/Inicio.xaml" Grid.Column="1"/>
+        <Frame NavigationUIVisibility="Hidden" x:Name="frmContenido" Navigated="frmContenido_Navigated" Source="Páginas/Inicio.xaml" Grid.Column="1" ScrollViewer.CanContentScroll="True"
+         Width="686" Height="581" Margin="183,90,0,0"/>
+     
     </Grid>
 </Window>
