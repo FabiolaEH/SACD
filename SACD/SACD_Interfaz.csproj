@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Clases\Profesor_GUI.cs" />
     <Compile Include="Páginas\Perfil.xaml.cs">
       <DependentUpon>Perfil.xaml</DependentUpon>
     </Compile>

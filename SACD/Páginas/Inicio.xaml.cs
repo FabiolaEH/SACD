@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SACD.Clases;
+using SACD_Controlador;
+using SACD_Modelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,34 +25,31 @@ namespace SACD
     /// </summary>
     public partial class Inicio : Page
     {
+
         public Inicio()
         {
             InitializeComponent();
-            this.dgProfesores.Items.Add(new Profesor { nombre = "Jhoel Marenco", horas = 12 });
-            this.dgProfesores.Items.Add(new Profesor { nombre = "Fabiola Espinoza", horas = 40 });
-            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
-            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
-            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
-            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
-            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
-            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
-            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
-            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
-            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
-            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
-            this.dgProfesores.Items.Add(new Profesor { nombre = "Brandon Campos", horas = 30 });
+            listarProfesores();
         }
 
-        public class Profesor
+        public void listarProfesores()
         {
-            public string nombre { get; set; }
+            List<Profesor> profesList;
+            List<Profesor_GUI> profesListGUI = new List<Profesor_GUI>();
+            profesList = ProfesManager.listar();
+            
+            foreach (Profesor profe in profesList)
+            {
+                profesListGUI.Add(new Profesor_GUI() { id = profe.getId(), nombre = profe.getNombre(), horasAsig = profe.getHorasAsig() });
+            }
+            this.dgProfesores.ItemsSource = profesListGUI;
 
-            public int horas { get; set; }
         }
-
-        public void ButtonCommand()
+        
+        public void verPerfil(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Botón");
+            MessageBox.Show((sender as Button).Uid.ToString());
         }
+
     }
 }

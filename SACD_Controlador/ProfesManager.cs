@@ -43,7 +43,19 @@ namespace SACD_Controlador
         //obtener lista de profesores registrados
         public static List<Profesor> listar()
         {
-            return null;
+            List<Object[]> profesListObject = new List<Object[]>();
+            List<Profesor> profesList = new List<Profesor>();
+            Profesor profe;
+
+            profesListObject = DatosManager.getProfesoresList();
+            
+            foreach (Object[] obj in profesListObject)
+            {
+                profe = new Profesor((int)obj[0], (string)obj[1], (decimal)obj[2]);
+                profesList.Add(profe);
+            }
+
+            return profesList;
         }
 
         //calcular horas mín. laborales
