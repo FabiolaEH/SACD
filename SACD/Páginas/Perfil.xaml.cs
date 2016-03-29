@@ -32,7 +32,7 @@ namespace SACD.Páginas
             label_HorasAsig.Content = profesor.getHorasAsig();
 
             //Cargar listas de actividades
-            cargarGrupos();
+            //cargarGrupos();
             cargarActvsAdmin();
             cargarInvestig();
 
@@ -42,7 +42,15 @@ namespace SACD.Páginas
         //cargar lista de actividades académicas
         public void cargarGrupos()
         {
+            List<Grupo> grupos = ActividadesManager.listarGrupos();
+            CheckBox checkBoxField;
 
+            foreach (Grupo grupo in grupos)
+            {
+                checkBoxField = new CheckBox();
+                checkBoxField.Content = grupo.getCurso().getNombre() + " - Grupo " + grupo.getNumero() + " - "+ grupo.getHoras() + " hrs";
+                listbx_Grupos.Items.Add(checkBoxField);
+            }
         }
 
         //cargar lista de actividades administrativas
