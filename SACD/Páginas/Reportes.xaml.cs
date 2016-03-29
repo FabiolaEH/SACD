@@ -29,5 +29,26 @@ namespace SACD.Páginas
         {
             popup_reporte.IsOpen = true;
         }
+
+        private void checkIsMouseDirectlyOver(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            ImageBrush equis = new ImageBrush();
+            equis.ImageSource = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Equis.png"));
+            ImageBrush equisR = new ImageBrush();
+            equisR.ImageSource = new BitmapImage(new Uri(@"pack://application:,,,/Resources/EquisR.png"));
+            if (btnCerrarReporte.IsMouseOver)
+            {
+                btnCerrarReporte.Background = equisR;
+            }
+            else
+            {
+                btnCerrarReporte.Background = equis;
+            }
+        }
+
+        private void btnCerrarReporte_Click(object sender, RoutedEventArgs e)
+        {
+            popup_reporte.IsOpen = false;
+        }
     }
 }
