@@ -58,6 +58,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Clases\Profesor_GUI.cs" />
+    <Compile Include="PopupRegistro.xaml.cs">
+      <DependentUpon>PopupRegistro.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Páginas\Perfil.xaml.cs">
       <DependentUpon>Perfil.xaml</DependentUpon>
     </Compile>
@@ -71,6 +74,10 @@
       <DependentUpon>Parametros.xaml</DependentUpon>
     </Compile>
     <Page Include="Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PopupRegistro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

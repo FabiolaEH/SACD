@@ -341,27 +341,6 @@
         <Button x:Name="btn_Aceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="372,341,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Aceptar_Click"/>
 
 
-
-        <!-- POP UP DONDE SE DESPLIEGA EL REPORTE-->
-        <Popup x:Name="popup_reporte" Width="1000" Height="650" Placement="Center" HorizontalOffset="-225" VerticalOffset="-140"
-               AllowsTransparency="True">
-            <Border BorderBrush="#D9D9D9" BorderThickness="2" CornerRadius="15" Background="White" Margin="-132,-33,132,33">
-                <Grid >
-                    <Label x:Name="prueba" Content="Reportes" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Top" FontSize="24" FontStyle="Italic" Foreground="#FF666666" FontWeight="Bold"/>
-                    <Rectangle Stroke="#FBE142" StrokeThickness="2" HorizontalAlignment="Left" Height="220" Margin="30,135,0,0" VerticalAlignment="Top" Width="445"/>
-                    <Rectangle Stroke="#AECB1F" StrokeThickness="2" HorizontalAlignment="Left" Height="220" Margin="515,135,0,0" VerticalAlignment="Top" Width="445"/>
-                    <Rectangle Stroke="#27AE8D" StrokeThickness="2" HorizontalAlignment="Left" Height="220" Margin="30,388,0,0" VerticalAlignment="Top" Width="445"/>
-                    <Rectangle Stroke="#CCCCCC" StrokeThickness="2" HorizontalAlignment="Left" Height="220" Margin="515,388,0,0" VerticalAlignment="Top" Width="445"/>
-                    <Button x:Name="btnCerrarReporte" Width="30" Height="30" Margin="936,10,10,586" BorderBrush="{x:Null}" Foreground="{x:Null}" IsMouseDirectlyOverChanged="checkIsMouseDirectlyOver" Click="btnCerrarReporte_Click">
-                        <Button.Background>
-                            <ImageBrush ImageSource="/SACD;component/Resources/Equis.png"/>
-                        </Button.Background>
-                    </Button>
-                </Grid>
-            </Border>
-        </Popup>
-
-
     </Grid>
 
 </Page>

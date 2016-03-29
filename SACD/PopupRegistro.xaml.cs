@@ -13,22 +13,27 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SACD.Páginas
+namespace SACD
 {
     /// <summary>
-    /// Lógica de interacción para Reportes.xaml
+    /// Lógica de interacción para PopupRegistro.xaml
     /// </summary>
-    public partial class Reportes : Page
+    public partial class PopupRegistro : Window
     {
-        public Reportes()
+        public PopupRegistro(int pIdProfesor)
         {
             InitializeComponent();
+            this.Show();
         }
 
-        private void btn_Aceptar_Click(object sender, RoutedEventArgs e)
+        private void btnCerrarReporte_Click(object sender, RoutedEventArgs e)
         {
-            //popup_reporte.IsOpen = true;
-            PopupRegistro popup = new PopupRegistro(1);
+            this.Close();
+        }
+
+        private void frmContenido_Navigated(object sender, NavigationEventArgs e)
+        {
+
         }
     }
 }
