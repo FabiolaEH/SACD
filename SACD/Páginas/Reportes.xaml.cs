@@ -45,5 +45,10 @@ namespace SACD.Páginas
                 btnCerrarReporte.Background = equis;
             }
         }
+
+        private void btnCerrarReporte_Click(object sender, RoutedEventArgs e)
+        {
+            popup_reporte.IsOpen = false;
+        }
     }
 }
