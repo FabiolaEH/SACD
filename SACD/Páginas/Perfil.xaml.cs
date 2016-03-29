@@ -31,20 +31,11 @@ namespace SACD.Páginas
             label_Prof.Content = profesor.getNombre();
             label_HorasAsig.Content = profesor.getHorasAsig();
 
-            /* //cargar listboxes         
-             CheckBox checkBoxField = new CheckBox();
-             checkBoxField.Content = "Grupo 1 --- 2hrs";
-             string str = (string) checkBoxField.Content;
-
-             MessageBoxButton button = MessageBoxButton.YesNoCancel;
-             MessageBoxImage icon = MessageBoxImage.Warning;
-
-             MessageBox.Show(str, "Titulo", button, icon);
-
-
-             list_Grupos.Items.Add(checkBoxField);*/
-
+            //Cargar listas de actividades
+            cargarGrupos();
+            cargarActvsAdmin();
             cargarInvestig();
+
 
         }
 
@@ -55,15 +46,23 @@ namespace SACD.Páginas
         }
 
         //cargar lista de actividades administrativas
-        public void cargarActvAdmin()
+        public void cargarActvsAdmin()
         {
+            List<ActvAdmin> actvsAdmin = ActividadesManager.listarAdministvs();
+            CheckBox checkBoxField;
 
+            foreach (ActvAdmin admin in actvsAdmin)
+            {
+                checkBoxField = new CheckBox();
+                checkBoxField.Content = admin.getNombre() + " - " + admin.getHoras() + " hrs";
+                listbx_Admin.Items.Add(checkBoxField);
+            }
         }
 
         //cargar lista de investigaciones
         public void cargarInvestig()
         {
-            List<Investigacion> investigaciones = ActividadesManager.listarInvestig();
+            List<Investigacion> investigaciones = ActividadesManager.listarInvestigs();
             CheckBox checkBoxField;
 
             foreach (Investigacion invest in investigaciones)
