@@ -76,7 +76,7 @@ namespace SACD_Controlador
         }
 
         //obtener lista de grupos registradas
-        public static List<Grupo> listarGrupos()
+        public static List<Grupo> listarGrupos() //g.COD_CURSO, c.NOM_CURSO, g.ID_GRUPO, g.NUM_GRUPO, g.NUM_ESTUDIANTES" 
         {
             List<Object[]> gruposObj = DatosManager.getGruposList();
             List<Grupo> gruposList = new List<Grupo>();
@@ -84,8 +84,8 @@ namespace SACD_Controlador
 
             foreach (Object[] obj in gruposObj)
             {
-                //grupo = new Grupo((int)obj[0], "cur", 0, (int)obj[2], (int)obj[3]);
-                //gruposList.Add(grupo);
+                grupo = new Grupo((int)obj[2], "cur", 0, (int)obj[3], (int)obj[4], new Curso((string)obj[0], (string)obj[1]));
+                gruposList.Add(grupo);
             }
 
             return gruposList;

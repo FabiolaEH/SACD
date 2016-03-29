@@ -178,19 +178,20 @@ namespace SACD_AccesoDatos
 
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("SELECT g.COD_CURSO, c.NOM_CURSO, g.ID_GRUPO, g.NUM_GRUPO, g.NUM_ESTUDIANTES" 
-                                                    + "FROM SACDFGRUPOS g" 
-                                                    + "JOIN SACDFCURSO c ON g.COD_CURSO = c.COD_CURSO"
+                SqlCommand command = new SqlCommand("SELECT g.COD_CURSO, c.NOM_CURSO, g.ID_GRUPO, g.NUM_GRUPO, g.NUM_ESTUDIANTES " 
+                                                    + "FROM SACDFGRUPOS g " 
+                                                    + "JOIN SACDFCURSO c ON g.COD_CURSO = c.COD_CURSO "
                                                     + "ORDER BY c.NOM_CURSO", conn);
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    Object[] grupoInfo = new Object[4];
-                    grupoInfo[0] = reader.GetInt32(0);
+                    Object[] grupoInfo = new Object[5];
+                    grupoInfo[0] = reader.GetString(0);
                     grupoInfo[1] = reader.GetString(1);
                     grupoInfo[2] = reader.GetInt32(2);
-                    grupoInfo[3] = reader.GetInt32(3);
+                    grupoInfo[3] = reader.GetInt32(3); //numeric
+                    grupoInfo[4] = reader.GetInt32(4); //numeric
                     gruposList.Add(grupoInfo);
                 }
 
