@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Clases\Reporte_Docencia_GUI.cs" />
     <Compile Include="Clases\Profesor_GUI.cs" />
     <Compile Include="PopupRegistro.xaml.cs">
       <DependentUpon>PopupRegistro.xaml</DependentUpon>

@@ -10,14 +10,57 @@
     <Grid>
         <Border BorderBrush="#D9D9D9" BorderThickness="2" CornerRadius="15" Background="White">
             <Grid >
-                <Label x:Name="label_ProfeReporte" Content="Arce Rojas María" HorizontalAlignment="Left" Margin="129,10,0,0" VerticalAlignment="Top" FontSize="24" Foreground="#FF666666"/>
+                <Label x:Name="label_ProfeReporte" Content="Arce Rojas María" HorizontalAlignment="Left" Margin="129,10,0,0" VerticalAlignment="Top" FontSize="21.333" Foreground="#FF666666"/>
 
                 <!--Cuadro sup izq-->
                 <Grid Width="444" Height="235" Margin="30,105,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Border BorderBrush="#FBE142" BorderThickness="2" CornerRadius="10" Background="White">
-                        <Frame NavigationUIVisibility="Hidden" x:Name="frmDocencia" Navigated="frmContenido_Navigated" Source="Páginas/Inicio.xaml" Grid.Column="1" ScrollViewer.CanContentScroll="True" Margin="24,42,24,33"/>
+
+                        <DataGrid Name="dgDocencia" AutoGenerateColumns="False" Margin="24,42,24,40" Background="White" BorderBrush="White" FontSize="11" VerticalGridLinesBrush="White"
+                                  HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True">
+                            <DataGrid.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#ECECEC"/>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Curso" Width="218" Binding="{Binding curso}"/>
+                                <DataGridTextColumn Header="Grp" Width="45" Binding="{Binding grp}"/>
+                                <DataGridTextColumn Header="Horas" Width="55" Binding="{Binding horas}"/>
+                                <DataGridTextColumn Header="%" Width="55" Binding="{Binding porc}"/>
+                            </DataGrid.Columns>
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader" >
+                                    <Setter Property="Padding" Value="3"/>
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Foreground" Value="#FF666666"/>
+                                    <Setter Property="FontStyle" Value="Italic"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Setter Property="Height" Value="30"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.RowHeight>25</DataGrid.RowHeight>
+                            
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="Padding" Value="10"/>
+                                    <Setter Property="FontWeight" Value="Normal" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGrid.CellStyle>
+                            
+                        </DataGrid>
+
                     </Border>
-                    <Label x:Name="lbl1" Content="Docencia" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="16" Foreground="#FF666666" Margin="180,5,0,0" FontWeight="Bold"/>
+                    <Label x:Name="lbl1" Content="Docencia" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" Margin="180,5,0,0" FontWeight="Bold"/>
                     <Rectangle Fill="#FBE142" HorizontalAlignment="Left" Height="389" Margin="222,-159,0,0" VerticalAlignment="Top" Width="1" RenderTransformOrigin="0.5,0.5">
                         <Rectangle.RenderTransform>
                             <TransformGroup>
@@ -39,7 +82,7 @@
                     <Border BorderBrush="#AECB1F" BorderThickness="2" CornerRadius="10" Background="White">
                         <Frame NavigationUIVisibility="Hidden" x:Name="frmInvestigacion" Navigated="frmContenido_Navigated" Source="Páginas/Inicio.xaml" Grid.Column="1" ScrollViewer.CanContentScroll="True" Margin="24,42,24,33"/>
                     </Border>
-                    <Label x:Name="lbl2" Content="Investigación" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="16" Foreground="#FF666666" Margin="175,5,0,0" FontWeight="Bold"/>
+                    <Label x:Name="lbl2" Content="Investigación" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" Margin="175,5,0,0" FontWeight="Bold"/>
                     <Rectangle Fill="#AECB1F" HorizontalAlignment="Left" Height="389" Margin="222,-159,0,0" VerticalAlignment="Top" Width="1" RenderTransformOrigin="0.5,0.5">
                         <Rectangle.RenderTransform>
                             <TransformGroup>
@@ -60,7 +103,7 @@
                     <Border BorderBrush="#27AE8D" BorderThickness="2" CornerRadius="10" Background="White">
                         <Frame NavigationUIVisibility="Hidden" x:Name="frmAdministracion" Navigated="frmContenido_Navigated" Source="Páginas/Inicio.xaml" Grid.Column="1" ScrollViewer.CanContentScroll="True" Margin="24,42,24,33"/>
                     </Border>
-                    <Label x:Name="lbl3" Content="Administración" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="16" Foreground="#FF666666" Margin="165,5,0,0" FontWeight="Bold"/>
+                    <Label x:Name="lbl3" Content="Administración" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" Margin="165,5,0,0" FontWeight="Bold"/>
                     <Rectangle Fill="#27AE8D" HorizontalAlignment="Left" Height="389" Margin="222,-159,0,0" VerticalAlignment="Top" Width="1" RenderTransformOrigin="0.5,0.5">
                         <Rectangle.RenderTransform>
                             <TransformGroup>
@@ -81,7 +124,7 @@
                     <Border BorderBrush="#CCCCCC" BorderThickness="2" CornerRadius="10" Background="White">
                         <Frame NavigationUIVisibility="Hidden" x:Name="frmAmpliacion" Navigated="frmContenido_Navigated" Source="Páginas/Inicio.xaml" Grid.Column="1" ScrollViewer.CanContentScroll="True" Margin="24,42,24,33"/>
                     </Border>
-                    <Label x:Name="lbl4" Content="Ampliación" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="16" Foreground="#FF666666" Margin="175,5,0,0" FontWeight="Bold"/>
+                    <Label x:Name="lbl4" Content="Ampliación" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" Margin="175,5,0,0" FontWeight="Bold"/>
                     <Rectangle Fill="#CCCCCC" HorizontalAlignment="Left" Height="389" Margin="222,-159,0,0" VerticalAlignment="Top" Width="1" RenderTransformOrigin="0.5,0.5">
                         <Rectangle.RenderTransform>
                             <TransformGroup>
@@ -102,15 +145,15 @@
                         <ImageBrush ImageSource="/SACD;component/Resources/Equis.png"/>
                     </Button.Background>
                 </Button>
-                <Label x:Name="prueba_Copy" Content="Profesor" HorizontalAlignment="Left" Margin="30,20,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666" FontWeight="Bold"/>
-                <Label x:Name="prueba_Copy1" Content="Período" HorizontalAlignment="Left" Margin="30,50,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666" FontWeight="Bold"/>
-                <Label x:Name="label_PeriodoReporte" Content="2" HorizontalAlignment="Left" Margin="130,50,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666"/>
-                <Label x:Name="prueba_Copy2" Content="Año" HorizontalAlignment="Left" Margin="186,50,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666" FontWeight="Bold"/>
-                <Label x:Name="label_AnioReporte" Content="2016" HorizontalAlignment="Left" Margin="260,50,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666"/>
-                <Label x:Name="prueba_Copy4" Content="Carga en Horas" HorizontalAlignment="Left" Margin="515,20,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666" FontWeight="Bold"/>
-                <Label x:Name="prueba_Copy5" Content="Carga en Porcentaje" HorizontalAlignment="Left" Margin="515,50,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666" FontWeight="Bold"/>
-                <Label x:Name="label_cargaPorcReporte" Content="95%" HorizontalAlignment="Left" Margin="702,50,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666"/>
-                <Label x:Name="label_cargaHorasReporte" Content="35.5" HorizontalAlignment="Left" Margin="702,20,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666"/>
+                <Label x:Name="prueba_Copy" Content="Profesor" HorizontalAlignment="Left" Margin="30,20,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" FontWeight="Bold"/>
+                <Label x:Name="prueba_Copy1" Content="Período" HorizontalAlignment="Left" Margin="30,50,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" FontWeight="Bold"/>
+                <Label x:Name="label_PeriodoReporte" Content="2" HorizontalAlignment="Left" Margin="130,50,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666"/>
+                <Label x:Name="prueba_Copy2" Content="Año" HorizontalAlignment="Left" Margin="186,50,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" FontWeight="Bold"/>
+                <Label x:Name="label_AnioReporte" Content="2016" HorizontalAlignment="Left" Margin="260,50,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666"/>
+                <Label x:Name="prueba_Copy4" Content="Carga en Horas" HorizontalAlignment="Left" Margin="515,20,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" FontWeight="Bold"/>
+                <Label x:Name="prueba_Copy5" Content="Carga en Porcentaje" HorizontalAlignment="Left" Margin="515,50,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" FontWeight="Bold"/>
+                <Label x:Name="label_cargaPorcReporte" Content="95%" HorizontalAlignment="Left" Margin="702,50,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666"/>
+                <Label x:Name="label_cargaHorasReporte" Content="35.5" HorizontalAlignment="Left" Margin="702,20,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666"/>
             </Grid>
         </Border>
     </Grid>

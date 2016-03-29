@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SACD.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace SACD
 {
     /// <summary>
@@ -23,6 +25,13 @@ namespace SACD
         public PopupRegistro(int pIdProfesor)
         {
             InitializeComponent();
+            dgDocencia.Items.Add(new Reporte_Docencia_GUI() { curso = "Introducción a la Biología", grp = 1, horas = 3, porc = 15});
+            dgDocencia.Items.Add(new Reporte_Docencia_GUI() { curso = "Introducción a la Biología", grp = 1, horas = 3, porc = 15 });
+            dgDocencia.Items.Add(new Reporte_Docencia_GUI() { curso = "Introducción a la Biología", grp = 1, horas = 3, porc = 15 });
+            dgDocencia.Items.Add(new Reporte_Docencia_GUI() { curso = "Introducción a la Biología", grp = 1, horas = 3, porc = 15 });
+            dgDocencia.Items.Add(new Reporte_Docencia_GUI() { curso = "Introducción a la Biología", grp = 1, horas = 3, porc = 15 });
+            dgDocencia.Items.Add(new Reporte_Docencia_GUI() { curso = "Introducción a la Biología", grp = 1, horas = 3, porc = 15 });
+            dgDocencia.Items.Add(new Reporte_Docencia_GUI() { curso = "Introducción a la Biología", grp = 1, horas = 3, porc = 15 });
             this.Show();
         }
 
