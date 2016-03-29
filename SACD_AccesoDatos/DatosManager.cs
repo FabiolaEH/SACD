@@ -15,8 +15,9 @@ namespace SACD_AccesoDatos
         public static bool crearConexion()
         {
             conn = new SqlConnection();
-            conn.ConnectionString = "Server =BRANDON-PC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             /*Server =[server_name]; Database =[database_name]; Trusted_Connection = true*/
+            //"Server =BRANDON-PC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             try
             {
                 conn.Open();
@@ -134,6 +135,72 @@ namespace SACD_AccesoDatos
             }
 
             return investigList;
+        }
+
+        /************* Actv. Administrativas ***************/
+        //Obtener lista de investigaciones
+        public static List<Object[]> getAdministvsList()
+        {
+            List<Object[]> administvsList = new List<Object[]>();
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM SACDFADMINISTRAT", conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Object[] administvInfo = new Object[3];
+                    administvInfo[0] = reader.GetInt32(0);
+                    administvInfo[1] = reader.GetString(1);
+                    administvInfo[2] = reader.GetDecimal(2);
+                    administvsList.Add(administvInfo);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return administvsList;
+        }
+
+        /************* Grupos ***************/
+        //Obtener lista de grupos
+        public static List<Object[]> getGruposList()
+        {
+            List<Object[]> gruposList = new List<Object[]>();
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT g.COD_CURSO, c.NOM_CURSO, g.ID_GRUPO, g.NUM_GRUPO, g.NUM_ESTUDIANTES" 
+                                                    + "FROM SACDFGRUPOS g" 
+                                                    + "JOIN SACDFCURSO c ON g.COD_CURSO = c.COD_CURSO"
+                                                    + "ORDER BY c.NOM_CURSO", conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Object[] grupoInfo = new Object[4];
+                    grupoInfo[0] = reader.GetInt32(0);
+                    grupoInfo[1] = reader.GetString(1);
+                    grupoInfo[2] = reader.GetInt32(2);
+                    grupoInfo[3] = reader.GetInt32(3);
+                    gruposList.Add(grupoInfo);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return gruposList;
         }
 
         /*---------------------------------   MODIFICAR  --------------------------------------*/

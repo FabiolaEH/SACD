@@ -41,7 +41,7 @@ namespace SACD_Controlador
         }
 
         //obtener lista de investigaciones registradas
-        public static List<Investigacion> listarInvestig()
+        public static List<Investigacion> listarInvestigs()
         {
             List<Object[]> investigsObj = DatosManager.getInvestigList();
             List<Investigacion> investigsList = new List<Investigacion>();
@@ -57,6 +57,40 @@ namespace SACD_Controlador
             return investigsList;
 
         }
-        
+
+        //obtener lista de actv. administrativas registradas
+        public static List<ActvAdmin> listarAdministvs()
+        {
+            List<Object[]> administvsObj = DatosManager.getAdministvsList();
+            List<ActvAdmin> administvsList = new List<ActvAdmin>();
+            ActvAdmin actvAdmin;
+
+            foreach (Object[] obj in administvsObj)
+            {
+                actvAdmin = new ActvAdmin((int)obj[0], "admin", (decimal)obj[2], (string)obj[1]);
+                administvsList.Add(actvAdmin);
+            }
+
+            return administvsList;
+
+        }
+
+        //obtener lista de grupos registradas
+        public static List<Grupo> listarGrupos()
+        {
+            List<Object[]> gruposObj = DatosManager.getGruposList();
+            List<Grupo> gruposList = new List<Grupo>();
+            Grupo grupo;
+
+            foreach (Object[] obj in gruposObj)
+            {
+                //grupo = new Grupo((int)obj[0], "cur", 0, (int)obj[2], (int)obj[3]);
+                //gruposList.Add(grupo);
+            }
+
+            return gruposList;
+
+        }
+
     }
 }
