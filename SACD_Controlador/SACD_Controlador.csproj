@@ -45,6 +45,7 @@
     <Compile Include="ProfesManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportesManager.cs" />
+    <Compile Include="UsuariosManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SACD_AccesoDatos\SACD_AccesoDatos.csproj">

@@ -110,6 +110,11 @@
         <Rectangle Fill="#FFC1C1C1" HorizontalAlignment="Left" Height="543" Margin="149,96,0,0" VerticalAlignment="Top" Width="1" Grid.Column="1"/>
         <Frame NavigationUIVisibility="Hidden" x:Name="frmContenido" Navigated="frmContenido_Navigated" Source="Páginas/Inicio.xaml" Grid.Column="1" ScrollViewer.CanContentScroll="True"
          Width="686" Height="581" Margin="183,90,0,0"/>
-     
+        <TextBlock x:Name="lbl_cerrar_sesion" Text="Cerrar Sesión" HorizontalAlignment="Left" Margin="714,29,0,0" VerticalAlignment="Top" Width="93" Foreground="#FF1665C3" FontSize="13.333" Cursor="Hand" Style="{StaticResource HoverUnderlineStyle}" PreviewMouseDown="cerrarSesion" Grid.Column="1" Height="26"/>
+        <TextBlock x:Name="lblRegistrarUsu" Text="Registrar Usuario" HorizontalAlignment="Left" Margin="572,29,0,0" VerticalAlignment="Top" Width="110" Foreground="#FF1665C3" FontSize="13.333" Cursor="Hand" Style="{StaticResource HoverUnderlineStyle}" Grid.Column="1" Height="26" >
+            <TextBlock.InputBindings>
+                <MouseBinding Command="NavigationCommands.GoToPage" CommandParameter="Páginas/Registrar_Usuario.xaml" CommandTarget="{Binding ElementName=frmContenido}" MouseAction="LeftClick" />
+            </TextBlock.InputBindings>
+        </TextBlock>
     </Grid>
 </Window>
