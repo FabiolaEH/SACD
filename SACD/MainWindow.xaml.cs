@@ -42,6 +42,13 @@ namespace SACD
             e.CanExecute = true;
         }
 
+        private void cerrarSesion(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Close();
+        }
+
         private void frmContenido_Navigated(object sender, NavigationEventArgs e)
         {
 

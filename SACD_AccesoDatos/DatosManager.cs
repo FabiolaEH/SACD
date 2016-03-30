@@ -100,6 +100,74 @@ namespace SACD_AccesoDatos
 
             return isValido;
         }
+
+        //Actualizar código de verificación del usuario
+        public static Boolean generarCodigo(string pCodigo, string pCorreo)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("UPDATE SACDFUSUARIOS SET COD_RECUPERA = @cod_recup WHERE TXT_EMAIL = @correo", conn);
+                command.Parameters.AddWithValue("@cod_recup", pCodigo);
+                command.Parameters.AddWithValue("@correo", pCorreo);
+                command.ExecuteNonQuery();
+                return true;
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+            
+            return isValido;
+        }
+        
+        //Verificar código
+        public static string verificarCodigo(string pCorreo)
+        {
+            String codigo = "";
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT COD_RECUPERA FROM SACDFUSUARIOS WHERE TXT_EMAIL = @correo", conn);
+                command.Parameters.AddWithValue("@correo", pCorreo);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                    codigo = reader.GetString(0);
+
+            }
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+            return codigo;
+        }
+
+        //Actualizar Contraseña
+        public static Boolean actualizarPassword(string pCorreo, string pPassword)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("UPDATE SACDFUSUARIOS SET TXT_CONTRAS = @password WHERE TXT_EMAIL = @correo", conn);
+                command.Parameters.AddWithValue("@password", pPassword);
+                command.Parameters.AddWithValue("@correo", pCorreo);
+                command.ExecuteNonQuery();
+                return true;
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+            
+            return isValido;
+        }
         /*---------------------------------   CONSULTAR   -------------------------------------*/
         /************* Profesores ***************/
         //Obtener lista de profesores

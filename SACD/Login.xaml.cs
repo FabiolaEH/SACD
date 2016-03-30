@@ -49,15 +49,6 @@ namespace SACD
         private void olvidarContr(object sender, RoutedEventArgs e)
         {
             PopupOlvidarContraseña popup = new PopupOlvidarContraseña(tbxCorreo.Text);
-            /*Boolean isEnviado = UsuariosManager.enviarCorreo();
-            if (isEnviado)
-            {
-                MessageBox.Show("Se ha enviado un código de verificación a su correo.");
-            }
-            else
-            {
-                MessageBox.Show("Ha ocurrido un problema al intentar enviar el correo.");
-            }*/
         }
     }
 }
