@@ -5,6 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*Comentariooooooooooooooooooo*/
+/*Comentariooooooooooooooooooo*/
+/*Comentariooooooooooooooooooo*/
+/*Comentariooooooooooooooooooo*/
+/*Comentariooooooooooooooooooo*/
+/*Comentariooooooooooooooooooo*/
+/*Comentariooooooooooooooooooo*/
+/*Comentariooooooooooooooooooo*/
+/*Comentariooooooooooooooooooo*/
+/*Comentariooooooooooooooooooo*/
 namespace SACD_AccesoDatos
 {
     public static class DatosManager
