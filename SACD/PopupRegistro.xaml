@@ -16,7 +16,7 @@
                 <Grid Width="444" Height="235" Margin="30,105,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Border BorderBrush="#FBE142" BorderThickness="2" CornerRadius="10" Background="White">
 
-                        <DataGrid Name="dgDocencia" AutoGenerateColumns="False" Margin="24,42,24,40" Background="White" BorderBrush="White" FontSize="11" VerticalGridLinesBrush="White"
+                        <DataGrid Name="dgDocencia" AutoGenerateColumns="False" Margin="24,38,24,40" Background="White" BorderBrush="White" FontSize="13" VerticalGridLinesBrush="White"
                                   HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True">
                             <DataGrid.Resources>
                                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#ECECEC"/>
@@ -40,28 +40,20 @@
                                 </Style>
                             </DataGrid.ColumnHeaderStyle>
                             <DataGrid.RowHeight>25</DataGrid.RowHeight>
-                            
+
                             <DataGrid.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Padding" Value="10"/>
                                     <Setter Property="FontWeight" Value="Normal" />
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="Foreground" Value="#FF666666" />
                                 </Style>
                             </DataGrid.CellStyle>
-                            
                         </DataGrid>
 
                     </Border>
-                    <Label x:Name="lbl1" Content="Docencia" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" Margin="180,5,0,0" FontWeight="Bold"/>
-                    <Rectangle Fill="#FBE142" HorizontalAlignment="Left" Height="389" Margin="222,-159,0,0" VerticalAlignment="Top" Width="1" RenderTransformOrigin="0.5,0.5">
+                    <Label x:Name="lbl1" Content="Docencia" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" Margin="180,8,0,0" FontWeight="Bold"/>
+                    <Rectangle Fill="#FBE142" HorizontalAlignment="Left" Height="389" Margin="222,-155,0,0" VerticalAlignment="Top" Width="1" RenderTransformOrigin="0.5,0.5">
                         <Rectangle.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -72,15 +64,49 @@
                         </Rectangle.RenderTransform>
                     </Rectangle>
                     <Label x:Name="lbl1_Copy" Content="Total Carga Docente" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="26,199,0,0" FontWeight="Bold" FontStyle="Italic"/>
-                    <Label x:Name="label_TotHrDocencia" Content="18.5" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="296,199,0,0"/>
-                    <Label x:Name="label_TotPrDocencia" Content="45%" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="359,199,0,0"/>
+                    <Label x:Name="label_TotHrDocencia" Content="18.5" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="303,199,0,0"/>
+                    <Label x:Name="label_TotPrDocencia" Content="45%" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="355,199,0,0"/>
 
                 </Grid>
 
                 <!--Cuadro sup der-->
                 <Grid Width="444" Height="235" Margin="515,105,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Border BorderBrush="#AECB1F" BorderThickness="2" CornerRadius="10" Background="White">
-                        <Frame NavigationUIVisibility="Hidden" x:Name="frmInvestigacion" Navigated="frmContenido_Navigated" Source="Páginas/Inicio.xaml" Grid.Column="1" ScrollViewer.CanContentScroll="True" Margin="24,42,24,33"/>
+                        
+                        <DataGrid Name="dgInvestigacion" AutoGenerateColumns="False" Margin="24,38,24,40" Background="White" BorderBrush="White" FontSize="13" VerticalGridLinesBrush="White"
+                                  HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True">
+                            <DataGrid.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#ECECEC"/>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Proyecto" Width="263" Binding="{Binding proyecto}"/>
+                                <DataGridTextColumn Header="Horas" Width="55" Binding="{Binding horas}"/>
+                                <DataGridTextColumn Header="%" Width="55" Binding="{Binding porc}"/>
+                            </DataGrid.Columns>
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader" >
+                                    <Setter Property="Padding" Value="3"/>
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Foreground" Value="#FF666666"/>
+                                    <Setter Property="FontStyle" Value="Italic"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Setter Property="Height" Value="30"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.RowHeight>25</DataGrid.RowHeight>
+
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="Padding" Value="10"/>
+                                    <Setter Property="FontWeight" Value="Normal" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="Foreground" Value="#FF666666" />
+                                </Style>
+                            </DataGrid.CellStyle>
+                        </DataGrid>
+
                     </Border>
                     <Label x:Name="lbl2" Content="Investigación" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" Margin="175,5,0,0" FontWeight="Bold"/>
                     <Rectangle Fill="#AECB1F" HorizontalAlignment="Left" Height="389" Margin="222,-159,0,0" VerticalAlignment="Top" Width="1" RenderTransformOrigin="0.5,0.5">
@@ -94,14 +120,48 @@
                         </Rectangle.RenderTransform>
                     </Rectangle>
                     <Label x:Name="lbl2_Copy" Content="Total Carga Investigación" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="26,199,0,0" FontWeight="Bold" FontStyle="Italic"/>
-                    <Label x:Name="label_TotHrInvest" Content="18.5" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="296,199,0,0"/>
-                    <Label x:Name="label_TotPrInvest" Content="45%" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="359,199,0,0"/>
+                    <Label x:Name="label_TotHrInvest" Content="18.5" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="303,199,0,0"/>
+                    <Label x:Name="label_TotPrInvest" Content="45%" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="355,199,0,0"/>  
                 </Grid>
 
                 <!--Cuadro inf izq-->
                 <Grid Width="444" Height="235" Margin="30,373,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Border BorderBrush="#27AE8D" BorderThickness="2" CornerRadius="10" Background="White">
-                        <Frame NavigationUIVisibility="Hidden" x:Name="frmAdministracion" Navigated="frmContenido_Navigated" Source="Páginas/Inicio.xaml" Grid.Column="1" ScrollViewer.CanContentScroll="True" Margin="24,42,24,33"/>
+
+                        <DataGrid Name="dgAdministracion" AutoGenerateColumns="False" Margin="24,38,24,40" Background="White" BorderBrush="White" FontSize="13" VerticalGridLinesBrush="White"
+                                  HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True">
+                            <DataGrid.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#ECECEC"/>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Actividad" Width="263" Binding="{Binding actividad}"/>
+                                <DataGridTextColumn Header="Horas" Width="55" Binding="{Binding horas}"/>
+                                <DataGridTextColumn Header="%" Width="55" Binding="{Binding porc}"/>
+                            </DataGrid.Columns>
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader" >
+                                    <Setter Property="Padding" Value="3"/>
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Foreground" Value="#FF666666"/>
+                                    <Setter Property="FontStyle" Value="Italic"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Setter Property="Height" Value="30"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.RowHeight>25</DataGrid.RowHeight>
+
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="Padding" Value="10"/>
+                                    <Setter Property="FontWeight" Value="Normal" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="Foreground" Value="#FF666666" />
+                                </Style>
+                            </DataGrid.CellStyle>
+                        </DataGrid>
+                        
                     </Border>
                     <Label x:Name="lbl3" Content="Administración" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" Margin="165,5,0,0" FontWeight="Bold"/>
                     <Rectangle Fill="#27AE8D" HorizontalAlignment="Left" Height="389" Margin="222,-159,0,0" VerticalAlignment="Top" Width="1" RenderTransformOrigin="0.5,0.5">
@@ -115,14 +175,49 @@
                         </Rectangle.RenderTransform>
                     </Rectangle>
                     <Label x:Name="lbl3_Copy" Content="Total Carga Administración" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="26,199,0,0" FontWeight="Bold" FontStyle="Italic"/>
-                    <Label x:Name="label_TotHrAdmi" Content="18.5" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="296,199,0,0"/>
-                    <Label x:Name="label_TotPrAdmi" Content="45%" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="359,199,0,0"/>
+                    <Label x:Name="label_TotHrAdmi" Content="18.5" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="303,199,0,0"/>
+                    <Label x:Name="label_TotPrAdmi" Content="45%" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="355,199,0,0"/>
                 </Grid>
 
                 <!--Cuadro sup izq-->
                 <Grid Width="444" Height="235" Margin="515,373,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Border BorderBrush="#CCCCCC" BorderThickness="2" CornerRadius="10" Background="White">
-                        <Frame NavigationUIVisibility="Hidden" x:Name="frmAmpliacion" Navigated="frmContenido_Navigated" Source="Páginas/Inicio.xaml" Grid.Column="1" ScrollViewer.CanContentScroll="True" Margin="24,42,24,33"/>
+
+                        <DataGrid Name="dgAmpliacion" AutoGenerateColumns="False" Margin="24,38,24,40" Background="White" BorderBrush="White" FontSize="13" VerticalGridLinesBrush="White"
+                                  HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True">
+                            <DataGrid.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#ECECEC"/>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Curso" Width="218" Binding="{Binding curso}"/>
+                                <DataGridTextColumn Header="Db" Width="45" Binding="{Binding db}"/>
+                                <DataGridTextColumn Header="Horas" Width="55" Binding="{Binding horas}"/>
+                                <DataGridTextColumn Header="%" Width="55" Binding="{Binding porc}"/>
+                            </DataGrid.Columns>
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader" >
+                                    <Setter Property="Padding" Value="3"/>
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Foreground" Value="#FF666666"/>
+                                    <Setter Property="FontStyle" Value="Italic"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Setter Property="Height" Value="30"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.RowHeight>25</DataGrid.RowHeight>
+
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="Padding" Value="10"/>
+                                    <Setter Property="FontWeight" Value="Normal" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="Foreground" Value="#FF666666" />
+                                </Style>
+                            </DataGrid.CellStyle>
+                        </DataGrid>
+                        
                     </Border>
                     <Label x:Name="lbl4" Content="Ampliación" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" Margin="175,5,0,0" FontWeight="Bold"/>
                     <Rectangle Fill="#CCCCCC" HorizontalAlignment="Left" Height="389" Margin="222,-159,0,0" VerticalAlignment="Top" Width="1" RenderTransformOrigin="0.5,0.5">
@@ -136,8 +231,8 @@
                         </Rectangle.RenderTransform>
                     </Rectangle>
                     <Label x:Name="lbl4_Copy" Content="Total Carga Ampliación" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="26,199,0,0" FontWeight="Bold" FontStyle="Italic"/>
-                    <Label x:Name="label_TotHrAmpli" Content="18.5" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="296,199,0,0"/>
-                    <Label x:Name="label_TotPrAmpli" Content="45%" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="359,199,0,0"/>
+                    <Label x:Name="label_TotHrAmpli" Content="18.5" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="303,199,0,0"/>
+                    <Label x:Name="label_TotPrAmpli" Content="45%" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="355,199,0,0"/>
                 </Grid>
 
                 <Button x:Name="btnCerrarReporte" Width="30" Height="30" Margin="936,10,10,586" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnCerrarReporte_Click">
