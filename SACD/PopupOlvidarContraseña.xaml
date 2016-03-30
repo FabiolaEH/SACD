@@ -20,9 +20,9 @@
                 <TextBox x:Name="tbxCorreo" HorizontalAlignment="Left" Height="44" Margin="162,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266" VerticalContentAlignment="Center" FontSize="14.667"/>
 
                 <Label x:Name="lblCodigo" Content="Código" HorizontalAlignment="Left" Margin="55,145,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="-1.657,1.56" Visibility="Hidden"/>
-                <TextBox x:Name="tbxCodigo" HorizontalAlignment="Left" Height="44" Margin="162,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266" VerticalContentAlignment="Center" FontSize="14.667"/>
+                <TextBox x:Name="tbxCodigo" HorizontalAlignment="Left" Height="44" Margin="162,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266" VerticalContentAlignment="Center" FontSize="14.667" Visibility="Hidden"/>
                 <Label x:Name="lblPassword" Content="Contraseña" HorizontalAlignment="Left" Margin="55,200,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="-1.657,1.56" Visibility="Hidden"/>
-                <PasswordBox x:Name="tbxPassword" HorizontalAlignment="Left" Height="44" Margin="162,194,0,0" VerticalAlignment="Top" Width="266" VerticalContentAlignment="Center" FontSize="14.667"/>
+                <PasswordBox x:Name="tbxPassword" HorizontalAlignment="Left" Height="44" Margin="162,194,0,0" VerticalAlignment="Top" Width="266" VerticalContentAlignment="Center" FontSize="14.667" Visibility="Hidden"/>
 
                 <Button x:Name="btnAceptar" Content="Siguiente" HorizontalAlignment="Left" Margin="333,296,0,0" VerticalAlignment="Top" Width="95" Height="33" FontSize="16" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="btnSiguiente_Click"/>
             </Grid>
