@@ -168,6 +168,30 @@ namespace SACD_AccesoDatos
             
             return isValido;
         }
+
+        //Registrar usuario
+        public static Boolean registrarUsuario(string pNombre, string pCorreo, string pPassword)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("INSERT INTO SACDFUSUARIOS VALUES(@nombre, @correo, @password,'')", conn);
+                command.Parameters.AddWithValue("@nombre", pNombre);
+                command.Parameters.AddWithValue("@password", pPassword);
+                command.Parameters.AddWithValue("@correo", pCorreo);
+                command.ExecuteNonQuery();
+                return true;
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
         /*---------------------------------   CONSULTAR   -------------------------------------*/
         /************* Profesores ***************/
         //Obtener lista de profesores

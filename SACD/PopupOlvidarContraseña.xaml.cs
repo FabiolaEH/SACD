@@ -90,6 +90,7 @@ namespace SACD
                         if (isValido)
                         {
                             MessageBox.Show("Contraseña actualizada correctamente.");
+                            this.Close();
                         }
                         else
                         {

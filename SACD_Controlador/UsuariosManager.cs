@@ -117,6 +117,13 @@ namespace SACD_Controlador
             return isValido;
         }
 
+        //Registrar Usuario
+        public static Boolean registrarUsuario(string pNombre, string pCorreo, string pPassword)
+        {
+            Boolean isValido = DatosManager.registrarUsuario(pNombre, pCorreo,MD5Hash(pPassword));
+            return isValido;
+        }
+
         //Algoritmo MD5
         public static string MD5Hash(string text)
         {
