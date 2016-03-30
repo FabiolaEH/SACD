@@ -1,0 +1,31 @@
+﻿<Window x:Class="SACD.PopupOlvidarContraseña"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SACD"
+        mc:Ignorable="d"
+        Title="Recuperar Contraseña" Height="350" Width="500" 
+        WindowStyle="None" ShowInTaskbar="False" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Border BorderBrush="#D9D9D9" BorderThickness="2" CornerRadius="15" Background="White">
+            <Grid >
+                <TextBlock x:Name="lblTitulo" TextWrapping="WrapWithOverflow" FontSize="16" Margin="55,52,44,250" ><Run Text="D"/><Run Text="igite su correo para enviarle un código de verificación."/></TextBlock>
+                <Button x:Name="btnCerrarReporte" Width="30" Height="30" Margin="460,0,10,310" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnCerrarOlvidar_Click" VerticalAlignment="Bottom">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Resources/Equis.png"/>
+                    </Button.Background>
+                </Button>
+                <Label x:Name="lblCorreo" Content="Correo" HorizontalAlignment="Left" Margin="55,148,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="-1.657,1.56"/>
+                <TextBox x:Name="tbxCorreo" HorizontalAlignment="Left" Height="44" Margin="162,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266" VerticalContentAlignment="Center" FontSize="14.667"/>
+
+                <Label x:Name="lblCodigo" Content="Código" HorizontalAlignment="Left" Margin="55,145,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="-1.657,1.56" Visibility="Hidden"/>
+                <TextBox x:Name="tbxCodigo" HorizontalAlignment="Left" Height="44" Margin="162,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266" VerticalContentAlignment="Center" FontSize="14.667"/>
+                <Label x:Name="lblPassword" Content="Contraseña" HorizontalAlignment="Left" Margin="55,200,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="-1.657,1.56" Visibility="Hidden"/>
+                <PasswordBox x:Name="tbxPassword" HorizontalAlignment="Left" Height="44" Margin="162,194,0,0" VerticalAlignment="Top" Width="266" VerticalContentAlignment="Center" FontSize="14.667"/>
+
+                <Button x:Name="btnAceptar" Content="Siguiente" HorizontalAlignment="Left" Margin="333,296,0,0" VerticalAlignment="Top" Width="95" Height="33" FontSize="16" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="btnSiguiente_Click"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

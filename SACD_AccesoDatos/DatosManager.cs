@@ -15,10 +15,9 @@ namespace SACD_AccesoDatos
         public static bool crearConexion()
         {
             conn = new SqlConnection();
-            conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
-            /*Server =[server_name]; Database =[database_name]; Trusted_Connection = true*/
-            //"Server =BRANDON-PC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
-            //"Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            //conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
+            //conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
 
             try
             {
@@ -45,11 +44,68 @@ namespace SACD_AccesoDatos
         }
 
         /*---------------------------------   CONSULTAR   -------------------------------------*/
+        /************* Usuarios ***************/
+        //Obtener lista de usuarios
+        public static List<Object[]> getUsuariosList()
+        {
+            List<Object[]> usuariosList = new List<Object[]>();        
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM SACDFUSUARIOS", conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Object[] profeInfo = new Object[3];
+                    profeInfo[0] = reader.GetString(0);
+                    profeInfo[1] = reader.GetString(1);
+                    profeInfo[2] = reader.GetString(2);
+                    usuariosList.Add(profeInfo);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return usuariosList;
+        }
+
+        //Buscar usuario por correo
+        public static Boolean verificarCorreo(string pCorreo)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT count(*) FROM SACDFUSUARIOS WHERE TXT_EMAIL = @correo", conn);
+                command.Parameters.AddWithValue("@correo", pCorreo);
+                int result = (int)command.ExecuteScalar();
+                if (result > 0)
+                    isValido = true;
+                else
+                    isValido = false;
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+
+            return isValido;
+        }
+        /*---------------------------------   CONSULTAR   -------------------------------------*/
         /************* Profesores ***************/
         //Obtener lista de profesores
         public static List<Object[]> getProfesoresList()
         {
-            List<Object[]> profesList = new List<Object[]>();        
+            List<Object[]> profesList = new List<Object[]>();
 
             if (crearConexion() == true)
             {

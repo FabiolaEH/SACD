@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using SACD_Controlador;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -26,8 +27,37 @@ namespace SACD
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            new MainWindow().Show();
-            this.Close();
+            if (tbxCorreo.Text.Equals("") || tbxPassword.Password.Equals(""))
+            {
+                MessageBox.Show("Favor llenar los espacios vacíos.");
+            }
+            else
+            {
+                Boolean isValido = UsuariosManager.verificarUsuario(tbxCorreo.Text, tbxPassword.Password);
+                if (isValido)
+                {
+                    new MainWindow().Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("El correo y contraseña no coinciden con los registrados en el sistema.");
+                }
+            }
+        }
+
+        private void olvidarContr(object sender, RoutedEventArgs e)
+        {
+            PopupOlvidarContraseña popup = new PopupOlvidarContraseña(tbxCorreo.Text);
+            /*Boolean isEnviado = UsuariosManager.enviarCorreo();
+            if (isEnviado)
+            {
+                MessageBox.Show("Se ha enviado un código de verificación a su correo.");
+            }
+            else
+            {
+                MessageBox.Show("Ha ocurrido un problema al intentar enviar el correo.");
+            }*/
         }
     }
 }

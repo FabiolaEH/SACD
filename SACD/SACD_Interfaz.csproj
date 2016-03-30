@@ -59,6 +59,9 @@
     </ApplicationDefinition>
     <Compile Include="Clases\Reporte_Docencia_GUI.cs" />
     <Compile Include="Clases\Profesor_GUI.cs" />
+    <Compile Include="PopupOlvidarContraseña.xaml.cs">
+      <DependentUpon>PopupOlvidarContraseña.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PopupRegistro.xaml.cs">
       <DependentUpon>PopupRegistro.xaml</DependentUpon>
     </Compile>
@@ -77,6 +80,10 @@
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PopupOlvidarContraseña.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PopupRegistro.xaml">
       <SubType>Designer</SubType>
