@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace SACD.Clases
         public int numGrupo { get; set; }
         public int idGrupo { get; set; }
         public decimal valHoras { get; set; }
+
         public bool isSelected { get; set; }
+
     }
 }

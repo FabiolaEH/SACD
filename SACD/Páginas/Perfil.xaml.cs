@@ -118,6 +118,9 @@ namespace SACD.Páginas
         {
             Ventanas.PopupAsignacion popup = new Ventanas.PopupAsignacion();
             popup.Show();
+
+           /* Ventanas.Window1 prueba = new Ventanas.Window1();
+            prueba.Show();*/
         }
     }
 }

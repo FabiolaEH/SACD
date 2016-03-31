@@ -40,7 +40,7 @@ namespace SACD.Ventanas
 
             foreach (Grupo grupo in grupos)
             {
-                gruposListGUI.Add(new Grupos_GUI() { curso = grupo.getCurso().getNombre(), numGrupo = grupo.getNumero(), valHoras = 0, idGrupo = grupo.getId(), isSelected = true });
+                gruposListGUI.Add(new Grupos_GUI() { curso = grupo.getCurso().getNombre(), numGrupo = grupo.getNumero(), valHoras = 0, idGrupo = grupo.getId()/*, isSelected = true*/ });
             }
 
             this.dgGrupos.ItemsSource = gruposListGUI;
@@ -64,6 +64,11 @@ namespace SACD.Ventanas
                 if (isChecked)
                     MessageBox.Show(grupoInfo.curso);
             }
+        }
+
+        private void checkbx_Select_Checked(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("checked");
         }
     }
 }
