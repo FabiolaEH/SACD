@@ -32,7 +32,7 @@ namespace SACD.Páginas
             label_HorasAsig.Content = profesor.getHorasAsig();
 
             //Cargar listas de actividades
-            //cargarGrupos();
+            cargarGrupos();
             cargarActvsAdmin();
             cargarInvestig();
 
@@ -48,7 +48,7 @@ namespace SACD.Páginas
             foreach (Grupo grupo in grupos)
             {
                 checkBoxField = new CheckBox();
-                checkBoxField.Content = grupo.getCurso().getNombre() + " - Grupo " + grupo.getNumero() + " - "+ grupo.getHoras() + " hrs";
+                checkBoxField.Content = grupo.getCurso().getNombre() + " - Grupo " + grupo.getNumero() + " - "+ grupo.getCurso().getHoras() + " hrs";
                 listbx_Grupos.Items.Add(checkBoxField);
             }
         }
@@ -112,6 +112,12 @@ namespace SACD.Páginas
 
             // Open the dialog box modally 
             dlg.ShowDialog();
+        }
+
+        private void btn_Aceptar_Click(object sender, RoutedEventArgs e)
+        {
+            Ventanas.PopupAsignacion popup = new Ventanas.PopupAsignacion();
+            popup.Show();
         }
     }
 }

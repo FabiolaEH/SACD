@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Clases\Grupos_GUI.cs" />
     <Compile Include="Clases\Reporte_Docencia_GUI.cs" />
     <Compile Include="Clases\Profesor_GUI.cs" />
     <Compile Include="PopupOlvidarContraseña.xaml.cs">
@@ -79,6 +80,9 @@
     </Compile>
     <Compile Include="Ventanas\Parametros.xaml.cs">
       <DependentUpon>Parametros.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\PopupAsignacion.xaml.cs">
+      <DependentUpon>PopupAsignacion.xaml</DependentUpon>
     </Compile>
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
@@ -145,6 +149,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\Parametros.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\PopupAsignacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

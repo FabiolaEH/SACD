@@ -16,8 +16,8 @@ namespace SACD_AccesoDatos
         {
             conn = new SqlConnection();
             //conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
-            conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
-            //conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            //conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
+            conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
 
             try
             {
@@ -269,10 +269,10 @@ namespace SACD_AccesoDatos
                 {
                     Object[] investigInfo = new Object[5];
                     investigInfo[0] = reader.GetInt32(0);
-                    investigInfo[1] = reader.GetString(1);
-                    investigInfo[2] = reader.GetDecimal(2);
+                    investigInfo[1] = reader.GetDecimal(1);
+                    investigInfo[2] = reader.GetDateTime(2);
                     investigInfo[3] = reader.GetDateTime(3);
-                    investigInfo[4] = reader.GetDateTime(4);
+                    investigInfo[4] = reader.GetString(4);
                     investigList.Add(investigInfo);
                 }
 
@@ -326,7 +326,7 @@ namespace SACD_AccesoDatos
 
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("SELECT g.COD_CURSO, c.NOM_CURSO, g.ID_GRUPO, g.NUM_GRUPO, g.NUM_ESTUDIANTES " 
+                SqlCommand command = new SqlCommand("SELECT g.ID_GRUPO, g.COD_CURSO, c.NOM_CURSO, g.NUM_GRUPO "
                                                     + "FROM SACDFGRUPOS g " 
                                                     + "JOIN SACDFCURSO c ON g.COD_CURSO = c.COD_CURSO "
                                                     + "ORDER BY c.NOM_CURSO", conn);
@@ -334,12 +334,11 @@ namespace SACD_AccesoDatos
 
                 while (reader.Read())
                 {
-                    Object[] grupoInfo = new Object[5];
-                    grupoInfo[0] = reader.GetString(0);
+                    Object[] grupoInfo = new Object[4];
+                    grupoInfo[0] = reader.GetInt32(0);
                     grupoInfo[1] = reader.GetString(1);
-                    grupoInfo[2] = reader.GetInt32(2);
-                    grupoInfo[3] = reader.GetInt32(3); //numeric
-                    grupoInfo[4] = reader.GetInt32(4); //numeric
+                    grupoInfo[2] = reader.GetString(2);
+                    grupoInfo[3] = reader.GetInt32(3); 
                     gruposList.Add(grupoInfo);
                 }
 

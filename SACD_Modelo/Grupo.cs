@@ -6,18 +6,28 @@ using System.Threading.Tasks;
 
 namespace SACD_Modelo
 {
-    public class Grupo : Actividad 
+    public class Grupo 
     {
+        private int id;
         private int numero;
         private int cantEstudiantes;
         private Curso curso;
 
-        public Grupo(int pId, string pTipo, decimal pHoras, int pNumero, int pCantEstudiantes, 
-            Curso pCurso) : base(pId, pTipo, pHoras)
+        public Grupo(int pId, int pNumero, int pCantEstudiantes, Curso pCurso) 
         {
+            id = pId;
             numero = pNumero;
             cantEstudiantes = pCantEstudiantes;
             curso = pCurso;
+        }
+        public int getId()
+        {
+            return id;
+        }
+
+        public void setId(int pId)
+        {
+            id = pId;
         }
 
         public int getNumero()

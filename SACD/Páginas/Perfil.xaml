@@ -49,7 +49,7 @@
     </Page.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,10,22">
-        <Grid Height="965">
+        <Grid Height="1312">
             <Label x:Name="label" Content="Perfil" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Top" FontSize="24" FontStyle="Italic" Foreground="#FF666666" FontWeight="Bold"/>
             <Rectangle Fill="#FF27AE8D" HorizontalAlignment="Left" Height="486" Margin="265,-195,0,0" VerticalAlignment="Top" Width="4" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
@@ -63,10 +63,10 @@
             </Rectangle>
             <Label x:Name="label1_Copy" Content="Profesor" HorizontalAlignment="Left" Margin="34,79,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold"/>
             <Label x:Name="label_Prof" Content="Nombre" HorizontalAlignment="Left" Margin="130,70,0,0" VerticalAlignment="Top" FontSize="21.333" Foreground="#FF666666"/>
-            <Label x:Name="label1_Copy2" Content="Horas Mínimas" HorizontalAlignment="Left" Margin="34,124,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-            <Label x:Name="label1_Copy3" Content="Horas Asignadas" HorizontalAlignment="Left" Margin="187,124,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-            <Label x:Name="label_HorasMin" Content="0" HorizontalAlignment="Left" Margin="74,157,0,0" VerticalAlignment="Top" FontSize="18.667" Foreground="#FF666666"/>
-            <Label x:Name="label_HorasAsig" Content="0" HorizontalAlignment="Left" Margin="225,157,0,0" VerticalAlignment="Top" FontSize="18.667" Foreground="#FF666666" RenderTransformOrigin="8.286,0.485"/>
+            <Label x:Name="label1_Copy2" Content="Horas Mínimas" HorizontalAlignment="Left" Margin="36,115,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+            <Label x:Name="label1_Copy3" Content="Horas Asignadas" HorizontalAlignment="Left" Margin="189,115,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+            <Label x:Name="label_HorasMin" Content="0" HorizontalAlignment="Left" Margin="76,148,0,0" VerticalAlignment="Top" FontSize="18.667" Foreground="#FF666666"/>
+            <Label x:Name="label_HorasAsig" Content="0" HorizontalAlignment="Left" Margin="227,148,0,0" VerticalAlignment="Top" FontSize="18.667" Foreground="#FF666666" RenderTransformOrigin="8.286,0.485"/>
             <Label x:Name="label1_Copy1" Content="Plazas" HorizontalAlignment="Left" Margin="34,197,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
             <ListView x:Name="listView" HorizontalAlignment="Left" Height="80" Margin="107,218,0,0" VerticalAlignment="Top" Width="245">
                 <ListView.View>
@@ -103,19 +103,9 @@
             <Label x:Name="label1_Copy7" Content="Administrativas" HorizontalAlignment="Left" Margin="244,612,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
             <Label x:Name="label1_Copy8" Content="Investigaciones" HorizontalAlignment="Left" Margin="417,612,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
             <ListBox x:Name="listbx_Investig" HorizontalAlignment="Left" Height="154" Margin="401,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-            <ListBox x:Name="listbx_Admin" HorizontalAlignment="Left" Height="154" Margin="227,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <CheckBox x:Name="checkBox2" Content="CheckBox"/>
-                <CheckBox x:Name="checkBox22" Content="CheckBox"/>
-                <CheckBox x:Name="checkBox222" Content="CheckBox"/>
-                <CheckBox x:Name="checkBox21" Content="CheckBox"/>
-                <CheckBox x:Name="checkBox23" Content="CheckBox"/>
-                <CheckBox x:Name="checkBox24" Content="CheckBox"/>
-                <CheckBox x:Name="checkBox25" Content="CheckBox"/>
-                <CheckBox x:Name="checkBox26" Content="CheckBox"/>
-                <CheckBox x:Name="checkBox27" Content="CheckBox"/>
-                <CheckBox x:Name="checkBox8" Content="CheckBox"/>
-            </ListBox>
+            <ListBox x:Name="listbx_Admin" HorizontalAlignment="Left" Height="154" Margin="227,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
             <Button x:Name="btn_Aceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="464,834,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" RenderTransformOrigin="0.518,1.2"/>
+            <Button x:Name="btn_Aceptar_Copy" Content="Asignar Carga" HorizontalAlignment="Left" Margin="498,440,0,0" VerticalAlignment="Top" Width="102" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Aceptar_Click"/>
 
 
         </Grid>

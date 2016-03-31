@@ -49,8 +49,8 @@ namespace SACD_Controlador
 
             foreach (Object[] obj in investigsObj)
             {
-                investig = new Investigacion((int) obj[0], "invest", (decimal) obj[2], 
-                           (string) obj[1], (DateTime) obj[3], (DateTime)obj[4]);
+                investig = new Investigacion((int) obj[0], "invest", (decimal) obj[1], 
+                           (string) obj[4], (DateTime) obj[2], (DateTime)obj[3]);
                 investigsList.Add(investig);
             }
 
@@ -75,8 +75,8 @@ namespace SACD_Controlador
 
         }
 
-        //obtener lista de grupos registradas
-        public static List<Grupo> listarGrupos() //g.COD_CURSO, c.NOM_CURSO, g.ID_GRUPO, g.NUM_GRUPO, g.NUM_ESTUDIANTES" 
+        //obtener lista de grupos registrados
+        public static List<Grupo> listarGrupos() 
         {
             List<Object[]> gruposObj = DatosManager.getGruposList();
             List<Grupo> gruposList = new List<Grupo>();
@@ -84,7 +84,7 @@ namespace SACD_Controlador
 
             foreach (Object[] obj in gruposObj)
             {
-                grupo = new Grupo((int)obj[2], "cur", 0, (int)obj[3], (int)obj[4], new Curso((string)obj[0], (string)obj[1]));
+                grupo = new Grupo((int)obj[0], (int)obj[3], 0, new Curso(0, "cur", 0, (string)obj[1], (string)obj[2]));
                 gruposList.Add(grupo);
             }
 
