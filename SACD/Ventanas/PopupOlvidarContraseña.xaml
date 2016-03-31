@@ -13,7 +13,7 @@
                 <TextBlock x:Name="lblTitulo" TextWrapping="WrapWithOverflow" FontSize="16" Margin="55,52,44,250" ><Run Text="D"/><Run Text="igite su correo para enviarle un código de verificación."/></TextBlock>
                 <Button x:Name="btnCerrarReporte" Width="30" Height="30" Margin="460,0,10,310" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnCerrarOlvidar_Click" VerticalAlignment="Bottom">
                     <Button.Background>
-                        <ImageBrush ImageSource="Resources/Equis.png"/>
+                        <ImageBrush ImageSource="../Resources/Equis.png"/>
                     </Button.Background>
                 </Button>
                 <Label x:Name="lblCorreo" Content="Correo" HorizontalAlignment="Left" Margin="55,148,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="-1.657,1.56"/>
