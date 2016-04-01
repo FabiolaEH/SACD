@@ -31,14 +31,13 @@ namespace SACD.Páginas
 
         private void btn_Aceptar_Click(object sender, RoutedEventArgs e)
         {
-            PopupRegistro popup = new PopupRegistro(1);
+            PopupRegistro popup = new PopupRegistro((String)cmb_Profe.SelectedValue, (int)cmb_Semestre.SelectedValue, (int)cmb_Anio.SelectedValue);
         }
 
         private void cargarInformacion()
         {
             String nombre;
             int anio = -1;
-            int periodo;
             List<Profesor> profes = ProfesManager.listar();
             List<Semestre> semestres = SemestresManager.listar();
             foreach (Profesor profe in profes){

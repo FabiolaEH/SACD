@@ -255,6 +255,37 @@ namespace SACD_AccesoDatos
             return profeInfo;
         }
 
+
+        //Buscar profesor por nombre
+        public static Object[] getProfeInfoPorNombre(String pNombre)
+        {
+            Object[] profeInfo = new Object[3];
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM SACDFPROFESORES WHERE NOM_PROFESOR = '"+ pNombre + "'", conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    profeInfo[0] = reader.GetInt32(0);
+                    profeInfo[1] = reader.GetString(1);
+                    profeInfo[2] = reader.GetDecimal(2);
+
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+
+            return profeInfo;
+        }
+
         /************* Investigaciones ***************/
         //Obtener lista de investigaciones
         public static List<Object[]> getInvestigList()
@@ -288,6 +319,36 @@ namespace SACD_AccesoDatos
             return investigList;
         }
 
+        //Buscar investigacion por id
+        public static Object[] getInvestigInfo(int id)
+        {
+            Object[] investInfo = new Object[5];
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM SACDFINVESTIG WHERE ID_INVESTIGACION = " + id.ToString(), conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    investInfo[0] = reader.GetInt32(0);
+                    investInfo[1] = reader.GetDecimal(1);
+                    investInfo[2] = reader.GetDateTime(2);
+                    investInfo[3] = reader.GetDateTime(3);
+                    investInfo[4] = reader.GetString(4);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return investInfo;
+        }
+
         /************* Actv. Administrativas ***************/
         //Obtener lista de investigaciones
         public static List<Object[]> getAdministvsList()
@@ -317,6 +378,34 @@ namespace SACD_AccesoDatos
             }
 
             return administvsList;
+        }
+
+        //Buscar administrativas por id
+        public static Object[] getAdministvsInfo(int id)
+        {
+            Object[] admiInfo = new Object[3];
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM SACDFADMINISTRAT WHERE ID_ADMINISTRATIV = " + id.ToString(), conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    admiInfo[0] = reader.GetInt32(0);
+                    admiInfo[1] = reader.GetString(1);
+                    admiInfo[2] = reader.GetDecimal(2);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return admiInfo;
         }
 
         /************* Grupos ***************/
@@ -385,6 +474,73 @@ namespace SACD_AccesoDatos
 
             return semestresList;
         }
+
+
+
+        /************* Asignaciones ***************/
+        //buscar asignaciones 
+        public static List<Object[]> getAsignaciones(int pIdProfe, int pPeriodo, int pAño)
+        {
+            List<Object[]> asignacionesList = new List<Object[]>();
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM (SACDFASIGNACIONES a LEFT JOIN SACDFSEMESTRES b ON a.ID_SEMESTRE = b.ID_SEMESTRE)"  
+                    + " LEFT JOIN SACDFPROFESORES c ON a.ID_PROFESOR = c.ID_PROFESOR" 
+                    + " WHERE b.NUM_PERIODO = "+ pPeriodo.ToString() +" AND b.NUM_AÑO = "+ pAño.ToString() 
+                    + " AND c.ID_PROFESOR = "+pIdProfe.ToString(), conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Object[] grupoInfo = new Object[4];
+                    grupoInfo[0] = reader.GetInt32(0);
+                    grupoInfo[1] = reader.GetInt32(1);
+                    grupoInfo[2] = reader.GetInt32(2);
+                    grupoInfo[3] = reader.GetDecimal(3);
+                    asignacionesList.Add(grupoInfo);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return asignacionesList;
+        }
+
+
+        /************* Actividades ***************/
+        //Buscar actividad por id
+        public static Object[] getActividadInfo(int id)
+        {
+            Object[] actividadInfo = new Object[2];
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM SACDFACTIVIDADES WHERE ID_ACTIVIDAD = "+id.ToString(), conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    actividadInfo[0] = reader.GetInt32(0);
+                    actividadInfo[1] = reader.GetString(1);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return actividadInfo;
+        }
+
         /*---------------------------------   MODIFICAR  --------------------------------------*/
 
 
