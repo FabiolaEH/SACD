@@ -58,6 +58,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Clases\Grupos_GUI.cs" />
+    <Compile Include="Clases\Reporte_Admin_GUI.cs" />
+    <Compile Include="Clases\Reporte_Investigacion_GUI.cs" />
     <Compile Include="Clases\Reporte_Docencia_GUI.cs" />
     <Compile Include="Clases\Profesor_GUI.cs" />
     <Compile Include="Ventanas\PopupOlvidarContraseña.xaml.cs">

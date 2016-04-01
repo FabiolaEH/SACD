@@ -92,5 +92,31 @@ namespace SACD_Controlador
 
         }
 
+        //obtener lista de grupos registrados
+        public static Actividad buscar(int pIdActividad)
+        {
+            Object[] actividadInfo = new Object[2];
+            actividadInfo = DatosManager.getActividadInfo(pIdActividad);
+
+            if((string)actividadInfo[1] == "INVE")
+            {
+                Object[] investInfo = DatosManager.getInvestigInfo(pIdActividad);
+                Investigacion invest = new Investigacion(pIdActividad, "INVE", (decimal)investInfo[1], 
+                    (String)investInfo[4], (DateTime)investInfo[2], (DateTime)investInfo[3]);
+                return invest;
+
+            }
+            else if((string)actividadInfo[1] == "ADMI")
+            {
+                Object[] admiInfo = DatosManager.getAdministvsInfo(pIdActividad);
+                ActvAdmin admin = new ActvAdmin(pIdActividad, "ADMI", (decimal)admiInfo[2], (String)admiInfo[1]);
+                return admin;
+            }
+            else
+            {
+                ActvAdmin grupo = new ActvAdmin(1, "ADMI", 0, "asjk");
+                return grupo;
+            }
+        }
     }
 }

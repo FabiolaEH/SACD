@@ -8,22 +8,22 @@ namespace SACD_Modelo
 {
     public class Asignacion
     {
-        private float valorHoras;
+        private decimal valorHoras;
         private Actividad actividad;
 
 
-        public Asignacion(float pValorHoras, Actividad pActividad)
+        public Asignacion(decimal pValorHoras, Actividad pActividad)
         {
             valorHoras = pValorHoras;
             actividad = pActividad;
         }
 
-        public float getValorHoras()
+        public decimal getValorHoras()
         {
             return valorHoras;
         }
 
-        public void setValorHoras(float pValorHoras)
+        public void setValorHoras(decimal pValorHoras)
         {
             valorHoras = pValorHoras;
         }

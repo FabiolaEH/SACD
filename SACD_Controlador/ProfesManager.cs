@@ -40,6 +40,17 @@ namespace SACD_Controlador
             return profesor;
         }
 
+        //buscar profesor por nombre
+        public static Profesor buscarPorNombre(String pNombre)
+        {
+            Object[] profeInfo = new Object[3];
+            profeInfo = DatosManager.getProfeInfoPorNombre(pNombre);
+
+            Profesor profesor = new Profesor((int)profeInfo[0], (string)profeInfo[1], (decimal)profeInfo[2]);
+
+            return profesor;
+        }
+
         //obtener lista de profesores registrados
         public static List<Profesor> listar()
         {
