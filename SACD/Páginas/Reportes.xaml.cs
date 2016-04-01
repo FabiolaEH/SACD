@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SACD_Controlador;
+using SACD_Modelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,12 +25,38 @@ namespace SACD.Páginas
         public Reportes()
         {
             InitializeComponent();
+            cargarInformacion();
+
         }
 
         private void btn_Aceptar_Click(object sender, RoutedEventArgs e)
         {
-            //popup_reporte.IsOpen = true;
             PopupRegistro popup = new PopupRegistro(1);
+        }
+
+        private void cargarInformacion()
+        {
+            String nombre;
+            int anio = -1;
+            int periodo;
+            List<Profesor> profes = ProfesManager.listar();
+            List<Semestre> semestres = SemestresManager.listar();
+            foreach (Profesor profe in profes){
+                nombre = profe.getNombre();
+                cmb_Profe.Items.Add(nombre);
+            }
+
+            foreach (Semestre semestre in semestres)
+            {
+                if (semestre.getAnio() != anio)
+                {
+                    anio = semestre.getAnio();
+                    cmb_Anio.Items.Add(anio);
+                }
+            }
+
+            cmb_Semestre.Items.Add(1);
+            cmb_Semestre.Items.Add(2);
         }
     }
 }

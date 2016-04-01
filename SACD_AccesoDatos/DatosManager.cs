@@ -15,10 +15,10 @@ namespace SACD_AccesoDatos
         public static bool crearConexion()
         {
             conn = new SqlConnection();
-            //conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
             //conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
-            conn.ConnectionString = "Server = ecRhin\\estudiantes; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            //conn.ConnectionString = "Server = ecRhin\\estudiantes; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
 
             try
             {
@@ -354,6 +354,37 @@ namespace SACD_AccesoDatos
             return gruposList;
         }
 
+
+        /************* Semestres ***************/
+        //Obtener lista de grupos
+        public static List<Object[]> getSemestresList()
+        {
+            List<Object[]> semestresList = new List<Object[]>();
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM SACDFSEMESTRES", conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Object[] grupoInfo = new Object[3];
+                    grupoInfo[0] = reader.GetInt32(0);
+                    grupoInfo[1] = reader.GetInt32(1);
+                    grupoInfo[2] = reader.GetInt32(2);
+                    semestresList.Add(grupoInfo);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return semestresList;
+        }
         /*---------------------------------   MODIFICAR  --------------------------------------*/
 
 
