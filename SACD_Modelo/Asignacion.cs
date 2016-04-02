@@ -10,12 +10,14 @@ namespace SACD_Modelo
     {
         private decimal valorHoras;
         private Actividad actividad;
+        private Semestre semestre;
 
 
-        public Asignacion(decimal pValorHoras, Actividad pActividad)
+        public Asignacion(decimal pValorHoras, Actividad pActividad, Semestre pSemestre)
         {
             valorHoras = pValorHoras;
             actividad = pActividad;
+            semestre = pSemestre;
         }
 
         public decimal getValorHoras()
@@ -36,6 +38,16 @@ namespace SACD_Modelo
         public void setActividad(Actividad pActividad)
         {
             actividad = pActividad;
+        }
+
+        public Semestre getSemestre()
+        {
+            return semestre;
+        }
+
+        public void setSemestre(Semestre pSemestre)
+        {
+            semestre = pSemestre;
         }
     }
 }

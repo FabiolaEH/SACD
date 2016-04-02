@@ -12,6 +12,7 @@ namespace SACD.Clases
         public string nombre { get; set; }
         public int numGrupo { get; set; }
         public int idGrupo { get; set; }
+        public string codCurso { get; set; }
         public decimal valHoras { get; set; }
         public bool isSelected { get; set; }
 

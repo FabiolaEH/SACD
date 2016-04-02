@@ -1,0 +1,18 @@
+﻿<Window x:Class="SACD.Ventanas.PopupTipoCurso"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SACD.Ventanas"
+        mc:Ignorable="d"
+        Title="PopupTipoCurso" Height="274.163" Width="246.89" ShowInTaskbar="False"
+        Background="#FFEFEFEF" BorderBrush="#FF999999" WindowStartupLocation="CenterScreen" >
+    <Grid>
+        <RadioButton x:Name="radioButton" Content="Nuevo" HorizontalAlignment="Left" Margin="39,18,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" GroupName="TipoCur" Checked="radioButton_Checked" IsChecked="True"/>
+        <RadioButton x:Name="radioButton_Copy" Content="Existente" HorizontalAlignment="Left" Margin="39,55,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" GroupName="TipoCur" Checked="radioButton_Checked"/>
+        <RadioButton x:Name="radioButton_Copy1" Content="Impartido ant." HorizontalAlignment="Left" Margin="39,91,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" GroupName="TipoCur" Checked="radioButton_Checked"/>
+        <RadioButton x:Name="radioButton_Copy2" Content="Paralelo 1" HorizontalAlignment="Left" Margin="39,129,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" RenderTransformOrigin="-0.489,-1.182" GroupName="TipoCur" Checked="radioButton_Checked"/>
+        <RadioButton x:Name="radioButton_Copy3" Content="Paralelo 2 y sig." HorizontalAlignment="Left" Margin="39,167,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" GroupName="TipoCur" Checked="radioButton_Checked"/>
+        <Button x:Name="btn_Aceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="89,201,0,0" VerticalAlignment="Top" Width="70" Height="32" Background="#FFFFF8F8" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{StaticResource RoundButton}" Click="btn_Aceptar_Click"/>
+    </Grid>
+</Window>

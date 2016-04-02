@@ -9,7 +9,7 @@ namespace SACD_Modelo
     public class Plaza
     {
         private int id;
-        private int porcentaje;
+        private decimal porcentaje;
 
         public void setId(int pId)
         {
@@ -21,12 +21,12 @@ namespace SACD_Modelo
             return id;
         }
 
-        public void setPorcentaje(int pPorcentaje)
+        public void setPorcentaje(decimal pPorcentaje)
         {
             porcentaje = pPorcentaje;
         }
 
-        public int getPorcentaje()
+        public decimal getPorcentaje()
         {
             return porcentaje;
         }

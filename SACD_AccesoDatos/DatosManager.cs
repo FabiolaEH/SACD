@@ -15,6 +15,7 @@ namespace SACD_AccesoDatos
         public static bool crearConexion()
         {
             conn = new SqlConnection();
+         
             //conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
             conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
@@ -29,11 +30,9 @@ namespace SACD_AccesoDatos
 
             catch (SqlException ex)
             {
-                
                 Console.WriteLine(ex.Message);
                 return false;
             }
-
         }
 
         public static void cerrarConexion()
@@ -45,7 +44,9 @@ namespace SACD_AccesoDatos
         }
 
         /*---------------------------------   CONSULTAR   -------------------------------------*/
+
         /************* Usuarios ***************/
+
         //Obtener lista de usuarios
         public static List<Object[]> getUsuariosList()
         {
@@ -193,8 +194,9 @@ namespace SACD_AccesoDatos
 
             return isValido;
         }
-        /*---------------------------------   CONSULTAR   -------------------------------------*/
+
         /************* Profesores ***************/
+
         //Obtener lista de profesores
         public static List<Object[]> getProfesoresList()
         {
@@ -226,13 +228,14 @@ namespace SACD_AccesoDatos
         }
 
         //Buscar profesor por id
-        public static Object[] getProfeInfo(int id)
+        public static Object[] getProfeInfo(int pId)
         {
             Object[] profeInfo = new Object[3];
 
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM SACDFPROFESORES", conn);
+                SqlCommand command = new SqlCommand("SELECT * FROM SACDFPROFESORES "
+                                                    + "WHERE ID_PROFESOR = '" +pId+ "'", conn);
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
@@ -287,6 +290,7 @@ namespace SACD_AccesoDatos
         }
 
         /************* Investigaciones ***************/
+
         //Obtener lista de investigaciones
         public static List<Object[]> getInvestigList()
         {
@@ -350,6 +354,7 @@ namespace SACD_AccesoDatos
         }
 
         /************* Actv. Administrativas ***************/
+
         //Obtener lista de investigaciones
         public static List<Object[]> getAdministvsList()
         {
@@ -409,6 +414,7 @@ namespace SACD_AccesoDatos
         }
 
         /************* Grupos ***************/
+
         //Obtener lista de grupos
         public static List<Object[]> getGruposList()
         {
@@ -443,8 +449,39 @@ namespace SACD_AccesoDatos
             return gruposList;
         }
 
+        /************* Cursos ***************/
+
+        //Obtener total de horas presenciales de un curso
+        public static decimal getHorasCurso(string pCodigo)
+        {
+            decimal valHoras = 0;
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT SUM(CAN_HORAS) "
+                                                   + "FROM SACDFTIPO_CURSO "
+                                                   + "WHERE COD_CURSO = '" + pCodigo + "'", conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    valHoras = reader.GetDecimal(0);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return valHoras;
+        }
+
 
         /************* Semestres ***************/
+
         //Obtener lista de grupos
         public static List<Object[]> getSemestresList()
         {
@@ -478,6 +515,7 @@ namespace SACD_AccesoDatos
 
 
         /************* Asignaciones ***************/
+
         //buscar asignaciones 
         public static List<Object[]> getAsignaciones(int pIdProfe, int pPeriodo, int pAño)
         {
@@ -514,6 +552,7 @@ namespace SACD_AccesoDatos
 
 
         /************* Actividades ***************/
+
         //Buscar actividad por id
         public static Object[] getActividadInfo(int id)
         {

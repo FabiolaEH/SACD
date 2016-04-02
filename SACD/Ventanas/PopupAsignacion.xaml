@@ -17,12 +17,12 @@
                         </Button.Background>
                     </Button>
                     <GroupBox x:Name="groupBox" Header="Modalidad" HorizontalAlignment="Left" Margin="26,20,0,0" VerticalAlignment="Top" Height="199" Width="176" Foreground="#FF666666"/>
-                    <RadioButton x:Name="radioButt_Simp" Content="Simple" HorizontalAlignment="Left" Margin="66,69,0,0" VerticalAlignment="Top" Foreground="#FF666666" RenderTransformOrigin="1.355,-4.633" GroupName="Modalidad" IsChecked="True" Checked="radioButt_Simp_Checked"/>
-                    <RadioButton x:Name="radioButt_Amp" Content="Ampliación" HorizontalAlignment="Left" Margin="66,114,0,0" VerticalAlignment="Top" Foreground="#FF666666" RenderTransformOrigin="1.141,-8.033" GroupName="Modalidad" Checked="radioButt_Amp_Checked"/>
-                    <RadioButton x:Name="radioButt_Dbamp" Content="Doble Ampliación" HorizontalAlignment="Left" Margin="66,164,0,0" VerticalAlignment="Top" Foreground="#FF666666" GroupName="Modalidad" Checked="radioButt_Dbamp_Checked"/>
+                    <RadioButton x:Name="radioButt_Simp" Content="Simple" HorizontalAlignment="Left" Margin="66,69,0,0" VerticalAlignment="Top" Foreground="#FF666666" RenderTransformOrigin="1.355,-4.633" GroupName="Modalidad" IsChecked="True" Checked="radioButton_Checked"/>
+                    <RadioButton x:Name="radioButt_Amp" Content="Ampliación" HorizontalAlignment="Left" Margin="66,114,0,0" VerticalAlignment="Top" Foreground="#FF666666" RenderTransformOrigin="1.141,-8.033" GroupName="Modalidad" Checked="radioButton_Checked"/>
+                    <RadioButton x:Name="radioButt_Dbamp" Content="Doble Ampliación" HorizontalAlignment="Left" Margin="66,164,0,0" VerticalAlignment="Top" Foreground="#FF666666" GroupName="Modalidad" Checked="radioButton_Checked"/>
                     <Label x:Name="label1_Copy6" Content="Académicas" HorizontalAlignment="Left" Margin="282,15,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
                     <Label x:Name="label1_Copy7" Content="Administrativas" HorizontalAlignment="Left" Margin="282,290,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-                    <Label x:Name="label1_Copy8" Content="Investigaciones" HorizontalAlignment="Left" Margin="282,613,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+                    <Label x:Name="label1_Copy8" Content="Investigaciones" HorizontalAlignment="Left" Margin="282,570,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
                     <DataGrid x:Name="dgGrupos" AutoGenerateColumns="False" CanUserAddRows="false" IsReadOnly="True" HorizontalAlignment="Left" Margin="282,51,0,0" VerticalAlignment="Top" Height="180" Width="535">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Width="40">
@@ -45,7 +45,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <Line xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="Separador" X1="10" Y1="10" X2="550" Y2="10" Stroke="#FFB6B6B6" StrokeDashArray="2, 4" Margin="275,250,126,620" /> 
-                    <DataGrid x:Name="dgAdmin" AutoGenerateColumns="False" CanUserAddRows="false" IsReadOnly="True" HorizontalAlignment="Left" Margin="282,330,0,0" VerticalAlignment="Top" Height="180" Width="352">
+                    <DataGrid x:Name="dgAdmin" AutoGenerateColumns="False" CanUserAddRows="false" IsReadOnly="True" HorizontalAlignment="Left" Margin="282,330,0,0" VerticalAlignment="Top" Height="180" Width="535">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Width="40">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -58,7 +58,8 @@
                             <DataGridTextColumn Binding="{Binding valHoras}" Header="Horas" Width="50"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="dgInvestig" AutoGenerateColumns="False" CanUserAddRows="false" IsReadOnly="True" HorizontalAlignment="Left" Margin="282,680,0,0" VerticalAlignment="Top" Height="180" Width="352">
+                    <Line xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="Separador2" X1="10" Y1="10" X2="550" Y2="10" Stroke="#FFB6B6B6" StrokeDashArray="2, 4" Margin="275,528,126,341" />
+                    <DataGrid x:Name="dgInvestig" AutoGenerateColumns="False" CanUserAddRows="false" IsReadOnly="True" HorizontalAlignment="Left" Margin="282,615,0,0" VerticalAlignment="Top" Height="180" Width="535">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Width="40">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -74,7 +75,7 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
-                    <Button x:Name="btn_Aceptar" Content="Guardar Asignación" HorizontalAlignment="Left" Margin="50,246,0,0" VerticalAlignment="Top" Width="136" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{StaticResource RoundButton}" Click="btn_Aceptar_Click" RenderTransformOrigin="0.426,-0.1"/>
+                    <Button x:Name="btn_Aceptar" Content="Guardar Asignación" HorizontalAlignment="Left" Margin="48,246,0,0" VerticalAlignment="Top" Width="136" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{StaticResource RoundButton}" Click="btn_Aceptar_Click" RenderTransformOrigin="0.426,-0.1"/>
                 </Grid>
             </Border>
         </Grid>

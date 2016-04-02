@@ -11,7 +11,7 @@ namespace SACD_Modelo
         private bool isDoble;
 
 
-        public Ampliacion(decimal pValorHoras, Actividad pActividad, bool pIsDoble) : base(pValorHoras, pActividad)
+        public Ampliacion(decimal pValorHoras, Actividad pActividad, Semestre pSemestre, bool pIsDoble) : base(pValorHoras, pActividad, pSemestre)
         {
             isDoble = pIsDoble;
         }

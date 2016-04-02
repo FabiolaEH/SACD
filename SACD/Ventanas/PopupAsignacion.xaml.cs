@@ -58,7 +58,8 @@ namespace SACD.Ventanas
                 gruposListGUI.Add(new Grupos_GUI() { nombre = grupo.getCurso().getNombre(),
                                                      numGrupo = grupo.getNumero(),
                                                      valHoras = grupo.getHoras(),
-                                                     idGrupo = grupo.getId()});
+                                                     idGrupo = grupo.getId(),
+                                                     codCurso = grupo.getCurso().getCodigo()});
             }
 
             this.dgGrupos.ItemsSource = gruposListGUI;
@@ -107,10 +108,18 @@ namespace SACD.Ventanas
         {
             if(modalidad.Equals("simp"))
             {
-                Parametros ventanaParam = new Parametros();
-                ventanaParam.Show();
+                PopupTipoCurso ventTipoCurso = new PopupTipoCurso(Int32.Parse((sender as Button).Uid));
+                ventTipoCurso.Show();
+                /////////////////////////////////////////////////////////////////////
+               /* PopupTipoCurso w = new PopupTipoCurso();
+                if (w.ShowDialog() == true)
+                {
+                    string foo = w.nombre;
+                    MessageBox.Show(foo);
+
+                }*/
+                //////////////////////////////////////////////////
             }
-            MessageBox.Show((sender as Button).Uid.ToString());
         }
 
         private void btn_Aceptar_Click(object sender, RoutedEventArgs e)
@@ -140,19 +149,33 @@ namespace SACD.Ventanas
             }
         }
 
-        private void radioButt_Simp_Checked(object sender, RoutedEventArgs e)
+        private void radioButton_Checked(object sender, RoutedEventArgs e)
         {
-            modalidad = "simp";
-        }
+            RadioButton radioButt = sender as RadioButton;
+            if (radioButt.IsChecked.Value)
+            {
+                switch (radioButt.Content.ToString())
+                {
+                    case "Simple":
+                        {
+                            modalidad = "simp";
+                            break;
+                        }
 
-        private void radioButt_Amp_Checked(object sender, RoutedEventArgs e)
-        {
-            modalidad = "amp";
-        }
+                    case "Ampliación":
+                        {
+                            modalidad = "amp";
+                            break;
+                        }
 
-        private void radioButt_Dbamp_Checked(object sender, RoutedEventArgs e)
-        {
-            modalidad = "dbamp";
+                    case "Doble Ampliación":
+                        {
+                            modalidad = "dbamp";
+                            break;
+                        }
+
+                }               
+            }
         }
     }
 }

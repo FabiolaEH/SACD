@@ -9,7 +9,7 @@ namespace SACD_Modelo
     public class PlazaAsignada
     {
         private Plaza plaza;
-        private int porcentajeAsig;
+        private decimal porcentajeAsig;
         private bool isPropiedad;
     }
 }

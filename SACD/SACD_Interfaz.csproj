@@ -82,11 +82,11 @@
     <Compile Include="Páginas\Reportes.xaml.cs">
       <DependentUpon>Reportes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ventanas\Parametros.xaml.cs">
-      <DependentUpon>Parametros.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Ventanas\PopupAsignacion.xaml.cs">
       <DependentUpon>PopupAsignacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\PopupTipoCurso.xaml.cs">
+      <DependentUpon>PopupTipoCurso.xaml</DependentUpon>
     </Compile>
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
@@ -152,11 +152,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Ventanas\Parametros.xaml">
+    <Page Include="Ventanas\PopupAsignacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Ventanas\PopupAsignacion.xaml">
+    <Page Include="Ventanas\PopupTipoCurso.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -35,7 +35,7 @@ namespace SACD_Controlador
             {
                 actividad = ActividadesManager.buscar((int)obj[0]);
 
-                asignacion = new Asignacion((decimal)obj[3], actividad);
+                asignacion = new Asignacion((decimal)obj[3], actividad, new Semestre(0,0,0)); //PONER BIEN EL SEMESTRE
                 asignList.Add(asignacion);
             }
 
