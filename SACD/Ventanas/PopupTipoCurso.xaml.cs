@@ -44,8 +44,14 @@ namespace SACD.Ventanas
                     //Buscar la fila
                     foreach (Grupos_GUI grupoInfo in dgGrupos.ItemsSource)
                     {
-                        if(grupoInfo.idGrupo == idGrupo)
-                            MessageBox.Show(grupoInfo.nombre);
+                        if (grupoInfo.idGrupo == idGrupo)
+                        {
+                            
+                            grupoInfo.nombre = "NUEVO NOMBRE";
+
+                            //Actualizar tabla 
+                            dgGrupos.Items.Refresh();
+                        }
                     }
                 }
             }

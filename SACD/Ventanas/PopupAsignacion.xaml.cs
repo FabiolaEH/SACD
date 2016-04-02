@@ -57,6 +57,7 @@ namespace SACD.Ventanas
             {
                 gruposListGUI.Add(new Grupos_GUI() { nombre = grupo.getCurso().getNombre(),
                                                      numGrupo = grupo.getNumero(),
+                                                     cantEstud = grupo.getCantEstudiantes(),
                                                      valHoras = grupo.getHoras(),
                                                      idGrupo = grupo.getId(),
                                                      codCurso = grupo.getCurso().getCodigo()});

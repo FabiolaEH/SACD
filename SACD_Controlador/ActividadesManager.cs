@@ -29,8 +29,9 @@ namespace SACD_Controlador
         }
 
         //calcular valor en horas de un curso
-        public static float calcValorCurso(Curso pCurso, string pParametro) //parámetro del profesor= nuevo, existente...
+        public static decimal calcValorCurso(int pIdGrupo, string pCodCurso, string pModalidad, int cantEstud) //modalidad= nuevo, existente...
         {
+            DatosManager.getTipoCurso(pCodCurso);
             return 0;
         }
 
@@ -85,7 +86,7 @@ namespace SACD_Controlador
             foreach (Object[] obj in gruposObj)
             {
                 decimal valHoras = DatosManager.getHorasCurso((string)obj[1]);
-                grupo = new Grupo((int)obj[0],"cur", valHoras, (int)obj[3], 0, new Curso((string)obj[1], (string)obj[2]));
+                grupo = new Grupo((int)obj[0],"cur", valHoras, (int)obj[3], (int)obj[4], new Curso((string)obj[1], (string)obj[2]));
                 gruposList.Add(grupo);
             }
 
