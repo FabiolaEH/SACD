@@ -7,44 +7,76 @@
         mc:Ignorable="d"
         Title="PopupAsignacion" Height="650" Width="1000" 
         WindowStyle="None" ShowInTaskbar="False" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Border BorderBrush="#D9D9D9" BorderThickness="2" CornerRadius="15" Background="White">
-            <Grid >
-                <Button x:Name="btnCerrar" Width="30" Height="30" Margin="936,10,10,586" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnCerrar_Click">
-                    <Button.Background>
-                        <ImageBrush ImageSource="/SACD;component/Resources/Equis.png"/>
-                    </Button.Background>
-                </Button>
-                <GroupBox x:Name="groupBox" Header="Modalidad" HorizontalAlignment="Left" Margin="192,10,0,0" VerticalAlignment="Top" Height="100" Width="532" Foreground="#FF666666"/>
-                <RadioButton x:Name="radioButton" Content="Simple" HorizontalAlignment="Left" Margin="272,62,0,0" VerticalAlignment="Top" Foreground="#FF666666" RenderTransformOrigin="1.355,-4.633"/>
-                <RadioButton x:Name="radioButton1" Content="Ampliación" HorizontalAlignment="Left" Margin="390,66,0,0" VerticalAlignment="Top" Foreground="#FF666666" RenderTransformOrigin="1.141,-8.033"/>
-                <RadioButton x:Name="radioButton2" Content="Doble Ampliación" HorizontalAlignment="Left" Margin="530,66,0,0" VerticalAlignment="Top" Foreground="#FF666666"/>
-                <Label x:Name="label1_Copy6" Content="Académicas" HorizontalAlignment="Left" Margin="82,289,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-                <Label x:Name="label1_Copy7" Content="Administrativas" HorizontalAlignment="Left" Margin="82,123,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-                <Label x:Name="label1_Copy8" Content="Investigaciones" HorizontalAlignment="Left" Margin="550,123,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-                <DataGrid x:Name="dgGrupos" AutoGenerateColumns="False" CanUserAddRows="false" IsReadOnly="True" HorizontalAlignment="Left" Margin="82,338,0,0" VerticalAlignment="Top" Height="179" Width="515">
-                    <DataGrid.Columns>
-                        <DataGridTemplateColumn Width="40">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <CheckBox x:Name="checkbx_Select" IsChecked="{Binding isSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" Checked="checkbx_Select_Checked"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Binding="{Binding curso}" Header="Curso" Width="300"/>
-                        <DataGridTextColumn Binding="{Binding numGrupo}" Header="Grupo" Width="40"/>
-                        <DataGridTextColumn Binding="{Binding valHoras}"  Header="Horas" Width="40"/>
-                        <DataGridTemplateColumn Width="70">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button x:Name="btn_Calc" Content="Calcular" Uid="{Binding idGrupo}" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="55" Height="30" FontSize="14" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="calcularHoras"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-                <Button x:Name="btn_Aceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="836,578,0,0" VerticalAlignment="Top" Width="86" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{StaticResource RoundButton}" Click="btn_Aceptar_Click"/>
-            </Grid>
-        </Border>
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,10,0">
+        <Grid Height="900">
+            <Border BorderBrush="#D9D9D9" BorderThickness="2" CornerRadius="15" Background="White">
+                <Grid>
+                    <Button x:Name="btnCerrar" Width="30" Margin="929,10,10,850" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnCerrar_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/SACD;component/Resources/Equis.png"/>
+                        </Button.Background>
+                    </Button>
+                    <GroupBox x:Name="groupBox" Header="Modalidad" HorizontalAlignment="Left" Margin="26,20,0,0" VerticalAlignment="Top" Height="199" Width="176" Foreground="#FF666666"/>
+                    <RadioButton x:Name="radioButt_Simp" Content="Simple" HorizontalAlignment="Left" Margin="66,69,0,0" VerticalAlignment="Top" Foreground="#FF666666" RenderTransformOrigin="1.355,-4.633" GroupName="Modalidad" IsChecked="True" Checked="radioButt_Simp_Checked"/>
+                    <RadioButton x:Name="radioButt_Amp" Content="Ampliación" HorizontalAlignment="Left" Margin="66,114,0,0" VerticalAlignment="Top" Foreground="#FF666666" RenderTransformOrigin="1.141,-8.033" GroupName="Modalidad" Checked="radioButt_Amp_Checked"/>
+                    <RadioButton x:Name="radioButt_Dbamp" Content="Doble Ampliación" HorizontalAlignment="Left" Margin="66,164,0,0" VerticalAlignment="Top" Foreground="#FF666666" GroupName="Modalidad" Checked="radioButt_Dbamp_Checked"/>
+                    <Label x:Name="label1_Copy6" Content="Académicas" HorizontalAlignment="Left" Margin="282,15,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+                    <Label x:Name="label1_Copy7" Content="Administrativas" HorizontalAlignment="Left" Margin="282,290,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+                    <Label x:Name="label1_Copy8" Content="Investigaciones" HorizontalAlignment="Left" Margin="282,613,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+                    <DataGrid x:Name="dgGrupos" AutoGenerateColumns="False" CanUserAddRows="false" IsReadOnly="True" HorizontalAlignment="Left" Margin="282,51,0,0" VerticalAlignment="Top" Height="180" Width="535">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Width="40">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox x:Name="checkbx_SelectCu" IsChecked="{Binding isSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Binding="{Binding nombre}" Header="Curso" Width="300"/>
+                            <DataGridTextColumn Binding="{Binding numGrupo}" Header="Grupo" Width="50"/>
+                            <DataGridTextColumn Binding="{Binding valHoras}"  Header="Horas" Width="50"/>
+                            <DataGridTemplateColumn Width="70">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="btn_Calc" Content="Calcular" Uid="{Binding idGrupo}" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="55" Height="30" FontSize="14" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="calcularHoras"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Line xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="Separador" X1="10" Y1="10" X2="550" Y2="10" Stroke="#FFB6B6B6" StrokeDashArray="2, 4" Margin="275,250,126,620" /> 
+                    <DataGrid x:Name="dgAdmin" AutoGenerateColumns="False" CanUserAddRows="false" IsReadOnly="True" HorizontalAlignment="Left" Margin="282,330,0,0" VerticalAlignment="Top" Height="180" Width="352">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Width="40">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox x:Name="checkbx_SelectAc" IsChecked="{Binding isSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Binding="{Binding nombre}" Header="Actividad" Width="260"/>
+                            <DataGridTextColumn Binding="{Binding valHoras}" Header="Horas" Width="50"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid x:Name="dgInvestig" AutoGenerateColumns="False" CanUserAddRows="false" IsReadOnly="True" HorizontalAlignment="Left" Margin="282,680,0,0" VerticalAlignment="Top" Height="180" Width="352">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Width="40">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox x:Name="checkbx_SelectIn" IsChecked="{Binding isSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Binding="{Binding nombre}" Header="Nombre" Width="200"/>
+                            <DataGridTextColumn Binding="{Binding valHoras}" Header="Horas"/>
+                            <DataGridTextColumn Binding="{Binding inicio}" Header="Inicio"/>
+                            <DataGridTextColumn Binding="{Binding fin}" Header="Fin"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                    <Button x:Name="btn_Aceptar" Content="Guardar Asignación" HorizontalAlignment="Left" Margin="50,246,0,0" VerticalAlignment="Top" Width="136" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{StaticResource RoundButton}" Click="btn_Aceptar_Click" RenderTransformOrigin="0.426,-0.1"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollViewer>
 </Window>

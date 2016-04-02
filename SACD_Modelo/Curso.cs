@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace SACD_Modelo
 {
-    public class Curso : Actividad
+    public class Curso 
     {
         private string codigo;
         private string nombre;
         private List<TipoCurso> tipos;
 
-        public Curso(int pId, string pTipo, decimal pHoras, string pCodigo,  string pNombre) 
-                    : base(pId, pTipo, pHoras)
+        public Curso(string pCodigo,  string pNombre)            
         {
             codigo = pCodigo;
             nombre = pNombre;

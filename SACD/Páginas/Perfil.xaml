@@ -49,7 +49,7 @@
     </Page.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,10,22">
-        <Grid Height="1312">
+        <Grid Height="526">
             <Label x:Name="label" Content="Perfil" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Top" FontSize="24" FontStyle="Italic" Foreground="#FF666666" FontWeight="Bold"/>
             <Rectangle Fill="#FF27AE8D" HorizontalAlignment="Left" Height="486" Margin="265,-195,0,0" VerticalAlignment="Top" Width="4" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
@@ -60,7 +60,7 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </Rectangle.RenderTransform>
-            </Rectangle>
+            </Rectangle> 
             <Label x:Name="label1_Copy" Content="Profesor" HorizontalAlignment="Left" Margin="34,79,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold"/>
             <Label x:Name="label_Prof" Content="Nombre" HorizontalAlignment="Left" Margin="130,70,0,0" VerticalAlignment="Top" FontSize="21.333" Foreground="#FF666666"/>
             <Label x:Name="label1_Copy2" Content="Horas Mínimas" HorizontalAlignment="Left" Margin="36,115,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
@@ -77,7 +77,6 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Line xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="Separador" X1="10" Y1="10" X2="550" Y2="10" Stroke="#FFB6B6B6" StrokeDashArray="2, 4" Margin="20,470,0,0" />
             <Label x:Name="label1_Copy4" Content="Actividades" HorizontalAlignment="Left" Margin="34,318,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
             <ListView x:Name="listView_Copy" HorizontalAlignment="Left" Height="80" Margin="107,360,0,0" VerticalAlignment="Top" Width="335">
                 <ListView.View>
@@ -90,24 +89,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListBox x:Name="listbx_Grupos" HorizontalAlignment="Left" Height="154" Margin="55,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <CheckBox x:Name="checkBox" Content="CheckBox" MouseRightButtonDown="checkBox_MouseRightButtonDown"/>
-            </ListBox>
-
-            <GroupBox x:Name="groupBox" Header="Asignación Carga" HorizontalAlignment="Left" Margin="34,505,0,0" VerticalAlignment="Top" Height="391" Width="533" Foreground="#FF666666"/>
-            <Label x:Name="label1_Copy5" Content="Modalidad" HorizontalAlignment="Left" Margin="55,532,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-            <RadioButton x:Name="radioButton" Content="Simple" HorizontalAlignment="Left" Margin="94,565,0,0" VerticalAlignment="Top" Foreground="#FF666666"/>
-            <RadioButton x:Name="radioButton1" Content="Ampliación" HorizontalAlignment="Left" Margin="210,565,0,0" VerticalAlignment="Top" Foreground="#FF666666"/>
-            <RadioButton x:Name="radioButton2" Content="Doble Ampliación" HorizontalAlignment="Left" Margin="329,565,0,0" VerticalAlignment="Top" Foreground="#FF666666"/>
-            <Label x:Name="label1_Copy6" Content="Académicas" HorizontalAlignment="Left" Margin="85,612,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-            <Label x:Name="label1_Copy7" Content="Administrativas" HorizontalAlignment="Left" Margin="244,612,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-            <Label x:Name="label1_Copy8" Content="Investigaciones" HorizontalAlignment="Left" Margin="417,612,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-            <ListBox x:Name="listbx_Investig" HorizontalAlignment="Left" Height="154" Margin="401,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-            <ListBox x:Name="listbx_Admin" HorizontalAlignment="Left" Height="154" Margin="227,645,0,0" VerticalAlignment="Top" Width="147" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-            <Button x:Name="btn_Aceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="464,834,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" RenderTransformOrigin="0.518,1.2"/>
-            <Button x:Name="btn_Aceptar_Copy" Content="Asignar Carga" HorizontalAlignment="Left" Margin="498,440,0,0" VerticalAlignment="Top" Width="102" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Aceptar_Click"/>
-
-
+            <Button x:Name="btn_Asignar" Content="Asignar Carga" HorizontalAlignment="Left" Margin="488,467,0,0" VerticalAlignment="Top" Width="102" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Asignar_Click"/>
         </Grid>
     </ScrollViewer>
 

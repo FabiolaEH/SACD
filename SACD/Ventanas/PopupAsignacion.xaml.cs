@@ -23,13 +23,28 @@ namespace SACD.Ventanas
     /// </summary>
     public partial class PopupAsignacion : Window
     {
+        string modalidad; //simp - amp - dbamp
+
         public PopupAsignacion()
         {
             InitializeComponent();
 
             //Cargar actividades
             cargarGrupos();
+            cargarActvsAdmin();
+            cargarInvestig();
 
+        }
+
+        //verificar modalidad
+        public string getModalidad()
+        {
+            if (radioButt_Simp.IsChecked == true)
+                return "simp";
+            else if (radioButt_Amp.IsChecked == true)
+                return "amp";
+            else
+                return "dbamp";
         }
 
         //cargar lista de actividades académicas
@@ -40,10 +55,47 @@ namespace SACD.Ventanas
 
             foreach (Grupo grupo in grupos)
             {
-                gruposListGUI.Add(new Grupos_GUI() { curso = grupo.getCurso().getNombre(), numGrupo = grupo.getNumero(), valHoras = 0, idGrupo = grupo.getId()/*, isSelected = true*/ });
+                gruposListGUI.Add(new Grupos_GUI() { nombre = grupo.getCurso().getNombre(),
+                                                     numGrupo = grupo.getNumero(),
+                                                     valHoras = grupo.getHoras(),
+                                                     idGrupo = grupo.getId()});
             }
 
             this.dgGrupos.ItemsSource = gruposListGUI;
+        }
+
+        //cargar lista de actividades administrativas
+        public void cargarActvsAdmin()
+        {
+            List<ActvAdmin> actvsAdmin = ActividadesManager.listarAdministvs();
+            List<ActvsAdmin_GUI> actvsAdminListGUI = new List<ActvsAdmin_GUI>();
+
+            foreach (ActvAdmin admin in actvsAdmin)
+            {
+                actvsAdminListGUI.Add(new ActvsAdmin_GUI() { nombre = admin.getNombre(),
+                                                             valHoras = admin.getHoras(),
+                                                             idAdmin = admin.getId()});
+            }
+
+            this.dgAdmin.ItemsSource = actvsAdminListGUI;
+        }
+
+        //cargar lista de investigaciones
+        public void cargarInvestig()
+        {
+            List<Investigacion> investigaciones = ActividadesManager.listarInvestigs();
+            List<Investigs_GUI> investigsListGUI = new List<Investigs_GUI>();
+
+            foreach (Investigacion invest in investigaciones)
+            {
+                investigsListGUI.Add(new Investigs_GUI() { id = invest.getId(),
+                                                           nombre = invest.getNombre(),
+                                                           valHoras = invest.getHoras(),
+                                                           inicio = invest.getInicio(),
+                                                           fin = invest.getFin() });
+            }
+
+            this.dgInvestig.ItemsSource = investigsListGUI;
         }
 
         private void btnCerrar_Click(object sender, RoutedEventArgs e)
@@ -53,22 +105,54 @@ namespace SACD.Ventanas
 
         public void calcularHoras(object sender, RoutedEventArgs e)
         {
+            if(modalidad.Equals("simp"))
+            {
+                Parametros ventanaParam = new Parametros();
+                ventanaParam.Show();
+            }
             MessageBox.Show((sender as Button).Uid.ToString());
         }
 
         private void btn_Aceptar_Click(object sender, RoutedEventArgs e)
         {
+            //Recorrer tabla de cursos
             foreach (Grupos_GUI grupoInfo in dgGrupos.ItemsSource)
             {
                 bool isChecked = grupoInfo.isSelected;
                 if (isChecked)
-                    MessageBox.Show(grupoInfo.curso);
+                    MessageBox.Show(grupoInfo.nombre);
+            }
+
+            //Recorrer tabla de actividades adaministrativas
+            foreach (ActvsAdmin_GUI adminInfo in dgAdmin.ItemsSource)
+            {
+                bool isChecked = adminInfo.isSelected;
+                if (isChecked)
+                    MessageBox.Show(adminInfo.nombre);
+            }
+
+            //Recorrer tabla de investigaciones
+            foreach (Investigs_GUI investInfo in dgInvestig.ItemsSource)
+            {
+                bool isChecked = investInfo.isSelected;
+                if (isChecked)
+                    MessageBox.Show(investInfo.nombre);
             }
         }
 
-        private void checkbx_Select_Checked(object sender, RoutedEventArgs e)
+        private void radioButt_Simp_Checked(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("checked");
+            modalidad = "simp";
+        }
+
+        private void radioButt_Amp_Checked(object sender, RoutedEventArgs e)
+        {
+            modalidad = "amp";
+        }
+
+        private void radioButt_Dbamp_Checked(object sender, RoutedEventArgs e)
+        {
+            modalidad = "dbamp";
         }
     }
 }

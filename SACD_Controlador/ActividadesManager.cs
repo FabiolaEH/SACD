@@ -84,7 +84,8 @@ namespace SACD_Controlador
 
             foreach (Object[] obj in gruposObj)
             {
-                grupo = new Grupo((int)obj[0], (int)obj[3], 0, new Curso(0, "cur", 0, (string)obj[1], (string)obj[2]));
+                decimal valHoras = 0; //calcular horas
+                grupo = new Grupo((int)obj[0],"cur", valHoras, (int)obj[3], 0, new Curso((string)obj[1], (string)obj[2]));
                 gruposList.Add(grupo);
             }
 
