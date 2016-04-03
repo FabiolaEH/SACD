@@ -23,7 +23,7 @@
                     <Label x:Name="label1_Copy6" Content="Académicas" HorizontalAlignment="Left" Margin="282,15,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
                     <Label x:Name="label1_Copy7" Content="Administrativas" HorizontalAlignment="Left" Margin="282,290,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
                     <Label x:Name="label1_Copy8" Content="Investigaciones" HorizontalAlignment="Left" Margin="282,570,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-                    <DataGrid x:Name="dgGrupos" AutoGenerateColumns="False" CanUserAddRows="false" IsReadOnly="True" HorizontalAlignment="Left" Margin="282,51,0,0" VerticalAlignment="Top" Height="180" Width="535">
+                    <DataGrid x:Name="dgGrupos" AutoGenerateColumns="False" Background="White" BorderBrush="#FFDDDDDD" FontSize="13.333" HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalGridLinesBrush="#FFDDDDDD" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True" AlternationCount="2" CanUserResizeColumns="False" AlternatingRowBackground="Snow" Margin="282,51,95,0" VerticalAlignment="Top" Height="180">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Width="40">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -32,10 +32,30 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Binding="{Binding nombre}" Header="Curso" Width="300"/>
-                            <DataGridTextColumn Binding="{Binding numGrupo}" Header="Grupo" Width="50"/>
-                            <DataGridTextColumn Binding="{Binding valHoras}"  Header="Horas" Width="50"/>
-                            <DataGridTemplateColumn Width="70">
+                            <DataGridTextColumn Binding="{Binding nombre}" Header="Curso" Width="300">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding nombre}" />
+                                        <Setter Property="Padding" Value="10"/>
+                                        <Setter Property="FontWeight" Value="Normal" />
+                                        <Setter Property="Foreground" Value="#FF666666"/>
+                                        <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
+                                        <Setter Property="FontSize" Value="14px"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding numGrupo}" Header="Grupo" Width="70"/>
+                            <DataGridTextColumn Binding="{Binding valHoras}"  Header="Horas" Width="70"/>
+                            <DataGridTemplateColumn Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button x:Name="btn_Calc" Content="Calcular" Uid="{Binding idGrupo}" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="55" Height="30" FontSize="14" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="calcularHoras"/>
@@ -43,9 +63,40 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}" >
+                                <Setter Property="Padding" Value="10"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="BorderBrush" Value="#FFDDDDDD"/>
+                                <Setter Property="Background" Value="#FFECECEC"/>
+                                <Setter Property="Foreground" Value="#FF666666"/>
+                                <Setter Property="BorderThickness" Value="0 0 1 1"/>
+                                <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
+                                <Setter Property="FontSize" Value="16px"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Padding" Value="10"/>
+                                <Setter Property="FontWeight" Value="Normal" />
+                                <Setter Property="Foreground" Value="#FF666666"/>
+                                <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
+                                <Setter Property="FontSize" Value="14px"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                            <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DataGrid.CellStyle>
                     </DataGrid>
-                    <Line xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="Separador" X1="10" Y1="10" X2="550" Y2="10" Stroke="#FFB6B6B6" StrokeDashArray="2, 4" Margin="275,250,126,620" /> 
-                    <DataGrid x:Name="dgAdmin" AutoGenerateColumns="False" CanUserAddRows="false" IsReadOnly="True" HorizontalAlignment="Left" Margin="282,330,0,0" VerticalAlignment="Top" Height="180" Width="535">
+                    <Line xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="Separador" X1="10" Y1="10" X2="550" Y2="10" Stroke="#FFB6B6B6" StrokeDashArray="2, 4" Margin="275,250,126,620" />
+                    <DataGrid x:Name="dgAdmin" AutoGenerateColumns="False" Background="White" BorderBrush="#FFDDDDDD" FontSize="13.333" HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalGridLinesBrush="#FFDDDDDD" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True" AlternationCount="2" CanUserResizeColumns="False" AlternatingRowBackground="Snow" Margin="282,330,95,0" VerticalAlignment="Top" Height="180">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Width="40">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -54,12 +105,63 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Binding="{Binding nombre}" Header="Actividad" Width="260"/>
-                            <DataGridTextColumn Binding="{Binding valHoras}" Header="Horas" Width="50"/>
+                            <DataGridTextColumn Binding="{Binding nombre}" Header="Actividad" Width="300">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding nombre}" />
+                                        <Setter Property="Padding" Value="10"/>
+                                        <Setter Property="FontWeight" Value="Normal" />
+                                        <Setter Property="Foreground" Value="#FF666666"/>
+                                        <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
+                                        <Setter Property="FontSize" Value="14px"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding valHoras}" Header="Horas" Width="*"/>
                         </DataGrid.Columns>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}" >
+                                <Setter Property="Padding" Value="10"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="BorderBrush" Value="#FFDDDDDD"/>
+                                <Setter Property="Background" Value="#FFECECEC"/>
+                                <Setter Property="Foreground" Value="#FF666666"/>
+                                <Setter Property="BorderThickness" Value="0 0 1 1"/>
+                                <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
+                                <Setter Property="FontSize" Value="16px"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Padding" Value="10"/>
+                                <Setter Property="FontWeight" Value="Normal" />
+                                <Setter Property="Foreground" Value="#FF666666"/>
+                                <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
+                                <Setter Property="FontSize" Value="14px"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                            <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DataGrid.CellStyle>
                     </DataGrid>
                     <Line xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Name="Separador2" X1="10" Y1="10" X2="550" Y2="10" Stroke="#FFB6B6B6" StrokeDashArray="2, 4" Margin="275,528,126,341" />
-                    <DataGrid x:Name="dgInvestig" AutoGenerateColumns="False" CanUserAddRows="false" IsReadOnly="True" HorizontalAlignment="Left" Margin="282,615,0,0" VerticalAlignment="Top" Height="180" Width="535">
+                    <DataGrid x:Name="dgInvestig" AutoGenerateColumns="False" Background="White" BorderBrush="#FFDDDDDD" FontSize="13.333" HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalGridLinesBrush="#FFDDDDDD" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True" AlternationCount="2" CanUserResizeColumns="False" AlternatingRowBackground="Snow" Margin="282,615,95,0" VerticalAlignment="Top" Height="180">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Width="40">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -68,12 +170,104 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Binding="{Binding nombre}" Header="Nombre" Width="200"/>
-                            <DataGridTextColumn Binding="{Binding valHoras}" Header="Horas"/>
-                            <DataGridTextColumn Binding="{Binding inicio}" Header="Inicio"/>
-                            <DataGridTextColumn Binding="{Binding fin}" Header="Fin"/>
+                            <DataGridTextColumn Binding="{Binding nombre}" Header="Nombre" Width="200">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding nombre}" />
+                                        <Setter Property="Padding" Value="10"/>
+                                        <Setter Property="FontWeight" Value="Normal" />
+                                        <Setter Property="Foreground" Value="#FF666666"/>
+                                        <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
+                                        <Setter Property="FontSize" Value="14px"/>
+                                        <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                        <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding valHoras}" Header="Horas" Width="100">
+                                <DataGridTextColumn.CellStyle>  
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding valHoras}" />
+                                        <Setter Property="Padding" Value="10"/>
+                                        <Setter Property="FontWeight" Value="Normal" />
+                                        <Setter Property="Foreground" Value="#FF666666"/>
+                                        <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
+                                        <Setter Property="FontSize" Value="14px"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding inicio}" Header="Inicio" Width="100">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding inicio}" />
+                                        <Setter Property="Padding" Value="10"/>
+                                        <Setter Property="FontWeight" Value="Normal" />
+                                        <Setter Property="Foreground" Value="#FF666666"/>
+                                        <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
+                                        <Setter Property="FontSize" Value="14px"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding fin}" Header="Fin" Width="*">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding fin}" />
+                                        <Setter Property="Padding" Value="10"/>
+                                        <Setter Property="FontWeight" Value="Normal" />
+                                        <Setter Property="Foreground" Value="#FF666666"/>
+                                        <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
+                                        <Setter Property="FontSize" Value="14px"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
                         </DataGrid.Columns>
-
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}" >
+                                <Setter Property="Padding" Value="10"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="BorderBrush" Value="#FFDDDDDD"/>
+                                <Setter Property="Background" Value="#FFECECEC"/>
+                                <Setter Property="Foreground" Value="#FF666666"/>
+                                <Setter Property="BorderThickness" Value="0 0 1 1"/>
+                                <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
+                                <Setter Property="FontSize" Value="16px"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
                     </DataGrid>
                     <Button x:Name="btn_Aceptar" Content="Guardar Asignación" HorizontalAlignment="Left" Margin="48,246,0,0" VerticalAlignment="Top" Width="136" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{StaticResource RoundButton}" Click="btn_Aceptar_Click" RenderTransformOrigin="0.426,-0.1"/>
                 </Grid>
