@@ -22,19 +22,22 @@ namespace SACD.Páginas
     /// </summary>
     public partial class Perfil : Page
     {
-        public Perfil(int profesorId)
+        int idProfesor;
+
+        public Perfil(int profeId)
         {
             InitializeComponent();
 
             //Info profesor
-            Profesor profesor = ProfesManager.buscar(profesorId);
+            idProfesor = profeId;
+            Profesor profesor = ProfesManager.buscar(idProfesor);
             label_Prof.Content = profesor.getNombre();
             label_HorasAsig.Content = profesor.getHorasAsig();
         }
 
         private void btn_Asignar_Click(object sender, RoutedEventArgs e)
         {
-            Ventanas.PopupAsignacion popup = new Ventanas.PopupAsignacion();
+            Ventanas.PopupAsignacion popup = new Ventanas.PopupAsignacion(idProfesor);
             popup.Show();
         }
     }

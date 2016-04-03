@@ -11,8 +11,9 @@ namespace SACD_Controlador
     public static class AsignacsManager
     {
         //asignar actividad a un profesor
-        public static void asignarActiv(Semestre pSemestre, Profesor pProfesor, Actividad pActividad)
+        public static void asignarActiv(int pIdActividad, int pIdProfesor, int pIdSemestre, decimal pValHoras)
         {
+            DatosManager.insertAsignacion(pIdActividad, pIdProfesor, pIdSemestre, pValHoras);
 
         }
 

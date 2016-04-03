@@ -17,8 +17,8 @@ namespace SACD_AccesoDatos
             conn = new SqlConnection();
          
             //conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
-            conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
-            //conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            //conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
+            conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = ecRhin\\estudiantes; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
 
             try
@@ -625,11 +625,16 @@ namespace SACD_AccesoDatos
         /************* Asignaciones ***************/
         public static void insertAsignacion(int pIdActv, int pIdProfe, int pIdSemestre, decimal pHoras)
         {
+            //Evitar que las horas se conviertan a un decimal separado por coma
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("INSERT INTO SACDFASIGNACIONES VALUES('" + pIdActv + "', '" + pIdProfe 
-                                                                                             + "', '" + pIdSemestre + "', '" 
-                                                                                             + pHoras + "')", conn);
+                SqlCommand command = new SqlCommand("INSERT INTO SACDFASIGNACIONES VALUES(" + pIdActv + ", " + pIdProfe 
+                                                                                             + ", " + pIdSemestre + ", " 
+                                                                                             + pHoras + ")", conn);
                 command.ExecuteNonQuery();
                 cerrarConexion();
             }

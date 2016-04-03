@@ -58,7 +58,7 @@
                             <DataGridTemplateColumn Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button x:Name="btn_Calc" Content="Calcular" Uid="{Binding idGrupo}" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="55" Height="30" FontSize="14" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="calcularHoras"/>
+                                        <Button x:Name="btn_Calc" Content="Calcular" Uid="{Binding id}" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="55" Height="30" FontSize="14" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="calcularHoras"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
