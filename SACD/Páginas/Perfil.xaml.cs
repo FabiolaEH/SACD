@@ -22,12 +22,12 @@ namespace SACD.Páginas
     /// </summary>
     public partial class Perfil : Page
     {
-        public Perfil(/*int profesorId*/)
+        public Perfil(int profesorId)
         {
             InitializeComponent();
 
             //Info profesor
-            Profesor profesor = ProfesManager.buscar(1/*profesorId*/);
+            Profesor profesor = ProfesManager.buscar(profesorId);
             label_Prof.Content = profesor.getNombre();
             label_HorasAsig.Content = profesor.getHorasAsig();
         }

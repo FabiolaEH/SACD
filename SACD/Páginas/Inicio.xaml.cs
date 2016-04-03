@@ -29,27 +29,6 @@ namespace SACD
         public Inicio()
         {
             InitializeComponent();
-            listarProfesores();
         }
-
-        public void listarProfesores()
-        {
-            List<Profesor> profesList;
-            List<Profesor_GUI> profesListGUI = new List<Profesor_GUI>();
-            profesList = ProfesManager.listar();
-            
-            foreach (Profesor profe in profesList)
-            {
-                profesListGUI.Add(new Profesor_GUI() { id = profe.getId(), nombre = profe.getNombre(), horasAsig = profe.getHorasAsig() });
-            }
-            this.dgProfesores.ItemsSource = profesListGUI;
-
-        }
-        
-        public void verPerfil(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show((sender as Button).Uid.ToString());
-        }
-
     }
 }

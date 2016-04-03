@@ -95,7 +95,7 @@
                 <MenuItem Header="Eliminar" FontSize="16" FontWeight="Normal" Foreground="Black" Padding="5"/>
             </MenuItem>
 
-            <MenuItem Header="Asignaciones"  Margin="10" Padding="50,22,0,0" Width="202" Height="75" HorizontalAlignment="Center" FontSize="18.667" FontWeight="Bold" Foreground="White" Background="#FFB5D244" Template="{StaticResource MenuItemTemplate}" Command="NavigationCommands.GoToPage" CommandParameter="Páginas/Asignaciones.xaml" CommandTarget="{Binding ElementName=frmContenido}" />
+            <MenuItem Header="Asignaciones"  Margin="10" Padding="50,22,0,0" Width="202" Height="75" HorizontalAlignment="Center" FontSize="18.667" FontWeight="Bold" Foreground="White" Background="#FFB5D244" Template="{StaticResource MenuItemTemplate}" Click="cli_Click" />
             <MenuItem Header="Reportes"  Margin="10" Padding="50,22,0,0" Width="202" Height="75" HorizontalAlignment="Center" FontSize="18.667" FontWeight="Bold" Foreground="White" Background="#FFB5D244" Template="{StaticResource MenuItemTemplate}" Command="NavigationCommands.GoToPage" CommandParameter="Páginas/Reportes.xaml" CommandTarget="{Binding ElementName=frmContenido}" />
 
         </Menu>

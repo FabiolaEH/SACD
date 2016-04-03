@@ -24,14 +24,12 @@ namespace SACD.Páginas
     /// </summary>
     public partial class Asignaciones : Page
     {
-        Window parent;
-        public Asignaciones()
+        public Frame frame;
+        public Asignaciones(Frame pFrame)
         {
             InitializeComponent();
             listarProfesores();
-
-            parent = Window.GetWindow(this);
-            
+            frame = pFrame;
         }
 
         public void listarProfesores()
@@ -50,9 +48,23 @@ namespace SACD.Páginas
 
         public void verPerfil(object sender, RoutedEventArgs e)
         {
-           
+            Perfil ventanaPerfil = new Perfil(Int32.Parse((sender as Button).Uid.ToString()));
+            frame.Navigate(ventanaPerfil);
         }
 
+        private void tbxBuscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            List<Profesor> profesList;
+            List<Profesor_GUI> profesListGUI = new List<Profesor_GUI>();
+            profesList = ProfesManager.listar();
 
+            foreach (Profesor profe in profesList)
+            {
+                if(profe.getNombre().IndexOf(this.tbxBuscar.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    profesListGUI.Add(new Profesor_GUI() { id = profe.getId(), nombre = profe.getNombre(), horasAsig = profe.getHorasAsig() });
+            }
+            this.dgProfesores.ItemsSource = profesListGUI;
+            this.dgProfesores.Items.Refresh();
+        }
     }
 }

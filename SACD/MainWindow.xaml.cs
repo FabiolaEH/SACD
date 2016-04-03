@@ -14,9 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using SACD_Modelo;
-
-
-
+using SACD.Páginas;
 
 namespace SACD
 {
@@ -52,6 +50,11 @@ namespace SACD
         private void frmContenido_Navigated(object sender, NavigationEventArgs e)
         {
 
+        }
+
+        private void cli_Click(object sender, RoutedEventArgs e)
+        {
+            this.frmContenido.Navigate(new Asignaciones(this.frmContenido));
         }
     }  
 }
