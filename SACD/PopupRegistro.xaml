@@ -64,8 +64,8 @@
                         </Rectangle.RenderTransform>
                     </Rectangle>
                     <Label x:Name="lbl1_Copy" Content="Total Carga Docente" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="26,199,0,0" FontWeight="Bold" FontStyle="Italic"/>
-                    <Label x:Name="label_TotHrDocencia" Content="18.5" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="303,199,0,0"/>
-                    <Label x:Name="label_TotPrDocencia" Content="45%" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="355,199,0,0"/>
+                    <Label x:Name="label_TotHrDocencia" Content="0" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="303,199,0,0"/>
+                    <Label x:Name="label_TotPrDocencia" Content="0" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="355,199,0,0"/>
 
                 </Grid>
 
@@ -120,8 +120,8 @@
                         </Rectangle.RenderTransform>
                     </Rectangle>
                     <Label x:Name="lbl2_Copy" Content="Total Carga Investigación" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="26,199,0,0" FontWeight="Bold" FontStyle="Italic"/>
-                    <Label x:Name="label_TotHrInvest" Content="18.5" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="303,199,0,0"/>
-                    <Label x:Name="label_TotPrInvest" Content="45%" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="355,199,0,0"/>  
+                    <Label x:Name="label_TotHrInvest" Content="0" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="303,199,0,0"/>
+                    <Label x:Name="label_TotPrInvest" Content="0" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="355,199,0,0"/>  
                 </Grid>
 
                 <!--Cuadro inf izq-->
@@ -175,8 +175,8 @@
                         </Rectangle.RenderTransform>
                     </Rectangle>
                     <Label x:Name="lbl3_Copy" Content="Total Carga Administración" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="26,199,0,0" FontWeight="Bold" FontStyle="Italic"/>
-                    <Label x:Name="label_TotHrAdmi" Content="18.5" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="303,199,0,0"/>
-                    <Label x:Name="label_TotPrAdmi" Content="45%" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="355,199,0,0"/>
+                    <Label x:Name="label_TotHrAdmi" Content="0" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="303,199,0,0"/>
+                    <Label x:Name="label_TotPrAdmi" Content="0" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="355,199,0,0"/>
                 </Grid>
 
                 <!--Cuadro sup izq-->
@@ -231,8 +231,8 @@
                         </Rectangle.RenderTransform>
                     </Rectangle>
                     <Label x:Name="lbl4_Copy" Content="Total Carga Ampliación" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="26,199,0,0" FontWeight="Bold" FontStyle="Italic"/>
-                    <Label x:Name="label_TotHrAmpli" Content="18.5" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="303,199,0,0"/>
-                    <Label x:Name="label_TotPrAmpli" Content="45%" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="355,199,0,0"/>
+                    <Label x:Name="label_TotHrAmpli" Content="0" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="303,199,0,0"/>
+                    <Label x:Name="label_TotPrAmpli" Content="0" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="12" Foreground="#FF666666" Margin="355,199,0,0"/>
                 </Grid>
 
                 <Button x:Name="btnCerrarReporte" Width="30" Height="30" Margin="936,10,10,586" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnCerrarReporte_Click">
@@ -245,10 +245,10 @@
                 <Label x:Name="label_PeriodoReporte" Content="2" HorizontalAlignment="Left" Margin="130,50,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666"/>
                 <Label x:Name="prueba_Copy2" Content="Año" HorizontalAlignment="Left" Margin="186,50,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" FontWeight="Bold"/>
                 <Label x:Name="label_AnioReporte" Content="2016" HorizontalAlignment="Left" Margin="260,50,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666"/>
-                <Label x:Name="prueba_Copy4" Content="Carga en Horas" HorizontalAlignment="Left" Margin="515,20,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" FontWeight="Bold"/>
-                <Label x:Name="prueba_Copy5" Content="Carga en Porcentaje" HorizontalAlignment="Left" Margin="515,50,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" FontWeight="Bold"/>
-                <Label x:Name="label_cargaPorcReporte" Content="95%" HorizontalAlignment="Left" Margin="702,50,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666"/>
-                <Label x:Name="label_cargaHorasReporte" Content="35.5" HorizontalAlignment="Left" Margin="702,20,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666"/>
+                <Label x:Name="prueba_Copy4" Content="Carga Simple en Horas" HorizontalAlignment="Left" Margin="515,20,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" FontWeight="Bold"/>
+                <Label x:Name="prueba_Copy5" Content="Carga Simple en Porcentaje" HorizontalAlignment="Left" Margin="515,50,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666" FontWeight="Bold"/>
+                <Label x:Name="label_cargaSimplePorcReporte" Content="0%" HorizontalAlignment="Left" Margin="730,50,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666"/>
+                <Label x:Name="label_cargaSimpleHorasReporte" Content="0" HorizontalAlignment="Left" Margin="730,20,0,0" VerticalAlignment="Top" FontSize="14.667" Foreground="#FF666666"/>
             </Grid>
         </Border>
     </Grid>

@@ -42,9 +42,24 @@ namespace SACD_Controlador
             return asignList;
         }
 
-        public static void getAmpliaciones()
+        public static List<Ampliacion> getAmpliaciones(int pIdProfesor, int pPeriodo, int pAño)
         {
+            List<Object[]> ampliListObject = new List<Object[]>();
+            List<Ampliacion> ampliList = new List<Ampliacion>();
+            Ampliacion ampliacion;
+            Actividad grupo;
 
+            ampliListObject = DatosManager.getAmpliaciones(pIdProfesor, pPeriodo, pAño);
+
+            foreach (Object[] obj in ampliListObject)
+            {
+                grupo = ActividadesManager.buscar((int)obj[0]);
+
+                ampliacion = new Ampliacion((decimal)obj[3], grupo, new Semestre(0, 0, 0), (bool)obj[4]); //PONER BIEN EL SEMESTRE
+                ampliList.Add(ampliacion);
+            }
+
+            return ampliList;
         }
     }
 }

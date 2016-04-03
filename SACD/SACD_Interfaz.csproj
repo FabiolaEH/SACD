@@ -61,6 +61,7 @@
     <Compile Include="Clases\Grupos_GUI.cs" />
     <Compile Include="Clases\Investigs_GUI.cs" />
     <Compile Include="Clases\Reporte_Admin_GUI.cs" />
+    <Compile Include="Clases\Reporte_Ampli_GUI.cs" />
     <Compile Include="Clases\Reporte_Investigacion_GUI.cs" />
     <Compile Include="Clases\Reporte_Docencia_GUI.cs" />
     <Compile Include="Clases\Profesor_GUI.cs" />

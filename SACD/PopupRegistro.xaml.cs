@@ -37,9 +37,7 @@ namespace SACD
             año = pAño;
 
             cargarInformacion();
-            dgDocencia.Items.Add(new Reporte_Docencia_GUI() { curso = "Introducción a la Biología", grp = 1, horas = 3, porc = 15});
-            dgDocencia.Items.Add(new Reporte_Docencia_GUI() { curso = "Introducción a la Biología", grp = 1, horas = 3, porc = 15 });
-
+           
             this.Show();
         }
 
@@ -60,11 +58,11 @@ namespace SACD
             label_AnioReporte.Content = año;
 
             Profesor profe = ProfesManager.buscarPorNombre(nombreProfesor);
-            label_cargaHorasReporte.Content = profe.getHorasAsig();
+            /*label_cargaSimpleHorasReporte.Content = profe.getHorasAsig();
 
             decimal porcentaje = Decimal.Multiply(profe.getHorasAsig(), 100);
             porcentaje = Decimal.Divide(porcentaje, 40);
-            label_cargaPorcReporte.Content = porcentaje;
+            label_cargaSimplePorcReporte.Content = porcentaje;*/
 
             cargarTablas(profe.getId(), periodo, año);
 
@@ -72,15 +70,19 @@ namespace SACD
 
         private void cargarTablas(int pIdProfe, int pPeriodo, int pAño)
         {
+            cargarAsignaciones(pIdProfe, pPeriodo, pAño);
+            cargarAmpliaciones(pIdProfe, pPeriodo, pAño);
+        }
+
+        private void cargarAsignaciones(int pIdProfe, int pPeriodo, int pAño)
+        {
             List<Asignacion> asignaciones = AsignacsManager.getAsignaciones(pIdProfe, pPeriodo, pAño);
             decimal horasTotalInve = 0;
             decimal horasTotalAdmi = 0;
             decimal horasTotalDoce = 0;
-            decimal horasTotalAmpl = 0;
             decimal porcTotalInve = 0;
             decimal porcTotalAdmi = 0;
             decimal porcTotalDoce = 0;
-            decimal porcTotalAmpl = 0;
 
             foreach (Asignacion asignacion in asignaciones)
             {
@@ -108,14 +110,66 @@ namespace SACD
                 }
                 else
                 {
+                    Grupo grupo = (Grupo)asignacion.getActividad();
+                    decimal porcGrupo = Decimal.Multiply(asignacion.getValorHoras(), 100);
+                    porcGrupo = Decimal.Divide(porcGrupo, 40);
 
+                    horasTotalDoce += asignacion.getValorHoras();
+                    porcTotalDoce += porcGrupo;
+
+
+                    dgDocencia.Items.Add(new Reporte_Docencia_GUI()
+                    {
+                        curso = grupo.getCurso().getNombre(),
+                        grp = grupo.getNumero(),
+                        horas = asignacion.getValorHoras(),
+                        porc = porcGrupo
+                    });
                 }
 
                 label_TotHrInvest.Content = horasTotalInve;
                 label_TotPrInvest.Content = porcTotalInve;
                 label_TotHrAdmi.Content = horasTotalAdmi;
                 label_TotPrAdmi.Content = porcTotalAdmi;
+                label_TotHrDocencia.Content = horasTotalDoce;
+                label_TotPrDocencia.Content = porcTotalDoce;
             }
+
+            label_cargaSimplePorcReporte.Content = (porcTotalInve + porcTotalAdmi + porcTotalDoce);
+            label_cargaSimpleHorasReporte.Content = (horasTotalInve + horasTotalAdmi + horasTotalDoce);
+        }
+
+        private void cargarAmpliaciones(int pIdProfe, int pPeriodo, int pAño)
+        {
+            List<Ampliacion> ampliaciones = AsignacsManager.getAmpliaciones(pIdProfe, pPeriodo, pAño);
+            decimal horasTotalAmpl = 0;
+            decimal porcTotalAmpl = 0;
+
+            foreach (Ampliacion ampliacion in ampliaciones)
+            {
+                String doble = "";
+                Grupo grupo = (Grupo)ampliacion.getActividad();
+                decimal porcGrupo = Decimal.Multiply(ampliacion.getValorHoras(), 5);
+
+                horasTotalAmpl += ampliacion.getValorHoras();
+                porcTotalAmpl += porcGrupo;
+
+                if (ampliacion.getIsDouble())
+                {
+                    doble = "X";
+                }
+
+                dgAmpliacion.Items.Add(new Reporte_Ampli_GUI()
+                {
+                    curso = grupo.getCurso().getNombre(),
+                    db = doble,
+                    horas = ampliacion.getValorHoras(),
+                    porc = porcGrupo
+                });
+            }
+
+            label_TotHrAmpli.Content = horasTotalAmpl;
+            label_TotPrAmpli.Content = porcTotalAmpl;
         }
     }
 }

@@ -232,7 +232,11 @@ namespace SACD_Controlador
             }
             else
             {
-                ActvAdmin grupo = new ActvAdmin(1, "ADMI", 0, "asjk");
+
+                Object[] grupoInfo = DatosManager.getGrupoInfo(pIdActividad);
+
+                Grupo grupo = new Grupo(pIdActividad, "GRUP", 0, (int)grupoInfo[2], (int)grupoInfo[3], 
+                    new Curso((String)grupoInfo[0], (String)grupoInfo[1], 0));
                 return grupo;
             }
         }
