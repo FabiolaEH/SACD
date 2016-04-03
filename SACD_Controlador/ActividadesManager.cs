@@ -84,8 +84,12 @@ namespace SACD_Controlador
 
             Dictionary<string, decimal[]> tabla = new Dictionary<string, decimal[]>();
 
-            decimal[] valsNuevo = new decimal[3];
-            valsNuevo[0] = 2.5m;
+            /*decimal[] vals1_15 = new decimal[3];
+            decimal[] valTeorico = new decimal[2];
+            valTeorico[0] = 2;
+            valTeorico[1] = 2.75m;
+            vals1_15[0] = valTeorico;
+
             valsNuevo[1] = 2;
             tabla.Add("nuevo", valsNuevo); //nuevo - exist - ant - paral1 - paral2
 
@@ -107,7 +111,7 @@ namespace SACD_Controlador
             decimal[] valsParal2 = new decimal[2];
             valsParal2[0] = 1.25m;
             valsParal2[1] = 1;
-            tabla.Add("paral2", valsParal2);
+            tabla.Add("paral2", valsParal2);*/
 
             return tabla;
         }
