@@ -456,6 +456,35 @@ namespace SACD_AccesoDatos
             return gruposList;
         }
 
+        //Buscar grupo por id
+        public static Object[] getGrupoInfo(int id)
+        {
+            Object[] grupoInfo = new Object[4];
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT g.COD_CURSO, c.NOM_CURSO, g.NUM_GRUPO, g.NUM_ESTUDIANTES FROM SACDFGRUPOS g JOIN SACDFCURSO c ON g.COD_CURSO = c.COD_CURSO WHERE G.ID_GRUPO = " + id.ToString() + " ORDER BY c.NOM_CURSO", conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    grupoInfo[0] = reader.GetString(0);
+                    grupoInfo[1] = reader.GetString(1);
+                    grupoInfo[2] = reader.GetInt32(2);
+                    grupoInfo[3] = reader.GetInt32(3);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return grupoInfo;
+        }
+
         /************* Cursos ***************/
 
         //Obtener total de horas presenciales de un curso
@@ -619,6 +648,44 @@ namespace SACD_AccesoDatos
 
             return actividadInfo;
         }
+
+        /************* Ampliaciones ***************/
+
+        //buscar ampliaciones 
+        public static List<Object[]> getAmpliaciones(int pIdProfe, int pPeriodo, int pAño)
+        {
+            List<Object[]> ampliacionesList = new List<Object[]>();
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM (SACDFAMPLIACION a LEFT JOIN SACDFSEMESTRES b ON a.ID_SEMESTRE = b.ID_SEMESTRE)"
+                    + " LEFT JOIN SACDFPROFESORES c ON a.ID_PROFESOR = c.ID_PROFESOR"
+                    + " WHERE b.NUM_PERIODO = " + pPeriodo.ToString() + " AND b.NUM_AÑO = " + pAño.ToString()
+                    + " AND c.ID_PROFESOR = " + pIdProfe.ToString(), conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Object[] grupoInfo = new Object[5];
+                    grupoInfo[0] = reader.GetInt32(0);
+                    grupoInfo[1] = reader.GetInt32(1);
+                    grupoInfo[2] = reader.GetInt32(2);
+                    grupoInfo[3] = reader.GetDecimal(3);
+                    grupoInfo[4] = reader.GetBoolean(4);
+                    ampliacionesList.Add(grupoInfo);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return ampliacionesList;
+        }
+
 
         /*---------------------------------   INSERTAR  --------------------------------------*/
 
