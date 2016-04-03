@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SACD_Controlador;
 using SACD_Modelo;
+using SACD.Clases;
 
 namespace SACD.Páginas
 {
@@ -28,11 +29,19 @@ namespace SACD.Páginas
         {
             InitializeComponent();
 
-            //Info profesor
+            //cargar info profesor
             idProfesor = profeId;
             Profesor profesor = ProfesManager.buscar(idProfesor);
             label_Prof.Content = profesor.getNombre();
-            label_HorasAsig.Content = profesor.getHorasAsig();
+            //label_HorasAsig.Content = profesor.getHorasAsig();
+
+            //cargar plazas
+            List<PlazasAsig_GUI> plazasListGUI = new List<PlazasAsig_GUI>();
+            plazasListGUI.Add(new PlazasAsig_GUI() { id = 001, horas = 40, modalidad = "Propietario" });
+            dgPlazas.ItemsSource = plazasListGUI;
+
+            //cargar actividades
+            //List<ActvsAsig_GUI> activsListGUI = new List<ActvsAsig_GUI>();
         }
 
         private void btn_Asignar_Click(object sender, RoutedEventArgs e)

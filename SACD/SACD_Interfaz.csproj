@@ -57,9 +57,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Clases\ActivsAsig_GUI.cs" />
     <Compile Include="Clases\ActvsAdmin_GUI.cs" />
     <Compile Include="Clases\Grupos_GUI.cs" />
     <Compile Include="Clases\Investigs_GUI.cs" />
+    <Compile Include="Clases\PlazasAsig_GUI.cs" />
     <Compile Include="Clases\Reporte_Admin_GUI.cs" />
     <Compile Include="Clases\Reporte_Ampli_GUI.cs" />
     <Compile Include="Clases\Reporte_Investigacion_GUI.cs" />

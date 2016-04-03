@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SACD.Páginas"
       mc:Ignorable="d"
-      Title="Perfil" Width="675" Height="594">
+      Title="Perfil" Width="675" Height="661.5">
     <Page.Resources>
 
 
@@ -49,7 +49,7 @@
     </Page.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,10,22">
-        <Grid Height="526">
+        <Grid Height="821">
             <Label x:Name="label" Content="Perfil" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Top" FontSize="24" FontStyle="Italic" Foreground="#FF666666" FontWeight="Bold"/>
             <Rectangle Fill="#FF27AE8D" HorizontalAlignment="Left" Height="486" Margin="265,-195,0,0" VerticalAlignment="Top" Width="4" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
@@ -65,21 +65,21 @@
             <Label x:Name="label_Prof" Content="Nombre" HorizontalAlignment="Left" Margin="130,70,0,0" VerticalAlignment="Top" FontSize="21.333" Foreground="#FF666666"/>
             <Label x:Name="label1_Copy2" Content="Horas Mínimas" HorizontalAlignment="Left" Margin="36,115,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
             <Label x:Name="label1_Copy3" Content="Horas Asignadas" HorizontalAlignment="Left" Margin="189,115,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-            <Label x:Name="label_HorasMin" Content="0" HorizontalAlignment="Left" Margin="76,148,0,0" VerticalAlignment="Top" FontSize="18.667" Foreground="#FF666666"/>
-            <Label x:Name="label_HorasAsig" Content="0" HorizontalAlignment="Left" Margin="227,148,0,0" VerticalAlignment="Top" FontSize="18.667" Foreground="#FF666666" RenderTransformOrigin="8.286,0.485"/>
+            <Label x:Name="label_HorasMin" Content="40.0" HorizontalAlignment="Left" Margin="68,148,0,0" VerticalAlignment="Top" FontSize="18.667" Foreground="#FF666666"/>
+            <Label x:Name="label_HorasAsig" Content="36.5" HorizontalAlignment="Left" Margin="224,148,0,0" VerticalAlignment="Top" FontSize="18.667" Foreground="#FF666666" RenderTransformOrigin="8.286,0.485"/>
             <Label x:Name="label1_Copy1" Content="Plazas" HorizontalAlignment="Left" Margin="34,197,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-            <Label x:Name="label1_Copy4" Content="Actividades" HorizontalAlignment="Left" Margin="34,318,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-            <Button x:Name="btn_Asignar" Content="Asignar Carga" HorizontalAlignment="Left" Margin="488,467,0,0" VerticalAlignment="Top" Width="102" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Asignar_Click"/>
-            <DataGrid x:Name="dgActividades" AutoGenerateColumns="False" Margin="34,351,181,92" Background="White" BorderBrush="#FFDDDDDD" FontSize="13.333" HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalGridLinesBrush="#FFDDDDDD" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True" AlternationCount="2" CanUserResizeColumns="False" AlternatingRowBackground="Snow" Width="450">
+            <Label x:Name="label1_Copy4" Content="Actividades" HorizontalAlignment="Left" Margin="36,420,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+            <Button x:Name="btn_Asignar" Content="Asignar Carga" HorizontalAlignment="Left" Margin="382,163,0,0" VerticalAlignment="Top" Width="102" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Asignar_Click"/>
+            <DataGrid x:Name="dgActividades" AutoGenerateColumns="False" Margin="54,468,144,203" Background="White" BorderBrush="#FFDDDDDD" FontSize="13.333" HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalGridLinesBrush="#FFDDDDDD" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True" AlternationCount="2" CanUserResizeColumns="False" AlternatingRowBackground="Snow" Width="450" Height="150">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#ECECEC"/>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Descripción" Binding="{Binding descripcion}" Width="120"/>
+                    <DataGridTextColumn Header="Descripción" Binding="{Binding nombre}" Width="120"/>
                     <DataGridTextColumn Header="Horas" Binding="{Binding horas}" Width="100" />
-                    <DataGridTextColumn Header="Ampliación" Binding="{Binding horas}" Width="110" />
-                    <DataGridTextColumn Header="Doble Ampl." Binding="{Binding horas}" Width="120" />
+                    <DataGridTextColumn Header="Ampliación" Binding="{Binding ampliacion}" Width="110" />
+                    <DataGridTextColumn Header="Doble Ampl." Binding="{Binding dbAmpliacion}" Width="120" />
                 </DataGrid.Columns>
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="{x:Type DataGridColumnHeader}" >
@@ -113,15 +113,15 @@
                     </Style>
                 </DataGrid.CellStyle>
             </DataGrid>
-            <DataGrid x:Name="dgPlazas" AutoGenerateColumns="False" Margin="36,235,179,208" Background="White" BorderBrush="#FFDDDDDD" FontSize="13.333" HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalGridLinesBrush="#FFDDDDDD" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True" AlternationCount="2" CanUserResizeColumns="False" AlternatingRowBackground="Snow" Width="450">
+            <DataGrid x:Name="dgPlazas" AutoGenerateColumns="False" Margin="54,230,144,427" Background="White" BorderBrush="#FFDDDDDD" FontSize="13.333" HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalGridLinesBrush="#FFDDDDDD" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True" AlternationCount="2" CanUserResizeColumns="False" AlternatingRowBackground="Snow" Width="450" Height="150">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#ECECEC"/>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Num." Binding="{Binding num}" Width="150"/>
+                    <DataGridTextColumn Header="Num." Binding="{Binding id}" Width="150"/>
                     <DataGridTextColumn Header="Horas" Binding="{Binding horas}" Width="150" />
-                    <DataGridTextColumn Header="Modalidad" Binding="{Binding horas}" Width="150" />
+                    <DataGridTextColumn Header="Modalidad" Binding="{Binding modalidad}" Width="150" />
                 </DataGrid.Columns>
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="{x:Type DataGridColumnHeader}" >
