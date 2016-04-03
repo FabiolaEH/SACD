@@ -15,6 +15,7 @@ namespace SACD.Clases
         public int idGrupo { get; set; }
         public string codCurso { get; set; }
         public decimal valHoras { get; set; }
+        public decimal horasPresen { get; set; } //presenciales del curso
         public bool isSelected { get; set; }
 
     }

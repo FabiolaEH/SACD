@@ -59,6 +59,7 @@ namespace SACD.Ventanas
                                                      numGrupo = grupo.getNumero(),
                                                      cantEstud = grupo.getCantEstudiantes(),
                                                      valHoras = grupo.getHoras(),
+                                                     horasPresen = grupo.getCurso().getHorasPresen(),
                                                      idGrupo = grupo.getId(),
                                                      codCurso = grupo.getCurso().getCodigo()});
             }

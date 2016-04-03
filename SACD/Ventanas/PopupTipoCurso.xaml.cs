@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SACD_Controlador;
 
 namespace SACD.Ventanas
 {
@@ -22,9 +23,6 @@ namespace SACD.Ventanas
     {
         string modalidad; //nuevo - exist - ant - paral1 - paral2
         int idGrupo;
-
-
-
 
         public PopupTipoCurso(int pIdGrupo)
         {
@@ -47,7 +45,11 @@ namespace SACD.Ventanas
                         if (grupoInfo.idGrupo == idGrupo)
                         {
                             
-                            grupoInfo.nombre = "NUEVO NOMBRE";
+                            grupoInfo.valHoras = ActividadesManager.calcValorCurso(grupoInfo.idGrupo, 
+                                                                                   grupoInfo.codCurso, 
+                                                                                   modalidad, 
+                                                                                   grupoInfo.cantEstud, 
+                                                                                   grupoInfo.horasPresen);
 
                             //Actualizar tabla 
                             dgGrupos.Items.Refresh();
