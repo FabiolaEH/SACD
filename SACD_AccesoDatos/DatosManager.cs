@@ -247,6 +247,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -313,6 +314,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -343,6 +345,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -375,6 +378,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -403,6 +407,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -440,6 +445,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -470,6 +476,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -500,6 +507,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -601,6 +609,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -609,6 +618,26 @@ namespace SACD_AccesoDatos
             }
 
             return actividadInfo;
+        }
+
+        /*---------------------------------   INSERTAR  --------------------------------------*/
+
+        /************* Asignaciones ***************/
+        public static void insertAsignacion(int pIdActv, int pIdProfe, int pIdSemestre, decimal pHoras)
+        {
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("INSERT INTO SACDFASIGNACIONES VALUES('" + pIdActv + "', '" + pIdProfe 
+                                                                                             + "', '" + pIdSemestre + "', '" 
+                                                                                             + pHoras + "')", conn);
+                command.ExecuteNonQuery();
+                cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
         }
 
         /*---------------------------------   MODIFICAR  --------------------------------------*/
