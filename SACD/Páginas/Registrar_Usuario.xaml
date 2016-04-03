@@ -28,7 +28,7 @@
         <TextBox x:Name="tbxCorreo" HorizontalAlignment="Left" Height="30" Margin="205,147,-157,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252" VerticalContentAlignment="Center"/>
         <PasswordBox x:Name="tbxPassword" HorizontalAlignment="Left" Height="30" Margin="205,201,-157,0" VerticalAlignment="Top" Width="252" VerticalContentAlignment="Center"/>
         <PasswordBox x:Name="tbxPasswordVerif" HorizontalAlignment="Left" Height="30" Margin="205,258,-157,0"  VerticalAlignment="Top" Width="252" VerticalContentAlignment="Center"/>
-        <Button x:Name="btnAceptar" Content="Registrar" HorizontalAlignment="Left" Margin="362,349,-157,-82" VerticalAlignment="Top" Width="95" Height="33" FontSize="16" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="btnAceptar_Click"/>
+        <Button x:Name="btnAceptar" Content="Registrar" HorizontalAlignment="Left" Margin="362,349,-157,-82" VerticalAlignment="Top" Width="95" Height="33" FontSize="16" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="btnAceptar_Click" FontWeight="Bold"/>
 
     </Grid>
 </Page>

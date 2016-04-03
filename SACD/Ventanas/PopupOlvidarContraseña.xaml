@@ -25,8 +25,8 @@
                 <PasswordBox x:Name="tbxPassword" HorizontalAlignment="Left" Height="44" Margin="179,161,0,0" VerticalAlignment="Top" Width="249" VerticalContentAlignment="Center" FontSize="14.667" Visibility="Hidden"/>
                 <Label x:Name="lblPasswordVerif" Content="Verificar Contraseña" HorizontalAlignment="Left" Margin="10,222,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="-1.657,1.56" Visibility="Hidden" Width="162" Height="28"/>
                 <PasswordBox x:Name="tbxPasswordVerif" HorizontalAlignment="Left" Height="44" Margin="179,212,0,0" VerticalAlignment="Top" Width="249" VerticalContentAlignment="Center" FontSize="14.667" Visibility="Hidden"/>
-                <Button x:Name="btnSiguiente" Content="Siguiente" HorizontalAlignment="Left" Margin="333,285,0,0" VerticalAlignment="Top" Width="95" Height="33" FontSize="16" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="btnSiguiente_Click"/>
-                <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="333,285,0,0" VerticalAlignment="Top" Width="95" Height="33" FontSize="16" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="btnAceptar_Click" Visibility="Hidden"/>
+                <Button x:Name="btnSiguiente" Content="Siguiente" HorizontalAlignment="Left" Margin="333,285,0,0" VerticalAlignment="Top" Width="95" Height="33" FontSize="16" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="btnSiguiente_Click" FontWeight="Bold"/>
+                <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="333,285,0,0" VerticalAlignment="Top" Width="95" Height="33" FontSize="16" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="btnAceptar_Click" Visibility="Hidden" FontWeight="Bold"/>
             </Grid>
         </Border>
     </Grid>
