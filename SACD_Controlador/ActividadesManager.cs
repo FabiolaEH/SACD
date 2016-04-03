@@ -76,15 +76,15 @@ namespace SACD_Controlador
             /*Estructura
 
             tabla = {1 a 15: [valTeorico[2a4Horas, 5oMas], valPractica, valTeorPrac],
-                     1 a 15: [valTeorico[2a4Horas, 5oMas], valPractica, valTeorPrac],
-                     Imp. ant: [valTeoria, valPractica],
+                     16 a 25: [valTeorico[2a4Horas, 5oMas], valPractica, valTeorPrac],
+                     26 a 35: [valTeorico[2a4Horas, 5oMas], valPractica, valTeorPrac],
                      ...}
 
             */
 
             Dictionary<string, decimal[]> tabla = new Dictionary<string, decimal[]>();
 
-            decimal[] valsNuevo = new decimal[2];
+            decimal[] valsNuevo = new decimal[3];
             valsNuevo[0] = 2.5m;
             valsNuevo[1] = 2;
             tabla.Add("nuevo", valsNuevo); //nuevo - exist - ant - paral1 - paral2

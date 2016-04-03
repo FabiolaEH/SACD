@@ -50,14 +50,7 @@ namespace SACD.Páginas
 
         public void verPerfil(object sender, RoutedEventArgs e)
         {
-            Perfil ventanaPerfil = new Perfil(/*Int32.Parse((sender as Button).Uid.ToString())*/);
-
-            Frame parent = ((MainWindow)System.Windows.Application.Current.MainWindow).frmContenido;
-            parent.Navigate(ventanaPerfil);
-
-            this.NavigationService.Navigate(new Uri("Páginas/Perfil.xaml", UriKind.Relative));
-
-            //MessageBox.Show(this.Parent.GetType().ToString());
+           
         }
 
 
