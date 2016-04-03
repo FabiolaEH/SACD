@@ -10,12 +10,14 @@ namespace SACD_Modelo
     {
         private string codigo;
         private string nombre;
+        private decimal totalHorasPresen;
         private List<TipoCurso> tipos;
 
-        public Curso(string pCodigo,  string pNombre)            
+        public Curso(string pCodigo,  string pNombre, decimal pTotalHorasPresen)            
         {
             codigo = pCodigo;
             nombre = pNombre;
+            totalHorasPresen = pTotalHorasPresen;
             tipos = new List<TipoCurso>();
         }
 
@@ -37,6 +39,16 @@ namespace SACD_Modelo
         public void setCodigo(string pCodigo)
         {
             codigo = pCodigo;
+        }
+
+        public decimal getHorasPresen()
+        {
+            return totalHorasPresen;
+        }
+
+        public void setHorasPresen(decimal pHoras)
+        {
+            totalHorasPresen = pHoras;
         }
 
         public void addTipo(string pTipo, decimal pHoras)
