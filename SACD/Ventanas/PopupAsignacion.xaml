@@ -40,7 +40,7 @@
                                         <Setter Property="FontWeight" Value="Normal" />
                                         <Setter Property="Foreground" Value="#FF666666"/>
                                         <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
-                                        <Setter Property="FontSize" Value="14px"/>
+                                        <Setter Property="FontSize" Value="10pt"/>
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -72,7 +72,7 @@
                                 <Setter Property="Foreground" Value="#FF666666"/>
                                 <Setter Property="BorderThickness" Value="0 0 1 1"/>
                                 <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
-                                <Setter Property="FontSize" Value="16px"/>
+                                <Setter Property="FontSize" Value="10pt"/>
                                 <Setter Property="FontWeight" Value="Bold"/>
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
@@ -82,7 +82,7 @@
                                 <Setter Property="FontWeight" Value="Normal" />
                                 <Setter Property="Foreground" Value="#FF666666"/>
                                 <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
-                                <Setter Property="FontSize" Value="14px"/>
+                                <Setter Property="FontSize" Value="10pt"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -113,7 +113,7 @@
                                         <Setter Property="FontWeight" Value="Normal" />
                                         <Setter Property="Foreground" Value="#FF666666"/>
                                         <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
-                                        <Setter Property="FontSize" Value="14px"/>
+                                        <Setter Property="FontSize" Value="10pt"/>
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -137,7 +137,7 @@
                                 <Setter Property="Foreground" Value="#FF666666"/>
                                 <Setter Property="BorderThickness" Value="0 0 1 1"/>
                                 <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
-                                <Setter Property="FontSize" Value="16px"/>
+                                <Setter Property="FontSize" Value="10pt"/>
                                 <Setter Property="FontWeight" Value="Bold"/>
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
@@ -147,7 +147,7 @@
                                 <Setter Property="FontWeight" Value="Normal" />
                                 <Setter Property="Foreground" Value="#FF666666"/>
                                 <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
-                                <Setter Property="FontSize" Value="14px"/>
+                                <Setter Property="FontSize" Value="10pt"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -178,7 +178,7 @@
                                         <Setter Property="FontWeight" Value="Normal" />
                                         <Setter Property="Foreground" Value="#FF666666"/>
                                         <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
-                                        <Setter Property="FontSize" Value="14px"/>
+                                        <Setter Property="FontSize" Value="10pt"/>
                                         <Setter Property="Template">
                                                 <Setter.Value>
                                                     <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -199,7 +199,7 @@
                                         <Setter Property="FontWeight" Value="Normal" />
                                         <Setter Property="Foreground" Value="#FF666666"/>
                                         <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
-                                        <Setter Property="FontSize" Value="14px"/>
+                                        <Setter Property="FontSize" Value="10pt"/>
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -220,7 +220,7 @@
                                         <Setter Property="FontWeight" Value="Normal" />
                                         <Setter Property="Foreground" Value="#FF666666"/>
                                         <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
-                                        <Setter Property="FontSize" Value="14px"/>
+                                        <Setter Property="FontSize" Value="10pt"/>
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -241,7 +241,7 @@
                                         <Setter Property="FontWeight" Value="Normal" />
                                         <Setter Property="Foreground" Value="#FF666666"/>
                                         <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
-                                        <Setter Property="FontSize" Value="14px"/>
+                                        <Setter Property="FontSize" Value="10pt"/>
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -264,7 +264,7 @@
                                 <Setter Property="Foreground" Value="#FF666666"/>
                                 <Setter Property="BorderThickness" Value="0 0 1 1"/>
                                 <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
-                                <Setter Property="FontSize" Value="16px"/>
+                                <Setter Property="FontSize" Value="10pt"/>
                                 <Setter Property="FontWeight" Value="Bold"/>
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
