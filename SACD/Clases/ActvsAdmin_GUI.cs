@@ -9,7 +9,7 @@ namespace SACD.Clases
     class ActvsAdmin_GUI
     {
         public string nombre { get; set; }
-        public int idAdmin { get; set; }
+        public int id { get; set; }
         public decimal valHoras { get; set; }
         public bool isSelected { get; set; }
     }

@@ -71,7 +71,7 @@ namespace SACD_Controlador
         }
 
         //Obtener tabla 2 de cálculos
-        public static Dictionary<string, decimal[]> getTabl2Calculos()
+        public static Dictionary<string, List<decimal[]>> getTabl2Calculos()
         {
             /*Estructura
 
@@ -82,32 +82,62 @@ namespace SACD_Controlador
 
             */
 
-            Dictionary<string, decimal[]> tabla = new Dictionary<string, decimal[]>();
+            Dictionary<string, List<decimal[]>> tabla = new Dictionary<string, List<decimal[]>>();
 
-            decimal[] valsNuevo = new decimal[3];
-            valsNuevo[0] = 2.5m;
-            valsNuevo[1] = 2;
-            tabla.Add("nuevo", valsNuevo); //nuevo - exist - ant - paral1 - paral2
+            List<decimal[]> vals1_15 = new List<decimal[]>();
+            decimal[] valTeorico1 = new decimal[2];
+            valTeorico1[0] = 2;
+            valTeorico1[1] = 2.75m;
+            decimal[] valPract1 = new decimal[1] { 3 };
+            decimal[] valTeorprac1 = new decimal[1] { 2.5m };
+            vals1_15.Add(valTeorico1);
+            vals1_15.Add(valPract1);
+            vals1_15.Add(valTeorprac1);
+            tabla.Add("1_15", vals1_15);
 
-            decimal[] valsExist = new decimal[2];
-            valsExist[0] = 2;
-            valsExist[1] = 1.75m;
-            tabla.Add("exist", valsExist);
+            List<decimal[]> vals16_25 = new List<decimal[]>();
+            decimal[] valTeorico2 = new decimal[2];
+            valTeorico2[0] = 3;
+            valTeorico2[1] = 3.75m;
+            decimal[] valPract2 = new decimal[1] { 4.5m };
+            decimal[] valTeorprac2 = new decimal[1] { 3.75m };
+            vals16_25.Add(valTeorico2);
+            vals16_25.Add(valPract2);
+            vals16_25.Add(valTeorprac2);
+            tabla.Add("16_25", vals16_25);
 
-            decimal[] valsAnt = new decimal[2];
-            valsAnt[0] = 1.75m;
-            valsAnt[1] = 1.5m;
-            tabla.Add("ant", valsAnt);
+            List<decimal[]> vals26_35 = new List<decimal[]>();
+            decimal[] valTeorico3 = new decimal[2];
+            valTeorico3[0] = 4;
+            valTeorico3[1] = 4.75m;
+            decimal[] valPract3 = new decimal[1] { 6 };
+            decimal[] valTeorprac3 = new decimal[1] { 5.25m };
+            vals26_35.Add(valTeorico3);
+            vals26_35.Add(valPract3);
+            vals26_35.Add(valTeorprac3);
+            tabla.Add("26_35", vals26_35);
 
-            decimal[] valsParal1 = new decimal[2];
-            valsParal1[0] = 1.5m;
-            valsParal1[1] = 1.25m;
-            tabla.Add("paral1", valsParal1);
+            List<decimal[]> vals36_45 = new List<decimal[]>();
+            decimal[] valTeorico4 = new decimal[2];
+            valTeorico4[0] = 5;
+            valTeorico4[1] = 5.75m;
+            decimal[] valPract4 = new decimal[1] { 0 };
+            decimal[] valTeorprac4 = new decimal[1] { 6.5m };
+            vals36_45.Add(valTeorico4);
+            vals36_45.Add(valPract4);
+            vals36_45.Add(valTeorprac4);
+            tabla.Add("36_45", vals36_45);
 
-            decimal[] valsParal2 = new decimal[2];
-            valsParal2[0] = 1.25m;
-            valsParal2[1] = 1;
-            tabla.Add("paral2", valsParal2);
+            List<decimal[]> vals46_ = new List<decimal[]>();
+            decimal[] valTeorico5 = new decimal[2];
+            valTeorico5[0] = 6;
+            valTeorico5[1] = 6.75m;
+            decimal[] valPract5 = new decimal[1] { 0 };
+            decimal[] valTeorprac5 = new decimal[1] { 0 };
+            vals46_.Add(valTeorico4);
+            vals46_.Add(valPract4);
+            vals46_.Add(valTeorprac4);
+            tabla.Add("46_", vals46_);
 
             return tabla;
         }
@@ -117,6 +147,7 @@ namespace SACD_Controlador
                                              decimal horasPresen) //modalidad= nuevo - exist - ant - paral1 - paral2
         {
             Dictionary<string, decimal[]> tabla1Calcs = getTabl1Calculos();
+            Dictionary<string, List<decimal[]>> tabla2Calcs = getTabl2Calculos();
             List<Object[]>  tiposCur = DatosManager.getTipoCurso(pCodCurso);
             List<TipoCurso> tiposList = new List<TipoCurso>();
             TipoCurso tipoC;
@@ -126,24 +157,63 @@ namespace SACD_Controlador
             foreach (Object[] obj in tiposCur)
             {
                 tipoC = new TipoCurso((string)obj[0], (decimal)obj[1]);
-                decimal[] val = tabla1Calcs[pModalidad]; 
+                decimal[] filaTb1 = tabla1Calcs[pModalidad]; 
 
                 if(tipoC.getTipo().Equals("teor", StringComparison.InvariantCultureIgnoreCase))
-                    valHoras += tipoC.getHoras() * val[0];
+                    valHoras += tipoC.getHoras() * filaTb1[0];
 
                 else //prac
-                    valHoras += tipoC.getHoras() * val[1];
+                    valHoras += tipoC.getHoras() * filaTb1[1];
 
                 tiposList.Add(tipoC);
             }
 
             //calc valor de tabla 2 para cada tipo
+            //obtener rango de estudiantes
+            string rango;
+            if (cantEstud >= 16 && cantEstud <= 15)
+                rango = "1_15";
+
+            else if (cantEstud >= 1 && cantEstud <= 25)
+                rango = "16_25";
+
+            else if (cantEstud >= 26 && cantEstud <= 35)
+                rango = "26_35";
+
+            else if (cantEstud >= 36 && cantEstud <= 45)
+                rango = "36_45";
+
+            else
+                rango = "46_";
+
+            List <decimal[]> filaTb2 = tabla2Calcs[rango];
+
+            //obtener columna tipo curso
+            decimal[] val;
             if (tiposCur.Count > 1) // teopract
             {
+                val = filaTb2[2];
+                valHoras += val[0];
             }
 
             else // es teor ó prac
             {
+                tipoC = tiposList.First();
+                if (tipoC.getTipo().Equals("teor", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    val = filaTb2[0];
+                    if(tipoC.getHoras() >= 2 && tipoC.getHoras() <= 4)
+                        valHoras += val[0];
+
+                    else
+                        valHoras += val[1];
+                }
+
+                else //prac
+                {
+                    val = filaTb2[1];
+                    valHoras += val[0];
+                }
             }
 
             //dos decimales

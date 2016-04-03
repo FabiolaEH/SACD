@@ -42,10 +42,10 @@ namespace SACD.Ventanas
                     //Buscar la fila
                     foreach (Grupos_GUI grupoInfo in dgGrupos.ItemsSource)
                     {
-                        if (grupoInfo.idGrupo == idGrupo)
+                        if (grupoInfo.id == idGrupo)
                         {
                             
-                            grupoInfo.valHoras = ActividadesManager.calcValorCurso(grupoInfo.idGrupo, 
+                            grupoInfo.valHoras = ActividadesManager.calcValorCurso(grupoInfo.id, 
                                                                                    grupoInfo.codCurso, 
                                                                                    modalidad, 
                                                                                    grupoInfo.cantEstud, 

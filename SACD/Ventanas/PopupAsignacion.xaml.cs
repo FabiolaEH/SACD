@@ -24,27 +24,18 @@ namespace SACD.Ventanas
     public partial class PopupAsignacion : Window
     {
         string modalidad; //simp - amp - dbamp
+        int idProfesor;
 
-        public PopupAsignacion()
+        public PopupAsignacion(int profeId)
         {
             InitializeComponent();
 
+            idProfesor = profeId;
             //Cargar actividades
             cargarGrupos();
             cargarActvsAdmin();
             cargarInvestig();
 
-        }
-
-        //verificar modalidad
-        public string getModalidad()
-        {
-            if (radioButt_Simp.IsChecked == true)
-                return "simp";
-            else if (radioButt_Amp.IsChecked == true)
-                return "amp";
-            else
-                return "dbamp";
         }
 
         //cargar lista de actividades académicas
@@ -60,7 +51,7 @@ namespace SACD.Ventanas
                                                      cantEstud = grupo.getCantEstudiantes(),
                                                      valHoras = grupo.getHoras(),
                                                      horasPresen = grupo.getCurso().getHorasPresen(),
-                                                     idGrupo = grupo.getId(),
+                                                     id = grupo.getId(),
                                                      codCurso = grupo.getCurso().getCodigo()});
             }
 
@@ -77,7 +68,7 @@ namespace SACD.Ventanas
             {
                 actvsAdminListGUI.Add(new ActvsAdmin_GUI() { nombre = admin.getNombre(),
                                                              valHoras = admin.getHoras(),
-                                                             idAdmin = admin.getId()});
+                                                             id = admin.getId()});
             }
 
             this.dgAdmin.ItemsSource = actvsAdminListGUI;
@@ -110,17 +101,9 @@ namespace SACD.Ventanas
         {
             if(modalidad.Equals("simp"))
             {
-                PopupTipoCurso ventTipoCurso = new PopupTipoCurso(Int32.Parse((sender as Button).Uid));
+                int idGrupo = Int32.Parse((sender as Button).Uid);
+                PopupTipoCurso ventTipoCurso = new PopupTipoCurso(idGrupo);
                 ventTipoCurso.Show();
-                /////////////////////////////////////////////////////////////////////
-               /* PopupTipoCurso w = new PopupTipoCurso();
-                if (w.ShowDialog() == true)
-                {
-                    string foo = w.nombre;
-                    MessageBox.Show(foo);
-
-                }*/
-                //////////////////////////////////////////////////
             }
         }
 
@@ -131,7 +114,10 @@ namespace SACD.Ventanas
             {
                 bool isChecked = grupoInfo.isSelected;
                 if (isChecked)
+                {
+                    AsignacsManager.asignarActiv(grupoInfo.id, idProfesor, 1, grupoInfo.valHoras);
                     MessageBox.Show(grupoInfo.nombre);
+                }
             }
 
             //Recorrer tabla de actividades adaministrativas
@@ -139,7 +125,10 @@ namespace SACD.Ventanas
             {
                 bool isChecked = adminInfo.isSelected;
                 if (isChecked)
+                {
+                    AsignacsManager.asignarActiv(adminInfo.id, idProfesor, 1, adminInfo.valHoras);
                     MessageBox.Show(adminInfo.nombre);
+                }
             }
 
             //Recorrer tabla de investigaciones
@@ -147,7 +136,10 @@ namespace SACD.Ventanas
             {
                 bool isChecked = investInfo.isSelected;
                 if (isChecked)
+                {
+                    AsignacsManager.asignarActiv(investInfo.id, idProfesor, 1, investInfo.valHoras);
                     MessageBox.Show(investInfo.nombre);
+                }
             }
         }
 
@@ -175,7 +167,6 @@ namespace SACD.Ventanas
                             modalidad = "dbamp";
                             break;
                         }
-
                 }               
             }
         }

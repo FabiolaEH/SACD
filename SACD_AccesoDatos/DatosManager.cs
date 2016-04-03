@@ -16,9 +16,9 @@ namespace SACD_AccesoDatos
         {
             conn = new SqlConnection();
          
-            conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            //conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
-            //conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = ecRhin\\estudiantes; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
 
             try
@@ -247,6 +247,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -313,6 +314,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -343,6 +345,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -375,6 +378,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -403,6 +407,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -440,6 +445,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -448,35 +454,6 @@ namespace SACD_AccesoDatos
             }
 
             return gruposList;
-        }
-
-        //Buscar grupo por id
-        public static Object[] getGrupoInfo(int id)
-        {
-            Object[] grupoInfo = new Object[4];
-
-            if (crearConexion() == true)
-            {
-                SqlCommand command = new SqlCommand("SELECT g.COD_CURSO, c.NOM_CURSO, g.NUM_GRUPO, g.NUM_ESTUDIANTES FROM SACDFGRUPOS g JOIN SACDFCURSO c ON g.COD_CURSO = c.COD_CURSO WHERE G.ID_GRUPO = "+ id.ToString() + " ORDER BY c.NOM_CURSO", conn);
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    grupoInfo[0] = reader.GetString(0);
-                    grupoInfo[1] = reader.GetString(1);
-                    grupoInfo[2] = reader.GetInt32(2);
-                    grupoInfo[3] = reader.GetInt32(3);
-                }
-
-                reader.Close();
-            }
-
-            else
-            {
-                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
-            }
-
-            return grupoInfo;
         }
 
         /************* Cursos ***************/
@@ -499,6 +476,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -529,6 +507,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -630,6 +609,7 @@ namespace SACD_AccesoDatos
                 }
 
                 reader.Close();
+                cerrarConexion();
             }
 
             else
@@ -640,43 +620,30 @@ namespace SACD_AccesoDatos
             return actividadInfo;
         }
 
-        /************* Ampliaciones ***************/
+        /*---------------------------------   INSERTAR  --------------------------------------*/
 
-        //buscar ampliaciones 
-        public static List<Object[]> getAmpliaciones(int pIdProfe, int pPeriodo, int pAño)
+        /************* Asignaciones ***************/
+        public static void insertAsignacion(int pIdActv, int pIdProfe, int pIdSemestre, decimal pHoras)
         {
-            List<Object[]> ampliacionesList = new List<Object[]>();
+            //Evitar que las horas se conviertan a un decimal separado por coma
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM (SACDFAMPLIACION a LEFT JOIN SACDFSEMESTRES b ON a.ID_SEMESTRE = b.ID_SEMESTRE)"
-                    + " LEFT JOIN SACDFPROFESORES c ON a.ID_PROFESOR = c.ID_PROFESOR"
-                    + " WHERE b.NUM_PERIODO = " + pPeriodo.ToString() + " AND b.NUM_AÑO = " + pAño.ToString()
-                    + " AND c.ID_PROFESOR = " + pIdProfe.ToString(), conn);
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    Object[] grupoInfo = new Object[5];
-                    grupoInfo[0] = reader.GetInt32(0);
-                    grupoInfo[1] = reader.GetInt32(1);
-                    grupoInfo[2] = reader.GetInt32(2);
-                    grupoInfo[3] = reader.GetDecimal(3);
-                    grupoInfo[4] = reader.GetBoolean(4);
-                    ampliacionesList.Add(grupoInfo);
-                }
-
-                reader.Close();
+                SqlCommand command = new SqlCommand("INSERT INTO SACDFASIGNACIONES VALUES(" + pIdActv + ", " + pIdProfe 
+                                                                                             + ", " + pIdSemestre + ", " 
+                                                                                             + pHoras + ")", conn);
+                command.ExecuteNonQuery();
+                cerrarConexion();
             }
 
             else
             {
                 Console.WriteLine("No se ha podido establecer conexión con la base de datos");
             }
-
-            return ampliacionesList;
         }
-
 
         /*---------------------------------   MODIFICAR  --------------------------------------*/
 
