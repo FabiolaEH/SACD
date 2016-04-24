@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SACD.Clases
 {
-    class ActivsAsig_GUI
+    public class ActivsAsig_GUI
     {
         public string nombre { get; set; }
         public decimal horas { get; set; }
