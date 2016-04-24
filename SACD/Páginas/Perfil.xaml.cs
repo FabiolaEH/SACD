@@ -24,6 +24,8 @@ namespace SACD.Páginas
     public partial class Perfil : Page
     {
         int idProfesor;
+        int periodo = 1;
+        int anio = 2014;
 
         public Perfil(int profeId)
         {
@@ -41,10 +43,71 @@ namespace SACD.Páginas
             dgPlazas.ItemsSource = plazasListGUI;
 
             //cargar actividades
-            //List<ActvsAsig_GUI> activsListGUI = new List<ActvsAsig_GUI>();
+            cargarAsignaciones();
+
+
         }
 
-        private void btn_Asignar_Click(object sender, RoutedEventArgs e)
+        public void cargarAsignaciones()
+        {
+            string actvNombre = "";
+            Grupo grupo;
+            ActvAdmin actv;
+            Investigacion investg;
+            List<ActivsAsig_GUI> activsListGUI = new List<ActivsAsig_GUI>();
+
+            //Asignaciones simples
+            List<Asignacion> asignaciones = AsignacsManager.getAsignaciones(idProfesor, periodo, anio);
+
+            foreach (Asignacion asig in asignaciones)
+            {
+                
+                if (asig.getActividad().getTipo().Equals("GRUP"))
+                {
+                    grupo = (Grupo)asig.getActividad();
+                    actvNombre = grupo.getCurso().getNombre();
+                }
+
+                else if (asig.getActividad().getTipo().Equals("ADMI"))
+                {
+                    actv = (ActvAdmin)asig.getActividad();
+                    actvNombre = actv.getNombre();
+                }
+
+                else
+                {
+                    investg = (Investigacion)asig.getActividad();
+                    actvNombre = investg.getNombre();
+                }
+
+                activsListGUI.Add(new ActivsAsig_GUI(){ nombre = actvNombre,
+                                                        ampliacion = "-",
+                                                        dbAmpliacion = "-",
+                                                        horas = asig.getValorHoras() });
+            }
+
+           /* //Ampliaciones
+            List<Ampliacion> ampliaciones = AsignacsManager.getAmpliaciones(idProfesor, periodo, anio);
+
+            foreach(Ampliacion ampl in ampliaciones)
+            {
+                if (ampl.getActividad().getTipo().Equals("GRUP"))
+                {
+                    grupo = (Grupo)ampl.getActividad();
+                    actvNombre = grupo.getCurso().getNombre();
+
+                }*/
+
+            dgActividades.ItemsSource = activsListGUI;
+
+
+
+
+
+
+        }
+
+    private void btn_Asignar_Click(object sender, RoutedEventArgs e)
         {
             Ventanas.PopupAsignacion popup = new Ventanas.PopupAsignacion(idProfesor);
             popup.Show();
