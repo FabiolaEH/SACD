@@ -66,7 +66,7 @@
             <Label x:Name="label1_Copy2" Content="Horas Mínimas" HorizontalAlignment="Left" Margin="36,115,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
             <Label x:Name="label1_Copy3" Content="Horas Asignadas" HorizontalAlignment="Left" Margin="189,115,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
             <Label x:Name="label_HorasMin" Content="40.0" HorizontalAlignment="Left" Margin="68,148,0,0" VerticalAlignment="Top" FontSize="18.667" Foreground="#FF666666"/>
-            <Label x:Name="label_HorasAsig" Content="36.5" HorizontalAlignment="Left" Margin="224,148,0,0" VerticalAlignment="Top" FontSize="18.667" Foreground="#FF666666" RenderTransformOrigin="8.286,0.485"/>
+            <Label x:Name="label_HorasAsig" Content="28.5" HorizontalAlignment="Left" Margin="224,148,0,0" VerticalAlignment="Top" FontSize="18.667" Foreground="#FF666666" RenderTransformOrigin="8.286,0.485"/>
             <Label x:Name="label1_Copy1" Content="Plazas" HorizontalAlignment="Left" Margin="34,197,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
             <Label x:Name="label1_Copy4" Content="Actividades" HorizontalAlignment="Left" Margin="36,420,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
             <Button x:Name="btn_Asignar" Content="Asignar Carga" HorizontalAlignment="Left" Margin="382,163,0,0" VerticalAlignment="Top" Width="102" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Asignar_Click"/>
@@ -119,9 +119,9 @@
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Num." Binding="{Binding id}" Width="150"/>
-                    <DataGridTextColumn Header="Horas" Binding="{Binding horas}" Width="150" />
-                    <DataGridTextColumn Header="Modalidad" Binding="{Binding modalidad}" Width="150" />
+                    <DataGridTextColumn Header="Num." Binding="{Binding id}" Width="100"/>
+                    <DataGridTextColumn Header="Horas" Binding="{Binding horas}" Width="100" />
+                    <DataGridTextColumn Header="Modalidad" Binding="{Binding modalidad}" Width="250" />
                 </DataGrid.Columns>
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="{x:Type DataGridColumnHeader}" >

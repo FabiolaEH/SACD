@@ -41,7 +41,11 @@ namespace SACD.Páginas
             dgPlazas.ItemsSource = plazasListGUI;
 
             //cargar actividades
-            //List<ActvsAsig_GUI> activsListGUI = new List<ActvsAsig_GUI>();
+            List<ActivsAsig_GUI> activsListGUI = new List<ActivsAsig_GUI>();
+            activsListGUI.Add(new ActivsAsig_GUI() { nombre = "Consejo de escuela", horas = 10, ampliacion = "-", dbAmpliacion = "-" });
+            activsListGUI.Add(new ActivsAsig_GUI() { nombre = "Genética", horas = 13.5m, ampliacion = "-", dbAmpliacion = "-" });
+            activsListGUI.Add(new ActivsAsig_GUI() { nombre = "Biotecnologia para Todos", horas = 5, ampliacion = "-", dbAmpliacion = "-" });
+            dgActividades.ItemsSource = activsListGUI;
         }
 
         private void btn_Asignar_Click(object sender, RoutedEventArgs e)
