@@ -24,8 +24,9 @@ namespace SACD.Páginas
     public partial class Perfil : Page
     {
         int idProfesor;
+        int idSemestre = 5;
         int periodo = 1;
-        int anio = 2014;
+        int anio = 2016;
 
         public Perfil(int profeId)
         {
@@ -44,8 +45,6 @@ namespace SACD.Páginas
 
             //cargar actividades
             cargarAsignaciones();
-
-
         }
 
         public void cargarAsignaciones()
@@ -57,7 +56,7 @@ namespace SACD.Páginas
             List<ActivsAsig_GUI> activsListGUI = new List<ActivsAsig_GUI>();
 
             //Asignaciones simples
-            List<Asignacion> asignaciones = AsignacsManager.getAsignaciones(idProfesor, periodo, anio);
+            List<Asignacion> asignaciones = AsignacsManager.getAsignaciones(idProfesor, idSemestre, periodo, anio);
 
             foreach (Asignacion asig in asignaciones)
             {

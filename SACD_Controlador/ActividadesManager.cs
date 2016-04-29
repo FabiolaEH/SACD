@@ -134,19 +134,19 @@ namespace SACD_Controlador
             valTeorico5[1] = 6.75m;
             decimal[] valPract5 = new decimal[1] { 0 };
             decimal[] valTeorprac5 = new decimal[1] { 0 };
-            vals46_.Add(valTeorico4);
-            vals46_.Add(valPract4);
-            vals46_.Add(valTeorprac4);
+            vals46_.Add(valTeorico5);
+            vals46_.Add(valPract5);
+            vals46_.Add(valTeorprac5);
             tabla.Add("46_", vals46_);
 
             return tabla;
         }
 
         //calcular valor en horas de un curso
-        public static decimal calcValorCurso(int pIdGrupo, string pCodCurso, string pModalidad, int cantEstud, 
-                                             decimal horasPresen) //modalidad= nuevo - exist - ant - paral1 - paral2
+        public static decimal calcValorCurso(int pIdGrupo, string pCodCurso, string pModalidad, 
+                                             int pCantEstud) //modalidad= nuevo - exist - ant - paral1 - paral2
         {
-            Dictionary<string, decimal[]> tabla1Calcs = getTabl1Calculos();
+            Dictionary <string, decimal[]> tabla1Calcs = getTabl1Calculos();
             Dictionary<string, List<decimal[]>> tabla2Calcs = getTabl2Calculos();
             List<Object[]>  tiposCur = DatosManager.getTipoCurso(pCodCurso);
             List<TipoCurso> tiposList = new List<TipoCurso>();
@@ -171,16 +171,16 @@ namespace SACD_Controlador
             //calc valor de tabla 2 para cada tipo
             //obtener rango de estudiantes
             string rango;
-            if (cantEstud >= 16 && cantEstud <= 15)
+            if (pCantEstud >= 16 && pCantEstud <= 15)
                 rango = "1_15";
 
-            else if (cantEstud >= 1 && cantEstud <= 25)
+            else if (pCantEstud >= 1 && pCantEstud <= 25)
                 rango = "16_25";
 
-            else if (cantEstud >= 26 && cantEstud <= 35)
+            else if (pCantEstud >= 26 && pCantEstud <= 35)
                 rango = "26_35";
 
-            else if (cantEstud >= 36 && cantEstud <= 45)
+            else if (pCantEstud >= 36 && pCantEstud <= 45)
                 rango = "36_45";
 
             else

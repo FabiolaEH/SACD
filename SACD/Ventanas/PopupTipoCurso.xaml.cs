@@ -16,9 +16,7 @@ using SACD_Controlador;
 
 namespace SACD.Ventanas
 {
-    /// <summary>
-    /// Lógica de interacción para PopupTipoCurso.xaml
-    /// </summary>
+
     public partial class PopupTipoCurso : Window
     {
         string modalidad; //nuevo - exist - ant - paral1 - paral2
@@ -48,8 +46,7 @@ namespace SACD.Ventanas
                             grupoInfo.valHoras = ActividadesManager.calcValorCurso(grupoInfo.id, 
                                                                                    grupoInfo.codCurso, 
                                                                                    modalidad, 
-                                                                                   grupoInfo.cantEstud, 
-                                                                                   grupoInfo.horasPresen);
+                                                                                   grupoInfo.cantEstud);
 
                             //Actualizar tabla 
                             dgGrupos.Items.Refresh();
@@ -91,7 +88,7 @@ namespace SACD.Ventanas
                             break;
                         }
 
-                    case "Paralelo 2":
+                    case "Paralelo 2 y sig.":
                         {
                             modalidad = "paral2";
                             break;

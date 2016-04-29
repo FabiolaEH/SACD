@@ -25,6 +25,9 @@ namespace SACD.Ventanas
     {
         string modalidad; //simp - amp - dbamp
         int idProfesor;
+        int idSemestre = 5;
+        int periodo = 1;
+        int anio = 2016;
 
         public PopupAsignacion(int profeId)
         {
@@ -109,13 +112,25 @@ namespace SACD.Ventanas
 
         private void btn_Aceptar_Click(object sender, RoutedEventArgs e)
         {
+            if (modalidad.Equals("simp"))
+                guardarAsigSimples();
+            
+        }
+
+
+        private void guardarAsigSimples()
+        {
+            //Asignaciones simples
+            List<Asignacion> asignacionesProf = AsignacsManager.getAsignaciones(idProfesor, idSemestre, periodo, anio);
+
             //Recorrer tabla de cursos
             foreach (Grupos_GUI grupoInfo in dgGrupos.ItemsSource)
             {
                 bool isChecked = grupoInfo.isSelected;
                 if (isChecked)
                 {
-                    AsignacsManager.asignarActiv(grupoInfo.id, idProfesor, 1, grupoInfo.valHoras);
+                    //verificar que sea un registro de asignación repetido
+                    AsignacsManager.asignarActiv(grupoInfo.id, idProfesor, idSemestre, grupoInfo.valHoras);
                     MessageBox.Show(grupoInfo.nombre);
                 }
             }
@@ -142,6 +157,8 @@ namespace SACD.Ventanas
                 }
             }
         }
+
+      
 
         private void radioButton_Checked(object sender, RoutedEventArgs e)
         {

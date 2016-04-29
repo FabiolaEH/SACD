@@ -25,6 +25,7 @@ namespace SACD
     public partial class PopupRegistro : Window
     {
         String nombreProfesor = "";
+        int idSemestre = 5;
         int periodo = 0;
         int año = 0;
 
@@ -76,7 +77,7 @@ namespace SACD
 
         private void cargarAsignaciones(int pIdProfe, int pPeriodo, int pAño)
         {
-            List<Asignacion> asignaciones = AsignacsManager.getAsignaciones(pIdProfe, pPeriodo, pAño);
+            List<Asignacion> asignaciones = AsignacsManager.getAsignaciones(pIdProfe, idSemestre, pPeriodo, pAño);
             decimal horasTotalInve = 0;
             decimal horasTotalAdmi = 0;
             decimal horasTotalDoce = 0;
