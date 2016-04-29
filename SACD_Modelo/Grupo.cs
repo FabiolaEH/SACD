@@ -8,7 +8,6 @@ namespace SACD_Modelo
 {
     public class Grupo : Actividad
     {
-        private int id;
         private int numero;
         private int cantEstudiantes;
         private Curso curso;

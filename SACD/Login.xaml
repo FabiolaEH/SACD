@@ -19,7 +19,6 @@
         <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="534,451,0,0" VerticalAlignment="Top" Width="95" Height="33" FontSize="16" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="btnAceptar_Click" FontWeight="Bold"/>
         <Label x:Name="label_Copy2" Content="SACD" HorizontalAlignment="Left" Margin="296,82,0,0" VerticalAlignment="Top" FontSize="26.667" FontWeight="Bold" Background="White" Foreground="#FF999999"/>
         <Label x:Name="label1_Copy" Content="Sistema de Asignación de Carga Docente" HorizontalAlignment="Left" Margin="296,112,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.124,-0.109" FontSize="16" Foreground="#FF999999"/>
-        <Label x:Name="label1" Content="Label" HorizontalAlignment="Left" Margin="158,484,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

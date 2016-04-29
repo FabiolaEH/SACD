@@ -23,27 +23,30 @@ namespace SACD_Controlador
 
         }
 
-        public static List<Asignacion> getAsignaciones(int pIdProfesor, int idSemestre, int pPeriodo, int pAño)
+        public static List<Asignacion> getAsignaciones(int pIdProfesor, int idSemestre, int pPeriodo, int pAño, Boolean pCondicionEspecial)
         {
             List<Object[]> asignListObject = new List<Object[]>();
             List<Asignacion> asignList = new List<Asignacion>();
             Asignacion asignacion;
             Actividad actividad;
 
-            asignListObject = DatosManager.getAsignaciones(pIdProfesor, pPeriodo, pAño);
+            asignListObject = DatosManager.getAsignaciones(pIdProfesor, pPeriodo, pAño, pCondicionEspecial);
 
             foreach (Object[] obj in asignListObject)
             {
                 actividad = ActividadesManager.buscar((int)obj[0]);
 
-                asignacion = new Asignacion((decimal)obj[3], actividad, new Semestre(idSemestre, pAño, pPeriodo)); 
+                if(pCondicionEspecial)
+                    asignacion = new Asignacion((decimal)obj[2], actividad, new Semestre(idSemestre, pAño, pPeriodo)); 
+                else
+                    asignacion = new Asignacion((decimal)obj[3], actividad, new Semestre(idSemestre, pAño, pPeriodo));
                 asignList.Add(asignacion);
             }
 
             return asignList;
         }
 
-        public static List<Ampliacion> getAmpliaciones(int pIdProfesor, int pPeriodo, int pAño)
+        public static List<Ampliacion> getAmpliaciones(int pIdProfesor, int idSemestre, int pPeriodo, int pAño)
         {
             List<Object[]> ampliListObject = new List<Object[]>();
             List<Ampliacion> ampliList = new List<Ampliacion>();
@@ -56,7 +59,7 @@ namespace SACD_Controlador
             {
                 grupo = ActividadesManager.buscar((int)obj[0]);
 
-                ampliacion = new Ampliacion((decimal)obj[3], grupo, new Semestre(0, 0, 0), (bool)obj[4]); //PONER BIEN EL SEMESTRE
+                ampliacion = new Ampliacion((decimal)obj[3], grupo, new Semestre(idSemestre, pAño, pPeriodo), (bool)obj[4]);
                 ampliList.Add(ampliacion);
             }
 
