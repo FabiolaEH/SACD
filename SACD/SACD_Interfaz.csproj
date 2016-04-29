@@ -71,6 +71,15 @@
     <Compile Include="Clases\Reporte_Investigacion_GUI.cs" />
     <Compile Include="Clases\Reporte_Docencia_GUI.cs" />
     <Compile Include="Clases\Profesor_GUI.cs" />
+    <Compile Include="Páginas\EditarPlaza.xaml.cs">
+      <DependentUpon>EditarPlaza.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Páginas\EliminarPlaza.xaml.cs">
+      <DependentUpon>EliminarPlaza.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Páginas\CrearPlaza.xaml.cs">
+      <DependentUpon>CrearPlaza.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\PopupOlvidarContraseña.xaml.cs">
       <DependentUpon>PopupOlvidarContraseña.xaml</DependentUpon>
     </Compile>
@@ -98,6 +107,18 @@
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Páginas\EditarPlaza.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Páginas\EliminarPlaza.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Páginas\CrearPlaza.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Ventanas\PopupOlvidarContraseña.xaml">
       <Generator>MSBuild:Compile</Generator>
