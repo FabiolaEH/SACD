@@ -580,7 +580,59 @@ namespace SACD_AccesoDatos
             return semestresList;
         }
 
+        //Editar semestre actual
+        public static Boolean editar_Semestre_Actual(int pPeriodo, int pAnio)
+        {
+            Boolean isExitoso = false;
 
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("UPDATE SACDFSEMESTRES SET DSC_ACTUAL = NULL", conn);
+                command.ExecuteNonQuery();
+                SqlCommand command2 = new SqlCommand("UPDATE SACDFSEMESTRES SET DSC_ACTUAL = 1 WHERE NUM_AÑO = @anio AND NUM_PERIODO = @periodo", conn);
+                command2.Parameters.AddWithValue("@anio", pAnio);
+                command2.Parameters.AddWithValue("@periodo", pPeriodo);
+                command2.ExecuteNonQuery();
+                isExitoso = true;
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isExitoso = false;
+            }
+            conn.Close();
+            return isExitoso;
+        }
+
+        //Obtener semestre actual
+        public static List<int> get_Semestre_Global()
+        {
+            List<int> semestre = new List<int>();
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT NUM_AÑO, NUM_PERIODO FROM SACDFSEMESTRES WHERE DSC_ACTUAL = 1", conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int anio = reader.GetInt32(0);
+                    int periodo = reader.GetInt32(1);
+                    semestre.Add(anio);
+                    semestre.Add(periodo);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+            conn.Close();
+            return semestre;
+        }
 
         /************* Asignaciones ***************/
 

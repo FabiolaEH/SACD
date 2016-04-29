@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 using SACD_Modelo;
 using SACD.Páginas;
+using SACD_Controlador;
 
 namespace SACD
 {
@@ -23,9 +24,16 @@ namespace SACD
     /// </summary>
     public partial class MainWindow : Window
     {
+        public int anio_global { get; set; }
+        public int semestre_global { get; set; }
+
         public MainWindow()
         {
-            InitializeComponent();   
+            InitializeComponent();
+            List<int> datos_Globales = SemestresManager.getSemestreGlobal();
+            anio_global = datos_Globales[0];
+            semestre_global = datos_Globales[1];
+            Application.Current.MainWindow = this;
         }
 
 
