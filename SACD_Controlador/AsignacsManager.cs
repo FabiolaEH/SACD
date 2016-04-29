@@ -23,20 +23,23 @@ namespace SACD_Controlador
 
         }
 
-        public static List<Asignacion> getAsignaciones(int pIdProfesor, int idSemestre, int pPeriodo, int pAño)
+        public static List<Asignacion> getAsignaciones(int pIdProfesor, int idSemestre, int pPeriodo, int pAño, Boolean pCondicionEspecial)
         {
             List<Object[]> asignListObject = new List<Object[]>();
             List<Asignacion> asignList = new List<Asignacion>();
             Asignacion asignacion;
             Actividad actividad;
 
-            asignListObject = DatosManager.getAsignaciones(pIdProfesor, pPeriodo, pAño);
+            asignListObject = DatosManager.getAsignaciones(pIdProfesor, pPeriodo, pAño, pCondicionEspecial);
 
             foreach (Object[] obj in asignListObject)
             {
                 actividad = ActividadesManager.buscar((int)obj[0]);
 
-                asignacion = new Asignacion((decimal)obj[3], actividad, new Semestre(idSemestre, pAño, pPeriodo)); 
+                if(pCondicionEspecial)
+                    asignacion = new Asignacion((decimal)obj[2], actividad, new Semestre(idSemestre, pAño, pPeriodo)); 
+                else
+                    asignacion = new Asignacion((decimal)obj[3], actividad, new Semestre(idSemestre, pAño, pPeriodo));
                 asignList.Add(asignacion);
             }
 

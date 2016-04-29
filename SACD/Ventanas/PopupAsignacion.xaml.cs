@@ -121,7 +121,7 @@ namespace SACD.Ventanas
         private void guardarAsigSimples()
         {
             //Asignaciones simples
-            List<Asignacion> asignacionesProf = AsignacsManager.getAsignaciones(idProfesor, idSemestre, periodo, anio);
+            List<Asignacion> asignacionesProf = AsignacsManager.getAsignaciones(idProfesor, idSemestre, periodo, anio, false);
 
             //Recorrer tabla de cursos
             foreach (Grupos_GUI grupoInfo in dgGrupos.ItemsSource)

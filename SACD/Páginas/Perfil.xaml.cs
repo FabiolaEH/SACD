@@ -62,7 +62,7 @@ namespace SACD.Páginas
             List<ActivsAsig_GUI> activsListGUI = new List<ActivsAsig_GUI>();
 
             //Asignaciones simples
-            List<Asignacion> asignaciones = AsignacsManager.getAsignaciones(idProfesor, idSemestre, periodo, anio);
+            List<Asignacion> asignaciones = AsignacsManager.getAsignaciones(idProfesor, idSemestre, periodo, anio, false);
 
             foreach (Asignacion asig in asignaciones)
             {

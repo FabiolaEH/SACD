@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.DataVisualization.Charting;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -25,7 +26,9 @@ namespace SACD
     /// </summary>
     public partial class Inicio : Page
     {
-
+        int contAdm = 0;
+        int contInv = 0;
+        int contAca = 0;
         public Inicio()
         {
             InitializeComponent();
@@ -38,15 +41,63 @@ namespace SACD
             cmb_Anio.SelectedIndex = indexAnio;
             cmb_Semestre.SelectedIndex = indexPeriodo;
 
-            LoadPieChartData();
 
+            LoadPieChartData();
+            LoadVerticalChartData();
+            guardarAsign(mainWindow);
+            LoadPieChartData2();
+        }
+
+        private void guardarAsign(MainWindow pMainWindow)
+        {
+            List<Asignacion> asignacionesProf = AsignacsManager.getAsignaciones(-1, pMainWindow.semestre_global ,pMainWindow.periodo_global , pMainWindow.anio_global, true);
+            
+            for (int i = 0; i < asignacionesProf.Count; i++)
+            {
+                String tipo = asignacionesProf[i].getActividad().getTipo().ToString();
+                if (tipo.Equals("GRUP"))
+                {
+                    contAca++;
+                }
+                else if(tipo.Equals("ADMI"))
+                {
+                    contAdm++;
+                }
+                else if(tipo.Equals("INVE"))
+                {
+                    contInv++;
+                }
+            }
         }
 
         private void LoadPieChartData()
         {
-            pieSeries.ItemsSource = new KeyValuePair<string, int>[]{
+            chartPie.ItemsSource = new KeyValuePair<string, int>[]{
                         new KeyValuePair<string,int>("Interinos", 22),
-                        new KeyValuePair<string,int>("Propiedad", 28),
+                        new KeyValuePair<string,int>("Propiedad", 28)
+            };
+        }
+
+        private void LoadPieChartData2()
+        {
+            chartPie2.ItemsSource = new KeyValuePair<string, int>[]{
+                        new KeyValuePair<string,int>("Administrativas", contAdm),
+                        new KeyValuePair<string,int>("Investigación", contInv),
+                        new KeyValuePair<string,int>("Académicas", contAca)
+            };
+        }
+
+        private void LoadVerticalChartData()
+        {
+            chartVertical.ItemsSource = new KeyValuePair<string, int>[]{
+                new KeyValuePair<string,int>("Ana Abdelnour", 1),
+                new KeyValuePair<string,int>("Carlos Alvarado", 2),
+                new KeyValuePair<string,int>("Elizabeth Arnáez", 3),
+                new KeyValuePair<string,int>("Laura Chavarría", 4),
+                new KeyValuePair<string,int>("Emmanuel Araya", 3),
+                new KeyValuePair<string,int>("Karla Meneses", 2),
+                new KeyValuePair<string,int>("Luis Fernando Alvarado", 1),
+                new KeyValuePair<string,int>("Mauricio Chicas", 30)
             };
         }
 

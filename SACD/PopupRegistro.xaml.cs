@@ -77,7 +77,7 @@ namespace SACD
 
         private void cargarAsignaciones(int pIdProfe, int pPeriodo, int pAño)
         {
-            List<Asignacion> asignaciones = AsignacsManager.getAsignaciones(pIdProfe, idSemestre, pPeriodo, pAño);
+            List<Asignacion> asignaciones = AsignacsManager.getAsignaciones(pIdProfe, idSemestre, pPeriodo, pAño, false);
             decimal horasTotalInve = 0;
             decimal horasTotalAdmi = 0;
             decimal horasTotalDoce = 0;

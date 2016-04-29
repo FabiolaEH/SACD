@@ -16,8 +16,8 @@ namespace SACD_AccesoDatos
             conn = new SqlConnection();
        
             //conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
-            //conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
-            conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
+            //conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = ecRhin\\estudiantes; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
 
             try
@@ -331,7 +331,7 @@ namespace SACD_AccesoDatos
 
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM SACDFINVESTIG WHERE ID_INVESTIGACION = " + id.ToString(), conn);
+                SqlCommand command = new SqlCommand("SELECT ID_INVESTIGACION, CAN_HORAS, FEC_INICIO, FEC_FIN, NOM_INVESTIG FROM SACDFINVESTIG WHERE ID_INVESTIGACION = " + id.ToString(), conn);
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
@@ -638,29 +638,54 @@ namespace SACD_AccesoDatos
         /************* Asignaciones ***************/
 
         //buscar asignaciones 
-        public static List<Object[]> getAsignaciones(int pIdProfe, int pPeriodo, int pAño)
+        public static List<Object[]> getAsignaciones(int pIdProfe, int pPeriodo, int pAño, Boolean pCondicionEsp)
         {
             List<Object[]> asignacionesList = new List<Object[]>();
 
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("SELECT a.ID_ACTIVIDAD, a.ID_PROFESOR, b.ID_SEMESTRE, a.NUM_VALOR_HORAS FROM (SACDFASIGNACIONES a LEFT JOIN SACDFSEMESTRES b ON a.ID_SEMESTRE = b.ID_SEMESTRE)"
-                    + " LEFT JOIN SACDFPROFESORES c ON a.ID_PROFESOR = c.ID_PROFESOR" 
-                    + " WHERE b.NUM_PERIODO = "+ pPeriodo.ToString() +" AND b.NUM_AÑO = "+ pAño.ToString() 
-                    + " AND c.ID_PROFESOR = "+pIdProfe.ToString(), conn);
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
+                SqlCommand command;
+                if (pCondicionEsp)
                 {
-                    Object[] grupoInfo = new Object[4];
-                    grupoInfo[0] = reader.GetInt32(0);
-                    grupoInfo[1] = reader.GetInt32(1);
-                    grupoInfo[2] = reader.GetInt32(2);
-                    grupoInfo[3] = reader.GetDecimal(3);
-                    asignacionesList.Add(grupoInfo);
-                }
+                    command = new SqlCommand("SELECT a.ID_ACTIVIDAD, b.ID_SEMESTRE, a.NUM_VALOR_HORAS FROM(SACDFASIGNACIONES a LEFT JOIN SACDFSEMESTRES b ON a.ID_SEMESTRE = b.ID_SEMESTRE) WHERE b.NUM_PERIODO = @periodo AND b.NUM_AÑO = @anio", conn);
+                    command.Parameters.AddWithValue("@periodo", pPeriodo);
+                    command.Parameters.AddWithValue("@anio", pAño);
+                    SqlDataReader reader = command.ExecuteReader();
 
-                reader.Close();
+                    while (reader.Read())
+                    {
+                        Console.WriteLine(pPeriodo);
+                        Console.WriteLine(pAño);
+                        Object[] grupoInfo = new Object[3];
+                        grupoInfo[0] = reader.GetInt32(0);
+                        grupoInfo[1] = reader.GetInt32(1);
+                        grupoInfo[2] = reader.GetDecimal(2);
+                        asignacionesList.Add(grupoInfo);
+                    }
+
+                    reader.Close();
+                }
+                else
+                {
+                    command = new SqlCommand("SELECT a.ID_ACTIVIDAD, a.ID_PROFESOR, b.ID_SEMESTRE, a.NUM_VALOR_HORAS FROM (SACDFASIGNACIONES a LEFT JOIN SACDFSEMESTRES b ON a.ID_SEMESTRE = b.ID_SEMESTRE)"
+                    + " LEFT JOIN SACDFPROFESORES c ON a.ID_PROFESOR = c.ID_PROFESOR"
+                    + " WHERE b.NUM_PERIODO = " + pPeriodo.ToString() + " AND b.NUM_AÑO = " + pAño.ToString()
+                    + " AND c.ID_PROFESOR = " + pIdProfe.ToString(), conn);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Object[] grupoInfo = new Object[4];
+                        grupoInfo[0] = reader.GetInt32(0);
+                        grupoInfo[1] = reader.GetInt32(1);
+                        grupoInfo[2] = reader.GetInt32(2);
+                        grupoInfo[3] = reader.GetDecimal(3);
+                        asignacionesList.Add(grupoInfo);
+                    }
+
+                    reader.Close();
+                }
+                conn.Close();
             }
 
             else
