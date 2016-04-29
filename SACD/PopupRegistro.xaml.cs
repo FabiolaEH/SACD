@@ -142,7 +142,7 @@ namespace SACD
 
         private void cargarAmpliaciones(int pIdProfe, int pPeriodo, int pAño)
         {
-            List<Ampliacion> ampliaciones = AsignacsManager.getAmpliaciones(pIdProfe, pPeriodo, pAño);
+            List<Ampliacion> ampliaciones = AsignacsManager.getAmpliaciones(pIdProfe, idSemestre, pPeriodo, pAño);
             decimal horasTotalAmpl = 0;
             decimal porcTotalAmpl = 0;
 

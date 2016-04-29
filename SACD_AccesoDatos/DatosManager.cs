@@ -768,8 +768,9 @@ namespace SACD_AccesoDatos
         /*---------------------------------   INSERTAR  --------------------------------------*/
 
         /************* Asignaciones ***************/
-        public static void insertAsignacion(int pIdActv, int pIdProfe, int pIdSemestre, decimal pHoras)
+        public static int insertAsignacion(int pIdActv, int pIdProfe, int pIdSemestre, decimal pHoras)
         {
+            int result = 1;
             //Evitar que las horas se conviertan a un decimal separado por coma
             System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
@@ -777,17 +778,29 @@ namespace SACD_AccesoDatos
 
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("INSERT INTO SACDFASIGNACIONES VALUES(" + pIdActv + ", " + pIdProfe 
-                                                                                             + ", " + pIdSemestre + ", " 
-                                                                                             + pHoras + ")", conn);
-                command.ExecuteNonQuery();
+                try
+                {
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFASIGNACIONES VALUES(" + pIdActv + ", " + pIdProfe
+                                                                                                 + ", " + pIdSemestre + ", "
+                                                                                                 + pHoras + ")", conn);
+                    command.ExecuteNonQuery();
+                }
+
+                catch(Exception e)
+                {
+                    result = 0;
+                }
+
                 cerrarConexion();
+                
             }
 
             else
             {
                 Console.WriteLine("No se ha podido establecer conexión con la base de datos");
             }
+
+            return result;
         }
 
         /*---------------------------------   MODIFICAR  --------------------------------------*/
