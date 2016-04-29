@@ -612,13 +612,15 @@ namespace SACD_AccesoDatos
 
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("SELECT NUM_AÑO, NUM_PERIODO FROM SACDFSEMESTRES WHERE DSC_ACTUAL = 1", conn);
+                SqlCommand command = new SqlCommand("SELECT ID_SEMESTRE, NUM_AÑO, NUM_PERIODO FROM SACDFSEMESTRES WHERE DSC_ACTUAL = 1", conn);
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    int anio = reader.GetInt32(0);
-                    int periodo = reader.GetInt32(1);
+                    int semes = reader.GetInt32(0);
+                    int anio = reader.GetInt32(1);
+                    int periodo = reader.GetInt32(2);
+                    semestre.Add(semes);
                     semestre.Add(anio);
                     semestre.Add(periodo);
                 }

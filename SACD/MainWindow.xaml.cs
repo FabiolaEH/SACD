@@ -25,14 +25,16 @@ namespace SACD
     public partial class MainWindow : Window
     {
         public int anio_global { get; set; }
+        public int periodo_global { get; set; }
         public int semestre_global { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
             List<int> datos_Globales = SemestresManager.getSemestreGlobal();
-            anio_global = datos_Globales[0];
-            semestre_global = datos_Globales[1];
+            semestre_global = datos_Globales[0];
+            anio_global = datos_Globales[1];
+            periodo_global = datos_Globales[2];
             Application.Current.MainWindow = this;
         }
 

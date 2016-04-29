@@ -4,12 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SACD"
+      xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+      xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
       xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="SACD.Inicio"
       mc:Ignorable="d" 
       Title="Inicio" Width="675" Height="661.5">
     <Page.Resources>
-
-
         <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
@@ -67,5 +67,10 @@
         <ComboBox x:Name="cmb_Anio" HorizontalAlignment="Left" Margin="250,160,0,0" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label1" Content="Seleccione el semestre y año actual." HorizontalAlignment="Left" Margin="34,64,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FF666666"/>
         <Button x:Name="btn_Aceptar" Content="Guardar" HorizontalAlignment="Left" Margin="448,152,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Aceptar_Click"/>
+        
+        <DVC:Chart Canvas.Top="80" Canvas.Left="10" Name="mcChart" Width="400" Height="250" Background="Transparent" BorderBrush="Transparent">
+            <DVC:PieSeries x:Name="pieSeries" Title="Profesores" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
+            </DVC:PieSeries>
+        </DVC:Chart>
     </Grid>
 </Page>
