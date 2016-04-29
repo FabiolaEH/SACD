@@ -298,7 +298,7 @@ namespace SACD_AccesoDatos
 
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM SACDFINVESTIG", conn);
+                SqlCommand command = new SqlCommand("SELECT ID_INVESTIGACION, CAN_HORAS, FEC_INICIO, FEC_FIN, NOM_INVESTIG FROM SACDFINVESTIG", conn);
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())

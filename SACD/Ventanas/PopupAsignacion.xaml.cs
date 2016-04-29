@@ -62,7 +62,7 @@ namespace SACD.Ventanas
 
             if (modalidad.Equals("simp"))
             {
-                asignacionesProf = AsignacsManager.getAsignaciones(idProfesor, idSemestre, periodo, anio);
+                asignacionesProf = AsignacsManager.getAsignaciones(idProfesor, idSemestre, periodo, anio, false);
 
                 foreach (Asignacion asig in asignacionesProf)
                 {
