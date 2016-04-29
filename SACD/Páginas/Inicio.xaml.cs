@@ -25,7 +25,6 @@ namespace SACD
     /// </summary>
     public partial class Inicio : Page
     {
-
         public Inicio()
         {
             InitializeComponent();
