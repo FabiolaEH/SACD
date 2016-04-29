@@ -23,14 +23,20 @@ namespace SACD.Páginas
     /// </summary>
     public partial class Perfil : Page
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;     
         int idProfesor;
-        int idSemestre = 5;
-        int periodo = 1;
-        int anio = 2016;
+        int idSemestre;
+        int periodo;
+        int anio;
 
         public Perfil(int profeId)
         {
             InitializeComponent();
+
+            //Obtener info semestre
+            idSemestre = mainWindow.semestre_global;
+            periodo = mainWindow.periodo_global;
+            anio = mainWindow.anio_global;
 
             //cargar info profesor
             idProfesor = profeId;
