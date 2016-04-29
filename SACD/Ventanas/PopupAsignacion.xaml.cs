@@ -39,13 +39,123 @@ namespace SACD.Ventanas
             periodo = mainWindow.periodo_global;
             anio = mainWindow.anio_global;
 
-            //Obtener info profesor
-            idProfesor = profeId;
-
             //Cargar actividades
             cargarGrupos();
             cargarActvsAdmin();
             cargarInvestig();
+
+            //Obtener info profesor
+            idProfesor = profeId;
+            cargarAsigProf();
+
+
+            //marcar asignaciones según modalidad
+        }
+
+        public void cargarAsigProf()
+        {
+            List<Asignacion> asignacionesProf = null;
+            List<Ampliacion> ampliacionesProf = null;
+
+            //Desmarcar actvs previas
+            unCheckActivs();
+
+            if (modalidad.Equals("simp"))
+            {
+                asignacionesProf = AsignacsManager.getAsignaciones(idProfesor, idSemestre, periodo, anio);
+
+                foreach (Asignacion asig in asignacionesProf)
+                {
+                    Actividad actv = asig.getActividad();
+                    checkActiv(actv);
+                }
+
+            }
+
+            else //Ampliaciones
+            {
+                ampliacionesProf = AsignacsManager.getAmpliaciones(idProfesor, idSemestre, periodo, anio);
+               
+                foreach (Ampliacion ampl in ampliacionesProf)
+                {
+                    if(modalidad.Equals("amp"))
+                    {
+                        if (ampl.getIsDouble() == false)
+                        {
+                            Actividad actv = ampl.getActividad();
+                            checkActiv(actv);
+                        }
+                    }
+
+                    else
+                    {
+                        if (ampl.getIsDouble() == true)
+                        {
+                            Actividad actv = ampl.getActividad();
+                            checkActiv(actv);
+                        }
+                    }   
+                }
+
+            }
+
+            //Actualizar tablas 
+            dgGrupos.Items.Refresh();
+            dgAdmin.Items.Refresh();
+            dgInvestig.Items.Refresh();
+        }
+
+
+        private void checkActiv(Actividad pActv)
+        {
+            //Marcar actividades
+            if (pActv.getTipo().Equals("GRUP"))
+            {
+                foreach (Grupos_GUI grupoInfo in dgGrupos.ItemsSource)
+                {
+                    if (grupoInfo.id == pActv.getId())
+                        grupoInfo.isSelected = true;
+                }
+            }
+
+            else if (pActv.getTipo().Equals("ADMI"))
+            {
+                foreach (ActvsAdmin_GUI admiInfo in dgAdmin.ItemsSource)
+                {
+                    if (admiInfo.id == pActv.getId())
+                        admiInfo.isSelected = true;
+                }
+            }
+
+            else //Investigaciones
+            {
+                foreach (Investigs_GUI investInfo in dgInvestig.ItemsSource)
+                {
+                    if (investInfo.id == pActv.getId())
+                        investInfo.isSelected = true;
+                }
+            }
+        }
+
+        private void unCheckActivs()
+        {
+            if (dgGrupos.ItemsSource != null && dgAdmin.ItemsSource != null && dgInvestig.ItemsSource != null)
+            {
+                foreach (Grupos_GUI grupoInfo in dgGrupos.ItemsSource)
+                {
+                    grupoInfo.isSelected = false;
+                }
+
+                foreach (ActvsAdmin_GUI admiInfo in dgAdmin.ItemsSource)
+                {
+                    admiInfo.isSelected = false;
+                }
+
+                foreach (Investigs_GUI investInfo in dgInvestig.ItemsSource)
+                {
+                    investInfo.isSelected = false;
+                }
+            }
         }
 
 
@@ -127,10 +237,7 @@ namespace SACD.Ventanas
 
 
         private void guardarAsigSimples()
-        {
-            //Asignaciones simples
-            List<Asignacion> asignacionesProf = AsignacsManager.getAsignaciones(idProfesor, idSemestre, periodo, anio);
-
+        {               
             //Recorrer tabla de cursos
             foreach (Grupos_GUI grupoInfo in dgGrupos.ItemsSource)
             {
@@ -149,7 +256,7 @@ namespace SACD.Ventanas
                 bool isChecked = adminInfo.isSelected;
                 if (isChecked)
                 {
-                    AsignacsManager.asignarActiv(adminInfo.id, idProfesor, 1, adminInfo.valHoras);
+                    AsignacsManager.asignarActiv(adminInfo.id, idProfesor, idSemestre, adminInfo.valHoras);
                     MessageBox.Show(adminInfo.nombre);
                 }
             }
@@ -160,13 +267,12 @@ namespace SACD.Ventanas
                 bool isChecked = investInfo.isSelected;
                 if (isChecked)
                 {
-                    AsignacsManager.asignarActiv(investInfo.id, idProfesor, 1, investInfo.valHoras);
+                    AsignacsManager.asignarActiv(investInfo.id, idProfesor, idSemestre, investInfo.valHoras);
                     MessageBox.Show(investInfo.nombre);
                 }
             }
         }
-
-      
+    
 
         private void radioButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -192,7 +298,9 @@ namespace SACD.Ventanas
                             modalidad = "dbamp";
                             break;
                         }
-                }               
+                }
+
+                cargarAsigProf();
             }
         }
     }

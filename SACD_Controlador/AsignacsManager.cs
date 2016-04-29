@@ -43,7 +43,7 @@ namespace SACD_Controlador
             return asignList;
         }
 
-        public static List<Ampliacion> getAmpliaciones(int pIdProfesor, int pPeriodo, int pAño)
+        public static List<Ampliacion> getAmpliaciones(int pIdProfesor, int idSemestre, int pPeriodo, int pAño)
         {
             List<Object[]> ampliListObject = new List<Object[]>();
             List<Ampliacion> ampliList = new List<Ampliacion>();
@@ -56,7 +56,7 @@ namespace SACD_Controlador
             {
                 grupo = ActividadesManager.buscar((int)obj[0]);
 
-                ampliacion = new Ampliacion((decimal)obj[3], grupo, new Semestre(0, 0, 0), (bool)obj[4]); //PONER BIEN EL SEMESTRE
+                ampliacion = new Ampliacion((decimal)obj[3], grupo, new Semestre(idSemestre, pAño, pPeriodo), (bool)obj[4]);
                 ampliList.Add(ampliacion);
             }
 

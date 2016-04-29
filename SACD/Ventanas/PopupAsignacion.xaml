@@ -16,13 +16,9 @@
                             <ImageBrush ImageSource="/SACD;component/Resources/Equis.png"/>
                         </Button.Background>
                     </Button>
-                    <GroupBox x:Name="groupBox" Header="Modalidad" HorizontalAlignment="Left" Margin="26,20,0,0" VerticalAlignment="Top" Height="199" Width="176" Foreground="#FF666666"/>
-                    <RadioButton x:Name="radioButt_Simp" Content="Simple" HorizontalAlignment="Left" Margin="66,69,0,0" VerticalAlignment="Top" Foreground="#FF666666" RenderTransformOrigin="1.355,-4.633" GroupName="Modalidad" IsChecked="True" Checked="radioButton_Checked"/>
-                    <RadioButton x:Name="radioButt_Amp" Content="Ampliación" HorizontalAlignment="Left" Margin="66,114,0,0" VerticalAlignment="Top" Foreground="#FF666666" RenderTransformOrigin="1.141,-8.033" GroupName="Modalidad" Checked="radioButton_Checked"/>
-                    <RadioButton x:Name="radioButt_Dbamp" Content="Doble Ampliación" HorizontalAlignment="Left" Margin="66,164,0,0" VerticalAlignment="Top" Foreground="#FF666666" GroupName="Modalidad" Checked="radioButton_Checked"/>
-                    <Label x:Name="label1_Copy6" Content="Académicas" HorizontalAlignment="Left" Margin="282,15,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+                   <Label x:Name="label1_Copy6" Content="Académicas" HorizontalAlignment="Left" Margin="282,15,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
                     <Label x:Name="label1_Copy7" Content="Administrativas" HorizontalAlignment="Left" Margin="282,290,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
-                    <Label x:Name="label1_Copy8" Content="Investigaciones" HorizontalAlignment="Left" Margin="282,570,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/>
+                    <Label x:Name="label1_Copy8" Content="Investigaciones" HorizontalAlignment="Left" Margin="282,570,0,0" VerticalAlignment="Top" FontSize="13.333" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.482,2.169"/> 
                     <DataGrid x:Name="dgGrupos" AutoGenerateColumns="False" Background="White" BorderBrush="#FFDDDDDD" FontSize="13.333" HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalGridLinesBrush="#FFDDDDDD" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True" AlternationCount="2" CanUserResizeColumns="False" AlternatingRowBackground="Snow" Margin="282,51,95,0" VerticalAlignment="Top" Height="180">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Width="40">
@@ -180,19 +176,19 @@
                                         <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
                                         <Setter Property="FontSize" Value="10pt"/>
                                         <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                        <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding valHoras}" Header="Horas" Width="100">
-                                <DataGridTextColumn.CellStyle>  
+                                <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="ToolTip" Value="{Binding valHoras}" />
                                         <Setter Property="Padding" Value="10"/>
@@ -269,6 +265,10 @@
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
                     </DataGrid>
+                    <GroupBox x:Name="groupBox" Header="Modalidad" HorizontalAlignment="Left" Margin="26,20,0,0" VerticalAlignment="Top" Height="199" Width="176" Foreground="#FF666666"/>
+                    <RadioButton x:Name="radioButt_Simp" Content="Simple" HorizontalAlignment="Left" Margin="66,69,0,0" VerticalAlignment="Top" Foreground="#FF666666" RenderTransformOrigin="1.355,-4.633" GroupName="Modalidad" IsChecked="True" Checked="radioButton_Checked"/>
+                    <RadioButton x:Name="radioButt_Amp" Content="Ampliación" HorizontalAlignment="Left" Margin="66,114,0,0" VerticalAlignment="Top" Foreground="#FF666666" RenderTransformOrigin="1.141,-8.033" GroupName="Modalidad" Checked="radioButton_Checked"/>
+                    <RadioButton x:Name="radioButt_Dbamp" Content="Doble Ampliación" HorizontalAlignment="Left" Margin="66,164,0,0" VerticalAlignment="Top" Foreground="#FF666666" GroupName="Modalidad" Checked="radioButton_Checked"/>
                     <Button x:Name="btn_Aceptar" Content="Guardar Asignación" HorizontalAlignment="Left" Margin="48,246,0,0" VerticalAlignment="Top" Width="136" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{StaticResource RoundButton}" Click="btn_Aceptar_Click" RenderTransformOrigin="0.426,-0.1"/>
                 </Grid>
             </Border>
