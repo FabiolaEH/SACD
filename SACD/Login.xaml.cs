@@ -27,7 +27,10 @@ namespace SACD
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            if (tbxCorreo.Text.Equals("") || tbxPassword.Password.Equals(""))
+            new MainWindow().Show();
+            this.Close();
+
+            /*if (tbxCorreo.Text.Equals("") || tbxPassword.Password.Equals(""))
             {
                 MessageBox.Show("Favor llenar los espacios vacíos.");
             }
@@ -43,7 +46,7 @@ namespace SACD
                 {
                     MessageBox.Show("El correo y contraseña no coinciden con los registrados en el sistema.");
                 }
-            }
+            }*/
         }
 
         private void olvidarContr(object sender, RoutedEventArgs e)
