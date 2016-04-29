@@ -29,6 +29,77 @@ namespace SACD
         public Inicio()
         {
             InitializeComponent();
+            cargarInformacion();
+            //Seleccionar el semestre y año actual
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            int indexAnio = cmb_Anio.Items.IndexOf(mainWindow.anio_global);
+            int indexPeriodo= cmb_Semestre.Items.IndexOf(mainWindow.periodo_global);
+
+            cmb_Anio.SelectedIndex = indexAnio;
+            cmb_Semestre.SelectedIndex = indexPeriodo;
+
+            LoadPieChartData();
+
+        }
+
+        private void LoadPieChartData()
+        {
+            pieSeries.ItemsSource = new KeyValuePair<string, int>[]{
+                        new KeyValuePair<string,int>("Interinos", 22),
+                        new KeyValuePair<string,int>("Propiedad", 28),
+            };
+        }
+
+
+        private void cargarInformacion()
+        {
+            int anio = -1;
+            List<Semestre> semestres = SemestresManager.listar();
+
+            foreach (Semestre semestre in semestres)
+            {
+                if (semestre.getAnio() != anio)
+                {
+                    anio = semestre.getAnio();
+                    cmb_Anio.Items.Add(anio);
+                }
+            }
+
+            cmb_Semestre.Items.Add(1);
+            cmb_Semestre.Items.Add(2);
+        }
+
+        private void btn_Ver_Estadisticas(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_Aceptar_Click(object sender, RoutedEventArgs e)
+        {
+            if(cmb_Semestre.SelectedValue != null && cmb_Anio.SelectedValue != null)
+            {
+                int periodo = (int)cmb_Semestre.SelectedValue;
+                int anio = (int)cmb_Anio.SelectedValue;
+                //Asignar el semestre y año actual
+                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow.periodo_global = periodo;
+                mainWindow.anio_global = anio;
+                Boolean isExitoso = SemestresManager.editar_actual(periodo, anio);
+                if (isExitoso)
+                {
+                    List<int> semestre = SemestresManager.getSemestreGlobal();
+                    mainWindow.semestre_global = semestre[0];
+                    MessageBox.Show("Se han guardado los datos correctamente.");
+                }
+                else
+                {
+                    MessageBox.Show("Ha ocurrido un problema al actualizar el semestre actual.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor seleccione un semestre y año válido.");
+            }
         }
     }
 }

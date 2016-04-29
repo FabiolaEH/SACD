@@ -28,6 +28,20 @@ namespace SACD_Controlador
 
         }
 
+        //Editar semestre actual
+        public static Boolean editar_actual(int semestre, int anio)
+        {
+            Boolean isExitoso = DatosManager.editar_Semestre_Actual(semestre, anio);
+            return isExitoso;
+        }
+
+        //Obtener semestre global
+        public static List<int> getSemestreGlobal()
+        {
+            List<int> datosGlobales = DatosManager.get_Semestre_Global();
+            return datosGlobales;
+        }
+
         //obtener lista de semestres registrados
         public static List<Semestre> listar()
         {

@@ -30,6 +30,12 @@ namespace SACD.Páginas
             InitializeComponent();
             listarProfesores();
             frame = pFrame;
+            /*
+            Seleccionar el semestre y año actual
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            MessageBox.Show(mainWindow.semestre_global.ToString());
+            MessageBox.Show(mainWindow.anio_global.ToString());
+            */
         }
 
         public void listarProfesores()
