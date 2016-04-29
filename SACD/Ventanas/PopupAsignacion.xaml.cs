@@ -23,23 +23,31 @@ namespace SACD.Ventanas
     /// </summary>
     public partial class PopupAsignacion : Window
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
         string modalidad; //simp - amp - dbamp
         int idProfesor;
-        int idSemestre = 5;
-        int periodo = 1;
-        int anio = 2016;
+        int idSemestre;
+        int periodo;
+        int anio;
 
         public PopupAsignacion(int profeId)
         {
             InitializeComponent();
 
+            //Obtener info semestre
+            idSemestre = mainWindow.semestre_global;
+            periodo = mainWindow.periodo_global;
+            anio = mainWindow.anio_global;
+
+            //Obtener info profesor
             idProfesor = profeId;
+
             //Cargar actividades
             cargarGrupos();
             cargarActvsAdmin();
             cargarInvestig();
-
         }
+
 
         //cargar lista de actividades académicas
         public void cargarGrupos()

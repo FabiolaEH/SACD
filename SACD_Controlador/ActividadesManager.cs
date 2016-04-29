@@ -217,7 +217,8 @@ namespace SACD_Controlador
             }
 
             //dos decimales
-            return valHoras;//decimal.Truncate(valHoras * 10) / 10;
+            valHoras = Math.Truncate(100 * valHoras) / 100;
+            return valHoras;
         }
 
         //calcular valor en horas de un curso en ampliación
