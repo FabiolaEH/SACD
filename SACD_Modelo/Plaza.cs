@@ -11,6 +11,12 @@ namespace SACD_Modelo
         private int id;
         private decimal porcentaje;
 
+        public Plaza(int pId, decimal pPorcentaje)
+        {
+            id = pId;
+            porcentaje = pPorcentaje;
+        }
+
         public void setId(int pId)
         {
             id = pId;

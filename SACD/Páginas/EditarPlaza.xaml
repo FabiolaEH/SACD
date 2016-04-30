@@ -343,12 +343,12 @@
         </Rectangle>
         <Label x:Name="lblNumero" Content="Numero de Plaza" HorizontalAlignment="Left" Margin="87,202,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
         <Label x:Name="lblPorc" Content="Porcentaje" HorizontalAlignment="Left" Margin="87,258,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
-        <Button x:Name="btn_Aceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="372,341,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Aceptar_Click"/>
+        <Button x:Name="btn_Aceptar" IsEnabled="False" Content="Aceptar" HorizontalAlignment="Left" Margin="372,341,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Aceptar_Click"/>
         <Label x:Name="lblSubtitulo" Content="EDITAR" HorizontalAlignment="Left" Margin="120,10,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666"/>
-        <TextBox x:Name="tbxNumero" HorizontalAlignment="Left" Height="30" Margin="235,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="tbxPorcentaje" HorizontalAlignment="Left" Height="30" Margin="235,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="tbxNumero" IsEnabled="False" HorizontalAlignment="Left" Height="30" Margin="235,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="tbxPorcentaje" IsEnabled="False" HorizontalAlignment="Left" Height="30" Margin="235,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center"/>
         <Label x:Name="lblNumero_Copy" Content="Seleccione la plaza que desea modificar" HorizontalAlignment="Left" Margin="87,74,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" />
-        <ComboBox x:Name="cmb_Plazas" Margin="235,119,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
+        <ComboBox x:Name="cmb_Plazas" Margin="235,119,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" SelectionChanged="cmb_Plazas_SelectionChanged"/>
 
     </Grid>
 

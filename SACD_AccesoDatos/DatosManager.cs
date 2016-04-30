@@ -15,8 +15,8 @@ namespace SACD_AccesoDatos
         {
             conn = new SqlConnection();
        
-            //conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
-            conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
+            conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            //conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
             //conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = ecRhin\\estudiantes; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
 
@@ -101,29 +101,6 @@ namespace SACD_AccesoDatos
 
             return isValido;
         }
-
-        //Actualizar código de verificación del usuario
-        public static Boolean generarCodigo(string pCodigo, string pCorreo)
-        {
-            Boolean isValido = false;
-
-            if (crearConexion() == true)
-            {
-                SqlCommand command = new SqlCommand("UPDATE SACDFUSUARIOS SET COD_RECUPERA = @cod_recup WHERE TXT_EMAIL = @correo", conn);
-                command.Parameters.AddWithValue("@cod_recup", pCodigo);
-                command.Parameters.AddWithValue("@correo", pCorreo);
-                command.ExecuteNonQuery();
-                return true;
-            }
-
-            else
-            {
-                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
-                isValido = false;
-            }
-
-            return isValido;
-        }
         
         //Verificar código
         public static string verificarCodigo(string pCorreo)
@@ -147,52 +124,6 @@ namespace SACD_AccesoDatos
             return codigo;
         }
 
-        //Actualizar Contraseña
-        public static Boolean actualizarPassword(string pCorreo, string pPassword)
-        {
-            Boolean isValido = false;
-
-            if (crearConexion() == true)
-            {
-                SqlCommand command = new SqlCommand("UPDATE SACDFUSUARIOS SET TXT_CONTRAS = @password WHERE TXT_EMAIL = @correo", conn);
-                command.Parameters.AddWithValue("@password", pPassword);
-                command.Parameters.AddWithValue("@correo", pCorreo);
-                command.ExecuteNonQuery();
-                return true;
-            }
-
-            else
-            {
-                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
-                isValido = false;
-            }
-            
-            return isValido;
-        }
-
-        //Registrar usuario
-        public static Boolean registrarUsuario(string pNombre, string pCorreo, string pPassword)
-        {
-            Boolean isValido = false;
-
-            if (crearConexion() == true)
-            {
-                SqlCommand command = new SqlCommand("INSERT INTO SACDFUSUARIOS VALUES(@nombre, @correo, @password,'')", conn);
-                command.Parameters.AddWithValue("@nombre", pNombre);
-                command.Parameters.AddWithValue("@password", pPassword);
-                command.Parameters.AddWithValue("@correo", pCorreo);
-                command.ExecuteNonQuery();
-                return true;
-            }
-
-            else
-            {
-                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
-                isValido = false;
-            }
-
-            return isValido;
-        }
 
         /************* Profesores ***************/
 
@@ -289,6 +220,7 @@ namespace SACD_AccesoDatos
             return profeInfo;
         }
 
+
         /************* Investigaciones ***************/
 
         //Obtener lista de investigaciones
@@ -355,6 +287,7 @@ namespace SACD_AccesoDatos
             return investInfo;
         }
 
+
         /************* Actv. Administrativas ***************/
 
         //Obtener lista de investigaciones
@@ -416,6 +349,7 @@ namespace SACD_AccesoDatos
 
             return admiInfo;
         }
+
 
         /************* Grupos ***************/
 
@@ -483,6 +417,7 @@ namespace SACD_AccesoDatos
 
             return grupoInfo;
         }
+
 
         /************* Cursos ***************/
 
@@ -579,31 +514,6 @@ namespace SACD_AccesoDatos
             return semestresList;
         }
 
-        //Editar semestre actual
-        public static Boolean editar_Semestre_Actual(int pPeriodo, int pAnio)
-        {
-            Boolean isExitoso = false;
-
-            if (crearConexion() == true)
-            {
-                SqlCommand command = new SqlCommand("UPDATE SACDFSEMESTRES SET DSC_ACTUAL = NULL", conn);
-                command.ExecuteNonQuery();
-                SqlCommand command2 = new SqlCommand("UPDATE SACDFSEMESTRES SET DSC_ACTUAL = 1 WHERE NUM_AÑO = @anio AND NUM_PERIODO = @periodo", conn);
-                command2.Parameters.AddWithValue("@anio", pAnio);
-                command2.Parameters.AddWithValue("@periodo", pPeriodo);
-                command2.ExecuteNonQuery();
-                isExitoso = true;
-            }
-
-            else
-            {
-                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
-                isExitoso = false;
-            }
-            conn.Close();
-            return isExitoso;
-        }
-
         //Obtener semestre actual
         public static List<int> get_Semestre_Global()
         {
@@ -634,6 +544,7 @@ namespace SACD_AccesoDatos
             conn.Close();
             return semestre;
         }
+
 
         /************* Asignaciones ***************/
 
@@ -727,6 +638,7 @@ namespace SACD_AccesoDatos
             return actividadInfo;
         }
 
+
         /************* Ampliaciones ***************/
 
         //buscar ampliaciones 
@@ -765,9 +677,42 @@ namespace SACD_AccesoDatos
         }
 
 
+        /************* Plazas ***************/
+
+        public static List<Object[]> getPlazasList()
+        {
+            List<Object[]> plazasList = new List<Object[]>();
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT NUM_PLAZA, POR_PLAZA FROM SACDFPLAZAS", conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Object[] plazaInfo = new Object[5];
+                    plazaInfo[0] = reader.GetInt32(0);
+                    plazaInfo[1] = reader.GetDecimal(1);
+                    plazasList.Add(plazaInfo);
+                }
+
+                reader.Close();
+                cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return plazasList;
+        }
+
+
         /*---------------------------------   INSERTAR  --------------------------------------*/
 
         /************* Asignaciones ***************/
+
         public static int insertAsignacion(int pIdActv, int pIdProfe, int pIdSemestre, decimal pHoras)
         {
             int result = 1;
@@ -803,9 +748,210 @@ namespace SACD_AccesoDatos
             return result;
         }
 
+
+        /************* Usuarios ***************/
+
+        //Registrar usuario
+        public static Boolean registrarUsuario(string pNombre, string pCorreo, string pPassword)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("INSERT INTO SACDFUSUARIOS VALUES(@nombre, @correo, @password,'')", conn);
+                command.Parameters.AddWithValue("@nombre", pNombre);
+                command.Parameters.AddWithValue("@password", pPassword);
+                command.Parameters.AddWithValue("@correo", pCorreo);
+                command.ExecuteNonQuery();
+                return true;
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
+
+
+        /************* Plazas ***************/
+
+        //Registrar usuario
+        public static Boolean insertPlaza(string pNumero, string pPorcentaje)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFPLAZAS VALUES(@numero, @porcentaje)", conn);
+                    command.Parameters.AddWithValue("@numero", pNumero);
+                    command.Parameters.AddWithValue("@porcentaje", pPorcentaje);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("DatosManager.insertPlaza -> Problema al insertar plaza: "+e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
+
         /*---------------------------------   MODIFICAR  --------------------------------------*/
+
+        /************* Usuarios ***************/
+
+        //Actualizar código de verificación del usuario
+        public static Boolean generarCodigo(string pCodigo, string pCorreo)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("UPDATE SACDFUSUARIOS SET COD_RECUPERA = @cod_recup WHERE TXT_EMAIL = @correo", conn);
+                command.Parameters.AddWithValue("@cod_recup", pCodigo);
+                command.Parameters.AddWithValue("@correo", pCorreo);
+                command.ExecuteNonQuery();
+                return true;
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
+
+        //Actualizar Contraseña
+        public static Boolean actualizarPassword(string pCorreo, string pPassword)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("UPDATE SACDFUSUARIOS SET TXT_CONTRAS = @password WHERE TXT_EMAIL = @correo", conn);
+                command.Parameters.AddWithValue("@password", pPassword);
+                command.Parameters.AddWithValue("@correo", pCorreo);
+                command.ExecuteNonQuery();
+                return true;
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
+
+
+        /************* Semestres ***************/
+
+        //Editar semestre actual
+        public static Boolean editar_Semestre_Actual(int pPeriodo, int pAnio)
+        {
+            Boolean isExitoso = false;
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("UPDATE SACDFSEMESTRES SET DSC_ACTUAL = NULL", conn);
+                command.ExecuteNonQuery();
+                SqlCommand command2 = new SqlCommand("UPDATE SACDFSEMESTRES SET DSC_ACTUAL = 1 WHERE NUM_AÑO = @anio AND NUM_PERIODO = @periodo", conn);
+                command2.Parameters.AddWithValue("@anio", pAnio);
+                command2.Parameters.AddWithValue("@periodo", pPeriodo);
+                command2.ExecuteNonQuery();
+                isExitoso = true;
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isExitoso = false;
+            }
+            conn.Close();
+            return isExitoso;
+        }
+
+
+        /************* Plazas ***************/
+
+        public static Boolean editarPlaza(string pNumero, string pPorcentaje)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("UPDATE SACDFPLAZAS SET POR_PLAZA = @porcentaje WHERE NUM_PLAZA = @numero", conn);
+                    command.Parameters.AddWithValue("@porcentaje", pPorcentaje);
+                    command.Parameters.AddWithValue("@numero", pNumero);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.editarPlaza -> Problema al editar plaza: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
 
 
         /*---------------------------------   ELIMINAR  --------------------------------------*/
+
+        /************* Plazas ***************/
+
+        public static Boolean eliminarPlaza(string pNumero)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("DELETE FROM SACDFPLAZAS WHERE NUM_PLAZA = @numero", conn);
+                    command.Parameters.AddWithValue("@numero", pNumero);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.eliminarPlaza -> Problema al eliminar plaza: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
     }
 }

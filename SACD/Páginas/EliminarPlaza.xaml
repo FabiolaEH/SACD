@@ -331,7 +331,7 @@
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <DataGrid x:Name="dgPlazas" AutoGenerateColumns="False" Background="White" BorderBrush="#FFDDDDDD" FontSize="13.333" HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalGridLinesBrush="#FFDDDDDD" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True" AlternationCount="2" CanUserResizeColumns="False" AlternatingRowBackground="Snow" Margin="120,98,263,0" VerticalAlignment="Top" Height="254">
+        <DataGrid x:Name="dgPlazas" AutoGenerateColumns="False" Background="White" BorderBrush="#FFDDDDDD" FontSize="13.333" HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalGridLinesBrush="#FFDDDDDD" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True" AlternationCount="2" CanUserResizeColumns="False" AlternatingRowBackground="Snow" Margin="120,98,241,0" VerticalAlignment="Top" Height="254">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding numero}" Header="Numero Plaza" Width="150">
                     <DataGridTextColumn.CellStyle>
