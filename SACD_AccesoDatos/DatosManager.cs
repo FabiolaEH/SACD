@@ -953,5 +953,37 @@ namespace SACD_AccesoDatos
 
             return isValido;
         }
+
+
+        /************* Profesores ***************/
+
+        public static Boolean eliminarProfe(string pId)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("DELETE FROM SACDFPROFESORES WHERE ID_PROFESOR = @id", conn);
+                    command.Parameters.AddWithValue("@id", pId);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.eliminarProfe -> Problema al eliminar profesor: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
     }
 }

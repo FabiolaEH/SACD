@@ -18,9 +18,10 @@ namespace SACD_Controlador
         }
 
         //eliminar profesor
-        public static void eliminar(int pId)
+        public static Boolean eliminar(int pId)
         {
-
+            Boolean isValido = DatosManager.eliminarProfe(pId.ToString());
+            return isValido;
         }
 
         //editar profesor

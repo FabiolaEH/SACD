@@ -75,6 +75,9 @@
     <Compile Include="Páginas\EditarPlaza.xaml.cs">
       <DependentUpon>EditarPlaza.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Páginas\EliminarProfes.xaml.cs">
+      <DependentUpon>EliminarProfes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Páginas\EliminarPlaza.xaml.cs">
       <DependentUpon>EliminarPlaza.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Páginas\EditarPlaza.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Páginas\EliminarProfes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

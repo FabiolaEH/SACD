@@ -87,7 +87,7 @@
                 <MenuItem Header="Profesores" FontSize="16" FontWeight="Normal" Foreground="Black" Padding="5">
                     <MenuItem Header="Crear" Foreground="Black" FontWeight="Normal" FontSize="16" Padding="5"/>
                     <MenuItem Header="Editar" Foreground="Black" FontWeight="Normal" FontSize="16" Padding="5"/>
-                    <MenuItem Header="Eliminar" FontSize="16" FontWeight="Normal" Foreground="Black" Padding="5"/>
+                    <MenuItem Header="Eliminar" FontSize="16" FontWeight="Normal" Foreground="Black" Padding="5" Command="NavigationCommands.GoToPage" CommandParameter="Páginas/EliminarProfes.xaml" CommandTarget="{Binding ElementName=frmContenido}" />
                 </MenuItem>
                 <MenuItem Header="Plazas" FontSize="16" FontWeight="Normal" Foreground="Black" Padding="5">
                     <MenuItem Header="Crear" FontSize="16" FontWeight="Normal" Foreground="Black" Padding="5" Command="NavigationCommands.GoToPage" CommandParameter="Páginas/CrearPlaza.xaml" CommandTarget="{Binding ElementName=frmContenido}" />
