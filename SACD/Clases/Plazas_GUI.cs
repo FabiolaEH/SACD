@@ -11,5 +11,7 @@ namespace SACD.Clases
         public int numero { get; set; }
         public decimal porcentaje { get; set; }
         public bool isSelected { get; set; }
+        public string porcAsignado { get; set; }
+        public bool isPropiedad { get; set; }
     }
 }

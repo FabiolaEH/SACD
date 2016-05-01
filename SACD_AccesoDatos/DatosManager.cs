@@ -220,6 +220,34 @@ namespace SACD_AccesoDatos
             return profeInfo;
         }
 
+        //Obtener último ID insertado
+        public static Object[] getUltimoProfe()
+        {
+            Object[] profeInfo = new Object[1];
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT TOP(1) ID_PROFESOR FROM SACDFPROFESORES ORDER BY ID_PROFESOR DESC", conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    profeInfo[0] = reader.GetInt32(0);
+
+                }
+
+                reader.Close();
+                cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+
+            return profeInfo;
+        }
 
         /************* Investigaciones ***************/
 
@@ -796,6 +824,72 @@ namespace SACD_AccesoDatos
                 catch(Exception e)
                 {
                     Console.WriteLine("DatosManager.insertPlaza -> Problema al insertar plaza: "+e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
+
+
+        /************* Profesores ***************/
+
+        //Insertar Profesor
+        public static Boolean insertProfesor(string pNombre)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFPROFESORES VALUES(@nombre, 0)", conn);
+                    command.Parameters.AddWithValue("@nombre", pNombre);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.insertProfesor -> Problema al insertar profesor: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
+
+        //Insertar Profesor
+        public static Boolean insertPlazaProfe(string pIdProfe, string pNumeroPlaza, string pPorcentaje, string pIsPropiedad)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFPLAZA_PROFE VALUES(@idProfe, @nomPlaza, @porc, @isPropiedad)", conn);
+                    command.Parameters.AddWithValue("@idProfe", pIdProfe);
+                    command.Parameters.AddWithValue("@nomPlaza", pNumeroPlaza);
+                    command.Parameters.AddWithValue("@porc", pPorcentaje);
+                    command.Parameters.AddWithValue("@isPropiedad", pIsPropiedad);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.insertPlazaProfe -> Problema al insertar Plaza_Profesor: " + e.ToString());
                     isValido = false;
                 }
             }

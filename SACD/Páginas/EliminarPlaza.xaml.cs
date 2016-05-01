@@ -44,7 +44,6 @@ namespace SACD.Páginas
                 plazasListGUI.Add(new Plazas_GUI() { numero = plaza.getId(), porcentaje = plaza.getPorcentaje()});
             }
 
-            //dgPlazas.ItemsSource = null;
             dgPlazas.ItemsSource = plazasListGUI;
         }
 
