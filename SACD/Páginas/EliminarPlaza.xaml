@@ -355,7 +355,7 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding porcentaje}" Header="Porcentaje" Width="100"/>
-                <DataGridTemplateColumn Width="40">
+                <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <CheckBox x:Name="checkbx_SelectCu" IsChecked="{Binding isSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center"/>

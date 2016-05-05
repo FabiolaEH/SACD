@@ -331,7 +331,7 @@
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <DataGrid x:Name="dgProfes" AutoGenerateColumns="False" Background="White" BorderBrush="#FFDDDDDD" FontSize="13.333" HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalGridLinesBrush="#FFDDDDDD" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True" AlternationCount="2" CanUserResizeColumns="False" AlternatingRowBackground="Snow" Margin="85,95,216,0" VerticalAlignment="Top" Height="254">
+        <DataGrid x:Name="dgProfes" AutoGenerateColumns="False" Background="White" BorderBrush="#FFDDDDDD" FontSize="13.333" HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalGridLinesBrush="#FFDDDDDD" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True" AlternationCount="2" CanUserResizeColumns="False" AlternatingRowBackground="Snow" Margin="82,95,219,0" VerticalAlignment="Top" Height="254">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID" Width="60">
                     <DataGridTextColumn.CellStyle>
@@ -355,7 +355,7 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding nombre}" Header="Nombre" Width="250"/>
-                <DataGridTemplateColumn Width="40">
+                <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <CheckBox x:Name="checkbx_SelectCu" IsChecked="{Binding isSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
