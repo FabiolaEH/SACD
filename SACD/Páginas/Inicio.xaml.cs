@@ -33,7 +33,7 @@ namespace SACD
         {
             InitializeComponent();
 
-            PlazasManager.getDistribPlazas();
+            int[] distribPlazas = PlazasManager.getDistribPlazas();
             
             cargarInformacion();
             //Seleccionar el semestre y año actual
@@ -45,7 +45,7 @@ namespace SACD
             cmb_Semestre.SelectedIndex = indexPeriodo;
 
 
-            LoadPieChartData();
+            LoadPieChartData(distribPlazas);
             LoadVerticalChartData();
             guardarAsign(mainWindow);
             LoadPieChartData2();
@@ -73,11 +73,11 @@ namespace SACD
             }
         }
 
-        private void LoadPieChartData()
+        private void LoadPieChartData(int[] pDistribPlazas)
         {
             chartPie.ItemsSource = new KeyValuePair<string, int>[]{
-                        new KeyValuePair<string,int>("Interinos", 22),
-                        new KeyValuePair<string,int>("Propiedad", 28)
+                        new KeyValuePair<string,int>("Interinos", pDistribPlazas[0]),
+                        new KeyValuePair<string,int>("Propietarios", pDistribPlazas[1])
             };
         }
 
