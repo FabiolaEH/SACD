@@ -54,7 +54,7 @@ namespace SACD.Páginas
                     //Crear relación Plaza_Profesor
                     foreach (Plazas_GUI plazaInfo in plazasListGUI)
                     {
-                        if (plazaInfo.isSelected)
+                        if (plazaInfo.porcAsignado != null)
                         {
                             isValido = ProfesManager.insertPlazaProfe(idProfe.ToString(), plazaInfo.numero.ToString(),
                                 plazaInfo.porcAsignado, plazaInfo.isPropiedad);
