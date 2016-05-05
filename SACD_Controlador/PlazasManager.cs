@@ -45,6 +45,8 @@ namespace SACD_Controlador
             return plazasList;
         }
 
+        //Obtener cantidad de plazas propietarias y interinas. 
+        //El primer valor son las prop. y el segundo los interinos
         public static int[] getDistribPlazas()
         {
             int[] result = DatosManager.getDistribPlazas();
