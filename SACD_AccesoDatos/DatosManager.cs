@@ -15,8 +15,8 @@ namespace SACD_AccesoDatos
         {
             conn = new SqlConnection();
        
-            conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
-            //conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
+            //conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
             //conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = ecRhin\\estudiantes; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
 
@@ -737,9 +737,46 @@ namespace SACD_AccesoDatos
         }
 
 
+        public static int[] getDistribPlazas()
+        {
+            int [] result = new int[2];
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT COUNT(DSC_PROPIEDAD) " +
+                                                    "FROM SACDFPLAZA_PROFE " +
+                                                    "WHERE DSC_PROPIEDAD = 1 " +
+                                                    "UNION " +
+                                                    "SELECT COUNT(DSC_PROPIEDAD) " +
+                                                    "FROM SACDFPLAZA_PROFE " +
+                                                    "WHERE DSC_PROPIEDAD = 0 ", conn);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                int index = 0;
+                while (reader.Read())
+                {
+                    result[index] = reader.GetInt32(0);
+                    index++;
+                }
+
+                reader.Close();
+                cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return result;
+        }
+
+
+
         /*---------------------------------   INSERTAR  --------------------------------------*/
 
-        /************* Asignaciones ***************/
+            /************* Asignaciones ***************/
 
         public static int insertAsignacion(int pIdActv, int pIdProfe, int pIdSemestre, decimal pHoras)
         {

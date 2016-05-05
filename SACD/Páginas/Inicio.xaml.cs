@@ -32,6 +32,9 @@ namespace SACD
         public Inicio()
         {
             InitializeComponent();
+
+            PlazasManager.getDistribPlazas();
+            
             cargarInformacion();
             //Seleccionar el semestre y año actual
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;

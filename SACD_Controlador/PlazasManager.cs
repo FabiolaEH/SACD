@@ -14,7 +14,7 @@ namespace SACD_Controlador
             return isValido;
         }
 
-        //eliminar semestre
+        //eliminar Plaza
         public static Boolean eliminar(int pNumero)
         {
             Boolean isValido = DatosManager.eliminarPlaza(pNumero.ToString());
@@ -28,14 +28,8 @@ namespace SACD_Controlador
             return isValido;
         }
 
-        //Editar semestre actual
-        public static Boolean editar_actual(int semestre, int anio)
-        {
-            Boolean isExitoso = DatosManager.editar_Semestre_Actual(semestre, anio);
-            return isExitoso;
-        }
 
-        //obtener lista de investigaciones registradas
+        //obtener lista de plazas registradas
         public static List<Plaza> listarPlazas()
         {
             List<Object[]> plazasObj = DatosManager.getPlazasList();
@@ -50,5 +44,13 @@ namespace SACD_Controlador
 
             return plazasList;
         }
+
+        public static int[] getDistribPlazas()
+        {
+            int[] result = DatosManager.getDistribPlazas();
+
+            return result;
+        }
+    
     }
 }
