@@ -15,8 +15,8 @@ namespace SACD_AccesoDatos
         {
             conn = new SqlConnection();
        
-            //conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
-            conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
+            conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            //conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
             //conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = ecRhin\\estudiantes; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
 
@@ -916,7 +916,7 @@ namespace SACD_AccesoDatos
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("INSERT INTO SACDFPLAZA_PROFE VALUES(@idProfe, @nomPlaza, @porc, @isPropiedad)", conn);
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFPLAZA_PROFE(ID_PROFESOR, NUM_PLAZA, POR_ASIGNADO, DSC_PROPIEDAD) VALUES(@idProfe, @nomPlaza, @porc, @isPropiedad)", conn);
                     command.Parameters.AddWithValue("@idProfe", pIdProfe);
                     command.Parameters.AddWithValue("@nomPlaza", pNumeroPlaza);
                     command.Parameters.AddWithValue("@porc", pPorcentaje);
