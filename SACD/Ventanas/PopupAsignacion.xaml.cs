@@ -246,7 +246,7 @@ namespace SACD.Ventanas
                 {
                     //verificar que sea un registro de asignación repetido
                     AsignacsManager.asignarActiv(grupoInfo.id, idProfesor, idSemestre, grupoInfo.valHoras);
-                    MessageBox.Show(grupoInfo.nombre);
+                    //MessageBox.Show(grupoInfo.nombre);
                 }
             }
 
@@ -257,7 +257,7 @@ namespace SACD.Ventanas
                 if (isChecked)
                 {
                     AsignacsManager.asignarActiv(adminInfo.id, idProfesor, idSemestre, adminInfo.valHoras);
-                    MessageBox.Show(adminInfo.nombre);
+                    //MessageBox.Show(adminInfo.nombre);
                 }
             }
 
@@ -268,7 +268,7 @@ namespace SACD.Ventanas
                 if (isChecked)
                 {
                     AsignacsManager.asignarActiv(investInfo.id, idProfesor, idSemestre, investInfo.valHoras);
-                    MessageBox.Show(investInfo.nombre);
+                    //MessageBox.Show(investInfo.nombre);
                 }
             }
         }

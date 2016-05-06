@@ -11,24 +11,40 @@ namespace SACD.Páginas
     /// <summary>
     /// Lógica de interacción para Reportes.xaml
     /// </summary>
-    public partial class CrearProfesor : Page
+    public partial class EditarProfesor : Page
     {
         List<Plaza> plazasList = new List<Plaza>();
+        List<Profesor> profesList = new List<Profesor>();
         List<Plazas_GUI> plazasListGUI = new List<Plazas_GUI>();
 
-        public CrearProfesor()
+        public EditarProfesor()
         {
             InitializeComponent();
+            actualizarCombobox();
+            cargarPlazas();
             actualizarTabla();
         }
 
-        private void actualizarTabla()
+        private void actualizarCombobox()
+        {
+            //Cargar comboboxes
+            profesList = ProfesManager.listar();
+            foreach (Profesor profe in profesList)
+            {
+                cmb_Profes.Items.Add(profe.getNombre());
+            }
+        }
+
+        private void cargarPlazas()
         {
             plazasList = new List<Plaza>();
             plazasListGUI = new List<Plazas_GUI>();
 
             plazasList = PlazasManager.listarPlazas();
+        }
 
+        private void actualizarTabla()
+        {
             foreach (Plaza plaza in plazasList)
             {
                 plazasListGUI.Add(new Plazas_GUI() { numero = plaza.getId(), porcentaje = plaza.getPorcentaje() });
@@ -40,16 +56,12 @@ namespace SACD.Páginas
 
         private void btn_Aceptar_Click(object sender, RoutedEventArgs e)
         {
-            Boolean exito = true;
             if(tbxNombre.Text != "")
             {
                 //Primero insertar el profesor
                 Boolean isValido = ProfesManager.crear(tbxNombre.Text);
                 if (!isValido)
-                {
                     MessageBox.Show("Error al insertar el profesor");
-                    exito = false;
-                }
                 else
                 {
                     //Obtener ID del profe insertado
@@ -65,19 +77,32 @@ namespace SACD.Páginas
                             if (!isValido)
                             {
                                 MessageBox.Show("Error al ligar la plaza");
-                                exito = false;
                                 break;
                             }
                         }
                     }
                 }
-                if (exito)
-                    MessageBox.Show("Profesor insertado correctamente");
             }
             else
             {
                 MessageBox.Show("No puede dejar ningún espacio en blanco.");
             }
+        }
+
+        private void cmb_Profes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /*int id = Int32.Parse((String)cmb_Plazas.SelectedValue);
+            tbxNumero.Text = id.ToString();
+
+            foreach (Plaza plaza in plazasList)
+            {
+                if (plaza.getId() == id)
+                {
+                    tbxPorcentaje.Text = plaza.getPorcentaje().ToString().Replace(",", ".");
+                    tbxPorcentaje.IsEnabled = true;
+                    btn_Aceptar.IsEnabled = true;
+                }
+            }*/
         }
     }
 }
