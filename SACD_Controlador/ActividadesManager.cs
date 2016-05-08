@@ -13,8 +13,43 @@ namespace SACD_Controlador
         //crear actividad
         public static void crear(string pTipo) //cur - invest - admin
         {
-            ActvAdmin nueva;
+            
         }
+
+        //Crear actividades administrativas
+        public static Boolean crearActAdministrativa(string pNombre, decimal pHoras)
+        {
+            ActvAdmin admin = new ActvAdmin(0, "admin", pHoras, pNombre);
+            Boolean isExitoso = DatosManager.insertarActvAdmin(admin.getNombre(), admin.getHoras());
+            return isExitoso;
+        }
+
+        //Crear investigación
+        public static Boolean crearActInvestigacion(string pNombre, decimal pHoras, DateTime pFechaInicio, DateTime pFechaFin) {
+            Investigacion invest = new Investigacion(0, "invest", pHoras, pNombre, pFechaInicio, pFechaFin);
+            Boolean isExitoso = DatosManager.insertarActvInvest(invest.getNombre(), invest.getHoras(), invest.getInicio(), invest.getFin());
+            return isExitoso;
+        }
+        
+        //Crear curso
+        public static Boolean crearActCurso(string pNombre, string pCodigo)
+        {
+            Curso curso = new Curso(pCodigo, pNombre, 0);
+            Boolean isExitoso = DatosManager.insertarActCurso(curso.getCodigo(), curso.getNombre());
+            return isExitoso;
+        }
+
+        //Crear grupos
+        public static Boolean crearActGrupos(List<Grupo> pGrupos)
+        {
+            Boolean isExitoso = false;
+            for (int i = 0; i < pGrupos.Count; i++)
+            {
+                isExitoso = DatosManager.insertarActGrupo(pGrupos[i].getNumero(), pGrupos[i].getCantEstudiantes(), pGrupos[i].getCurso().getCodigo());
+            }
+            return isExitoso;
+        }
+
 
         //eliminar actividad
         public static void eliminar(int pId)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -15,8 +16,8 @@ namespace SACD_AccesoDatos
         {
             conn = new SqlConnection();
        
-            conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
-            //conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
+            //conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
             //conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = ecRhin\\estudiantes; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
 
@@ -666,6 +667,111 @@ namespace SACD_AccesoDatos
             return actividadInfo;
         }
 
+        //Insertar actividad administrativa
+        public static Boolean insertarActvAdmin(string pNombre, decimal pHoras)
+        {
+            Boolean isExitoso = false;
+
+            if (crearConexion() == true)
+            {
+                    SqlCommand cmd = new SqlCommand("pr_SACDFADMINISTRAT_Insertar", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@pNOM_ADMINITRATIV", pNombre));
+                    cmd.Parameters.Add(new SqlParameter("@pCAN_HORAS", pHoras));
+                    cmd.ExecuteNonQuery();
+                    isExitoso = true;
+                    cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return isExitoso;
+        }
+
+        //Insertar investigación
+        public static Boolean insertarActvInvest(string pNombre, decimal pHoras, DateTime pFechaInicio, DateTime pFechaFin)
+        {
+            Boolean isExitoso = false;
+
+            if (crearConexion() == true)
+            {
+                SqlCommand cmd = new SqlCommand("pr_SACDFINVESTIG_Insertar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@pNOM_INVESTIG", pNombre));
+                cmd.Parameters.Add(new SqlParameter("@pCAN_HORAS", pHoras));
+                cmd.Parameters.Add(new SqlParameter("@pFEC_INICIO", pFechaInicio));
+                cmd.Parameters.Add(new SqlParameter("@pFEC_FIN", pFechaFin));
+                cmd.ExecuteNonQuery();
+                isExitoso = true;
+                cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return isExitoso;
+        }
+
+        //Insertar curso
+        public static Boolean insertarActCurso(string pCodigo, string pNombre)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFCURSO VALUES(@codigo, @nombre)", conn);
+                    command.Parameters.AddWithValue("@codigo", pCodigo);
+                    command.Parameters.AddWithValue("@nombre", pNombre);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.insertActCurso -> Problema al insertar profesor: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+            cerrarConexion();
+            return isValido;
+        }
+
+        //Insertar grupos
+        public static Boolean insertarActGrupo(int pNumGrupo, int pCantEstud, string pCodigo)
+        {
+            Boolean isExitoso = false;
+
+            if (crearConexion() == true)
+            {
+                SqlCommand cmd = new SqlCommand("pr_SACDFGRUPOS_Insertar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@pCOD_CURSO", pCodigo));
+                cmd.Parameters.Add(new SqlParameter("@pNUM_GRUPO", pNumGrupo));
+                cmd.Parameters.Add(new SqlParameter("@pNUM_ESTUDIANTES", pCantEstud));
+                cmd.ExecuteNonQuery();
+                isExitoso = true;
+                cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return isExitoso;
+        }
 
         /************* Ampliaciones ***************/
 

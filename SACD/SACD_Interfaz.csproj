@@ -72,6 +72,9 @@
     <Compile Include="Clases\Reporte_Investigacion_GUI.cs" />
     <Compile Include="Clases\Reporte_Docencia_GUI.cs" />
     <Compile Include="Clases\Profesor_GUI.cs" />
+    <Compile Include="Páginas\CrearActividades.xaml.cs">
+      <DependentUpon>CrearActividades.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Páginas\EditarProfesor.xaml.cs">
       <DependentUpon>EditarProfesor.xaml</DependentUpon>
     </Compile>
@@ -115,6 +118,10 @@
       <DependentUpon>PopupTipoCurso.xaml</DependentUpon>
     </Compile>
     <Page Include="Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Páginas\CrearActividades.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
