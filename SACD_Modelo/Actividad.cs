@@ -9,8 +9,8 @@ namespace SACD_Modelo
     public abstract class Actividad
     {
         private int id;
-        private string tipo; //GROUP - ADMI - INVE
-        private decimal horas;
+        private string tipo; //GRUP - ADMI - INVE
+        private decimal horas;//presenciales
 
 
         public Actividad(int pId, string pTipo, decimal pHoras)

@@ -11,5 +11,7 @@ namespace SACD_Modelo
         private Plaza plaza;
         private decimal porcentajeAsig;
         private bool isPropiedad;
+
+
     }
 }

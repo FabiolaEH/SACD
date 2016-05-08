@@ -11,18 +11,22 @@ namespace SACD_Controlador
     public static class AsignacsManager
     {
         //asignar actividad a un profesor
-        public static void asignarActiv(int pIdActividad, int pIdProfesor, int pIdSemestre, decimal pValHoras)
+        public static int asignarActiv(int pIdActividad, int pIdProfesor, int pIdSemestre, decimal pValHoras)
         {
-            DatosManager.insertAsignacion(pIdActividad, pIdProfesor, pIdSemestre, pValHoras);
-
+            int result = DatosManager.insertAsignacion(pIdActividad, pIdProfesor, pIdSemestre, pValHoras);
+            return result;
         }
+
 
         //asignar ampliación a un profesor
-        public static void asignarAmpl(bool pIsDoble, Semestre pSemestre, Profesor pProfesor, Actividad pActividad)
+        public static int asignarAmpl(int pIdGrupo, int pIdProfe, int pIdSemestre, decimal pValHoras, int pIsDoble)
         {
-
+            int result = DatosManager.insertAmpliacion(pIdGrupo, pIdProfe, pIdSemestre, pValHoras, pIsDoble);
+            return result;
         }
 
+
+        //Obtener lista de asignaciones de un profesor
         public static List<Asignacion> getAsignaciones(int pIdProfesor, int idSemestre, int pPeriodo, int pAño)
         {
             List<Object[]> asignListObject = new List<Object[]>();
@@ -43,6 +47,8 @@ namespace SACD_Controlador
             return asignList;
         }
 
+
+        //Obtener lista de ampliaciones de un profesor
         public static List<Ampliacion> getAmpliaciones(int pIdProfesor, int idSemestre, int pPeriodo, int pAño)
         {
             List<Object[]> ampliListObject = new List<Object[]>();
@@ -61,6 +67,20 @@ namespace SACD_Controlador
             }
 
             return ampliList;
+        }
+
+
+        //Borrar una asignación de la BD
+        public static void borrarAsignacion(int pIdActividad, int pIdProfesor, int pIdSemestre)
+        {
+            DatosManager.borrarAsignacion(pIdActividad, pIdProfesor, pIdSemestre);
+        }
+
+
+        //Borrar una ampliación de la BD
+        public static void borrarAmpliacion(int pIdGrupo, int pIdProfesor, int pIdSemestre)
+        {
+            DatosManager.borrarAmpliacion(pIdGrupo, pIdProfesor, pIdSemestre);
         }
     }
 }

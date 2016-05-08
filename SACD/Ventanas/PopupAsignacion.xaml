@@ -24,7 +24,7 @@
                             <DataGridTemplateColumn Width="40">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox x:Name="checkbx_SelectCu" IsChecked="{Binding isSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                        <CheckBox x:Name="checkbx_SelectCu" Uid="{Binding id}" IsChecked="{Binding isSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="checkbx_SelectCu_Click"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -97,7 +97,7 @@
                             <DataGridTemplateColumn Width="40">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox x:Name="checkbx_SelectAc" IsChecked="{Binding isSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                        <CheckBox x:Name="checkbx_SelectAc" Uid="{Binding id}" IsChecked="{Binding isSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="checkbx_SelectAc_Click"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -162,7 +162,7 @@
                             <DataGridTemplateColumn Width="40">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox x:Name="checkbx_SelectIn" IsChecked="{Binding isSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                        <CheckBox x:Name="checkbx_SelectIn" Uid="{Binding id}" IsChecked="{Binding isSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="checkbx_SelectIn_Click"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>

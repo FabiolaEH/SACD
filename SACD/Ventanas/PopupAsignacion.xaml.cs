@@ -23,12 +23,14 @@ namespace SACD.Ventanas
     /// </summary>
     public partial class PopupAsignacion : Window
     {
+        Profesor profeInfo = null;
         MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
         string modalidad; //simp - amp - dbamp
-        int idProfesor;
         int idSemestre;
         int periodo;
         int anio;
+        List<int> desmarcadosSim = new List<int>();
+        List<int> desmarcadosAmp = new List<int>();
 
         public PopupAsignacion(int profeId)
         {
@@ -45,58 +47,114 @@ namespace SACD.Ventanas
             cargarInvestig();
 
             //Obtener info profesor
-            idProfesor = profeId;
-            cargarAsigProf();
+            profeInfo = new Profesor(profeId, "", 0);
+            List<Asignacion> asignacionesProf = AsignacsManager.getAsignaciones(profeInfo.getId(), idSemestre, periodo, anio);
+            List<Ampliacion> ampliacionesProf = AsignacsManager.getAmpliaciones(profeInfo.getId(), idSemestre, periodo, anio);
+            profeInfo.setAsignaciones(asignacionesProf);
+            profeInfo.setAmpliaciones(ampliacionesProf);
 
-
-            //marcar asignaciones según modalidad
+            cargarAsigProf();             
         }
 
-        public void cargarAsigProf()
+
+        //cargar lista de actividades académicas
+        public void cargarGrupos()
         {
-            List<Asignacion> asignacionesProf = null;
-            List<Ampliacion> ampliacionesProf = null;
+            List<Grupo> grupos = ActividadesManager.listarGrupos();
+            List<Grupos_GUI> gruposListGUI = new List<Grupos_GUI>();
+
+            foreach (Grupo grupo in grupos)
+            {
+                gruposListGUI.Add(new Grupos_GUI()
+                {
+                    nombre = grupo.getCurso().getNombre(),
+                    numGrupo = grupo.getNumero(),
+                    cantEstud = grupo.getCantEstudiantes(),
+                    valHoras = grupo.getHoras(),
+                    horasPresen = grupo.getCurso().getHorasPresen(),
+                    id = grupo.getId(),
+                    codCurso = grupo.getCurso().getCodigo()
+                });
+            }
+
+            this.dgGrupos.ItemsSource = gruposListGUI;
+        }
+
+        //cargar lista de actividades administrativas
+        public void cargarActvsAdmin()
+        {
+            List<ActvAdmin> actvsAdmin = ActividadesManager.listarAdministvs();
+            List<ActvsAdmin_GUI> actvsAdminListGUI = new List<ActvsAdmin_GUI>();
+
+            foreach (ActvAdmin admin in actvsAdmin)
+            {
+                actvsAdminListGUI.Add(new ActvsAdmin_GUI()
+                {
+                    nombre = admin.getNombre(),
+                    valHoras = admin.getHoras(),
+                    id = admin.getId()
+                });
+            }
+
+            this.dgAdmin.ItemsSource = actvsAdminListGUI;
+        }
+
+        //cargar lista de investigaciones
+        public void cargarInvestig()
+        {
+            List<Investigacion> investigaciones = ActividadesManager.listarInvestigs();
+            List<Investigs_GUI> investigsListGUI = new List<Investigs_GUI>();
+
+            foreach (Investigacion invest in investigaciones)
+            {
+                investigsListGUI.Add(new Investigs_GUI()
+                {
+                    id = invest.getId(),
+                    nombre = invest.getNombre(),
+                    valHoras = invest.getHoras(),
+                    inicio = invest.getInicio(),
+                    fin = invest.getFin()
+                });
+            }
+
+            this.dgInvestig.ItemsSource = investigsListGUI;
+        }
+
+
+        //marcar asignaciones según modalidad
+        public void cargarAsigProf()
+        {           
+            List<Asignacion> asignacionesProf = profeInfo.getAsignaciones();
+            List<Ampliacion> ampliacionesProf = profeInfo.getAmpliaciones();
 
             //Desmarcar actvs previas
             unCheckActivs();
 
             if (modalidad.Equals("simp"))
             {
-                asignacionesProf = AsignacsManager.getAsignaciones(idProfesor, idSemestre, periodo, anio);
-
                 foreach (Asignacion asig in asignacionesProf)
                 {
                     Actividad actv = asig.getActividad();
-                    checkActiv(actv);
+                    checkActiv(actv, asig, null);
                 }
-
             }
 
             else //Ampliaciones
             {
-                ampliacionesProf = AsignacsManager.getAmpliaciones(idProfesor, idSemestre, periodo, anio);
-               
                 foreach (Ampliacion ampl in ampliacionesProf)
                 {
-                    if(modalidad.Equals("amp"))
+                    if(modalidad.Equals("amp") && ampl.getIsDouble() == false)
                     {
-                        if (ampl.getIsDouble() == false)
-                        {
-                            Actividad actv = ampl.getActividad();
-                            checkActiv(actv);
-                        }
+                        Actividad actv = ampl.getActividad();
+                        checkActiv(actv, null, ampl);
                     }
 
-                    else
+                    else if(modalidad.Equals("dbamp") && ampl.getIsDouble() == true)
                     {
-                        if (ampl.getIsDouble() == true)
-                        {
-                            Actividad actv = ampl.getActividad();
-                            checkActiv(actv);
-                        }
+                        Actividad actv = ampl.getActividad();
+                        checkActiv(actv, null, ampl);
                     }   
                 }
-
             }
 
             //Actualizar tablas 
@@ -106,7 +164,8 @@ namespace SACD.Ventanas
         }
 
 
-        private void checkActiv(Actividad pActv)
+        //Marca la actividad y le modifica las horas si es un curso
+        private void checkActiv(Actividad pActv, Asignacion pAsig, Ampliacion pAmp)
         {
             //Marcar actividades
             if (pActv.getTipo().Equals("GRUP"))
@@ -114,7 +173,14 @@ namespace SACD.Ventanas
                 foreach (Grupos_GUI grupoInfo in dgGrupos.ItemsSource)
                 {
                     if (grupoInfo.id == pActv.getId())
+                    {
                         grupoInfo.isSelected = true;
+                        //actualizar horas
+                        if (modalidad.Equals("simp"))
+                            grupoInfo.valHoras = pAsig.getValorHoras();
+                        else
+                            grupoInfo.valHoras = pAmp.getValorHoras(); 
+                    }
                 }
             }
 
@@ -138,80 +204,23 @@ namespace SACD.Ventanas
         }
 
         private void unCheckActivs()
-        {
-            if (dgGrupos.ItemsSource != null && dgAdmin.ItemsSource != null && dgInvestig.ItemsSource != null)
+        {  
+            foreach (Grupos_GUI grupoInfo in dgGrupos.ItemsSource)
             {
-                foreach (Grupos_GUI grupoInfo in dgGrupos.ItemsSource)
-                {
-                    grupoInfo.isSelected = false;
-                }
-
-                foreach (ActvsAdmin_GUI admiInfo in dgAdmin.ItemsSource)
-                {
-                    admiInfo.isSelected = false;
-                }
-
-                foreach (Investigs_GUI investInfo in dgInvestig.ItemsSource)
-                {
-                    investInfo.isSelected = false;
-                }
-            }
-        }
-
-
-        //cargar lista de actividades académicas
-        public void cargarGrupos()
-        {
-            List<Grupo> grupos = ActividadesManager.listarGrupos();
-            List<Grupos_GUI> gruposListGUI = new List<Grupos_GUI>();
-
-            foreach (Grupo grupo in grupos)
-            {
-                gruposListGUI.Add(new Grupos_GUI() { nombre = grupo.getCurso().getNombre(),
-                                                     numGrupo = grupo.getNumero(),
-                                                     cantEstud = grupo.getCantEstudiantes(),
-                                                     valHoras = grupo.getHoras(),
-                                                     horasPresen = grupo.getCurso().getHorasPresen(),
-                                                     id = grupo.getId(),
-                                                     codCurso = grupo.getCurso().getCodigo()});
+                grupoInfo.isSelected = false;
             }
 
-            this.dgGrupos.ItemsSource = gruposListGUI;
-        }
-
-        //cargar lista de actividades administrativas
-        public void cargarActvsAdmin()
-        {
-            List<ActvAdmin> actvsAdmin = ActividadesManager.listarAdministvs();
-            List<ActvsAdmin_GUI> actvsAdminListGUI = new List<ActvsAdmin_GUI>();
-
-            foreach (ActvAdmin admin in actvsAdmin)
+            foreach (ActvsAdmin_GUI admiInfo in dgAdmin.ItemsSource)
             {
-                actvsAdminListGUI.Add(new ActvsAdmin_GUI() { nombre = admin.getNombre(),
-                                                             valHoras = admin.getHoras(),
-                                                             id = admin.getId()});
+                admiInfo.isSelected = false;
             }
 
-            this.dgAdmin.ItemsSource = actvsAdminListGUI;
-        }
-
-        //cargar lista de investigaciones
-        public void cargarInvestig()
-        {
-            List<Investigacion> investigaciones = ActividadesManager.listarInvestigs();
-            List<Investigs_GUI> investigsListGUI = new List<Investigs_GUI>();
-
-            foreach (Investigacion invest in investigaciones)
+            foreach (Investigs_GUI investInfo in dgInvestig.ItemsSource)
             {
-                investigsListGUI.Add(new Investigs_GUI() { id = invest.getId(),
-                                                           nombre = invest.getNombre(),
-                                                           valHoras = invest.getHoras(),
-                                                           inicio = invest.getInicio(),
-                                                           fin = invest.getFin() });
-            }
-
-            this.dgInvestig.ItemsSource = investigsListGUI;
+                investInfo.isSelected = false;
+            }   
         }
+
 
         private void btnCerrar_Click(object sender, RoutedEventArgs e)
         {
@@ -226,27 +235,105 @@ namespace SACD.Ventanas
                 PopupTipoCurso ventTipoCurso = new PopupTipoCurso(idGrupo);
                 ventTipoCurso.Show();
             }
+
+            else //calcular valor en ampliación
+            { }
         }
 
+        //Guardar cambios realizados en las asignaciones del profesor
         private void btn_Aceptar_Click(object sender, RoutedEventArgs e)
         {
-            if (modalidad.Equals("simp"))
-                guardarAsigSimples();
+            //eliminar deseleccionadas
+            eliminarAsigs();
+
+            //Guardar nuevas asignaciones seleccionadas
+            guardarAsigs();
+
             
+
+            MessageBox.Show("Cambios aplicados con éxito");    
+        }
+   
+
+        //Elimina las asignaciones del profesor que fueron deseleccionadas
+        private void eliminarAsigs()
+        {
+            if (modalidad.Equals("simp"))
+            {
+                foreach (int idActiv in desmarcadosSim)
+                {
+                    AsignacsManager.borrarAsignacion(idActiv, profeInfo.getId(), idSemestre);
+                    profeInfo.borrarAsignacion(idActiv);
+                }
+            }
+
+            else //ampliaciones
+            {
+                foreach (int idGrupo in desmarcadosAmp)
+                {
+                    AsignacsManager.borrarAmpliacion(idGrupo, profeInfo.getId(), idSemestre);
+                    profeInfo.borrarAmpliacion(idGrupo);
+                }
+            }
         }
 
 
-        private void guardarAsigSimples()
-        {               
+        //Guarda las asignaciones que fueron seleccionadas
+        private void guardarAsigs()
+        {
+            int estado = 0;
+            bool tipoAmpl = false;
+
             //Recorrer tabla de cursos
             foreach (Grupos_GUI grupoInfo in dgGrupos.ItemsSource)
             {
                 bool isChecked = grupoInfo.isSelected;
                 if (isChecked)
                 {
-                    //verificar que sea un registro de asignación repetido
-                    AsignacsManager.asignarActiv(grupoInfo.id, idProfesor, idSemestre, grupoInfo.valHoras);
-                    MessageBox.Show(grupoInfo.nombre);
+                    if (modalidad.Equals("simp"))
+                    {
+                        estado = AsignacsManager.asignarActiv(grupoInfo.id, profeInfo.getId(), idSemestre, grupoInfo.valHoras);
+                        if(estado == 1)//la asig es nueva o hay que modificar una existente
+                        {
+                            Asignacion asigBuscada = profeInfo.buscarAsig(grupoInfo.id);
+
+                            if (asigBuscada != null) //ya existe
+                                asigBuscada.setValorHoras(grupoInfo.valHoras); //aplicar actualización
+                            else
+                                profeInfo.addAsignacion(new Asignacion(grupoInfo.valHoras, new Grupo(grupoInfo.id, "GRUP",
+                                                        grupoInfo.horasPresen, grupoInfo.numGrupo, grupoInfo.cantEstud, 
+                                                        null), new Semestre(idSemestre, anio, periodo)));
+                        }
+                    }
+
+                    else //Ampliacion
+                    {
+                        if (modalidad.Equals("amp"))
+                        {
+                            tipoAmpl = false;
+                            estado = AsignacsManager.asignarAmpl(grupoInfo.id, profeInfo.getId(), idSemestre, grupoInfo.valHoras, 0);
+                        }
+
+                        else //doble
+                        {
+                            tipoAmpl = true;
+                            estado = AsignacsManager.asignarAmpl(grupoInfo.id, profeInfo.getId(), idSemestre, grupoInfo.valHoras, 1);
+                        }
+
+                        if (estado == 1)//la ampl es nueva o hay que modificar una existente
+                        {
+                            Ampliacion amplBuscada = profeInfo.buscarAmpl(grupoInfo.id);
+
+                            if (amplBuscada != null)//ya existe
+                                amplBuscada.setValorHoras(grupoInfo.valHoras); //aplicar actualización
+                            else
+                                profeInfo.addAmpliacion(new Ampliacion(grupoInfo.valHoras, new Grupo(grupoInfo.id, "GRUP",
+                                                        grupoInfo.horasPresen, grupoInfo.numGrupo, grupoInfo.cantEstud,
+                                                        null), new Semestre(idSemestre, anio, periodo), tipoAmpl));
+                        }
+                    }
+
+                    
                 }
             }
 
@@ -256,8 +343,8 @@ namespace SACD.Ventanas
                 bool isChecked = adminInfo.isSelected;
                 if (isChecked)
                 {
-                    AsignacsManager.asignarActiv(adminInfo.id, idProfesor, idSemestre, adminInfo.valHoras);
-                    MessageBox.Show(adminInfo.nombre);
+                    if (modalidad.Equals("simp"))
+                        AsignacsManager.asignarActiv(adminInfo.id, profeInfo.getId(), idSemestre, adminInfo.valHoras);
                 }
             }
 
@@ -267,12 +354,12 @@ namespace SACD.Ventanas
                 bool isChecked = investInfo.isSelected;
                 if (isChecked)
                 {
-                    AsignacsManager.asignarActiv(investInfo.id, idProfesor, idSemestre, investInfo.valHoras);
-                    MessageBox.Show(investInfo.nombre);
+                    if (modalidad.Equals("simp"))
+                        AsignacsManager.asignarActiv(investInfo.id, profeInfo.getId(), idSemestre, investInfo.valHoras);
                 }
             }
         }
-    
+
 
         private void radioButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -300,8 +387,79 @@ namespace SACD.Ventanas
                         }
                 }
 
-                cargarAsigProf();
+                if (profeInfo != null)
+                {
+                    cargarGrupos(); //para limpiar horas
+                    cargarAsigProf();
+                }
             }
+        }
+
+
+        private void addDesmarcados(int pIdGrupo)
+        {
+            if (modalidad.Equals("simp"))
+            {
+                if (!desmarcadosSim.Contains(pIdGrupo))
+                    desmarcadosSim.Add(pIdGrupo);
+            }
+
+            else //ampliaciones
+            {
+                if (!desmarcadosAmp.Contains(pIdGrupo))
+                    desmarcadosAmp.Add(pIdGrupo);
+            }
+        }
+
+        private void removDesmarcados(int pIdGrupo)
+        {
+            if (modalidad.Equals("simp"))
+            {
+                if (desmarcadosSim.Contains(pIdGrupo))
+                    desmarcadosSim.Remove(pIdGrupo);
+            }
+
+            else //ampliaciones
+            {
+                if (desmarcadosAmp.Contains(pIdGrupo))
+                    desmarcadosAmp.Remove(pIdGrupo);
+            }
+        }
+
+        private void checkbx_SelectCu_Click(object sender, RoutedEventArgs e)
+        {
+            int idGrupo;
+            idGrupo = Int32.Parse((sender as CheckBox).Uid);
+
+            if ((sender as CheckBox).IsChecked == false) //deseleccionado
+                addDesmarcados(idGrupo);
+
+            else //seleccionado
+                removDesmarcados(idGrupo);           
+        }
+
+        private void checkbx_SelectAc_Click(object sender, RoutedEventArgs e)
+        {
+            int idGrupo;
+            idGrupo = Int32.Parse((sender as CheckBox).Uid);
+
+            if ((sender as CheckBox).IsChecked == false) //deseleccionado
+                addDesmarcados(idGrupo);
+
+            else //seleccionado
+                removDesmarcados(idGrupo);
+        }
+
+        private void checkbx_SelectIn_Click(object sender, RoutedEventArgs e)
+        {
+            int idGrupo;
+            idGrupo = Int32.Parse((sender as CheckBox).Uid);
+
+            if ((sender as CheckBox).IsChecked == false) //deseleccionado
+                addDesmarcados(idGrupo);
+
+            else //seleccionado
+                removDesmarcados(idGrupo);
         }
     }
 }

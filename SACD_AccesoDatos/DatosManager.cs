@@ -766,8 +766,43 @@ namespace SACD_AccesoDatos
                     result = 0;
                 }
 
+                cerrarConexion();      
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return result;
+        }
+
+
+        /************* Ampliaciones ***************/
+        public static int insertAmpliacion(int pIdGrupo, int pIdProfe, int pIdSemestre, decimal pHoras, int pIsDoble)
+        {
+            int result = 1;
+            //Evitar que las horas se conviertan a un decimal separado por coma
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFAMPLIACION VALUES(" + pIdGrupo + ", " + pIdProfe
+                                                                                                 + ", " + pIdSemestre + ", "
+                                                                                                 + pHoras + ", " + pIsDoble + ")", conn);
+                    command.ExecuteNonQuery();
+                }
+
+                catch (Exception e)
+                {
+                    result = 0;
+                }
+
                 cerrarConexion();
-                
             }
 
             else
@@ -782,5 +817,70 @@ namespace SACD_AccesoDatos
 
 
         /*---------------------------------   ELIMINAR  --------------------------------------*/
+
+        /************* Asignaciones ***************/
+        public static int borrarAsignacion(int pIdActv, int pIdProfe, int pIdSemestre)
+        {
+            int result = 1;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("DELETE FROM SACDFASIGNACIONES" +
+                                                        " WHERE ID_ACTIVIDAD = " + pIdActv + 
+                                                        " AND ID_PROFESOR = " + pIdProfe +
+                                                        " AND ID_SEMESTRE = " + pIdSemestre, conn);
+                    command.ExecuteNonQuery();
+                }
+
+                catch (Exception e)
+                {
+                    result = 0;
+                }
+
+                cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return result;
+        }
+
+
+        /************* Ampliaciones ***************/
+        public static int borrarAmpliacion(int pIdGrupo, int pIdProfe, int pIdSemestre)
+        {
+            int result = 1;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("DELETE FROM SACDFAMPLIACION" +
+                                                        " WHERE ID_GRUPO = " + pIdGrupo +
+                                                        " AND ID_PROFESOR = " + pIdProfe +
+                                                        " AND ID_SEMESTRE = " + pIdSemestre, conn);
+                    command.ExecuteNonQuery();
+                }
+
+                catch (Exception e)
+                {
+                    result = 0;
+                }
+
+                cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return result;
+        }
     }
 }
