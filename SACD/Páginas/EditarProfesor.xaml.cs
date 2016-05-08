@@ -159,11 +159,13 @@ namespace SACD.Páginas
                     plazaGUI.porcAsignado = null;
                 }
             }
+
+            dgPlazas.Items.Refresh();
         }
 
         private void textBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!((e.Key > Key.D0 && e.Key < Key.D9) || e.Key == Key.OemPeriod))
+            if (!((e.Key >= Key.D0 && e.Key <= Key.D9) || e.Key == Key.OemPeriod))
             { 
                 e.Handled = true;
             }
