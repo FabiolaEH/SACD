@@ -26,21 +26,24 @@ namespace SACD_Controlador
         }
 
 
-        //Obtener lista de asignaciones de un profesor
-        public static List<Asignacion> getAsignaciones(int pIdProfesor, int idSemestre, int pPeriodo, int pAño)
+        //Obtener lista de asignaciones de un profesor o semestre
+        public static List<Asignacion> getAsignaciones(int pIdProfesor, int idSemestre, int pPeriodo, int pAño, bool pTipoConsulta)
         {
             List<Object[]> asignListObject = new List<Object[]>();
             List<Asignacion> asignList = new List<Asignacion>();
             Asignacion asignacion;
             Actividad actividad;
 
-            asignListObject = DatosManager.getAsignaciones(pIdProfesor, pPeriodo, pAño);
+            asignListObject = DatosManager.getAsignaciones(pIdProfesor, pPeriodo, pAño, pTipoConsulta);
 
             foreach (Object[] obj in asignListObject)
             {
                 actividad = ActividadesManager.buscar((int)obj[0]);
 
-                asignacion = new Asignacion((decimal)obj[3], actividad, new Semestre(idSemestre, pAño, pPeriodo)); 
+                if (pTipoConsulta)
+                    asignacion = new Asignacion((decimal)obj[2], actividad, new Semestre(idSemestre, pAño, pPeriodo));
+                else
+                    asignacion = new Asignacion((decimal)obj[3], actividad, new Semestre(idSemestre, pAño, pPeriodo));
                 asignList.Add(asignacion);
             }
 

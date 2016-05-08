@@ -48,7 +48,7 @@ namespace SACD.Ventanas
 
             //Obtener info profesor
             profeInfo = new Profesor(profeId, "", 0);
-            List<Asignacion> asignacionesProf = AsignacsManager.getAsignaciones(profeInfo.getId(), idSemestre, periodo, anio);
+            List<Asignacion> asignacionesProf = AsignacsManager.getAsignaciones(profeInfo.getId(), idSemestre, periodo, anio, false);
             List<Ampliacion> ampliacionesProf = AsignacsManager.getAmpliaciones(profeInfo.getId(), idSemestre, periodo, anio);
             profeInfo.setAsignaciones(asignacionesProf);
             profeInfo.setAmpliaciones(ampliacionesProf);
