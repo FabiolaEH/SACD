@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SACD.Páginas
 {
@@ -77,6 +78,14 @@ namespace SACD.Páginas
             else
             {
                 MessageBox.Show("No puede dejar ningún espacio en blanco.");
+            }
+        }
+
+        private void textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!((e.Key > Key.D0 && e.Key < Key.D9) || e.Key == Key.OemPeriod))
+            {
+                e.Handled = true;
             }
         }
     }

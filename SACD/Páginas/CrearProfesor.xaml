@@ -362,7 +362,7 @@
                 <DataGridTemplateColumn Width="90" Header="%">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox x:Name="txt_Selected" Width="50" Height="25" Text="{Binding porcAsignado,  UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                            <TextBox x:Name="txt_Selected" Width="50" Height="25" Text="{Binding porcAsignado,  UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" KeyDown="textBox_KeyDown"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

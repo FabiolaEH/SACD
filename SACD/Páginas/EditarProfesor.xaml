@@ -340,7 +340,6 @@
                 <DataGridTextColumn Binding="{Binding numero}" Header="Numero Plaza" Width="150">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="{x:Type DataGridCell}">
-                            <Setter Property="ToolTip" Value="{Binding nombre}" />
                             <Setter Property="Padding" Value="10"/>
                             <Setter Property="FontWeight" Value="Normal" />
                             <Setter Property="Foreground" Value="#FF666666"/>
@@ -362,7 +361,7 @@
                 <DataGridTemplateColumn Width="90" Header="%">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox x:Name="txt_Selected" Width="50" Height="25" Text="{Binding porcAsignado,  UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                            <TextBox x:Name="txt_Selected" Width="50" Height="25" Text="{Binding porcAsignado,  UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" KeyDown="textBox_KeyDown"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

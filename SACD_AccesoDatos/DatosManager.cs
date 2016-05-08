@@ -77,6 +77,7 @@ namespace SACD_AccesoDatos
             return usuariosList;
         }
 
+
         //Buscar usuario por correo
         public static Boolean verificarCorreo(string pCorreo)
         {
@@ -102,7 +103,8 @@ namespace SACD_AccesoDatos
 
             return isValido;
         }
-        
+
+
         //Verificar código
         public static string verificarCodigo(string pCorreo)
         {
@@ -124,7 +126,7 @@ namespace SACD_AccesoDatos
             }
             return codigo;
         }
-
+   
 
         /************* Profesores ***************/
 
@@ -157,6 +159,7 @@ namespace SACD_AccesoDatos
 
             return profesList;
         }
+
 
         //Buscar profesor por id
         public static Object[] getProfeInfo(int pId)
@@ -221,6 +224,7 @@ namespace SACD_AccesoDatos
             return profeInfo;
         }
 
+
         //Obtener último ID insertado
         public static Object[] getUltimoProfe()
         {
@@ -250,6 +254,7 @@ namespace SACD_AccesoDatos
             return profeInfo;
         }
 
+
         /************* Investigaciones ***************/
 
         //Obtener lista de investigaciones
@@ -259,7 +264,7 @@ namespace SACD_AccesoDatos
 
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("SELECT ID_INVESTIGACION, CAN_HORAS, FEC_INICIO, FEC_FIN, NOM_INVESTIG FROM SACDFINVESTIG", conn);
+                SqlCommand command = new SqlCommand("SELECT * FROM SACDFINVESTIG", conn);
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
@@ -285,6 +290,7 @@ namespace SACD_AccesoDatos
             return investigList;
         }
 
+
         //Buscar investigacion por id
         public static Object[] getInvestigInfo(int id)
         {
@@ -292,7 +298,7 @@ namespace SACD_AccesoDatos
 
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("SELECT ID_INVESTIGACION, CAN_HORAS, FEC_INICIO, FEC_FIN, NOM_INVESTIG FROM SACDFINVESTIG WHERE ID_INVESTIGACION = " + id.ToString(), conn);
+                SqlCommand command = new SqlCommand("SELECT * FROM SACDFINVESTIG WHERE ID_INVESTIGACION = " + id.ToString(), conn);
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
@@ -319,7 +325,7 @@ namespace SACD_AccesoDatos
 
         /************* Actv. Administrativas ***************/
 
-        //Obtener lista de investigaciones
+        //Obtener lista de administrativas
         public static List<Object[]> getAdministvsList()
         {
             List<Object[]> administvsList = new List<Object[]>();
@@ -349,6 +355,7 @@ namespace SACD_AccesoDatos
 
             return administvsList;
         }
+
 
         //Buscar administrativas por id
         public static Object[] getAdministvsInfo(int id)
@@ -418,6 +425,7 @@ namespace SACD_AccesoDatos
             return gruposList;
         }
 
+
         //Buscar grupo por id
         public static Object[] getGrupoInfo(int id)
         {
@@ -478,6 +486,7 @@ namespace SACD_AccesoDatos
 
             return valHoras;
         }
+
 
         public static List<Object[]> getTipoCurso(string pCodigo)
         {
@@ -542,6 +551,7 @@ namespace SACD_AccesoDatos
 
             return semestresList;
         }
+     
 
         //Obtener semestre actual
         public static List<int> get_Semestre_Global()
@@ -578,14 +588,14 @@ namespace SACD_AccesoDatos
         /************* Asignaciones ***************/
 
         //buscar asignaciones 
-        public static List<Object[]> getAsignaciones(int pIdProfe, int pPeriodo, int pAño, Boolean pCondicionEsp)
+        public static List<Object[]> getAsignaciones(int pIdProfe, int pPeriodo, int pAño, bool pTipoConsulta)
         {
             List<Object[]> asignacionesList = new List<Object[]>();
 
             if (crearConexion() == true)
             {
                 SqlCommand command;
-                if (pCondicionEsp)
+                if (pTipoConsulta) //lista de asignaciones de un semestre
                 {
                     command = new SqlCommand("SELECT a.ID_ACTIVIDAD, b.ID_SEMESTRE, a.NUM_VALOR_HORAS FROM(SACDFASIGNACIONES a LEFT JOIN SACDFSEMESTRES b ON a.ID_SEMESTRE = b.ID_SEMESTRE) WHERE b.NUM_PERIODO = @periodo AND b.NUM_AÑO = @anio", conn);
                     command.Parameters.AddWithValue("@periodo", pPeriodo);
@@ -605,7 +615,7 @@ namespace SACD_AccesoDatos
 
                     reader.Close();
                 }
-                else
+                else //lista de asignaciones de un profe
                 {
                     command = new SqlCommand("SELECT a.ID_ACTIVIDAD, a.ID_PROFESOR, b.ID_SEMESTRE, a.NUM_VALOR_HORAS FROM (SACDFASIGNACIONES a LEFT JOIN SACDFSEMESTRES b ON a.ID_SEMESTRE = b.ID_SEMESTRE)"
                     + " LEFT JOIN SACDFPROFESORES c ON a.ID_PROFESOR = c.ID_PROFESOR"
@@ -845,7 +855,7 @@ namespace SACD_AccesoDatos
 
         public static int[] getDistribPlazas()
         {
-            int [] result = new int[2];
+            int[] result = new int[2];
 
             if (crearConexion() == true)
             {
@@ -879,36 +889,26 @@ namespace SACD_AccesoDatos
         }
 
 
-
-        /*---------------------------------   INSERTAR  --------------------------------------*/
-
-            /************* Asignaciones ***************/
-
-        public static int insertAsignacion(int pIdActv, int pIdProfe, int pIdSemestre, decimal pHoras)
+        public static List<Object[]> getPlazasDeProfesor(String pId)
         {
-            int result = 1;
-            //Evitar que las horas se conviertan a un decimal separado por coma
-            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
-            customCulture.NumberFormat.NumberDecimalSeparator = ".";
-            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+            List<Object[]> plazasList = new List<Object[]>();
 
             if (crearConexion() == true)
             {
-                try
+                SqlCommand command = new SqlCommand("SELECT NUM_PLAZA, DSC_PROPIEDAD, POR_ASIGNADO FROM SACDFPLAZA_PROFE WHERE ID_PROFESOR = " + pId, conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    SqlCommand command = new SqlCommand("INSERT INTO SACDFASIGNACIONES VALUES(" + pIdActv + ", " + pIdProfe
-                                                                                                 + ", " + pIdSemestre + ", "
-                                                                                                 + pHoras + ")", conn);
-                    command.ExecuteNonQuery();
+                    Object[] plazaInfo = new Object[3];
+                    plazaInfo[0] = reader.GetInt32(0);
+                    plazaInfo[1] = reader.GetBoolean(1);
+                    plazaInfo[2] = reader.GetDecimal(2);
+                    plazasList.Add(plazaInfo);
                 }
 
-                catch(Exception e)
-                {
-                    result = 0;
-                }
-
+                reader.Close();
                 cerrarConexion();
-                
             }
 
             else
@@ -916,9 +916,12 @@ namespace SACD_AccesoDatos
                 Console.WriteLine("No se ha podido establecer conexión con la base de datos");
             }
 
-            return result;
+            return plazasList;
         }
 
+
+
+        /*---------------------------------   INSERTAR  --------------------------------------*/
 
         /************* Usuarios ***************/
 
@@ -946,10 +949,83 @@ namespace SACD_AccesoDatos
             return isValido;
         }
 
+        /************* Asignaciones ***************/
+
+        public static int insertAsignacion(int pIdActv, int pIdProfe, int pIdSemestre, decimal pHoras)
+        {
+            int result = 1;
+            //Evitar que las horas se conviertan a un decimal separado por coma
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFASIGNACIONES VALUES(" + pIdActv + ", " + pIdProfe
+                                                                                                 + ", " + pIdSemestre + ", "
+                                                                                                 + pHoras + ")", conn);
+                    command.ExecuteNonQuery();
+                }
+
+                catch(Exception e)
+                {
+                    result = 0;
+                }
+
+                cerrarConexion();      
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return result;
+        }
+
+
+        /************* Ampliaciones ***************/
+
+        public static int insertAmpliacion(int pIdGrupo, int pIdProfe, int pIdSemestre, decimal pHoras, int pIsDoble)
+        {
+            int result = 1;
+            //Evitar que las horas se conviertan a un decimal separado por coma
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFAMPLIACION VALUES(" + pIdGrupo + ", " + pIdProfe
+                                                                                                 + ", " + pIdSemestre + ", "
+                                                                                                 + pHoras + ", " + pIsDoble + ")", conn);
+                    command.ExecuteNonQuery();
+                }
+
+                catch (Exception e)
+                {
+                    result = 0;
+                }
+
+                cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return result;
+        }
+
 
         /************* Plazas ***************/
 
-        //Registrar usuario
+        //Registrar plaza
         public static Boolean insertPlaza(string pNumero, string pPorcentaje)
         {
             Boolean isValido = false;
@@ -964,9 +1040,9 @@ namespace SACD_AccesoDatos
                     command.ExecuteNonQuery();
                     isValido = true;
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
-                    Console.WriteLine("DatosManager.insertPlaza -> Problema al insertar plaza: "+e.ToString());
+                    Console.WriteLine("DatosManager.insertPlaza -> Problema al insertar plaza: " + e.ToString());
                     isValido = false;
                 }
             }
@@ -1013,7 +1089,8 @@ namespace SACD_AccesoDatos
             return isValido;
         }
 
-        //Insertar Profesor
+
+        //Insertar plaza Profesor
         public static Boolean insertPlazaProfe(string pIdProfe, string pNumeroPlaza, string pPorcentaje, string pIsPropiedad)
         {
             Boolean isValido = false;
@@ -1045,6 +1122,7 @@ namespace SACD_AccesoDatos
 
             return isValido;
         }
+
 
         /*---------------------------------   MODIFICAR  --------------------------------------*/
 
@@ -1158,7 +1236,106 @@ namespace SACD_AccesoDatos
         }
 
 
+        /************* Profesor ***************/
+
+        public static Boolean editarProfesor(string pId, string pNombre)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("UPDATE SACDFPROFESORES SET NOM_PROFESOR = @nombre WHERE ID_PROFESOR = @id", conn);
+                    command.Parameters.AddWithValue("@id", pId);
+                    command.Parameters.AddWithValue("@nombre", pNombre);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.editarProfesor -> Problema al editar profesor: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
+
+
         /*---------------------------------   ELIMINAR  --------------------------------------*/
+
+        /************* Asignaciones ***************/
+        public static int borrarAsignacion(int pIdActv, int pIdProfe, int pIdSemestre)
+        {
+            int result = 1;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("DELETE FROM SACDFASIGNACIONES" +
+                                                        " WHERE ID_ACTIVIDAD = " + pIdActv + 
+                                                        " AND ID_PROFESOR = " + pIdProfe +
+                                                        " AND ID_SEMESTRE = " + pIdSemestre, conn);
+                    command.ExecuteNonQuery();
+                }
+
+                catch (Exception e)
+                {
+                    result = 0;
+                }
+
+                cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return result;
+        }
+
+
+        /************* Ampliaciones ***************/
+        public static int borrarAmpliacion(int pIdGrupo, int pIdProfe, int pIdSemestre)
+        {
+            int result = 1;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("DELETE FROM SACDFAMPLIACION" +
+                                                        " WHERE ID_GRUPO = " + pIdGrupo +
+                                                        " AND ID_PROFESOR = " + pIdProfe +
+                                                        " AND ID_SEMESTRE = " + pIdSemestre, conn);
+                    command.ExecuteNonQuery();
+                }
+
+                catch (Exception e)
+                {
+                    result = 0;
+                }
+
+                cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return result;
+        }
+
 
         /************* Plazas ***************/
 
@@ -1210,6 +1387,36 @@ namespace SACD_AccesoDatos
                 catch (Exception e)
                 {
                     Console.WriteLine("DatosManager.eliminarProfe -> Problema al eliminar profesor: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
+
+
+        public static Boolean eliminarPlazasProfe(string pProfeId)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("DELETE FROM SACDFPLAZA_PROFE WHERE ID_PROFESOR = @id", conn);
+                    command.Parameters.AddWithValue("@id", pProfeId);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.eliminarPlazasProfe -> Problema al eliminar plazas de un profesor: " + e.ToString());
                     isValido = false;
                 }
             }

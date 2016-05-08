@@ -29,8 +29,8 @@ namespace SACD
         {
             new MainWindow().Show();
             this.Close();
-            /*
-            if (tbxCorreo.Text.Equals("") || tbxPassword.Password.Equals(""))
+
+            /*if (tbxCorreo.Text.Equals("") || tbxPassword.Password.Equals(""))
             {
                 MessageBox.Show("Favor llenar los espacios vacíos.");
             }

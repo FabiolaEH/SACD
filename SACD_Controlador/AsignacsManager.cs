@@ -11,33 +11,37 @@ namespace SACD_Controlador
     public static class AsignacsManager
     {
         //asignar actividad a un profesor
-        public static void asignarActiv(int pIdActividad, int pIdProfesor, int pIdSemestre, decimal pValHoras)
+        public static int asignarActiv(int pIdActividad, int pIdProfesor, int pIdSemestre, decimal pValHoras)
         {
-            DatosManager.insertAsignacion(pIdActividad, pIdProfesor, pIdSemestre, pValHoras);
-
+            int result = DatosManager.insertAsignacion(pIdActividad, pIdProfesor, pIdSemestre, pValHoras);
+            return result;
         }
+
 
         //asignar ampliación a un profesor
-        public static void asignarAmpl(bool pIsDoble, Semestre pSemestre, Profesor pProfesor, Actividad pActividad)
+        public static int asignarAmpl(int pIdGrupo, int pIdProfe, int pIdSemestre, decimal pValHoras, int pIsDoble)
         {
-
+            int result = DatosManager.insertAmpliacion(pIdGrupo, pIdProfe, pIdSemestre, pValHoras, pIsDoble);
+            return result;
         }
 
-        public static List<Asignacion> getAsignaciones(int pIdProfesor, int idSemestre, int pPeriodo, int pAño, Boolean pCondicionEspecial)
+
+        //Obtener lista de asignaciones de un profesor o semestre
+        public static List<Asignacion> getAsignaciones(int pIdProfesor, int idSemestre, int pPeriodo, int pAño, bool pTipoConsulta)
         {
             List<Object[]> asignListObject = new List<Object[]>();
             List<Asignacion> asignList = new List<Asignacion>();
             Asignacion asignacion;
             Actividad actividad;
 
-            asignListObject = DatosManager.getAsignaciones(pIdProfesor, pPeriodo, pAño, pCondicionEspecial);
+            asignListObject = DatosManager.getAsignaciones(pIdProfesor, pPeriodo, pAño, pTipoConsulta);
 
             foreach (Object[] obj in asignListObject)
             {
                 actividad = ActividadesManager.buscar((int)obj[0]);
 
-                if(pCondicionEspecial)
-                    asignacion = new Asignacion((decimal)obj[2], actividad, new Semestre(idSemestre, pAño, pPeriodo)); 
+                if (pTipoConsulta)
+                    asignacion = new Asignacion((decimal)obj[2], actividad, new Semestre(idSemestre, pAño, pPeriodo));
                 else
                     asignacion = new Asignacion((decimal)obj[3], actividad, new Semestre(idSemestre, pAño, pPeriodo));
                 asignList.Add(asignacion);
@@ -46,6 +50,8 @@ namespace SACD_Controlador
             return asignList;
         }
 
+
+        //Obtener lista de ampliaciones de un profesor
         public static List<Ampliacion> getAmpliaciones(int pIdProfesor, int idSemestre, int pPeriodo, int pAño)
         {
             List<Object[]> ampliListObject = new List<Object[]>();
@@ -64,6 +70,20 @@ namespace SACD_Controlador
             }
 
             return ampliList;
+        }
+
+
+        //Borrar una asignación de la BD
+        public static void borrarAsignacion(int pIdActividad, int pIdProfesor, int pIdSemestre)
+        {
+            DatosManager.borrarAsignacion(pIdActividad, pIdProfesor, pIdSemestre);
+        }
+
+
+        //Borrar una ampliación de la BD
+        public static void borrarAmpliacion(int pIdGrupo, int pIdProfesor, int pIdSemestre)
+        {
+            DatosManager.borrarAmpliacion(pIdGrupo, pIdProfesor, pIdSemestre);
         }
     }
 }
