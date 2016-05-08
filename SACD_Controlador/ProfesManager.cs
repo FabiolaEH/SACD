@@ -26,9 +26,10 @@ namespace SACD_Controlador
         }
 
         //editar profesor
-        public static void editar(int pId, Profesor pNuevoProf)
+        public static Boolean editar(int pId, String pNombre)
         {
-
+            Boolean isValido = DatosManager.editarProfesor(pId.ToString(), pNombre);
+            return isValido;
         }
 
         //obtener último profesor insertado
@@ -93,6 +94,9 @@ namespace SACD_Controlador
             return 0;
         }
         
+        
+        /**************SUS PLAZAS*********************/
+
         //insertar relación Plaza - Profesor
         public static Boolean insertPlazaProfe(string pIdProfe, string pNumeroPlaza, string pPorcentaje, bool pIsPropiedad)
         {
@@ -103,6 +107,29 @@ namespace SACD_Controlador
                 propiedad = "0";
 
             Boolean isValido = DatosManager.insertPlazaProfe(pIdProfe, pNumeroPlaza, pPorcentaje, propiedad);
+            return isValido;
+        }
+
+        //obtener lista de elementos en relación Plaza - Profesor
+        public static List<PlazaAsignada> getPlazasDeProfesor(int pId)
+        {
+            List<Object[]> plazasAsignadasObj = DatosManager.getPlazasDeProfesor(pId.ToString());
+            List<PlazaAsignada> plazasAsignadasList = new List<PlazaAsignada>();
+            PlazaAsignada plazaAsignada;
+
+            foreach (Object[] obj in plazasAsignadasObj)
+            {
+                plazaAsignada = new PlazaAsignada(new Plaza((int)obj[0], 0), (decimal)obj[2], (bool)obj[1]);
+                plazasAsignadasList.Add(plazaAsignada);
+            }
+
+            return plazasAsignadasList;
+        }
+
+        //Borrar plazas de un profesor
+        public static Boolean eliminarPlazasProfe(int pProfeID)
+        {
+            Boolean isValido = DatosManager.eliminarPlazasProfe(pProfeID.ToString());
             return isValido;
         }
     }

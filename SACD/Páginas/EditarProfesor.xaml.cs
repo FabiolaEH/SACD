@@ -3,8 +3,10 @@ using SACD_Controlador;
 using SACD_Modelo;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SACD.Páginas
 {
@@ -22,7 +24,7 @@ namespace SACD.Páginas
             InitializeComponent();
             actualizarCombobox();
             cargarPlazas();
-            actualizarTabla();
+            cargarTabla();
         }
 
         private void actualizarCombobox()
@@ -43,7 +45,7 @@ namespace SACD.Páginas
             plazasList = PlazasManager.listarPlazas();
         }
 
-        private void actualizarTabla()
+        private void cargarTabla()
         {
             foreach (Plaza plaza in plazasList)
             {
@@ -53,35 +55,50 @@ namespace SACD.Páginas
             dgPlazas.ItemsSource = plazasListGUI;
         }
 
-
         private void btn_Aceptar_Click(object sender, RoutedEventArgs e)
         {
-            if(tbxNombre.Text != "")
+            Boolean exito = true;
+            if (tbxNombre.Text != "")
             {
-                //Primero insertar el profesor
-                Boolean isValido = ProfesManager.crear(tbxNombre.Text);
+                Profesor profe = buscarProfesor();
+
+                //Primero actualizar el profesor
+                Boolean isValido = ProfesManager.editar(profe.getId(), tbxNombre.Text);
                 if (!isValido)
-                    MessageBox.Show("Error al insertar el profesor");
+                {
+                    MessageBox.Show("Error al actualizar el profesor");
+                    exito = false;
+                }
                 else
                 {
-                    //Obtener ID del profe insertado
-                    int idProfe = ProfesManager.getUltimoProfesor();
-
-                    //Crear relación Plaza_Profesor
-                    foreach (Plazas_GUI plazaInfo in plazasListGUI)
+                    //Borrar las Plaza_Profesor viejas
+                    isValido = ProfesManager.eliminarPlazasProfe(profe.getId());
+                    if (!isValido)
                     {
-                        if (plazaInfo.porcAsignado != null)
+                        MessageBox.Show("Error al eliminar las plaza anteriores");
+                        exito = false;
+                    }
+                    else
+                    {
+                        //Crear relación Plaza_Profesor
+                        foreach (Plazas_GUI plazaInfo in plazasListGUI)
                         {
-                            isValido = ProfesManager.insertPlazaProfe(idProfe.ToString(), plazaInfo.numero.ToString(),
-                                plazaInfo.porcAsignado, plazaInfo.isPropiedad);
-                            if (!isValido)
+                            if (plazaInfo.porcAsignado != null)
                             {
-                                MessageBox.Show("Error al ligar la plaza");
-                                break;
+                                isValido = ProfesManager.insertPlazaProfe(profe.getId().ToString(), plazaInfo.numero.ToString(),
+                                    plazaInfo.porcAsignado, plazaInfo.isPropiedad);
+                                if (!isValido)
+                                {
+                                    MessageBox.Show("Error al actualizar la plaza");
+                                    exito = false;
+                                    break;
+                                }
                             }
                         }
                     }
                 }
+                if (exito)
+                    MessageBox.Show("Profesor editado correctamente");
             }
             else
             {
@@ -89,20 +106,67 @@ namespace SACD.Páginas
             }
         }
 
+        private Profesor buscarProfesor()
+        {
+            String nombreProfesor = (String)cmb_Profes.SelectedValue;
+
+            foreach (Profesor profe in profesList)
+            {
+                if (profe.getNombre() == nombreProfesor)
+                    return profe;
+            }
+
+            return null;
+        }
+
+        private PlazaAsignada checkPlaza(List<PlazaAsignada> pPlazasAsignadas, int pId)
+        {
+            PlazaAsignada plazaAsignada = null;
+
+            foreach (PlazaAsignada plaza in pPlazasAsignadas)
+            {
+                if (plaza.getPlaza().getId() == pId)
+                {
+                    plazaAsignada = plaza;
+                    break;
+                }
+            }
+
+            return plazaAsignada;
+        }
+
         private void cmb_Profes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            /*int id = Int32.Parse((String)cmb_Plazas.SelectedValue);
-            tbxNumero.Text = id.ToString();
+            Profesor profe = buscarProfesor();
+            tbxNombre.Text = profe.getNombre();
 
-            foreach (Plaza plaza in plazasList)
+            PlazaAsignada plazaAsignada = null;
+            List<PlazaAsignada> plazasAsignadas = ProfesManager.getPlazasDeProfesor(profe.getId());
+
+            foreach (Plazas_GUI plazaGUI in plazasListGUI)
             {
-                if (plaza.getId() == id)
+                plazaAsignada = checkPlaza(plazasAsignadas, plazaGUI.numero);
+                if (plazaAsignada != null)
                 {
-                    tbxPorcentaje.Text = plaza.getPorcentaje().ToString().Replace(",", ".");
-                    tbxPorcentaje.IsEnabled = true;
-                    btn_Aceptar.IsEnabled = true;
+                    plazaGUI.isSelected = true;
+                    plazaGUI.isPropiedad = plazaAsignada.getIsPropiedad();
+                    plazaGUI.porcAsignado = plazaAsignada.getPorcentajeAsig().ToString().Replace(",",".");
                 }
-            }*/
+                else
+                {
+                    plazaGUI.isSelected = false;
+                    plazaGUI.isPropiedad = false;
+                    plazaGUI.porcAsignado = null;
+                }
+            }
+        }
+
+        private void textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!((e.Key > Key.D0 && e.Key < Key.D9) || e.Key == Key.OemPeriod))
+            { 
+                e.Handled = true;
+            }
         }
     }
 }

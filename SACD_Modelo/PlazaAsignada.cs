@@ -11,5 +11,27 @@ namespace SACD_Modelo
         private Plaza plaza;
         private decimal porcentajeAsig;
         private bool isPropiedad;
+
+        public PlazaAsignada(Plaza pPlaza, decimal pPorcAsign, bool pIsPropiedad)
+        {
+            plaza = pPlaza;
+            porcentajeAsig = pPorcAsign;
+            isPropiedad = pIsPropiedad;
+        }
+
+        public Plaza getPlaza()
+        {
+            return plaza;
+        }
+
+        public bool getIsPropiedad()
+        {
+            return isPropiedad;
+        }
+
+        public decimal getPorcentajeAsig()
+        {
+            return porcentajeAsig;
+        }
     }
 }

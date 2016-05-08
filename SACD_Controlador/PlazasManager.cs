@@ -28,7 +28,6 @@ namespace SACD_Controlador
             return isValido;
         }
 
-
         //obtener lista de plazas registradas
         public static List<Plaza> listarPlazas()
         {
@@ -53,6 +52,5 @@ namespace SACD_Controlador
 
             return result;
         }
-    
     }
 }

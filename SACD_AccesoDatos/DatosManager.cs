@@ -773,10 +773,40 @@ namespace SACD_AccesoDatos
         }
 
 
+        public static List<Object[]> getPlazasDeProfesor(String pId)
+        {
+            List<Object[]> plazasList = new List<Object[]>();
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT NUM_PLAZA, DSC_PROPIEDAD, POR_ASIGNADO FROM SACDFPLAZA_PROFE WHERE ID_PROFESOR = "+ pId, conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Object[] plazaInfo = new Object[3];
+                    plazaInfo[0] = reader.GetInt32(0);
+                    plazaInfo[1] = reader.GetBoolean(1);
+                    plazaInfo[2] = reader.GetDecimal(2);
+                    plazasList.Add(plazaInfo);
+                }
+
+                reader.Close();
+                cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return plazasList;
+        }
+
 
         /*---------------------------------   INSERTAR  --------------------------------------*/
 
-            /************* Asignaciones ***************/
+        /************* Asignaciones ***************/
 
         public static int insertAsignacion(int pIdActv, int pIdProfe, int pIdSemestre, decimal pHoras)
         {
@@ -843,7 +873,7 @@ namespace SACD_AccesoDatos
 
         /************* Plazas ***************/
 
-        //Registrar usuario
+        //Registrar plaza
         public static Boolean insertPlaza(string pNumero, string pPorcentaje)
         {
             Boolean isValido = false;
@@ -907,7 +937,7 @@ namespace SACD_AccesoDatos
             return isValido;
         }
 
-        //Insertar Profesor
+        //Insertar Plaza Profesor
         public static Boolean insertPlazaProfe(string pIdProfe, string pNumeroPlaza, string pPorcentaje, string pIsPropiedad)
         {
             Boolean isValido = false;
@@ -1052,6 +1082,39 @@ namespace SACD_AccesoDatos
         }
 
 
+        /************* Profesor ***************/
+
+        public static Boolean editarProfesor(string pId, string pNombre)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("UPDATE SACDFPROFESORES SET NOM_PROFESOR = @nombre WHERE ID_PROFESOR = @id", conn);
+                    command.Parameters.AddWithValue("@id", pId);
+                    command.Parameters.AddWithValue("@nombre", pNombre);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.editarProfesor -> Problema al editar profesor: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
+
+
         /*---------------------------------   ELIMINAR  --------------------------------------*/
 
         /************* Plazas ***************/
@@ -1104,6 +1167,36 @@ namespace SACD_AccesoDatos
                 catch (Exception e)
                 {
                     Console.WriteLine("DatosManager.eliminarProfe -> Problema al eliminar profesor: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
+
+
+        public static Boolean eliminarPlazasProfe(string pProfeId)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("DELETE FROM SACDFPLAZA_PROFE WHERE ID_PROFESOR = @id", conn);
+                    command.Parameters.AddWithValue("@id", pProfeId);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.eliminarPlazasProfe -> Problema al eliminar plazas de un profesor: " + e.ToString());
                     isValido = false;
                 }
             }
