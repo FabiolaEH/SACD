@@ -27,6 +27,11 @@ namespace SACD.Páginas
             InitializeComponent();
             cargarInformacion();
 
+            //Para que no aparezcan vacíos
+            cmb_Anio.SelectedIndex = 0;
+            cmb_Semestre.SelectedIndex = 0;
+            cmb_Profe.SelectedIndex = 0;
+
         }
 
         private void btn_Aceptar_Click(object sender, RoutedEventArgs e)

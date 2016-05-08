@@ -32,9 +32,16 @@ namespace SACD
         {
             InitializeComponent();
             List<int> datos_Globales = SemestresManager.getSemestreGlobal();
-            semestre_global = datos_Globales[0];
-            anio_global = datos_Globales[1];
-            periodo_global = datos_Globales[2];
+            if(datos_Globales.Count != 0)
+            {
+                semestre_global = datos_Globales[0];
+                anio_global = datos_Globales[1];
+                periodo_global = datos_Globales[2];
+            }
+            else
+            {
+
+            }
             Application.Current.MainWindow = this;
         }
 

@@ -67,10 +67,22 @@
         <ComboBox x:Name="cmb_Anio" HorizontalAlignment="Left" Margin="250,160,0,0" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label1" Content="Seleccione el semestre y año actual." HorizontalAlignment="Left" Margin="34,64,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FF666666"/>
         <Button x:Name="btn_Aceptar" Content="Guardar" HorizontalAlignment="Left" Margin="448,152,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Aceptar_Click"/>
+
         
-        <DVC:Chart Canvas.Top="80" Canvas.Left="10" Name="mcChart" Width="400" Height="250" Background="Transparent" BorderBrush="Transparent">
-            <DVC:PieSeries x:Name="pieSeries" Title="Profesores" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
+        <DVC:Chart Canvas.Top="80" Canvas.Left="10" Name="chart2" Background="Snow" Margin="34,208,27,151" Visibility="Hidden">
+            <DVC:BarSeries x:Name="chartVertical" Title="Profesores" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
+            </DVC:BarSeries>
+        </DVC:Chart>
+
+        <DVC:Chart Canvas.Left="10" Name="chart1" Background="Transparent" BorderBrush="Transparent" Margin="0,240,349,214" >
+            <DVC:PieSeries x:Name="chartPie" Title="Profesores" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
             </DVC:PieSeries>
         </DVC:Chart>
+        
+        <DVC:Chart Canvas.Left="10" Name="chart3" Background="Transparent" BorderBrush="Transparent" Margin="331,240,18,214" >
+            <DVC:PieSeries x:Name="chartPie2" Title="Actividades" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
+            </DVC:PieSeries>
+        </DVC:Chart>
+
     </Grid>
 </Page>

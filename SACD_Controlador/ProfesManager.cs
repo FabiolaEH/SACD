@@ -12,21 +12,32 @@ namespace SACD_Controlador
     public static class ProfesManager
     {
         //crear profesor
-        public static void crear()
+        public static Boolean crear(String pNombre)
         {
-
+            Boolean isValido = DatosManager.insertProfesor(pNombre);
+            return isValido;
         }
 
         //eliminar profesor
-        public static void eliminar(int pId)
+        public static Boolean eliminar(int pId)
         {
-
+            Boolean isValido = DatosManager.eliminarProfe(pId.ToString());
+            return isValido;
         }
 
         //editar profesor
         public static void editar(int pId, Profesor pNuevoProf)
         {
 
+        }
+
+        //obtener último profesor insertado
+        public static int getUltimoProfesor()
+        {
+            Object[] ultimo = new Object[1];
+            ultimo = DatosManager.getUltimoProfe();
+
+            return (int)ultimo[0];
         }
 
         //buscar profesor
@@ -82,5 +93,17 @@ namespace SACD_Controlador
             return 0;
         }
         
+        //insertar relación Plaza - Profesor
+        public static Boolean insertPlazaProfe(string pIdProfe, string pNumeroPlaza, string pPorcentaje, bool pIsPropiedad)
+        {
+            String propiedad = "";
+            if (pIsPropiedad)
+                propiedad = "1";
+            else
+                propiedad = "0";
+
+            Boolean isValido = DatosManager.insertPlazaProfe(pIdProfe, pNumeroPlaza, pPorcentaje, propiedad);
+            return isValido;
+        }
     }
 }
