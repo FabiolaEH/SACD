@@ -83,8 +83,8 @@
         </GroupBox>
         <Label x:Name="lblNumGrupo" Content="Número" HorizontalAlignment="Left" Margin="137,291,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.596,2.207" Visibility="Hidden"/>
         <Label x:Name="lblCantEst" Content="Cant. Estudiantes" HorizontalAlignment="Left" Margin="82,341,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold" Visibility="Hidden"/>
-        <TextBox x:Name="tbxNumGrupo" HorizontalAlignment="Left" Height="30" Margin="238,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center" KeyDown="tbxOnlyNumbers" Visibility="Hidden"/>
-        <TextBox x:Name="tbxCantEst" HorizontalAlignment="Left" Height="30" Margin="238,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center" RenderTransformOrigin="0.616,2.097" KeyDown="tbxOnlyNumbers" Visibility="Hidden"/>
+        <TextBox x:Name="tbxNumGrupo" HorizontalAlignment="Left" Height="30" Margin="238,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center" KeyDown="tbxOnlyNumbers" Visibility="Hidden" MaxLength="2"/>
+        <TextBox x:Name="tbxCantEst" HorizontalAlignment="Left" Height="30" Margin="238,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center" RenderTransformOrigin="0.616,2.097" KeyDown="tbxOnlyNumbers" Visibility="Hidden" MaxLength="2"/>
         <Button x:Name="btnAgregar" Content="Agregar" HorizontalAlignment="Left" Margin="112,388,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Agregar" Visibility="Hidden"/>
         <Button x:Name="btnQuitar" Content="Quitar" HorizontalAlignment="Left" Margin="222,388,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Quitar" Visibility="Hidden"/>
 

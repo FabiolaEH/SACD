@@ -74,6 +74,15 @@ namespace SACD.Páginas
 
                 dtFechaInicio.Visibility = Visibility.Visible;
                 lblFechaInicio.Visibility = Visibility.Visible;
+
+                lblCantEst.Visibility = Visibility.Hidden;
+                lblNumGrupo.Visibility = Visibility.Hidden;
+                tbxCantEst.Visibility = Visibility.Hidden;
+                tbxNumGrupo.Visibility = Visibility.Hidden;
+                groupBox.Visibility = Visibility.Hidden;
+                btnAgregar.Visibility = Visibility.Hidden;
+                btnQuitar.Visibility = Visibility.Hidden;
+                listBox.Visibility = Visibility.Hidden;
             }
             else if (pActividad == 2)
             {
@@ -91,6 +100,15 @@ namespace SACD.Páginas
 
                 dtFechaInicio.Visibility = Visibility.Hidden;
                 lblFechaInicio.Visibility = Visibility.Hidden;
+
+                lblCantEst.Visibility = Visibility.Hidden;
+                lblNumGrupo.Visibility = Visibility.Hidden;
+                tbxCantEst.Visibility = Visibility.Hidden;
+                tbxNumGrupo.Visibility = Visibility.Hidden;
+                groupBox.Visibility = Visibility.Hidden;
+                btnAgregar.Visibility = Visibility.Hidden;
+                btnQuitar.Visibility = Visibility.Hidden;
+                listBox.Visibility = Visibility.Hidden;
             }
             else
             {
@@ -108,6 +126,15 @@ namespace SACD.Páginas
 
                 dtFechaInicio.Visibility = Visibility.Hidden;
                 lblFechaInicio.Visibility = Visibility.Hidden;
+
+                lblCantEst.Visibility = Visibility.Hidden;
+                lblNumGrupo.Visibility = Visibility.Hidden;
+                tbxCantEst.Visibility = Visibility.Hidden;
+                tbxNumGrupo.Visibility = Visibility.Hidden;
+                groupBox.Visibility = Visibility.Hidden;
+                btnAgregar.Visibility = Visibility.Hidden;
+                btnQuitar.Visibility = Visibility.Hidden;
+                listBox.Visibility = Visibility.Hidden;
             }
         }
 
