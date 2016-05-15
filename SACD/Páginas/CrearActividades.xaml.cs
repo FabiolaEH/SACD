@@ -185,7 +185,7 @@ namespace SACD.Páginas
                 }
                 else
                 {
-                    Regex pattern = new Regex("\\b\\d{1,2},\\d{1,2}\\b");
+                    Regex pattern = new Regex("\\b[0-9]{1,2}\\b(\\,[0-9][0-9]?)?");
                     if (pattern.IsMatch(tbxHoras.Text))
                     {
                         DateTime fechaInicio = Convert.ToDateTime(dtFechaInicio.Text);
@@ -220,7 +220,7 @@ namespace SACD.Páginas
                 }
                 else
                 {
-                    Regex pattern = new Regex("\\b\\d{1,2},\\d{1,2}\\b");
+                    Regex pattern = new Regex("\\b[0-9]{1,2}\\b(\\,[0-9][0-9]?)?");
                     if (pattern.IsMatch(tbxHoras.Text))
                     {
                         Boolean isExitoso = ActividadesManager.crearActAdministrativa(tbxNombre.Text.ToString(), Decimal.Parse(tbxHoras.Text));

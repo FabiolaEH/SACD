@@ -73,11 +73,11 @@
         <TextBox x:Name="tbxNombre" HorizontalAlignment="Left" Height="30" Margin="238,152,-88,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center"/>
         <TextBox x:Name="tbxCodigo" HorizontalAlignment="Left" Height="30" Margin="238,203,-88,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center"/>
         <Label x:Name="lblHoras" Content="Horas Presenciales" HorizontalAlignment="Left" Margin="79,206,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
-        <TextBox x:Name="tbxHoras" HorizontalAlignment="Left" Height="30" Margin="238,203,-88,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center" KeyDown="tbxHoras_KeyDown" KeyUp="tbxHoras_KeyUp"/>
+        <TextBox x:Name="tbxHoras" HorizontalAlignment="Left" Height="30" Margin="238,203,-88,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center" KeyDown="tbxHoras_KeyDown" KeyUp="tbxHoras_KeyUp" MaxLength="5"/>
         <Label x:Name="lblFechaInicio" Content="Fecha inicio" HorizontalAlignment="Left" Margin="121,257,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="1.131,0.779"/>
         <Label x:Name="lblFechaFin" Content="Fecha Fin" HorizontalAlignment="Left" Margin="130,307,0,-34" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="1.131,0.779"/>
-        <DatePicker x:Name="dtFechaInicio" HorizontalAlignment="Left" Margin="243,259,-88,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="dtFechaFinal" HorizontalAlignment="Left" Margin="243,307,-88,-31" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dtFechaInicio" HorizontalAlignment="Left" Margin="238,259,0,0" VerticalAlignment="Top" Width="150"/>
+        <DatePicker x:Name="dtFechaFinal" HorizontalAlignment="Left" Margin="238,307,0,0" VerticalAlignment="Top" Width="150"/>
         <GroupBox x:Name="groupBox" Header="Grupos" HorizontalAlignment="Left" Margin="79,257,0,0" VerticalAlignment="Top" Height="175" Width="400" Visibility="Hidden">
             <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="146" Margin="246,0,0,0" VerticalAlignment="Top" Width="132" Visibility="Hidden"/>
         </GroupBox>

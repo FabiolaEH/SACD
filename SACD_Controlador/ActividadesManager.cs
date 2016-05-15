@@ -49,18 +49,74 @@ namespace SACD_Controlador
             }
             return isExitoso;
         }
-
-
-        //eliminar actividad
-        public static void eliminar(int pId)
+        
+        //eliminar curso
+        public static Boolean eliminarCurso(string pCodigo)
         {
-
+            Boolean isExitoso = false;
+            isExitoso = DatosManager.eliminarCurso(pCodigo);
+            return isExitoso;
         }
 
-        //editar actividad
-        public static void editar(int pId, Actividad pNuevaActv)
+        //Eliminar curso que posee asignación
+        public static Boolean eliminarCursoAsig(string pCodigo, int pIdActividad)
         {
+            Boolean isExitoso = false;
+            isExitoso = DatosManager.eliminarCursoAsign(pCodigo, pIdActividad);
+            return isExitoso;
+        }
 
+        //eliminar grupos 
+        public static Boolean eliminarGrupos(string pCodigo, string pConsulta)
+        {
+            Boolean isExitoso = false;
+            isExitoso = DatosManager.eliminarGrupos(pCodigo, pConsulta);
+            return isExitoso;
+        }
+
+        //eliminar investigación
+        public static Boolean eliminarInvest(int pId)
+        {
+            Boolean isExitoso = false;
+            isExitoso = DatosManager.eliminarInvest(pId);
+            return isExitoso;
+        }
+
+        //Eliminar actividad administrativa
+        public static Boolean eliminarAdmin(int pId)
+        {
+            Boolean isExitoso = false;
+            isExitoso = DatosManager.eliminarAdmin(pId);
+            return isExitoso;
+        }
+        
+        //editar curso
+        public static Boolean editarCurso(string pCodigo, string pNombre)
+        {
+            Boolean isExitoso = false;
+            isExitoso = DatosManager.editarCurso(pCodigo, pNombre);
+            return isExitoso;
+        }
+
+        //editar investigación
+        public static Boolean editarInvestigacion(int pIdInvest, string pNombre, decimal pHoras, DateTime pFechaInicio, DateTime pFechaFin)
+        {
+            Boolean isExitoso = false;
+            isExitoso = DatosManager.editarInvestigacion(pIdInvest, pNombre, pHoras, pFechaInicio, pFechaFin);
+            return isExitoso;
+        }
+
+        //editar adminstrativa
+        public static Boolean editarAdmin(int pIdAdmin, string pNombre, decimal pHoras){
+            Boolean isExitoso = false;
+            isExitoso = DatosManager.editarAdmin(pIdAdmin, pNombre, pHoras);
+            return isExitoso;
+        }
+
+        //Listar id de actividades que poseen asignaciones
+        public static List<int> listarIdAsignaciones()
+        {
+            return DatosManager.listarIdAsignaciones();
         }
 
         //Obtener tabla 1 de cálculos
@@ -297,6 +353,24 @@ namespace SACD_Controlador
 
         }
 
+
+        //obtener lista de cursos registradas
+        public static List<Curso> listarCursos()
+        {
+
+            List<Object[]> cursosObj = DatosManager.getCursosList();
+            List<Curso> cursosList = new List<Curso>();
+            Curso curso;
+
+            foreach (Object[] obj in cursosObj)
+            {
+                curso = new Curso((string)obj[0], (string)obj[1], 0);
+                cursosList.Add(curso);
+            }
+
+            return cursosList;
+
+        }
         //obtener lista de grupos registrados
         public static List<Grupo> listarGrupos() 
         {
@@ -313,7 +387,6 @@ namespace SACD_Controlador
             }
 
             return gruposList;
-
         }
 
         //obtener lista de grupos registrados
@@ -338,13 +411,29 @@ namespace SACD_Controlador
             }
             else
             {
-
                 Object[] grupoInfo = DatosManager.getGrupoInfo(pIdActividad);
 
                 Grupo grupo = new Grupo(pIdActividad, "GRUP", 0, (int)grupoInfo[2], (int)grupoInfo[3], 
                     new Curso((String)grupoInfo[0], (String)grupoInfo[1], 0));
                 return grupo;
             }
+        }
+
+        //Obtener lista de grupos por código de curso
+        public static List<Grupo> getGrupoInfoCodigo(string pCodigo)
+        {
+            List<Object[]> gruposObj = DatosManager.getGrupoInfoCodigo(pCodigo);
+            Console.WriteLine(gruposObj);
+            List<Grupo> gruposList = new List<Grupo>();
+            Grupo grupo;
+
+            foreach (Object[] obj in gruposObj)
+            {
+                grupo = new Grupo((int)obj[0], "cur", -1, (int)obj[3], (int)obj[4], new Curso(obj[1].ToString(), obj[2].ToString(), -1));
+                gruposList.Add(grupo);
+            }
+
+            return gruposList;
         }
     }
 }

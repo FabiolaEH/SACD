@@ -63,6 +63,7 @@
     </ApplicationDefinition>
     <Compile Include="Clases\ActivsAsig_GUI.cs" />
     <Compile Include="Clases\ActvsAdmin_GUI.cs" />
+    <Compile Include="Clases\Curso_GUI.cs" />
     <Compile Include="Clases\Grupos_GUI.cs" />
     <Compile Include="Clases\Investigs_GUI.cs" />
     <Compile Include="Clases\PlazasAsig_GUI.cs" />
@@ -75,6 +76,9 @@
     <Compile Include="Páginas\CrearActividades.xaml.cs">
       <DependentUpon>CrearActividades.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Páginas\EditarActividades.xaml.cs">
+      <DependentUpon>EditarActividades.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Páginas\EditarProfesor.xaml.cs">
       <DependentUpon>EditarProfesor.xaml</DependentUpon>
     </Compile>
@@ -83,6 +87,9 @@
     </Compile>
     <Compile Include="Páginas\EditarPlaza.xaml.cs">
       <DependentUpon>EditarPlaza.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Páginas\EliminarActividades.xaml.cs">
+      <DependentUpon>EliminarActividades.xaml</DependentUpon>
     </Compile>
     <Compile Include="Páginas\EliminarProfes.xaml.cs">
       <DependentUpon>EliminarProfes.xaml</DependentUpon>
@@ -125,6 +132,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Páginas\EditarActividades.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Páginas\EditarProfesor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -136,6 +147,10 @@
     <Page Include="Páginas\EditarPlaza.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Páginas\EliminarActividades.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Páginas\EliminarProfes.xaml">
       <Generator>MSBuild:Compile</Generator>
