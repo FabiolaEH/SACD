@@ -1,0 +1,92 @@
+﻿<Page x:Class="SACD.Páginas.CrearActividades"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SACD.Páginas"
+      mc:Ignorable="d"
+      Title="CrearActividades" Height="412.782" Width="526.691">
+    <Page.Resources>
+
+
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Margin="-66,-74,-30,0">
+        <Label x:Name="label" Content="Actividades -" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Top" FontSize="24" FontStyle="Italic" Foreground="#FF666666" FontWeight="Bold"/>
+        <Rectangle Fill="#FF27AE8D" HorizontalAlignment="Left" Height="486" Margin="265,-195,0,0" VerticalAlignment="Top" Width="4" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90.481"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Label x:Name="lblNumero" Content="Tipo de Actividad" HorizontalAlignment="Left" Margin="85,98,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
+        <Button x:Name="btn_Aceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="372,447,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Aceptar_Click"/>
+        <Label x:Name="lblSubtitulo" Content="CREAR" HorizontalAlignment="Left" Margin="180,9,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666"/>
+        <ComboBox x:Name="cmb_Actividad" HorizontalAlignment="Left" Margin="238,98,0,0" VerticalAlignment="Top" Width="150" Height="27" FontSize="13.333" SelectionChanged="ocultarCambios">
+            <ComboBoxItem Content="Académica"/>
+            <ComboBoxItem Content="Investigación"/>
+            <ComboBoxItem Content="Administrativa"/>
+        </ComboBox>
+        <Label x:Name="lblNombre" Content="Nombre" HorizontalAlignment="Left" Margin="143,155,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
+        <Label x:Name="lblCodigo" Content="Código" HorizontalAlignment="Left" Margin="143,206,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
+        <TextBox x:Name="tbxNombre" HorizontalAlignment="Left" Height="30" Margin="238,152,-88,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="tbxCodigo" HorizontalAlignment="Left" Height="30" Margin="238,203,-88,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center"/>
+        <Label x:Name="lblHoras" Content="Horas Presenciales" HorizontalAlignment="Left" Margin="79,206,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
+        <TextBox x:Name="tbxHoras" HorizontalAlignment="Left" Height="30" Margin="238,203,-88,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center" KeyDown="tbxHoras_KeyDown" KeyUp="tbxHoras_KeyUp" MaxLength="5"/>
+        <Label x:Name="lblFechaInicio" Content="Fecha inicio" HorizontalAlignment="Left" Margin="121,257,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="1.131,0.779"/>
+        <Label x:Name="lblFechaFin" Content="Fecha Fin" HorizontalAlignment="Left" Margin="130,307,0,-34" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="1.131,0.779"/>
+        <DatePicker x:Name="dtFechaInicio" HorizontalAlignment="Left" Margin="238,259,0,0" VerticalAlignment="Top" Width="150"/>
+        <DatePicker x:Name="dtFechaFinal" HorizontalAlignment="Left" Margin="238,307,0,0" VerticalAlignment="Top" Width="150"/>
+        <GroupBox x:Name="groupBox" Header="Grupos" HorizontalAlignment="Left" Margin="79,257,0,0" VerticalAlignment="Top" Height="175" Width="400" Visibility="Hidden">
+            <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="146" Margin="246,0,0,0" VerticalAlignment="Top" Width="132" Visibility="Hidden"/>
+        </GroupBox>
+        <Label x:Name="lblNumGrupo" Content="Número" HorizontalAlignment="Left" Margin="137,291,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.596,2.207" Visibility="Hidden"/>
+        <Label x:Name="lblCantEst" Content="Cant. Estudiantes" HorizontalAlignment="Left" Margin="82,341,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold" Visibility="Hidden"/>
+        <TextBox x:Name="tbxNumGrupo" HorizontalAlignment="Left" Height="30" Margin="238,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center" KeyDown="tbxOnlyNumbers" Visibility="Hidden" MaxLength="2"/>
+        <TextBox x:Name="tbxCantEst" HorizontalAlignment="Left" Height="30" Margin="238,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center" RenderTransformOrigin="0.616,2.097" KeyDown="tbxOnlyNumbers" Visibility="Hidden" MaxLength="2"/>
+        <Button x:Name="btnAgregar" Content="Agregar" HorizontalAlignment="Left" Margin="112,388,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Agregar" Visibility="Hidden"/>
+        <Button x:Name="btnQuitar" Content="Quitar" HorizontalAlignment="Left" Margin="222,388,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Quitar" Visibility="Hidden"/>
+
+    </Grid>
+</Page>

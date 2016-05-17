@@ -97,9 +97,9 @@
             </MenuItem>
 
             <MenuItem Header="Actividades"  Margin="10" Padding="50,22,0,0" Width="202" Height="75" HorizontalAlignment="Center" FontSize="18.667" FontWeight="Bold" Foreground="White" Background="#FFB5D244"  Template="{StaticResource MenuItemTemplate}" Command="NavigationCommands.GoToPage" CommandParameter="Actividades.xaml" CommandTarget="{Binding ElementName=frmContenido}" >
-                <MenuItem Header="Crear" Foreground="Black" FontWeight="Normal" FontSize="16" Padding="5"/>
-                <MenuItem Header="Editar" Foreground="Black" FontWeight="Normal" FontSize="16" Padding="5"/>
-                <MenuItem Header="Eliminar" FontSize="16" FontWeight="Normal" Foreground="Black" Padding="5"/>
+                <MenuItem Header="Crear" Foreground="Black" FontWeight="Normal" FontSize="16" Padding="5" Command="NavigationCommands.GoToPage" CommandParameter="Páginas/CrearActividades.xaml" CommandTarget="{Binding ElementName=frmContenido}" />
+                <MenuItem Header="Editar" Foreground="Black" FontWeight="Normal" FontSize="16" Padding="5"  Command="NavigationCommands.GoToPage" CommandParameter="Páginas/EditarActividades.xaml" CommandTarget="{Binding ElementName=frmContenido}" />
+                <MenuItem Header="Eliminar" FontSize="16" FontWeight="Normal" Foreground="Black" Padding="5" Command="NavigationCommands.GoToPage" CommandParameter="Páginas/EliminarActividades.xaml" CommandTarget="{Binding ElementName=frmContenido}" />
             </MenuItem>
 
             <MenuItem Header="Asignaciones"  Margin="10" Padding="50,22,0,0" Width="202" Height="75" HorizontalAlignment="Center" FontSize="18.667" FontWeight="Bold" Foreground="White" Background="#FFB5D244" Template="{StaticResource MenuItemTemplate}" Click="cli_Click" />

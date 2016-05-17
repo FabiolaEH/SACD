@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -16,8 +17,8 @@ namespace SACD_AccesoDatos
             conn = new SqlConnection();
        
             //conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
-            //conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
-            conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
+            //conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = ecRhin\\estudiantes; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
 
             try
@@ -454,6 +455,40 @@ namespace SACD_AccesoDatos
             return grupoInfo;
         }
 
+        //Buscar grupo por cod Curso
+        public static List<Object[]> getGrupoInfoCodigo(string pCodigo)
+        {
+            List<Object[]> grupos = new List<Object[]>();
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT g.ID_GRUPO, g.COD_CURSO, c.NOM_CURSO, g.NUM_GRUPO, g.NUM_ESTUDIANTES FROM SACDFGRUPOS g JOIN SACDFCURSO c ON g.COD_CURSO = c.COD_CURSO WHERE G.COD_CURSO = @codigo ORDER BY c.NOM_CURSO", conn);
+                command.Parameters.AddWithValue("@codigo", pCodigo);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Object[] grupoInfo = new Object[5];
+                    grupoInfo[0] = reader.GetInt32(0);
+                    grupoInfo[1] = reader.GetString(1);
+                    grupoInfo[2] = reader.GetString(2);
+                    grupoInfo[3] = reader.GetInt32(3);
+                    grupoInfo[4] = reader.GetInt32(4);
+                    grupos.Add(grupoInfo);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            cerrarConexion();
+            return grupos;
+        }
+
 
         /************* Cursos ***************/
 
@@ -518,6 +553,35 @@ namespace SACD_AccesoDatos
             return tiposList;
         }
 
+
+        public static List<Object[]> getCursosList()
+        {
+            List<Object[]> cursosList = new List<Object[]>();
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT COD_CURSO, NOM_CURSO FROM SACDFCURSO", conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Object[] info = new Object[2];
+                    info[0] = reader.GetString(0);
+                    info[1] = reader.GetString(1);
+                    cursosList.Add(info);
+                }
+
+                reader.Close();
+                cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return cursosList;
+        }
 
         /************* Semestres ***************/
 
@@ -645,6 +709,32 @@ namespace SACD_AccesoDatos
             return asignacionesList;
         }
 
+        //Listar ids de actividades que poseen asignaciones 
+        public static List<int> listarIdAsignaciones()
+        {
+            List<int> ids = new List<int>();
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT a.ID_ACTIVIDAD FROM SACDFACTIVIDADES a JOIN SACDFASIGNACIONES asi ON a.ID_ACTIVIDAD = asi.ID_ACTIVIDAD", conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int id = reader.GetInt32(0);
+                    ids.Add(id);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+            cerrarConexion();
+            return ids;
+        }
 
         /************* Actividades ***************/
 
@@ -676,6 +766,111 @@ namespace SACD_AccesoDatos
             return actividadInfo;
         }
 
+        //Insertar actividad administrativa
+        public static Boolean insertarActvAdmin(string pNombre, decimal pHoras)
+        {
+            Boolean isExitoso = false;
+
+            if (crearConexion() == true)
+            {
+                    SqlCommand cmd = new SqlCommand("pr_SACDFADMINISTRAT_Insertar", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@pNOM_ADMINITRATIV", pNombre));
+                    cmd.Parameters.Add(new SqlParameter("@pCAN_HORAS", pHoras));
+                    cmd.ExecuteNonQuery();
+                    isExitoso = true;
+                    cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return isExitoso;
+        }
+
+        //Insertar investigación
+        public static Boolean insertarActvInvest(string pNombre, decimal pHoras, DateTime pFechaInicio, DateTime pFechaFin)
+        {
+            Boolean isExitoso = false;
+
+            if (crearConexion() == true)
+            {
+                SqlCommand cmd = new SqlCommand("pr_SACDFINVESTIG_Insertar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@pNOM_INVESTIG", pNombre));
+                cmd.Parameters.Add(new SqlParameter("@pCAN_HORAS", pHoras));
+                cmd.Parameters.Add(new SqlParameter("@pFEC_INICIO", pFechaInicio));
+                cmd.Parameters.Add(new SqlParameter("@pFEC_FIN", pFechaFin));
+                cmd.ExecuteNonQuery();
+                isExitoso = true;
+                cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return isExitoso;
+        }
+
+        //Insertar curso
+        public static Boolean insertarActCurso(string pCodigo, string pNombre)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFCURSO VALUES(@codigo, @nombre)", conn);
+                    command.Parameters.AddWithValue("@codigo", pCodigo);
+                    command.Parameters.AddWithValue("@nombre", pNombre);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.insertActCurso -> Problema al insertar profesor: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+            cerrarConexion();
+            return isValido;
+        }
+
+        //Insertar grupos
+        public static Boolean insertarActGrupo(int pNumGrupo, int pCantEstud, string pCodigo)
+        {
+            Boolean isExitoso = false;
+
+            if (crearConexion() == true)
+            {
+                SqlCommand cmd = new SqlCommand("pr_SACDFGRUPOS_Insertar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@pCOD_CURSO", pCodigo));
+                cmd.Parameters.Add(new SqlParameter("@pNUM_GRUPO", pNumGrupo));
+                cmd.Parameters.Add(new SqlParameter("@pNUM_ESTUDIANTES", pCantEstud));
+                cmd.ExecuteNonQuery();
+                isExitoso = true;
+                cerrarConexion();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+
+            return isExitoso;
+        }
 
         /************* Ampliaciones ***************/
 
@@ -1162,6 +1357,105 @@ namespace SACD_AccesoDatos
             return isValido;
         }
 
+        //Editar nombre del curso
+
+        public static Boolean editarCurso(string pCodigo, string pNombre)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("UPDATE SACDFCURSO SET NOM_CURSO = @nombre WHERE COD_CURSO = @codigo", conn);
+                    command.Parameters.AddWithValue("@codigo", pCodigo);
+                    command.Parameters.AddWithValue("@nombre", pNombre);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.editarCurso -> Problema al editar el nombre del curso: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            cerrarConexion();
+            return isValido;
+        }
+
+        // Editar Investigaciones
+        
+        public static Boolean editarInvestigacion(int pIdInvest, string pNombre, decimal pHoras, DateTime pFechaInicio, DateTime pFechaFin) 
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("UPDATE SACDFINVESTIG SET CAN_HORAS = @horas, FEC_INICIO = @inicio, FEC_FIN = @fin, NOM_INVESTIG = @nombre WHERE ID_INVESTIGACION = @id", conn);
+                    command.Parameters.AddWithValue("@id", pIdInvest);
+                    command.Parameters.AddWithValue("@nombre", pNombre);
+                    command.Parameters.AddWithValue("@horas", pHoras);
+                    command.Parameters.AddWithValue("@inicio", pFechaInicio);
+                    command.Parameters.AddWithValue("@fin", pFechaFin);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.editarInvestigacion -> Problema al editar la investigación: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+            cerrarConexion();
+            return isValido;
+        }
+
+        //Editar actividades administrativas
+        public static Boolean editarAdmin(int pIdAdmin, string pNombre, decimal pHoras)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("UPDATE SACDFADMINISTRAT SET CAN_HORAS = @horas, NOM_ADMINITRATIV = @nombre WHERE ID_ADMINISTRATIV = @id", conn);
+                    command.Parameters.AddWithValue("@id", pIdAdmin);
+                    command.Parameters.AddWithValue("@nombre", pNombre);
+                    command.Parameters.AddWithValue("@horas", pHoras);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.editarAdmin -> Problema al editar la actividad administrativa: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+            cerrarConexion();
+            return isValido;
+        }
 
         /*---------------------------------   ELIMINAR  --------------------------------------*/
 
@@ -1321,6 +1615,186 @@ namespace SACD_AccesoDatos
                 isValido = false;
             }
 
+            return isValido;
+        }
+
+        //Cursos
+        public static Boolean eliminarCurso(string pCodigo)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("" +
+                        "DELETE FROM SACDFTIPO_CURSO WHERE COD_CURSO = @codigo " +
+                        "DELETE a FROM SACDFACTIVIDADES a " +
+                        "INNER JOIN SACDFGRUPOS g ON a.ID_ACTIVIDAD = g.ID_GRUPO Where g.COD_CURSO = @codigo  " +
+                        "DELETE g FROM SACDFGRUPOS g INNER JOIN SACDFCURSO c ON g.COD_CURSO = c.COD_CURSO " +
+                        "Where g.COD_CURSO = @codigo " +
+                        "DELETE FROM SACDFCURSO WHERE COD_CURSO = @codigo", conn);
+                    command.Parameters.AddWithValue("@codigo", pCodigo);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.eliminarCurso -> Problema al eliminar un curso: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+            cerrarConexion();
+            return isValido;
+        }
+
+        //Eliminar Curso con asignaciones
+        public static Boolean eliminarCursoAsign(string pCodigo, int pIdActividad)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("" +
+                        "DELETE FROM SACDFASIGNACIONES WHERE ID_ACTIVIDAD = @id " +
+                        "DELETE FROM SACDFTIPO_CURSO WHERE COD_CURSO = @codigo " +
+                        "DELETE a FROM SACDFACTIVIDADES a " +
+                        "INNER JOIN SACDFGRUPOS g ON a.ID_ACTIVIDAD = g.ID_GRUPO Where g.COD_CURSO = @codigo  " +
+                        "DELETE g FROM SACDFGRUPOS g INNER JOIN SACDFCURSO c ON g.COD_CURSO = c.COD_CURSO " +
+                        "Where g.COD_CURSO = @codigo " +
+                        "DELETE FROM SACDFCURSO WHERE COD_CURSO = @codigo", conn);
+                    command.Parameters.AddWithValue("@id", pIdActividad);
+                    command.Parameters.AddWithValue("@codigo", pCodigo);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.eliminarCursoAsign -> Problema al eliminar un curso: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+            cerrarConexion();
+            return isValido;
+        }
+
+        //Investigación
+
+        public static Boolean eliminarInvest(int pIdInvestigacion)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("" +
+                        "DELETE FROM SACDFASIGNACIONES WHERE ID_ACTIVIDAD = @id " +
+                        "DELETE a FROM SACDFACTIVIDADES a " +
+                        "INNER JOIN SACDFINVESTIG i ON a.ID_ACTIVIDAD = i.ID_INVESTIGACION " +
+                        "WHERE i.ID_INVESTIGACION = @id " +
+                        "DELETE FROM SACDFINVESTIG WHERE ID_INVESTIGACION = @id", conn);
+                    command.Parameters.AddWithValue("@id", pIdInvestigacion);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.eliminarInvest -> Problema al eliminar una investigación: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+            cerrarConexion();
+            return isValido;
+        }
+
+        // Administrativa
+
+        public static Boolean eliminarAdmin(int pIdAdministrativa)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("" +
+                        "DELETE FROM SACDFASIGNACIONES WHERE ID_ACTIVIDAD = @id " +
+                        "DELETE a FROM SACDFACTIVIDADES a " +
+                        "INNER JOIN SACDFADMINISTRAT ad ON a.ID_ACTIVIDAD = ad.ID_ADMINISTRATIV " +
+                        "WHERE ad.ID_ADMINISTRATIV = @id " +
+                        "DELETE FROM SACDFADMINISTRAT WHERE ID_ADMINISTRATIV = @id", conn);
+                    command.Parameters.AddWithValue("@id", pIdAdministrativa);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.eliminarAdmin -> Problema al eliminar una actividad administrativa: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+            cerrarConexion();
+            return isValido;
+        }
+
+        // Grupos
+        public static Boolean eliminarGrupos(string pCodigo, string pConsulta)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("" +
+                        "DELETE a FROM SACDFACTIVIDADES a " +
+                        "INNER JOIN SACDFGRUPOS g ON a.ID_ACTIVIDAD = g.ID_GRUPO Where g.COD_CURSO = @codigo AND ( " + pConsulta + " ) " +
+                        "DELETE g FROM SACDFGRUPOS g INNER JOIN SACDFCURSO c ON g.COD_CURSO = c.COD_CURSO " +
+                        "Where g.COD_CURSO = @codigo AND ( " + pConsulta + " ) ", conn);
+                    command.Parameters.AddWithValue("@codigo", pCodigo);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.eliminarGrupos -> Problema al eliminar los grupos: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+            cerrarConexion();
             return isValido;
         }
     }

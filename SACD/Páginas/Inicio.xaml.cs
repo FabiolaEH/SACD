@@ -29,6 +29,8 @@ namespace SACD
         int contAdm = 0;
         int contInv = 0;
         int contAca = 0;
+        MainWindow mainWindow;
+
         public Inicio()
         {
             InitializeComponent();
@@ -37,16 +39,14 @@ namespace SACD
             
             cargarInformacion();
             //Seleccionar el semestre y año actual
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow = (MainWindow)Application.Current.MainWindow;
             int indexAnio = cmb_Anio.Items.IndexOf(mainWindow.anio_global);
             int indexPeriodo= cmb_Semestre.Items.IndexOf(mainWindow.periodo_global);
 
             cmb_Anio.SelectedIndex = indexAnio;
             cmb_Semestre.SelectedIndex = indexPeriodo;
-
-
+            
             LoadPieChartData(distribPlazas);
-            LoadVerticalChartData();
             guardarAsign(mainWindow);
             LoadPieChartData2();
         }
@@ -90,21 +90,6 @@ namespace SACD
             };
         }
 
-        private void LoadVerticalChartData()
-        {
-            chartVertical.ItemsSource = new KeyValuePair<string, int>[]{
-                new KeyValuePair<string,int>("Ana Abdelnour", 1),
-                new KeyValuePair<string,int>("Carlos Alvarado", 2),
-                new KeyValuePair<string,int>("Elizabeth Arnáez", 3),
-                new KeyValuePair<string,int>("Laura Chavarría", 4),
-                new KeyValuePair<string,int>("Emmanuel Araya", 3),
-                new KeyValuePair<string,int>("Karla Meneses", 2),
-                new KeyValuePair<string,int>("Luis Fernando Alvarado", 1),
-                new KeyValuePair<string,int>("Mauricio Chicas", 30)
-            };
-        }
-
-
         private void cargarInformacion()
         {
             int anio = -1;
@@ -144,6 +129,11 @@ namespace SACD
                     List<int> semestre = SemestresManager.getSemestreGlobal();
                     mainWindow.semestre_global = semestre[0];
                     MessageBox.Show("Se han guardado los datos correctamente.");
+                    contAdm = 0;
+                    contInv = 0;
+                    contAca = 0;
+                    guardarAsign(mainWindow);
+                    LoadPieChartData2();
                 }
                 else
                 {
