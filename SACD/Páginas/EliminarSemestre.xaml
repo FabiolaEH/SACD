@@ -4,10 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SACD.Páginas"
-      xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="SACD.Páginas.CrearSemestre"
+      xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="SACD.Páginas.EliminarSemestre"
       mc:Ignorable="d" 
       d:DesignHeight="419"
-      Title="CrearSemestre"  Width="675">
+      Title="EliminarSemestre"  Width="675">
 
     <Page.Resources>
         <LinearGradientBrush x:Key="ComboBox.Static.Background" EndPoint="0,1" StartPoint="0,0">
@@ -331,13 +331,73 @@
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <Label x:Name="lblNumero" Content="Período" HorizontalAlignment="Left" Margin="126,98,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
-        <Label x:Name="lblPorc" Content="Año" HorizontalAlignment="Left" Margin="126,154,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
-        <Button x:Name="btn_Aceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="372,341,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Aceptar_Click"/>
-        <Label x:Name="lblSubtitulo" Content="CREAR" HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666"/>
-        <TextBox x:Name="tbxAnio" HorizontalAlignment="Left" Height="30" Margin="235,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center"/>
-        <ComboBox x:Name="cmb_Periodos" Margin="235,103,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
-
+        <DataGrid x:Name="dgSemestres" AutoGenerateColumns="False" Background="White" BorderBrush="#FFDDDDDD" FontSize="13.333" HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalGridLinesBrush="#FFDDDDDD" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True" AlternationCount="2" CanUserResizeColumns="False" AlternatingRowBackground="Snow" Margin="120,98,241,0" VerticalAlignment="Top" Height="254">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding periodo}" Header="Período" Width="150">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="ToolTip" Value="{Binding nombre}" />
+                            <Setter Property="Padding" Value="10"/>
+                            <Setter Property="FontWeight" Value="Normal" />
+                            <Setter Property="Foreground" Value="#FF666666"/>
+                            <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
+                            <Setter Property="FontSize" Value="10pt"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                        <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding anio}" Header="Año" Width="100"/>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="checkbx_SelectCu" IsChecked="{Binding isSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="{x:Type DataGridColumnHeader}" >
+                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="BorderBrush" Value="#FFDDDDDD"/>
+                    <Setter Property="Background" Value="#FFECECEC"/>
+                    <Setter Property="Foreground" Value="#FF666666"/>
+                    <Setter Property="BorderThickness" Value="0 0 1 1"/>
+                    <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
+                    <Setter Property="FontSize" Value="10pt"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <Setter Property="Foreground" Value="#FF666666"/>
+                    <Setter Property="FontFamily" Value="Trebuchet MS, Arial, Helvetica, sans-serif"/>
+                    <Setter Property="FontSize" Value="10pt"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
+        <Button x:Name="btn_Aceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="374,389,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Aceptar_Click"/>
+        <Label x:Name="lblSubtitulo" Content="ELIMINAR" HorizontalAlignment="Left" Margin="165,10,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666"/>
+      
     </Grid>
 
 </Page>

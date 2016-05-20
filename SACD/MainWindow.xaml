@@ -79,8 +79,8 @@
             <MenuItem Header="Inicio" Margin="10" Padding="50,22,0,0" Width="202" Height="75" HorizontalAlignment="Center" FontSize="18.667" FontWeight="Bold" Foreground="White" Background="#FFB5D244" Template="{StaticResource MenuItemTemplate}" Command="NavigationCommands.GoToPage" CommandParameter="Páginas/Inicio.xaml" CommandTarget="{Binding ElementName=frmContenido}" />
 
             <MenuItem Header="Semestres" Margin="10" Padding="50,22,0,0" Width="202" Height="75" HorizontalAlignment="Center" FontSize="18.667" FontWeight="Bold" Foreground="White" Background="#FFB5D244" Template="{StaticResource MenuItemTemplate}">
-                <MenuItem Header="Crear" Foreground="Black" FontWeight="Normal" FontSize="16" Padding="5"  Command="NavigationCommands.GoToPage" CommandParameter="Páginas/Perfil.xaml" CommandTarget="{Binding ElementName=frmContenido}"/>
-                <MenuItem Header="Eliminar" FontWeight="Normal" Foreground="Black" FontSize="16" Padding="5" Command="NavigationCommands.GoToPage" CommandParameter="Páginas/Prueba.xaml" CommandTarget="{Binding ElementName=frmContenido}"/>
+                <MenuItem Header="Crear" Foreground="Black" FontWeight="Normal" FontSize="16" Padding="5"  Command="NavigationCommands.GoToPage" CommandParameter="Páginas/CrearSemestre.xaml" CommandTarget="{Binding ElementName=frmContenido}"/>
+                <MenuItem Header="Eliminar" FontWeight="Normal" Foreground="Black" FontSize="16" Padding="5" Command="NavigationCommands.GoToPage" CommandParameter="Páginas/EliminarSemestre.xaml" CommandTarget="{Binding ElementName=frmContenido}"/>
             </MenuItem>
 
             <MenuItem Header="Profesores"  Margin="10" Padding="50,22,0,0" Width="202" Height="75" HorizontalAlignment="Center" FontSize="18.667" FontWeight="Bold" Foreground="White" Background="#FFB5D244"  Template="{StaticResource MenuItemTemplate}" Command="NavigationCommands.GoToPage" CommandParameter="Profesores.xaml" CommandTarget="{Binding ElementName=frmContenido}">

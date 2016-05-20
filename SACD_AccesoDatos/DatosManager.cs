@@ -16,8 +16,8 @@ namespace SACD_AccesoDatos
         {
             conn = new SqlConnection();
        
-            //conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
-            conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
+            conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            //conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
             //conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = ecRhin\\estudiantes; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
 
@@ -1213,6 +1213,39 @@ namespace SACD_AccesoDatos
         }
 
 
+        /************* Semestres ***************/
+
+        //Registrar plaza
+        public static Boolean insertSemestre(string pAnio, string pPeriodo)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFSEMESTRES(NUM_AÑO, NUM_PERIODO) VALUES(@anio, @periodo)", conn);
+                    command.Parameters.AddWithValue("@anio", pAnio);
+                    command.Parameters.AddWithValue("@periodo", pPeriodo);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.insertSemestre -> Problema al insertar semestre: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
+
         /*---------------------------------   MODIFICAR  --------------------------------------*/
 
         /************* Usuarios ***************/
@@ -1456,6 +1489,7 @@ namespace SACD_AccesoDatos
             cerrarConexion();
             return isValido;
         }
+
 
         /*---------------------------------   ELIMINAR  --------------------------------------*/
 
@@ -1795,6 +1829,37 @@ namespace SACD_AccesoDatos
                 isValido = false;
             }
             cerrarConexion();
+            return isValido;
+        }
+
+
+        /************* Semestres ***************/
+        public static Boolean eliminarSemestre(string pId)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("DELETE FROM SACDFSEMESTRES WHERE ID_SEMESTRE = @id", conn);
+                    command.Parameters.AddWithValue("@id", pId);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.eliminarSemestre -> Problema al eliminar semestre: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
             return isValido;
         }
     }

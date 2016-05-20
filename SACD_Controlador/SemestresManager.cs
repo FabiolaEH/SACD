@@ -11,21 +11,17 @@ namespace SACD_Controlador
     public static class SemestresManager
     {
         //crear semestre
-        public static void crear()
+        public static Boolean crear(String pAnio, String pPeriodo)
         {
-
+            Boolean isValido = DatosManager.insertSemestre(pAnio, pPeriodo);
+            return isValido;
         }
 
         //eliminar semestre
-        public static void eliminar(int pId)
+        public static Boolean eliminar(int pId)
         {
-
-        }
-
-        //editar semestre
-        public static void editar(int pId, Profesor pNuevoProf)
-        {
-
+            Boolean isValido = DatosManager.eliminarSemestre(pId.ToString());
+            return isValido;
         }
 
         //Editar semestre actual
