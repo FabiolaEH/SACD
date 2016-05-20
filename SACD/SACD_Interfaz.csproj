@@ -67,6 +67,7 @@
     <Compile Include="Clases\Grupos_GUI.cs" />
     <Compile Include="Clases\Investigs_GUI.cs" />
     <Compile Include="Clases\PlazasAsig_GUI.cs" />
+    <Compile Include="Clases\Semestre_GUI.cs" />
     <Compile Include="Clases\Plazas_GUI.cs" />
     <Compile Include="Clases\Reporte_Admin_GUI.cs" />
     <Compile Include="Clases\Reporte_Ampli_GUI.cs" />
@@ -75,6 +76,9 @@
     <Compile Include="Clases\Profesor_GUI.cs" />
     <Compile Include="Páginas\CrearActividades.xaml.cs">
       <DependentUpon>CrearActividades.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Páginas\CrearSemestre.xaml.cs">
+      <DependentUpon>CrearSemestre.xaml</DependentUpon>
     </Compile>
     <Compile Include="Páginas\EditarActividades.xaml.cs">
       <DependentUpon>EditarActividades.xaml</DependentUpon>
@@ -90,6 +94,9 @@
     </Compile>
     <Compile Include="Páginas\EliminarActividades.xaml.cs">
       <DependentUpon>EliminarActividades.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Páginas\EliminarSemestre.xaml.cs">
+      <DependentUpon>EliminarSemestre.xaml</DependentUpon>
     </Compile>
     <Compile Include="Páginas\EliminarProfes.xaml.cs">
       <DependentUpon>EliminarProfes.xaml</DependentUpon>
@@ -132,6 +139,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Páginas\CrearSemestre.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Páginas\EditarActividades.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +162,10 @@
     <Page Include="Páginas\EliminarActividades.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Páginas\EliminarSemestre.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Páginas\EliminarProfes.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -176,10 +191,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Páginas\CrearSemestre.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Páginas\Inicio.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,9 +208,6 @@
     </Compile>
     <Compile Include="Páginas\Asignaciones.xaml.cs">
       <DependentUpon>Asignaciones.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Páginas\CrearSemestre.xaml.cs">
-      <DependentUpon>CrearSemestre.xaml</DependentUpon>
     </Compile>
     <Compile Include="Páginas\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
