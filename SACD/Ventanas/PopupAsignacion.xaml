@@ -50,7 +50,14 @@
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding numGrupo}" Header="Grupo" Width="70"/>
-                            <DataGridTextColumn Binding="{Binding valHoras}"  Header="Horas" Width="70"/>
+                           <!-- <DataGridTextColumn Binding="{Binding valHoras}"  Header="Horas" Width="70"/> -->
+                            <DataGridTemplateColumn Width="70" Header="Horas">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Width="40" Height="25" Text="{Binding valHoras, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="#FF666666"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTemplateColumn Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
