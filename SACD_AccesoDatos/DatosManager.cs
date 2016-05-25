@@ -1153,7 +1153,7 @@ namespace SACD_AccesoDatos
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("INSERT INTO SACDFPROFESORES VALUES(@nombre, 0)", conn);
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFPROFESORES VALUES(@nombre)", conn);
                     command.Parameters.AddWithValue("@nombre", pNombre);
                     command.ExecuteNonQuery();
                     isValido = true;
