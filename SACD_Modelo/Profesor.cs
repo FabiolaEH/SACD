@@ -10,16 +10,14 @@ namespace SACD_Modelo
     {
         private int id;
         private string nombre;    
-        private decimal horasAsig;
         private List<Asignacion> asignaciones;
         private List<Ampliacion> ampliaciones;
         private List<PlazaAsignada> plazasAsig;
 
-        public Profesor(int pId, string pNombre, decimal pHorasAsig)
+        public Profesor(int pId, string pNombre)
         {
             id = pId;
             nombre = pNombre;
-            horasAsig = pHorasAsig;
             asignaciones = new List<Asignacion>();
             ampliaciones = new List<Ampliacion>();
             plazasAsig = new List<PlazaAsignada>();
@@ -43,16 +41,6 @@ namespace SACD_Modelo
         public void setNombre(string pNombre)
         {
             nombre = pNombre;
-        }
-
-        public decimal getHorasAsig()
-        {
-            return horasAsig;
-        }
-
-        public void setHorasAsig(decimal pHorasAsig)
-        {
-            horasAsig = pHorasAsig;
         }
 
         public List<Asignacion> getAsignaciones()

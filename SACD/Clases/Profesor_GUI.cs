@@ -10,7 +10,6 @@ namespace SACD.Clases
     {
         public int id { get; set; }
         public string nombre { get; set; }
-        public decimal horasAsig { get; set; }
         public bool isSelected { get; set; }
     }
 }

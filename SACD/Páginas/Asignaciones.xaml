@@ -31,7 +31,7 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre" Binding="{Binding nombre}" Width="250"/>
-                <DataGridTextColumn Header="Horas Asignadas" Binding="{Binding horasAsig}" Width="150" />
+                <!--<DataGridTextColumn Header="Horas Asignadas" Binding="{}" Width="150" />-->
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

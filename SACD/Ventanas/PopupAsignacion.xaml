@@ -129,7 +129,14 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding valHoras}" Header="Horas" Width="*"/>
+                            <!--<DataGridTextColumn Binding="{Binding valHoras}" Header="Horas" Width="*"/>-->
+                            <DataGridTemplateColumn Width="*" Header="Horas">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Width="40" Height="25" Text="{Binding valHoras, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="#FF666666"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="{x:Type DataGridColumnHeader}" >
@@ -194,7 +201,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding valHoras}" Header="Horas" Width="100">
+                            <!--<DataGridTextColumn Binding="{Binding valHoras}" Header="Horas" Width="100">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="ToolTip" Value="{Binding valHoras}" />
@@ -214,7 +221,14 @@
                                         </Setter>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn>
+                            </DataGridTextColumn> -->
+                            <DataGridTemplateColumn Width="100" Header="Horas">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Width="40" Height="25" Text="{Binding valHoras, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="#FF666666" FontWeight="Normal"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTextColumn Binding="{Binding inicio}" Header="Inicio" Width="100">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
