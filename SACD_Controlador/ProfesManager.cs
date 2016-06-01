@@ -47,7 +47,7 @@ namespace SACD_Controlador
             Object[] profeInfo = new Object[3];
             profeInfo = DatosManager.getProfeInfo(pId);
 
-            Profesor profesor = new Profesor((int) profeInfo[0], (string) profeInfo[1], (decimal) profeInfo[2]);
+            Profesor profesor = new Profesor((int) profeInfo[0], (string) profeInfo[1]);
 
             return profesor;
         }
@@ -58,7 +58,7 @@ namespace SACD_Controlador
             Object[] profeInfo = new Object[3];
             profeInfo = DatosManager.getProfeInfoPorNombre(pNombre);
 
-            Profesor profesor = new Profesor((int)profeInfo[0], (string)profeInfo[1], (decimal)profeInfo[2]);
+            Profesor profesor = new Profesor((int)profeInfo[0], (string)profeInfo[1]);
 
             return profesor;
         }
@@ -74,7 +74,7 @@ namespace SACD_Controlador
             
             foreach (Object[] obj in profesListObject)
             {
-                profe = new Profesor((int)obj[0], (string)obj[1], (decimal)obj[2]);
+                profe = new Profesor((int)obj[0], (string)obj[1]);
                 profesList.Add(profe);
             }
 

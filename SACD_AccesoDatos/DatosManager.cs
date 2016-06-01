@@ -145,7 +145,6 @@ namespace SACD_AccesoDatos
                     Object[] profeInfo = new Object[3];
                     profeInfo[0] = reader.GetInt32(0);
                     profeInfo[1] = reader.GetString(1);
-                    profeInfo[2] = reader.GetDecimal(2);
                     profesList.Add(profeInfo);
                 }
 
@@ -176,8 +175,6 @@ namespace SACD_AccesoDatos
                 {
                     profeInfo[0] = reader.GetInt32(0);
                     profeInfo[1] = reader.GetString(1);
-                    profeInfo[2] = reader.GetDecimal(2);
-
                 }
 
                 reader.Close();
@@ -208,7 +205,6 @@ namespace SACD_AccesoDatos
                 {
                     profeInfo[0] = reader.GetInt32(0);
                     profeInfo[1] = reader.GetString(1);
-                    profeInfo[2] = reader.GetDecimal(2);
 
                 }
 
@@ -1157,7 +1153,7 @@ namespace SACD_AccesoDatos
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("INSERT INTO SACDFPROFESORES VALUES(@nombre, 0)", conn);
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFPROFESORES VALUES(@nombre)", conn);
                     command.Parameters.AddWithValue("@nombre", pNombre);
                     command.ExecuteNonQuery();
                     isValido = true;

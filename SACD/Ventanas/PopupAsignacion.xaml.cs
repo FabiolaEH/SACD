@@ -47,7 +47,7 @@ namespace SACD.Ventanas
             cargarInvestig();
 
             //Obtener info profesor
-            profeInfo = new Profesor(profeId, "", 0);
+            profeInfo = new Profesor(profeId, "");
             List<Asignacion> asignacionesProf = AsignacsManager.getAsignaciones(profeInfo.getId(), idSemestre, periodo, anio, false);
             List<Ampliacion> ampliacionesProf = AsignacsManager.getAmpliaciones(profeInfo.getId(), idSemestre, periodo, anio);
             profeInfo.setAsignaciones(asignacionesProf);
@@ -189,7 +189,14 @@ namespace SACD.Ventanas
                 foreach (ActvsAdmin_GUI admiInfo in dgAdmin.ItemsSource)
                 {
                     if (admiInfo.id == pActv.getId())
+                    {
                         admiInfo.isSelected = true;
+                        //actualizar horas
+                        if (modalidad.Equals("simp"))
+                            admiInfo.valHoras = pAsig.getValorHoras();
+                        else
+                            admiInfo.valHoras = pAmp.getValorHoras();
+                    }
                 }
             }
 
@@ -198,10 +205,18 @@ namespace SACD.Ventanas
                 foreach (Investigs_GUI investInfo in dgInvestig.ItemsSource)
                 {
                     if (investInfo.id == pActv.getId())
+                    {
                         investInfo.isSelected = true;
+                        //actualizar horas
+                        if (modalidad.Equals("simp"))
+                            investInfo.valHoras = pAsig.getValorHoras();
+                        else
+                            investInfo.valHoras = pAmp.getValorHoras();
+                    }
                 }
             }
         }
+
 
         private void unCheckActivs()
         {  
@@ -281,10 +296,10 @@ namespace SACD.Ventanas
         //Guarda las asignaciones que fueron seleccionadas
         private void guardarAsigs()
         {
+            //Recorrer tabla de cursos
             int estado = 0;
             bool tipoAmpl = false;
 
-            //Recorrer tabla de cursos
             foreach (Grupos_GUI grupoInfo in dgGrupos.ItemsSource)
             {
                 bool isChecked = grupoInfo.isSelected;
@@ -338,24 +353,56 @@ namespace SACD.Ventanas
             }
 
             //Recorrer tabla de actividades adaministrativas
+            int tipoAmp = 0;
             foreach (ActvsAdmin_GUI adminInfo in dgAdmin.ItemsSource)
             {
                 bool isChecked = adminInfo.isSelected;
                 if (isChecked)
                 {
                     if (modalidad.Equals("simp"))
+                    {
                         AsignacsManager.asignarActiv(adminInfo.id, profeInfo.getId(), idSemestre, adminInfo.valHoras);
+                        profeInfo.addAsignacion(new Asignacion(adminInfo.valHoras, new ActvAdmin(adminInfo.id, "ADMI",
+                                                adminInfo.valHoras, adminInfo.nombre), new Semestre(idSemestre, anio, periodo)));
+                    }
+
+                    else //Ampliacion
+                    {
+                        if (modalidad.Equals("dbamp"))                       
+                            tipoAmp = 1;
+
+                        AsignacsManager.asignarAmpl(adminInfo.id, profeInfo.getId(), idSemestre, adminInfo.valHoras, tipoAmp);
+                        profeInfo.addAmpliacion(new Ampliacion(adminInfo.valHoras, new ActvAdmin(adminInfo.id, "ADMI",
+                                                        adminInfo.valHoras, adminInfo.nombre), new Semestre(idSemestre, anio, periodo), tipoAmpl));
+                    }
                 }
             }
 
             //Recorrer tabla de investigaciones
+            tipoAmp = 0;
             foreach (Investigs_GUI investInfo in dgInvestig.ItemsSource)
             {
                 bool isChecked = investInfo.isSelected;
                 if (isChecked)
                 {
                     if (modalidad.Equals("simp"))
+                    {
                         AsignacsManager.asignarActiv(investInfo.id, profeInfo.getId(), idSemestre, investInfo.valHoras);
+                        profeInfo.addAsignacion(new Asignacion(investInfo.valHoras, new Investigacion(investInfo.id, "INVE",
+                                                investInfo.valHoras, investInfo.nombre, investInfo.inicio, investInfo.fin), 
+                                                new Semestre(idSemestre, anio, periodo)));
+                    }
+
+                    else //Ampliacion
+                    {
+                        if (modalidad.Equals("dbamp"))
+                            tipoAmp = 1;
+
+                        AsignacsManager.asignarAmpl(investInfo.id, profeInfo.getId(), idSemestre, investInfo.valHoras, tipoAmp);
+                        profeInfo.addAmpliacion(new Ampliacion(investInfo.valHoras, new Investigacion(investInfo.id, "INVE",
+                                                investInfo.valHoras, investInfo.nombre, investInfo.inicio, investInfo.fin), 
+                                                new Semestre(idSemestre, anio, periodo), tipoAmpl));
+                    }
                 }
             }
         }

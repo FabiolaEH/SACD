@@ -46,7 +46,7 @@ namespace SACD.Páginas
 
             foreach (Profesor profe in profesList)
             {
-                profesListGUI.Add(new Profesor_GUI() { id = profe.getId(), nombre = profe.getNombre(), horasAsig = profe.getHorasAsig() });
+                profesListGUI.Add(new Profesor_GUI() { id = profe.getId(), nombre = profe.getNombre() });
             }
             this.dgProfesores.ItemsSource = profesListGUI;
 
@@ -67,7 +67,7 @@ namespace SACD.Páginas
             foreach (Profesor profe in profesList)
             {
                 if(profe.getNombre().IndexOf(this.tbxBuscar.Text, StringComparison.OrdinalIgnoreCase) >= 0)
-                    profesListGUI.Add(new Profesor_GUI() { id = profe.getId(), nombre = profe.getNombre(), horasAsig = profe.getHorasAsig() });
+                    profesListGUI.Add(new Profesor_GUI() { id = profe.getId(), nombre = profe.getNombre()});
             }
             this.dgProfesores.ItemsSource = profesListGUI;
             this.dgProfesores.Items.Refresh();

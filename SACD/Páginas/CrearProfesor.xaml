@@ -359,7 +359,7 @@
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding porcentaje}" Header="Porcentaje" Width="100"/>
-                <DataGridTemplateColumn Width="90" Header="%">
+                <DataGridTemplateColumn Width="90" Header="Horas Asig.">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox x:Name="txt_Selected" Width="50" Height="25" Text="{Binding porcAsignado,  UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" KeyDown="textBox_KeyDown"/>
