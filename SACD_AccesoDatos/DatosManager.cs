@@ -43,6 +43,51 @@ namespace SACD_AccesoDatos
 
         /*---------------------------------   CONSULTAR   -------------------------------------*/
 
+        //Consultar horas de teóricas y prácticas de SACDFTIPO_CURSOS
+        public static decimal listarHorasCurso(string pCodigo, string pTipo)
+        {
+            Decimal valor = 0;
+
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("SELECT CAN_HORAS FROM SACDFTIPO_CURSO WHERE COD_CURSO = @codigo AND txt_tipo = @tipo", conn);
+                command.Parameters.AddWithValue("@codigo", pCodigo);
+                command.Parameters.AddWithValue("@tipo", pTipo);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    valor = reader.GetDecimal(0);
+                }
+
+                reader.Close();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+            return valor;
+        }
+
+        //Editar horas tipo curso
+        public static void editarHorasTipoCurso(string pCodigo, string pTipo, decimal pHoras)
+        {
+            if (crearConexion() == true)
+            {
+                SqlCommand command = new SqlCommand("UPDATE SACDFTIPO_CURSO SET CAN_HORAS = @horas WHERE COD_CURSO = @codigo AND TXT_TIPO = @tipo", conn);
+                command.Parameters.AddWithValue("@codigo", pCodigo);
+                command.Parameters.AddWithValue("@tipo", pTipo);
+                command.Parameters.AddWithValue("@horas", pHoras);
+                command.ExecuteNonQuery();
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+            }
+        }
+
         /************* Usuarios ***************/
 
         //Obtener lista de usuarios
@@ -1005,7 +1050,39 @@ namespace SACD_AccesoDatos
 
 
         /*---------------------------------   INSERTAR  --------------------------------------*/
+        
+        //Insertar tipo del curso
 
+        public static Boolean crearTipoCurso(string pCodigo, string pTipo, decimal pHoras)
+        {
+            Boolean isValido = false;
+
+            if (crearConexion() == true)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFTIPO_CURSO(COD_CURSO,TXT_TIPO,CAN_HORAS) VALUES(@codigo, @tipo,@horas)", conn);
+                    command.Parameters.AddWithValue("@codigo", pCodigo);
+                    command.Parameters.AddWithValue("@tipo", pTipo);
+                    command.Parameters.AddWithValue("@horas", pHoras);
+                    command.ExecuteNonQuery();
+                    isValido = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("DatosManager.crearTipoCurso -> Problema al insertar un tipo del curso: " + e.ToString());
+                    isValido = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("No se ha podido establecer conexión con la base de datos");
+                isValido = false;
+            }
+
+            return isValido;
+        }
         /************* Usuarios ***************/
 
         //Registrar usuario
@@ -1692,6 +1769,7 @@ namespace SACD_AccesoDatos
                 try
                 {
                     SqlCommand command = new SqlCommand("" +
+                        "DELETE FROM SACDFTIPO_CURSO WHERE COD_CURSO = @codigo " +
                         "DELETE FROM SACDFASIGNACIONES WHERE ID_ACTIVIDAD = @id " +
                         "DELETE FROM SACDFTIPO_CURSO WHERE COD_CURSO = @codigo " +
                         "DELETE a FROM SACDFACTIVIDADES a " +

@@ -39,6 +39,11 @@ namespace SACD_Controlador
             return isExitoso;
         }
 
+        public static Boolean crearTipoCursos(string pCodigo,string pTipo, string pHoras){
+            Boolean isExitoso= DatosManager.crearTipoCurso(pCodigo, pTipo, Decimal.Parse(pHoras));
+            return isExitoso;
+        }
+
         //Crear grupos
         public static Boolean crearActGrupos(List<Grupo> pGrupos)
         {
@@ -96,6 +101,18 @@ namespace SACD_Controlador
             Boolean isExitoso = false;
             isExitoso = DatosManager.editarCurso(pCodigo, pNombre);
             return isExitoso;
+        }
+
+        //Listar horas teóricas
+        public static decimal listarHorasCurso(string pCodigo, string pTipo)
+        {
+            return DatosManager.listarHorasCurso(pCodigo, pTipo);
+        }
+
+        //Editar horas tipo curso
+        public static void editarHorasTipoCurso(string pCodigo, string pTipo, string pHoras)
+        {
+            DatosManager.editarHorasTipoCurso(pCodigo, pTipo, Decimal.Parse(pHoras));
         }
 
         //editar investigación

@@ -42,6 +42,8 @@ namespace SACD.Páginas
 
                 tbxNombre.Visibility = Visibility.Visible;
                 lblNombre.Visibility = Visibility.Visible;
+                lblNombre.Margin = new Thickness(93, 155, 0, 0);
+                tbxNombre.Margin = new Thickness(163, 155, 0, 0);
 
                 dtFechaFinal.Visibility = Visibility.Hidden;
                 lblFechaFin.Visibility = Visibility.Hidden;
@@ -57,9 +59,18 @@ namespace SACD.Páginas
                 btnAgregar.Visibility = Visibility.Visible;
                 btnQuitar.Visibility = Visibility.Visible;
                 listBox.Visibility = Visibility.Visible;
+                lblHorasTeoricas.Visibility = Visibility.Visible;
+                lblHorasPracticas.Visibility = Visibility.Visible;
+                tbxTeoricas.Visibility = Visibility.Visible;
+                tbxPracticas.Visibility = Visibility.Visible;
+                tbxTeoricas.Text = "0";
+                tbxPracticas.Text = "0";
             }
             else if (pActividad == 1)
             {
+                lblNombre.Margin = new Thickness(143, 155, 0, 0);
+                tbxNombre.Margin = new Thickness(238, 155, 0, 0);
+
                 tbxCodigo.Visibility = Visibility.Hidden;
                 lblCodigo.Visibility = Visibility.Hidden;
 
@@ -83,9 +94,17 @@ namespace SACD.Páginas
                 btnAgregar.Visibility = Visibility.Hidden;
                 btnQuitar.Visibility = Visibility.Hidden;
                 listBox.Visibility = Visibility.Hidden;
+                lblHorasTeoricas.Visibility = Visibility.Hidden;
+                lblHorasPracticas.Visibility = Visibility.Hidden;
+                tbxTeoricas.Visibility = Visibility.Hidden;
+                tbxPracticas.Visibility = Visibility.Hidden;
             }
             else if (pActividad == 2)
             {
+
+                lblNombre.Margin = new Thickness(143, 155, 0, 0);
+                tbxNombre.Margin = new Thickness(238, 155, 0, 0);
+
                 tbxCodigo.Visibility = Visibility.Hidden;
                 lblCodigo.Visibility = Visibility.Hidden;
 
@@ -109,6 +128,10 @@ namespace SACD.Páginas
                 btnAgregar.Visibility = Visibility.Hidden;
                 btnQuitar.Visibility = Visibility.Hidden;
                 listBox.Visibility = Visibility.Hidden;
+                lblHorasTeoricas.Visibility = Visibility.Hidden;
+                lblHorasPracticas.Visibility = Visibility.Hidden;
+                tbxTeoricas.Visibility = Visibility.Hidden;
+                tbxPracticas.Visibility = Visibility.Hidden;
             }
             else
             {
@@ -135,6 +158,10 @@ namespace SACD.Páginas
                 btnAgregar.Visibility = Visibility.Hidden;
                 btnQuitar.Visibility = Visibility.Hidden;
                 listBox.Visibility = Visibility.Hidden;
+                lblHorasTeoricas.Visibility = Visibility.Hidden;
+                lblHorasPracticas.Visibility = Visibility.Hidden;
+                tbxTeoricas.Visibility = Visibility.Hidden;
+                tbxPracticas.Visibility = Visibility.Hidden;
             }
         }
 
@@ -143,36 +170,74 @@ namespace SACD.Páginas
             int valor = cmb_Actividad.SelectedIndex;
             if(valor == 0)
             {
-                if (tbxNombre.Text.Trim().Equals("") || tbxCodigo.Text.Trim().Equals("") || grupos.Count <= 0)
+                if (tbxNombre.Text.Trim().Equals("") || tbxCodigo.Text.Trim().Equals("") || grupos.Count <= 0 || tbxTeoricas.Text.Trim().Equals("") || tbxPracticas.Text.Trim().Equals(""))
                 {
                     MessageBox.Show("Favor no deja espacios en blanco.");
                 }
                 else
                 {
-                    Boolean isExitoso = ActividadesManager.crearActCurso(tbxNombre.Text.Trim(), tbxCodigo.Text.Trim());
-                    if (isExitoso)
+                    decimal horasTeoricas = Decimal.Parse(tbxTeoricas.Text);
+                    decimal horasPracticas = Decimal.Parse(tbxPracticas.Text);
+                    if(horasTeoricas <= 0 && horasPracticas <= 0)
                     {
-
-                        isExitoso = ActividadesManager.crearActGrupos(grupos);
-                        if (isExitoso)
-                        {
-                            MessageBox.Show("Actividad insertada correctamente.");
-                            tbxCodigo.Text = "";
-                            tbxNombre.Text = "";
-                            tbxCantEst.Text = "";
-                            tbxNumGrupo.Text = "";
-                            listBox.Items.Clear();
-                            grupos.Clear();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Ha ocurrido un problema al insertar los grupos.");
-                        }
-                        
+                        MessageBox.Show("Favor colocar alguno de los campos de horas con un valor positivo válido.");
                     }
                     else
                     {
-                        MessageBox.Show("Ha ocurrido un problema al insertar el curso.");
+                        Boolean isExitoso = ActividadesManager.crearActCurso(tbxNombre.Text.Trim(), tbxCodigo.Text.Trim());
+                        if (isExitoso)
+                        {
+
+                            isExitoso = ActividadesManager.crearActGrupos(grupos);
+                            if (isExitoso)
+                            {
+                                Boolean res = false;
+                                if (!tbxTeoricas.Text.Trim().Equals("0"))
+                                {
+                                    isExitoso = ActividadesManager.crearTipoCursos(tbxCodigo.Text.Trim(), "TEOR", tbxTeoricas.Text);
+                                    if (!isExitoso)
+                                    {
+                                        MessageBox.Show("Hubo un problema al insertar las horas teóricas del curso.");
+                                    }
+                                    else
+                                        res = true;
+                                }
+
+                                if (!tbxPracticas.Text.Trim().Equals("0"))
+                                {
+                                    isExitoso = ActividadesManager.crearTipoCursos(tbxCodigo.Text.Trim(), "PRAC", tbxPracticas.Text);
+                                    if (isExitoso)
+                                    {
+                                        res = true;
+                                        tbxCodigo.Text = "";
+                                        tbxNombre.Text = "";
+                                        tbxCantEst.Text = "";
+                                        tbxNumGrupo.Text = "";
+                                        tbxTeoricas.Text = "0";
+                                        tbxPracticas.Text = "0";
+                                        listBox.Items.Clear();
+                                        grupos.Clear();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Hubo un problema al insertar las horas teóricas del curso.");
+                                    }
+                                }
+                                if (res)
+                                    MessageBox.Show("Actividad insertada correctamente.");
+                                else
+                                    MessageBox.Show("Hubo un problema al insertar la actividad.");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Ha ocurrido un problema al insertar los grupos.");
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ha ocurrido un problema al insertar el curso.");
+                        }
                     }
                 }
             }

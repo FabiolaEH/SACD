@@ -42,7 +42,7 @@ namespace SACD.Páginas
         private void cargarComboboxCursos()
         {
             List<Curso> cursos = ActividadesManager.listarCursos();
-
+            
             foreach (Curso curso in cursos)
             {
                 cmb_cursos.Items.Add(curso.getNombre());
@@ -79,13 +79,14 @@ namespace SACD.Páginas
             listBox.Items.Clear();
             if (pActividad == 0)
             {
+                cmb_cursos.Items.Clear();
                 cargarComboboxCursos();
                 tbxHoras.Visibility = Visibility.Hidden;
                 lblHoras.Visibility = Visibility.Hidden;
 
                 tbxNombre.Visibility = Visibility.Visible;
                 lblNombre.Visibility = Visibility.Visible;
-                
+
                 dtFechaFinal.Visibility = Visibility.Hidden;
                 lblFechaFin.Visibility = Visibility.Hidden;
 
@@ -108,9 +109,15 @@ namespace SACD.Páginas
                 cmb_cursos.Visibility = Visibility.Visible;
                 cmb_admin.Visibility = Visibility.Hidden;
                 cmb_invest.Visibility = Visibility.Hidden;
+
+                lblTeoricas.Visibility = Visibility.Visible;
+                tbxTeoricas.Visibility = Visibility.Visible;
+                lblPracticas.Visibility = Visibility.Visible;
+                tbxPracticas.Visibility = Visibility.Visible;
             }
             else if (pActividad == 1)
             {
+                cmb_invest.Items.Clear();
                 cargarComboboxInvestig();
                 tbxHoras.Visibility = Visibility.Visible;
                 lblHoras.Visibility = Visibility.Visible;
@@ -140,10 +147,17 @@ namespace SACD.Páginas
                 cmb_cursos.Visibility = Visibility.Hidden;
                 cmb_admin.Visibility = Visibility.Hidden;
                 cmb_invest.Visibility = Visibility.Visible;
-                
+
+                lblTeoricas.Visibility = Visibility.Hidden;
+                tbxTeoricas.Visibility = Visibility.Hidden;
+                lblPracticas.Visibility = Visibility.Hidden;
+                tbxPracticas.Visibility = Visibility.Hidden;
+
             }
             else if (pActividad == 2)
             {
+
+                cmb_admin.Items.Clear();
                 cargarComboboxAdmin();
                 tbxHoras.Visibility = Visibility.Visible;
                 lblHoras.Visibility = Visibility.Visible;
@@ -173,7 +187,11 @@ namespace SACD.Páginas
                 cmb_cursos.Visibility = Visibility.Hidden;
                 cmb_admin.Visibility = Visibility.Visible;
                 cmb_invest.Visibility = Visibility.Hidden;
-                
+
+                lblTeoricas.Visibility = Visibility.Hidden;
+                tbxTeoricas.Visibility = Visibility.Hidden;
+                lblPracticas.Visibility = Visibility.Hidden;
+                tbxPracticas.Visibility = Visibility.Hidden;
             }
             else
             {
@@ -205,6 +223,11 @@ namespace SACD.Páginas
                 cmb_cursos.Visibility = Visibility.Hidden;
                 cmb_admin.Visibility = Visibility.Hidden;
                 cmb_invest.Visibility = Visibility.Hidden;
+
+                lblTeoricas.Visibility = Visibility.Hidden;
+                tbxTeoricas.Visibility = Visibility.Hidden;
+                lblPracticas.Visibility = Visibility.Hidden;
+                tbxPracticas.Visibility = Visibility.Hidden;
             }
 
             tbxNombre.IsEnabled = false;
@@ -272,6 +295,11 @@ namespace SACD.Páginas
                     {
                         tbxNombre.Text = cur.getNombre();
                         codigo = idCursos[valor];
+
+                        decimal horasTeoricas = ActividadesManager.listarHorasCurso(codigo, "TEOR");
+                        decimal horasPracticas = ActividadesManager.listarHorasCurso(codigo, "PRAC");
+                        tbxTeoricas.Text = horasTeoricas.ToString();
+                        tbxPracticas.Text = horasPracticas.ToString();
                         List<Grupo> grupos_info = ActividadesManager.getGrupoInfoCodigo(idCursos[valor]);
                         grupos = grupos_info;
 
@@ -305,51 +333,65 @@ namespace SACD.Páginas
                 }
                 else
                 {
-                    String atributo = "NUM_GRUPO != ";
-                    String consulta = "";
-
-                    int cont = 0;
-                    foreach(Grupo g in grupos)
+                    decimal horasTeoricas = Decimal.Parse(tbxTeoricas.Text.Trim());
+                    decimal horasPracticas = Decimal.Parse(tbxPracticas.Text.Trim());
+                    if (horasTeoricas <= 0 && horasPracticas <= 0)
                     {
-                        cont++;
-                        if(cont == grupos.Count())
-                            consulta += atributo + g.getNumero();
-                        else
-                            consulta += atributo + g.getNumero() + " AND ";
-                    }
-
-                    Boolean isExitoso = ActividadesManager.eliminarGrupos(codigo, consulta);
-                    
-                    if (isExitoso)
-                    {
-                        try
-                        {
-                            if(gruposNuevos.Count > 0)
-                                ActividadesManager.crearActGrupos(gruposNuevos);
-                            isExitoso = ActividadesManager.editarCurso(codigo, tbxNombre.Text);
-                            if (isExitoso)
-                            {
-                                MessageBox.Show("Grupos actualizados correctamente.");
-                                int index = cmb_cursos.SelectedIndex;
-                                cmb_cursos.Items.Insert(index, tbxNombre.Text);
-                                cmb_cursos.Items.RemoveAt(index + 1);
-                                cmb_cursos.SelectedIndex = index;
-
-                                tbxNombre.Text = "";
-                                tbxCantEst.Text = "";
-                                tbxNumGrupo.Text = "";
-                                listBox.Items.Clear();
-                                gruposNuevos.Clear();
-                                
-                            }
-                        } catch (Exception ex)
-                        {
-                            Console.WriteLine("Ha ocurrido un problema al insertar un grupo " + ex.ToString());   
-                        }
+                        MessageBox.Show("Alguna de las horas teóricas o prácticas debe de ser mayor que cero.");
                     }
                     else
                     {
-                        MessageBox.Show("Ha ocurrido un problema al actualizar los grupos.");
+                        String atributo = "NUM_GRUPO != ";
+                        String consulta = "";
+
+                        int cont = 0;
+                        foreach (Grupo g in grupos)
+                        {
+                            cont++;
+                            if (cont == grupos.Count())
+                                consulta += atributo + g.getNumero();
+                            else
+                                consulta += atributo + g.getNumero() + " AND ";
+                        }
+
+                        Boolean isExitoso = ActividadesManager.eliminarGrupos(codigo, consulta);
+
+                        if (isExitoso)
+                        {
+                            try
+                            {
+                                if (gruposNuevos.Count > 0)
+                                    ActividadesManager.crearActGrupos(gruposNuevos);
+                                isExitoso = ActividadesManager.editarCurso(codigo, tbxNombre.Text);
+                                if (isExitoso)
+                                {
+                                    ActividadesManager.editarHorasTipoCurso(codigo, "TEOR", tbxTeoricas.Text);
+                                    ActividadesManager.editarHorasTipoCurso(codigo, "PRAC", tbxPracticas.Text);
+                                    MessageBox.Show("Curso actualizado correctamente.");
+                                    int index = cmb_cursos.SelectedIndex;
+                                    cmb_cursos.Items.Insert(index, tbxNombre.Text);
+                                    cmb_cursos.Items.RemoveAt(index + 1);
+                                    cmb_cursos.SelectedIndex = index;
+
+                                    tbxNombre.Text = "";
+                                    tbxCantEst.Text = "";
+                                    tbxNumGrupo.Text = "";
+                                    tbxTeoricas.Text = "";
+                                    tbxPracticas.Text = "";
+                                    listBox.Items.Clear();
+                                    gruposNuevos.Clear();
+
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Ha ocurrido un problema al insertar un grupo " + ex.ToString());
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ha ocurrido un problema al actualizar los grupos.");
+                        }
                     }
                 }
             }

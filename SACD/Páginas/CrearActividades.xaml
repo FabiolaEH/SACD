@@ -69,9 +69,9 @@
             <ComboBoxItem Content="Administrativa"/>
         </ComboBox>
         <Label x:Name="lblNombre" Content="Nombre" HorizontalAlignment="Left" Margin="143,155,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
-        <Label x:Name="lblCodigo" Content="Código" HorizontalAlignment="Left" Margin="143,206,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
+        <Label x:Name="lblCodigo" Content="Código" HorizontalAlignment="Left" Margin="343,155,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
         <TextBox x:Name="tbxNombre" HorizontalAlignment="Left" Height="30" Margin="238,152,-88,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="tbxCodigo" HorizontalAlignment="Left" Height="30" Margin="238,203,-88,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="tbxCodigo" HorizontalAlignment="Left" Height="30" Margin="402,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" VerticalContentAlignment="Center"/>
         <Label x:Name="lblHoras" Content="Horas Presenciales" HorizontalAlignment="Left" Margin="79,206,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
         <TextBox x:Name="tbxHoras" HorizontalAlignment="Left" Height="30" Margin="238,203,-88,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center" KeyDown="tbxHoras_KeyDown" KeyUp="tbxHoras_KeyUp" MaxLength="5"/>
         <Label x:Name="lblFechaInicio" Content="Fecha inicio" HorizontalAlignment="Left" Margin="121,257,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="1.131,0.779"/>
@@ -87,6 +87,10 @@
         <TextBox x:Name="tbxCantEst" HorizontalAlignment="Left" Height="30" Margin="238,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center" RenderTransformOrigin="0.616,2.097" KeyDown="tbxOnlyNumbers" Visibility="Hidden" MaxLength="2"/>
         <Button x:Name="btnAgregar" Content="Agregar" HorizontalAlignment="Left" Margin="112,388,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Agregar" Visibility="Hidden"/>
         <Button x:Name="btnQuitar" Content="Quitar" HorizontalAlignment="Left" Margin="222,388,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Quitar" Visibility="Hidden"/>
+        <Label x:Name="lblHorasTeoricas" Content="Horas Teóricas" HorizontalAlignment="Left" Margin="55,203,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
+        <Label x:Name="lblHorasPracticas" Content="Horas Prácticas" HorizontalAlignment="Left" Margin="285,203,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
+        <TextBox x:Name="tbxTeoricas" HorizontalAlignment="Left" Height="30" Margin="166,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" VerticalContentAlignment="Center" KeyDown="tbxOnlyNumbers"/>
+        <TextBox x:Name="tbxPracticas" HorizontalAlignment="Left" Height="30" Margin="402,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" VerticalContentAlignment="Center" KeyDown="tbxOnlyNumbers"/>
 
     </Grid>
 </Page>

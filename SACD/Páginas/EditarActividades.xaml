@@ -20,7 +20,7 @@
             </Rectangle.RenderTransform>
         </Rectangle>
         <Label x:Name="lblNumero" Content="Tipo de Actividad" HorizontalAlignment="Left" Margin="85,98,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
-        <Button x:Name="btn_Aceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="370,437,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Click="btn_Aceptar_Click"/>
+        <Button x:Name="btn_Aceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="368,467,0,-10" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Click="btn_Aceptar_Click"/>
         <Label x:Name="lblSubtitulo" Content="EDITAR" HorizontalAlignment="Left" Margin="180,9,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666"/>
         <ComboBox x:Name="cmb_Actividad" HorizontalAlignment="Left" Margin="238,98,0,0" VerticalAlignment="Top" Width="150" Height="27" FontSize="13.333" SelectionChanged="ocultarCambios">
             <ComboBoxItem Content="Académica"/>
@@ -38,15 +38,15 @@
         <Label x:Name="lblFechaFin" Content="Fecha Fin" HorizontalAlignment="Left" Margin="137,357,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="1.131,0.779" Width="66"/>
         <DatePicker x:Name="dtFechaInicio" HorizontalAlignment="Left" Margin="238,309,0,0" VerticalAlignment="Top" Width="150"/>
         <DatePicker x:Name="dtFechaFinal" HorizontalAlignment="Left" Margin="238,357,0,0" VerticalAlignment="Top" Width="150"/>
-        <GroupBox x:Name="groupBox" Header="Grupos" HorizontalAlignment="Left" Margin="79,253,0,0" VerticalAlignment="Top" Height="175" Width="411">
-            <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="148" Margin="235,0,-2,0" VerticalAlignment="Top" Width="155" />
+        <GroupBox x:Name="groupBox" Header="Grupos" HorizontalAlignment="Left" Margin="79,284,0,0" VerticalAlignment="Top" Height="175" Width="411">
+            <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="148" Margin="235,4,0,0" VerticalAlignment="Top" Width="155" />
         </GroupBox>
-        <Label x:Name="lblNumGrupo" Content="Número" HorizontalAlignment="Left" Margin="137,271,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.596,2.207"/>
-        <Label x:Name="lblCantEst" Content="Cant. Estudiantes" HorizontalAlignment="Left" Margin="82,311,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold" />
-        <TextBox x:Name="tbxNumGrupo" HorizontalAlignment="Left" Height="30" Margin="238,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center" KeyDown="tbxOnlyNumbers" MaxLength="2" TabIndex="2"/>
-        <TextBox x:Name="tbxCantEst" HorizontalAlignment="Left" Height="30" Margin="238,311,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center" RenderTransformOrigin="0.616,2.097" KeyDown="tbxOnlyNumbers" MaxLength="2" TabIndex="99"/>
-        <Button x:Name="btnAgregar" Content="Agregar" HorizontalAlignment="Left" Margin="112,355,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Agregar" />
-        <Button x:Name="btnQuitar" Content="Quitar" HorizontalAlignment="Left" Margin="222,355,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Quitar" />
+        <Label x:Name="lblNumGrupo" Content="Número" HorizontalAlignment="Left" Margin="137,306,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold" RenderTransformOrigin="0.596,2.207"/>
+        <Label x:Name="lblCantEst" Content="Cant. Estudiantes" HorizontalAlignment="Left" Margin="82,346,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold" />
+        <TextBox x:Name="tbxNumGrupo" HorizontalAlignment="Left" Height="30" Margin="238,303,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center" KeyDown="tbxOnlyNumbers" MaxLength="2" TabIndex="2"/>
+        <TextBox x:Name="tbxCantEst" HorizontalAlignment="Left" Height="30" Margin="238,346,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center" RenderTransformOrigin="0.616,2.097" KeyDown="tbxOnlyNumbers" MaxLength="2" TabIndex="99"/>
+        <Button x:Name="btnAgregar" Content="Agregar" HorizontalAlignment="Left" Margin="112,390,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Agregar" />
+        <Button x:Name="btnQuitar" Content="Quitar" HorizontalAlignment="Left" Margin="222,390,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Quitar" />
 
         <Label x:Name="lblCursos" Content="Cursos" HorizontalAlignment="Left" Margin="146,154,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
         <Label x:Name="lblInvestigaciones" Content="Investigaciones" HorizontalAlignment="Left" Margin="93,154,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
@@ -54,6 +54,10 @@
         <ComboBox x:Name="cmb_cursos" HorizontalAlignment="Left" Margin="238,154,0,0" VerticalAlignment="Top" Width="150" Height="27" FontSize="13.333" SelectionChanged="rellenarInfoCursos"/>
         <ComboBox x:Name="cmb_invest" HorizontalAlignment="Left" Margin="238,154,0,0" VerticalAlignment="Top" Width="150" Height="27" FontSize="13.333" SelectionChanged="rellenarInfoInvest"/>
         <ComboBox x:Name="cmb_admin" HorizontalAlignment="Left" Margin="238,154,0,0" VerticalAlignment="Top" Width="150" Height="27" FontSize="13.333" SelectionChanged="rellenarInfoAdmin"/>
+        <Label x:Name="lblTeoricas" Content="Horas Teóricas" HorizontalAlignment="Left" Margin="104,249,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
+        <Label x:Name="lblPracticas" Content="Horas Prácticas" HorizontalAlignment="Left" Margin="313,252,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
+        <TextBox x:Name="tbxTeoricas" HorizontalAlignment="Left" Height="30" Margin="238,249,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center" KeyDown="tbxOnlyNumbers" MaxLength="2" TabIndex="2"/>
+        <TextBox x:Name="tbxPracticas" HorizontalAlignment="Left" Height="30" Margin="421,249,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center" KeyDown="tbxOnlyNumbers" MaxLength="2" TabIndex="2"/>
 
     </Grid>
 </Page>
