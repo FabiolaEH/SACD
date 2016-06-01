@@ -334,7 +334,7 @@
         <Label x:Name="lblNumero" Content="Nombre" HorizontalAlignment="Left" Margin="130,180,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
         <Button x:Name="btn_Aceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="375,482,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Aceptar_Click"/>
         <Label x:Name="lblSubtitulo" Content="EDITAR" HorizontalAlignment="Left" Margin="165,10,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666"/>
-        <TextBox x:Name="tbxNombre" HorizontalAlignment="Left" Height="30" Margin="278,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="tbxNombre" HorizontalAlignment="Left" Height="30" Margin="278,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center" MaxLength="50"/>
         <DataGrid x:Name="dgPlazas" AutoGenerateColumns="False" Background="White" BorderBrush="#FFDDDDDD" FontSize="13.333" HorizontalGridLinesBrush="#FFDDDDDD" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalGridLinesBrush="#FFDDDDDD" RowHeaderWidth = "0" CanUserAddRows="false" IsReadOnly="True" AlternationCount="2" CanUserResizeColumns="False" AlternatingRowBackground="Snow" Margin="76,279,170,0" VerticalAlignment="Top" Height="180">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding numero}" Header="Numero Plaza" Width="150">
@@ -361,7 +361,7 @@
                 <DataGridTemplateColumn Width="90" Header="Horas Asig.">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox x:Name="txt_Selected" Width="50" Height="25" Text="{Binding porcAsignado,  UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" KeyDown="textBox_KeyDown"/>
+                            <TextBox x:Name="txt_Selected" Width="50" Height="25" Text="{Binding horAsignado,  UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" KeyDown="textBox_KeyDown" MaxLength="6"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -83,13 +83,22 @@ namespace SACD.Páginas
                         //Crear relación Plaza_Profesor
                         foreach (Plazas_GUI plazaInfo in plazasListGUI)
                         {
-                            if (plazaInfo.porcAsignado != null)
+                            if (plazaInfo.horAsignado != null)
                             {
-                                isValido = ProfesManager.insertPlazaProfe(profe.getId().ToString(), plazaInfo.numero.ToString(),
-                                    plazaInfo.porcAsignado, plazaInfo.isPropiedad);
-                                if (!isValido)
+                                if (verificarHoras(plazaInfo.porcentaje, plazaInfo.horAsignado))
                                 {
-                                    MessageBox.Show("Error al actualizar la plaza");
+                                    isValido = ProfesManager.insertPlazaProfe(profe.getId().ToString(), plazaInfo.numero.ToString(),
+                                        plazaInfo.horAsignado, plazaInfo.isPropiedad);
+                                    if (!isValido)
+                                    {
+                                        MessageBox.Show("Error al actualizar la plaza");
+                                        exito = false;
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Las horas asignadas a un profesor no puede exceder el porcentaje de la plaza");
                                     exito = false;
                                     break;
                                 }
@@ -119,7 +128,7 @@ namespace SACD.Páginas
             return null;
         }
 
-        private PlazaAsignada checkPlaza(List<PlazaAsignada> pPlazasAsignadas, int pId)
+        private PlazaAsignada checkPlaza(List<PlazaAsignada> pPlazasAsignadas, String pId)
         {
             PlazaAsignada plazaAsignada = null;
 
@@ -150,25 +159,36 @@ namespace SACD.Páginas
                 {
                     plazaGUI.isSelected = true;
                     plazaGUI.isPropiedad = plazaAsignada.getIsPropiedad();
-                    plazaGUI.porcAsignado = plazaAsignada.getPorcentajeAsig().ToString().Replace(",",".");
+                    plazaGUI.horAsignado = plazaAsignada.getHorAsig().ToString().Replace(",",".");
                 }
                 else
                 {
                     plazaGUI.isSelected = false;
                     plazaGUI.isPropiedad = false;
-                    plazaGUI.porcAsignado = null;
+                    plazaGUI.horAsignado = null;
                 }
             }
 
             dgPlazas.Items.Refresh();
         }
 
+        private Boolean verificarHoras(decimal pPorcentaje, String pHoras)
+        {
+            Boolean isValido = true;
+            decimal horas = Decimal.Parse(pHoras.Replace(".", ","));
+
+            decimal limiteHoras = 40 * pPorcentaje / 100;
+
+            if (limiteHoras < horas)
+                isValido = false;
+
+            return isValido;
+        }
+
         private void textBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (!((e.Key >= Key.D0 && e.Key <= Key.D9) || e.Key == Key.OemPeriod))
-            { 
                 e.Handled = true;
-            }
         }
     }
 }

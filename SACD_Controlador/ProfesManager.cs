@@ -98,7 +98,7 @@ namespace SACD_Controlador
         /**************SUS PLAZAS*********************/
 
         //insertar relación Plaza - Profesor
-        public static Boolean insertPlazaProfe(string pIdProfe, string pNumeroPlaza, string pPorcentaje, bool pIsPropiedad)
+        public static Boolean insertPlazaProfe(string pIdProfe, string pIdPlaza, string pHoras, bool pIsPropiedad)
         {
             String propiedad = "";
             if (pIsPropiedad)
@@ -106,7 +106,7 @@ namespace SACD_Controlador
             else
                 propiedad = "0";
 
-            Boolean isValido = DatosManager.insertPlazaProfe(pIdProfe, pNumeroPlaza, pPorcentaje, propiedad);
+            Boolean isValido = DatosManager.insertPlazaProfe(pIdProfe, pIdPlaza, pHoras, propiedad);
             return isValido;
         }
 
@@ -119,7 +119,7 @@ namespace SACD_Controlador
 
             foreach (Object[] obj in plazasAsignadasObj)
             {
-                plazaAsignada = new PlazaAsignada(new Plaza((int)obj[0], 0), (decimal)obj[2], (bool)obj[1]);
+                plazaAsignada = new PlazaAsignada(new Plaza((String)obj[0], 0), (decimal)obj[2], (bool)obj[1]);
                 plazasAsignadasList.Add(plazaAsignada);
             }
 

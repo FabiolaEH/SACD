@@ -8,21 +8,21 @@ namespace SACD_Modelo
 {
     public class Plaza
     {
-        private int id;
+        private String id;
         private decimal porcentaje;
 
-        public Plaza(int pId, decimal pPorcentaje)
+        public Plaza(String pId, decimal pPorcentaje)
         {
             id = pId;
             porcentaje = pPorcentaje;
         }
 
-        public void setId(int pId)
+        public void setId(String pId)
         {
             id = pId;
         }
 
-        public int getId()
+        public String getId()
         {
             return id;
         }

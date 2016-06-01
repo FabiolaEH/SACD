@@ -9,13 +9,13 @@ namespace SACD_Modelo
     public class PlazaAsignada
     {
         private Plaza plaza;
-        private decimal porcentajeAsig;
+        private decimal horAsig;
         private bool isPropiedad;
 
-        public PlazaAsignada(Plaza pPlaza, decimal pPorcAsign, bool pIsPropiedad)
+        public PlazaAsignada(Plaza pPlaza, decimal pHorAsig, bool pIsPropiedad)
         {
             plaza = pPlaza;
-            porcentajeAsig = pPorcAsign;
+            horAsig = pHorAsig;
             isPropiedad = pIsPropiedad;
         }
 
@@ -29,9 +29,9 @@ namespace SACD_Modelo
             return isPropiedad;
         }
 
-        public decimal getPorcentajeAsig()
+        public decimal getHorAsig()
         {
-            return porcentajeAsig;
+            return horAsig;
         }
     }
 }

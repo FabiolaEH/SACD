@@ -59,13 +59,22 @@ namespace SACD.Páginas
                     //Crear relación Plaza_Profesor
                     foreach (Plazas_GUI plazaInfo in plazasListGUI)
                     {
-                        if (plazaInfo.porcAsignado != null)
+                        if (plazaInfo.horAsignado != null)
                         {
-                            isValido = ProfesManager.insertPlazaProfe(idProfe.ToString(), plazaInfo.numero.ToString(),
-                                plazaInfo.porcAsignado, plazaInfo.isPropiedad);
-                            if (!isValido)
+                            if (verificarHoras(plazaInfo.porcentaje, plazaInfo.horAsignado)) {
+                                isValido = ProfesManager.insertPlazaProfe(idProfe.ToString(), plazaInfo.numero.ToString(),
+                                    plazaInfo.horAsignado, plazaInfo.isPropiedad);
+                                if (!isValido)
+                                {
+                                    MessageBox.Show("Error al ligar la plaza");
+                                    exito = false;
+                                    break;
+                                }
+                            }
+                            else
                             {
-                                MessageBox.Show("Error al ligar la plaza");
+                                MessageBox.Show("Las horas asignadas a un profesor no puede exceder el porcentaje de la plaza");
+                                ProfesManager.eliminar(idProfe);
                                 exito = false;
                                 break;
                             }
@@ -73,7 +82,7 @@ namespace SACD.Páginas
                     }
                 }
                 if (exito)
-                    MessageBox.Show("Profesor insertado correctamente");
+                    MessageBox.Show("Profesor creado correctamente");
             }
             else
             {
@@ -81,12 +90,26 @@ namespace SACD.Páginas
             }
         }
 
+        private Boolean verificarHoras (decimal pPorcentaje, String pHoras)
+        {
+            Boolean isValido = true;
+            decimal horas = Decimal.Parse(pHoras.Replace(".", ","));
+
+            decimal limiteHoras = 40 * pPorcentaje / 100;
+
+            Console.WriteLine("Horas: " + horas);
+            Console.WriteLine("Limite: " + limiteHoras);
+
+            if (limiteHoras < horas)
+                isValido = false;
+
+            return isValido;
+        }
+
         private void textBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!((e.Key > Key.D0 && e.Key < Key.D9) || e.Key == Key.OemPeriod))
-            {
+            if (!((e.Key >= Key.D0 && e.Key <= Key.D9) || e.Key == Key.OemPeriod))
                 e.Handled = true;
-            }
         }
     }
 }

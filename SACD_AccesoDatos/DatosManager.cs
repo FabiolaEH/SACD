@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SACD_AccesoDatos
 {
@@ -914,13 +912,13 @@ namespace SACD_AccesoDatos
 
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("SELECT NUM_PLAZA, POR_PLAZA FROM SACDFPLAZAS", conn);
+                SqlCommand command = new SqlCommand("SELECT ID_PLAZA, POR_PLAZA FROM SACDFPLAZAS", conn);
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
                     Object[] plazaInfo = new Object[5];
-                    plazaInfo[0] = reader.GetInt32(0);
+                    plazaInfo[0] = reader.GetString(0);
                     plazaInfo[1] = reader.GetDecimal(1);
                     plazasList.Add(plazaInfo);
                 }
@@ -980,13 +978,13 @@ namespace SACD_AccesoDatos
 
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("SELECT NUM_PLAZA, DSC_PROPIEDAD, POR_ASIGNADO FROM SACDFPLAZA_PROFE WHERE ID_PROFESOR = " + pId, conn);
+                SqlCommand command = new SqlCommand("SELECT ID_PLAZA, DSC_PROPIEDAD, HOR_ASIGNADAS FROM SACDFPLAZA_PROFE WHERE ID_PROFESOR = " + pId, conn);
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
                     Object[] plazaInfo = new Object[3];
-                    plazaInfo[0] = reader.GetInt32(0);
+                    plazaInfo[0] = reader.GetString(0);
                     plazaInfo[1] = reader.GetBoolean(1);
                     plazaInfo[2] = reader.GetDecimal(2);
                     plazasList.Add(plazaInfo);
@@ -1111,7 +1109,7 @@ namespace SACD_AccesoDatos
         /************* Plazas ***************/
 
         //Registrar plaza
-        public static Boolean insertPlaza(string pNumero, string pPorcentaje)
+        public static Boolean insertPlaza(string pId, string pPorcentaje)
         {
             Boolean isValido = false;
 
@@ -1119,8 +1117,8 @@ namespace SACD_AccesoDatos
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("INSERT INTO SACDFPLAZAS VALUES(@numero, @porcentaje)", conn);
-                    command.Parameters.AddWithValue("@numero", pNumero);
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFPLAZAS VALUES(@id, @porcentaje)", conn);
+                    command.Parameters.AddWithValue("@id", pId);
                     command.Parameters.AddWithValue("@porcentaje", pPorcentaje);
                     command.ExecuteNonQuery();
                     isValido = true;
@@ -1176,7 +1174,7 @@ namespace SACD_AccesoDatos
 
 
         //Insertar plaza Profesor
-        public static Boolean insertPlazaProfe(string pIdProfe, string pNumeroPlaza, string pPorcentaje, string pIsPropiedad)
+        public static Boolean insertPlazaProfe(string pIdProfe, string pIdPlaza, string pHoras, string pIsPropiedad)
         {
             Boolean isValido = false;
 
@@ -1184,10 +1182,10 @@ namespace SACD_AccesoDatos
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("INSERT INTO SACDFPLAZA_PROFE(ID_PROFESOR, NUM_PLAZA, POR_ASIGNADO, DSC_PROPIEDAD) VALUES(@idProfe, @nomPlaza, @porc, @isPropiedad)", conn);
+                    SqlCommand command = new SqlCommand("INSERT INTO SACDFPLAZA_PROFE(ID_PROFESOR, ID_PLAZA, HOR_ASIGNADAS, DSC_PROPIEDAD) VALUES(@idProfe, @idPlaza, @horas, @isPropiedad)", conn);
                     command.Parameters.AddWithValue("@idProfe", pIdProfe);
-                    command.Parameters.AddWithValue("@nomPlaza", pNumeroPlaza);
-                    command.Parameters.AddWithValue("@porc", pPorcentaje);
+                    command.Parameters.AddWithValue("@idPlaza", pIdPlaza);
+                    command.Parameters.AddWithValue("@horas", pHoras);
                     command.Parameters.AddWithValue("@isPropiedad", pIsPropiedad);
                     command.ExecuteNonQuery();
                     isValido = true;
@@ -1323,7 +1321,7 @@ namespace SACD_AccesoDatos
 
         /************* Plazas ***************/
 
-        public static Boolean editarPlaza(string pNumero, string pPorcentaje)
+        public static Boolean editarPlaza(string pId, string pPorcentaje)
         {
             Boolean isValido = false;
 
@@ -1331,9 +1329,9 @@ namespace SACD_AccesoDatos
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("UPDATE SACDFPLAZAS SET POR_PLAZA = @porcentaje WHERE NUM_PLAZA = @numero", conn);
+                    SqlCommand command = new SqlCommand("UPDATE SACDFPLAZAS SET POR_PLAZA = @porcentaje WHERE ID_PLAZA = @id", conn);
                     command.Parameters.AddWithValue("@porcentaje", pPorcentaje);
-                    command.Parameters.AddWithValue("@numero", pNumero);
+                    command.Parameters.AddWithValue("@id", pId);
                     command.ExecuteNonQuery();
                     isValido = true;
                 }
@@ -1557,7 +1555,7 @@ namespace SACD_AccesoDatos
 
         /************* Plazas ***************/
 
-        public static Boolean eliminarPlaza(string pNumero)
+        public static Boolean eliminarPlaza(string pId)
         {
             Boolean isValido = false;
 
@@ -1565,8 +1563,8 @@ namespace SACD_AccesoDatos
             {
                 try
                 {
-                    SqlCommand command = new SqlCommand("DELETE FROM SACDFPLAZAS WHERE NUM_PLAZA = @numero", conn);
-                    command.Parameters.AddWithValue("@numero", pNumero);
+                    SqlCommand command = new SqlCommand("DELETE FROM SACDFPLAZAS WHERE ID_PLAZA = @id", conn);
+                    command.Parameters.AddWithValue("@id", pId);
                     command.ExecuteNonQuery();
                     isValido = true;
                 }

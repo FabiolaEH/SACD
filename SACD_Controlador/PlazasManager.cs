@@ -8,23 +8,23 @@ namespace SACD_Controlador
     public static class PlazasManager
     {
         //crear Plaza
-        public static Boolean crear(String pNumero, String pPorcentaje)
+        public static Boolean crear(String pId, String pPorcentaje)
         {
-            Boolean isValido = DatosManager.insertPlaza(pNumero, pPorcentaje);
+            Boolean isValido = DatosManager.insertPlaza(pId, pPorcentaje);
             return isValido;
         }
 
         //eliminar Plaza
-        public static Boolean eliminar(int pNumero)
+        public static Boolean eliminar(String pId)
         {
-            Boolean isValido = DatosManager.eliminarPlaza(pNumero.ToString());
+            Boolean isValido = DatosManager.eliminarPlaza(pId);
             return isValido;
         }
 
         //editar Plaza
-        public static Boolean editar(String pNumero, String pPorcentaje)
+        public static Boolean editar(String pId, String pPorcentaje)
         {
-            Boolean isValido = DatosManager.editarPlaza(pNumero, pPorcentaje);
+            Boolean isValido = DatosManager.editarPlaza(pId, pPorcentaje);
             return isValido;
         }
 
@@ -37,7 +37,7 @@ namespace SACD_Controlador
 
             foreach (Object[] obj in plazasObj)
             {
-                plaza = new Plaza((int)obj[0], (decimal)obj[1]);
+                plaza = new Plaza((String)obj[0], (decimal)obj[1]);
                 plazasList.Add(plaza);
             }
 

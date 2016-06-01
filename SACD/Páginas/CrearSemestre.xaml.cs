@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SACD.Páginas
 {
@@ -25,16 +26,19 @@ namespace SACD.Páginas
             if (tbxAnio.Text != "")
             {
                 Boolean isValido = SemestresManager.crear(tbxAnio.Text, (String)cmb_Periodos.SelectedValue);
-                if (!isValido) { 
-                    MessageBox.Show("Error al insertar el semestre");
-                }
+                if (!isValido)
+                    MessageBox.Show("Error al crear el semestre");
                 else
-                    MessageBox.Show("Semestre insertado correctamente");
+                    MessageBox.Show("Semestre creado correctamente");
             }
             else
-            {
                 MessageBox.Show("No puede dejar ningún espacio en blanco.");
-            }
+        }
+
+        private void textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!(e.Key >= Key.D0 && e.Key <= Key.D9)) 
+                e.Handled = true;
         }
     }
 }

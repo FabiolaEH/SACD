@@ -335,7 +335,7 @@
         <Label x:Name="lblPorc" Content="Año" HorizontalAlignment="Left" Margin="126,154,0,0" VerticalAlignment="Top" FontSize="13" Foreground="#FF666666" FontWeight="Bold"/>
         <Button x:Name="btn_Aceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="372,341,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#EFEFEF" FontWeight="Bold" FontSize="13.333" Foreground="#FF666666" BorderBrush="#CDCDCD" Style="{DynamicResource ButtonStyle1}" Click="btn_Aceptar_Click"/>
         <Label x:Name="lblSubtitulo" Content="CREAR" HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF666666"/>
-        <TextBox x:Name="tbxAnio" HorizontalAlignment="Left" Height="30" Margin="235,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center" MaxLength="4"/>
+        <TextBox x:Name="tbxAnio" HorizontalAlignment="Left" Height="30" Margin="235,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" VerticalContentAlignment="Center" MaxLength="4" KeyDown="textBox_KeyDown"/>
         <ComboBox x:Name="cmb_Periodos" Margin="235,103,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
 
     </Grid>
