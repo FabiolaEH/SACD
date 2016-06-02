@@ -262,11 +262,11 @@ namespace SACD.Ventanas
             eliminarAsigs();
 
             //Guardar nuevas asignaciones seleccionadas
-            guardarAsigs();
+            string msj = guardarAsigs();
 
             
 
-            MessageBox.Show("Cambios aplicados con éxito");    
+            MessageBox.Show(msj);    
         }
    
 
@@ -294,11 +294,14 @@ namespace SACD.Ventanas
 
 
         //Guarda las asignaciones que fueron seleccionadas
-        private void guardarAsigs()
+        private string guardarAsigs()
         {
+            string msj = "";
+
             //Recorrer tabla de cursos
             int estado = 0;
             bool tipoAmpl = false;
+            bool tiempoValido = false; //indica si la ampliación es válida
 
             foreach (Grupos_GUI grupoInfo in dgGrupos.ItemsSource)
             {
@@ -308,7 +311,7 @@ namespace SACD.Ventanas
                     if (modalidad.Equals("simp"))
                     {
                         estado = AsignacsManager.asignarActiv(grupoInfo.id, profeInfo.getId(), idSemestre, grupoInfo.valHoras);
-                        if(estado == 1)//la asig es nueva o hay que modificar una existente
+                        if (estado == 1)//la asig es nueva o hay que modificar una existente
                         {
                             Asignacion asigBuscada = profeInfo.buscarAsig(grupoInfo.id);
 
@@ -316,39 +319,50 @@ namespace SACD.Ventanas
                                 asigBuscada.setValorHoras(grupoInfo.valHoras); //aplicar actualización
                             else
                                 profeInfo.addAsignacion(new Asignacion(grupoInfo.valHoras, new Grupo(grupoInfo.id, "GRUP",
-                                                        grupoInfo.horasPresen, grupoInfo.numGrupo, grupoInfo.cantEstud, 
+                                                        grupoInfo.horasPresen, grupoInfo.numGrupo, grupoInfo.cantEstud,
                                                         null), new Semestre(idSemestre, anio, periodo)));
                         }
                     }
 
                     else //Ampliacion
                     {
+                        tiempoValido = false; //indica si la ampliación es válida
+
                         if (modalidad.Equals("amp"))
                         {
                             tipoAmpl = false;
-                            estado = AsignacsManager.asignarAmpl(grupoInfo.id, profeInfo.getId(), idSemestre, grupoInfo.valHoras, 0);
+
+                            if (profeInfo.getHorasAmplSimp() + grupoInfo.valHoras <= 4)
+                            {
+                                tiempoValido = true;
+                                estado = AsignacsManager.asignarAmpl(grupoInfo.id, profeInfo.getId(), idSemestre, grupoInfo.valHoras, 0);
+                            }   
                         }
 
                         else //doble
                         {
                             tipoAmpl = true;
-                            estado = AsignacsManager.asignarAmpl(grupoInfo.id, profeInfo.getId(), idSemestre, grupoInfo.valHoras, 1);
+
+                            if (profeInfo.getHorasAmplDb() + grupoInfo.valHoras <= 4)
+                            {
+                                tiempoValido = true;
+                                estado = AsignacsManager.asignarAmpl(grupoInfo.id, profeInfo.getId(), idSemestre, grupoInfo.valHoras, 1);
+                            }                         
                         }
 
-                        if (estado == 1)//la ampl es nueva o hay que modificar una existente
+                        if (estado == 1 && tiempoValido == true)//solo se insertan ampliaciones nuevas (NO se modifican)
                         {
-                            Ampliacion amplBuscada = profeInfo.buscarAmpl(grupoInfo.id);
+                           /* Ampliacion amplBuscada = profeInfo.buscarAmpl(grupoInfo.id);
 
                             if (amplBuscada != null)//ya existe
                                 amplBuscada.setValorHoras(grupoInfo.valHoras); //aplicar actualización
-                            else
-                                profeInfo.addAmpliacion(new Ampliacion(grupoInfo.valHoras, new Grupo(grupoInfo.id, "GRUP",
-                                                        grupoInfo.horasPresen, grupoInfo.numGrupo, grupoInfo.cantEstud,
-                                                        null), new Semestre(idSemestre, anio, periodo), tipoAmpl));
+                            else*/
+                                
+                            profeInfo.addAmpliacion(new Ampliacion(grupoInfo.valHoras, new Grupo(grupoInfo.id, "GRUP",
+                                                    grupoInfo.horasPresen, grupoInfo.numGrupo, grupoInfo.cantEstud,
+                                                    null), new Semestre(idSemestre, anio, periodo), tipoAmpl));
                         }
-                    }
-
-                    
+                    }   
                 }
             }
 
@@ -368,12 +382,29 @@ namespace SACD.Ventanas
 
                     else //Ampliacion
                     {
-                        if (modalidad.Equals("dbamp"))                       
-                            tipoAmp = 1;
+                        tiempoValido = false;
 
-                        AsignacsManager.asignarAmpl(adminInfo.id, profeInfo.getId(), idSemestre, adminInfo.valHoras, tipoAmp);
-                        profeInfo.addAmpliacion(new Ampliacion(adminInfo.valHoras, new ActvAdmin(adminInfo.id, "ADMI",
-                                                        adminInfo.valHoras, adminInfo.nombre), new Semestre(idSemestre, anio, periodo), tipoAmpl));
+                        if (modalidad.Equals("amp"))
+                        {
+                            if (profeInfo.getHorasAmplSimp() + adminInfo.valHoras <= 4)
+                                tiempoValido = true;
+                        }
+
+                        if (modalidad.Equals("dbamp"))
+                        {
+                            if (profeInfo.getHorasAmplDb() + adminInfo.valHoras <= 4)
+                            {
+                                tiempoValido = true;
+                                tipoAmp = 1;
+                            }
+                        }
+
+                        if (tiempoValido)
+                        {
+                            AsignacsManager.asignarAmpl(adminInfo.id, profeInfo.getId(), idSemestre, adminInfo.valHoras, tipoAmp);
+                            profeInfo.addAmpliacion(new Ampliacion(adminInfo.valHoras, new ActvAdmin(adminInfo.id, "ADMI",
+                                                            adminInfo.valHoras, adminInfo.nombre), new Semestre(idSemestre, anio, periodo), tipoAmpl));
+                        }
                     }
                 }
             }
@@ -395,16 +426,35 @@ namespace SACD.Ventanas
 
                     else //Ampliacion
                     {
-                        if (modalidad.Equals("dbamp"))
-                            tipoAmp = 1;
+                        tiempoValido = false;
 
-                        AsignacsManager.asignarAmpl(investInfo.id, profeInfo.getId(), idSemestre, investInfo.valHoras, tipoAmp);
-                        profeInfo.addAmpliacion(new Ampliacion(investInfo.valHoras, new Investigacion(investInfo.id, "INVE",
-                                                investInfo.valHoras, investInfo.nombre, investInfo.inicio, investInfo.fin), 
-                                                new Semestre(idSemestre, anio, periodo), tipoAmpl));
+                        if (modalidad.Equals("amp"))
+                        {
+                            if (profeInfo.getHorasAmplSimp() + investInfo.valHoras <= 4)
+                                tiempoValido = true;
+                        }
+
+                        if (modalidad.Equals("dbamp"))
+                        {
+                            if (profeInfo.getHorasAmplDb() + investInfo.valHoras <= 4)
+                            {
+                                tiempoValido = true;
+                                tipoAmp = 1;
+                            }
+                        }
+
+                        if (tiempoValido)
+                        {
+                            AsignacsManager.asignarAmpl(investInfo.id, profeInfo.getId(), idSemestre, investInfo.valHoras, tipoAmp);
+                            profeInfo.addAmpliacion(new Ampliacion(investInfo.valHoras, new Investigacion(investInfo.id, "INVE",
+                                                    investInfo.valHoras, investInfo.nombre, investInfo.inicio, investInfo.fin),
+                                                    new Semestre(idSemestre, anio, periodo), tipoAmpl));
+                        }
                     }
                 }
             }
+
+            return msj;
         }
 
 

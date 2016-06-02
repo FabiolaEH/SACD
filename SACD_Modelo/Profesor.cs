@@ -104,6 +104,32 @@ namespace SACD_Modelo
             ampliaciones.Add(pAmpliacion);
         }
 
+        public decimal getHorasAmplSimp()
+        {
+            decimal horas = 0;
+
+            foreach(Ampliacion ampl in ampliaciones)
+            {
+                if (ampl.getIsDouble() == false)
+                    horas += ampl.getValorHoras();
+            }
+
+            return horas;
+        }
+
+        public decimal getHorasAmplDb()
+        {
+            decimal horas = 0;
+
+            foreach (Ampliacion ampl in ampliaciones)
+            {
+                if (ampl.getIsDouble())
+                    horas += ampl.getValorHoras();
+            }
+
+            return horas;
+        }
+
         public void borrarAmpliacion(int pIdGrupo)
         {
             Actividad actvAux;
