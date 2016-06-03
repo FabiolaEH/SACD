@@ -45,12 +45,28 @@ namespace SACD.Páginas
             //label_HorasAsig.Content = profesor.getHorasAsig();
 
             //cargar plazas
-            List<PlazasAsig_GUI> plazasListGUI = new List<PlazasAsig_GUI>();
-            plazasListGUI.Add(new PlazasAsig_GUI() { id = 001, horas = 40, modalidad = "Propietario" });
-            dgPlazas.ItemsSource = plazasListGUI;
+            cargarPlazas();
 
             //cargar actividades
             cargarAsignaciones();
+        }
+
+        public void cargarPlazas()
+        {
+            List<PlazasAsig_GUI> plazasListGUI = new List<PlazasAsig_GUI>();
+            List<PlazaAsignada> plazasAsignadasList = new List<PlazaAsignada>();
+            plazasAsignadasList = ProfesManager.getPlazasDeProfesor(idProfesor);
+            foreach (PlazaAsignada plaza in plazasAsignadasList)
+            {
+                string idPlaza = plaza.getPlaza().getId();
+                decimal cantHoras = plaza.getHorAsig();
+                Boolean tipo = plaza.getIsPropiedad();
+                string tipo_modalidad = "Interino";
+                if (tipo)
+                    tipo_modalidad = "Propietario";
+                plazasListGUI.Add(new PlazasAsig_GUI() { id = idPlaza, horas = cantHoras, modalidad = tipo_modalidad});
+            }
+            dgPlazas.ItemsSource = plazasListGUI;
         }
 
         public void cargarAsignaciones()
@@ -91,18 +107,31 @@ namespace SACD.Páginas
                                                         horas = asig.getValorHoras() });
             }
 
-           /* //Ampliaciones
-            List<Ampliacion> ampliaciones = AsignacsManager.getAmpliaciones(idProfesor, periodo, anio);
+            //Ampliaciones
+            List<Ampliacion> ampliaciones = AsignacsManager.getAmpliaciones(idProfesor, idSemestre, periodo, anio);
 
-            foreach(Ampliacion ampl in ampliaciones)
+            foreach (Ampliacion ampl in ampliaciones)
             {
                 if (ampl.getActividad().getTipo().Equals("GRUP"))
                 {
+                    string amp = "-";
+                    string dobAmp = "-";
                     grupo = (Grupo)ampl.getActividad();
                     actvNombre = grupo.getCurso().getNombre();
+                    if (ampl.getIsDouble())
+                        dobAmp = "X";
+                    else
+                        amp = "X";
 
-                }*/
-
+                    activsListGUI.Add(new ActivsAsig_GUI()
+                    {
+                        nombre = actvNombre,
+                        ampliacion = amp,
+                        dbAmpliacion = dobAmp,
+                        horas = ampl.getValorHoras()
+                    });
+                }
+            }
             dgActividades.ItemsSource = activsListGUI;
 
 

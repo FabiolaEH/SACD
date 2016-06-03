@@ -8,7 +8,7 @@ namespace SACD.Clases
 {
     class PlazasAsig_GUI
     {
-        public int id { get; set; }
+        public string id { get; set; }
         public decimal horas { get; set; }
         public string modalidad { get; set; }
     }
