@@ -9,14 +9,14 @@ namespace SACD_AccesoDatos
     public static class DatosManager
     {
         private static SqlConnection conn = null;
-        
+
         public static bool crearConexion()
         {
             conn = new SqlConnection();
-       
+
             //conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
-            //conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
-            conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
+            //conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = ecRhin\\estudiantes; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = vtec-dev.itcr.ac.cr; Database =BDSACD; User Id=USR_BDSACD; Password=u5r8d54c4;";
 
@@ -94,7 +94,7 @@ namespace SACD_AccesoDatos
         //Obtener lista de usuarios
         public static List<Object[]> getUsuariosList()
         {
-            List<Object[]> usuariosList = new List<Object[]>();        
+            List<Object[]> usuariosList = new List<Object[]>();
 
             if (crearConexion() == true)
             {
@@ -170,7 +170,7 @@ namespace SACD_AccesoDatos
             }
             return codigo;
         }
-   
+
 
         /************* Profesores ***************/
 
@@ -212,7 +212,7 @@ namespace SACD_AccesoDatos
             if (crearConexion() == true)
             {
                 SqlCommand command = new SqlCommand("SELECT * FROM SACDFPROFESORES "
-                                                    + "WHERE ID_PROFESOR = '" +pId+ "'", conn);
+                                                    + "WHERE ID_PROFESOR = '" + pId + "'", conn);
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
@@ -242,7 +242,7 @@ namespace SACD_AccesoDatos
 
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM SACDFPROFESORES WHERE NOM_PROFESOR = '"+ pNombre + "'", conn);
+                SqlCommand command = new SqlCommand("SELECT * FROM SACDFPROFESORES WHERE NOM_PROFESOR = '" + pNombre + "'", conn);
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
@@ -437,7 +437,7 @@ namespace SACD_AccesoDatos
             if (crearConexion() == true)
             {
                 SqlCommand command = new SqlCommand("SELECT g.ID_GRUPO, g.COD_CURSO, c.NOM_CURSO, g.NUM_GRUPO, g.NUM_ESTUDIANTES "
-                                                    + "FROM SACDFGRUPOS g " 
+                                                    + "FROM SACDFGRUPOS g "
                                                     + "JOIN SACDFCURSO c ON g.COD_CURSO = c.COD_CURSO "
                                                     + "ORDER BY c.NOM_CURSO", conn);
                 SqlDataReader reader = command.ExecuteReader();
@@ -654,7 +654,7 @@ namespace SACD_AccesoDatos
 
             return semestresList;
         }
-     
+
 
         //Obtener semestre actual
         public static List<int> get_Semestre_Global()
@@ -785,7 +785,7 @@ namespace SACD_AccesoDatos
 
             if (crearConexion() == true)
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM SACDFACTIVIDADES WHERE ID_ACTIVIDAD = "+id.ToString(), conn);
+                SqlCommand command = new SqlCommand("SELECT * FROM SACDFACTIVIDADES WHERE ID_ACTIVIDAD = " + id.ToString(), conn);
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
@@ -813,13 +813,13 @@ namespace SACD_AccesoDatos
 
             if (crearConexion() == true)
             {
-                    SqlCommand cmd = new SqlCommand("pr_SACDFADMINISTRAT_Insertar", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@pNOM_ADMINITRATIV", pNombre));
-                    cmd.Parameters.Add(new SqlParameter("@pCAN_HORAS", pHoras));
-                    cmd.ExecuteNonQuery();
-                    isExitoso = true;
-                    cerrarConexion();
+                SqlCommand cmd = new SqlCommand("pr_SACDFADMINISTRAT_Insertar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@pNOM_ADMINITRATIV", pNombre));
+                cmd.Parameters.Add(new SqlParameter("@pCAN_HORAS", pHoras));
+                cmd.ExecuteNonQuery();
+                isExitoso = true;
+                cerrarConexion();
             }
 
             else
