@@ -48,12 +48,16 @@ namespace SACD.Ventanas
 
             //Obtener info profesor
             profeInfo = new Profesor(profeId, "");
+            List<PlazaAsignada> plazasProfe = ProfesManager.getPlazasDeProfesor(profeId);
             List<Asignacion> asignacionesProf = AsignacsManager.getAsignaciones(profeInfo.getId(), idSemestre, periodo, anio, false);
             List<Ampliacion> ampliacionesProf = AsignacsManager.getAmpliaciones(profeInfo.getId(), idSemestre, periodo, anio);
+            profeInfo.setPlazas(plazasProfe);
             profeInfo.setAsignaciones(asignacionesProf);
             profeInfo.setAmpliaciones(ampliacionesProf);
 
-            cargarAsigProf();             
+            cargarAsigProf();
+            label_HorasAsig.Content = ProfesManager.calcHorasAsig(profeInfo);
+            label_HorasMin.Content = ProfesManager.calcHorasMin(profeInfo);
         }
 
 

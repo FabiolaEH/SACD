@@ -82,16 +82,36 @@ namespace SACD_Controlador
         }
 
         //calcular horas mín. laborales
-        public static float calcHorasMin(Profesor pProfesor)
+        public static decimal calcHorasMin(Profesor pProfesor)
         {
-            return 0;
+            decimal horas = 0;
+
+            foreach(PlazaAsignada plaza in pProfesor.getPlazasAsig())
+            {
+                horas += plaza.getHorAsig();
+            }
+
+            return horas;
         }
 
         //calcular total horas asignadas
-        public static float calcHorasAsig(Profesor pProfesor)
+        public static decimal calcHorasAsig(Profesor pProfesor)
         {
-            //recorrer la lista de asignaciones
-            return 0;
+            decimal horas = 0;
+
+            //sumar horas de asignaciones
+            foreach(Asignacion asig in pProfesor.getAsignaciones())
+            {
+                horas += asig.getValorHoras();
+            }
+
+            //sumar horas de ampliaciones
+            foreach (Ampliacion ampl in pProfesor.getAmpliaciones())
+            {
+                horas += ampl.getValorHoras();
+            }
+
+            return horas;
         }
         
         

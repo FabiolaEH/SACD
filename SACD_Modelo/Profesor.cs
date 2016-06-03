@@ -166,9 +166,9 @@ namespace SACD_Modelo
             return plazasAsig;
         }
 
-        public void addPlaza(PlazaAsignada pPlaza)
+        public void setPlazas(List<PlazaAsignada> pPlazas)
         {
-            plazasAsig.Add(pPlaza);
+            plazasAsig = pPlazas;
         }
     }
 }
