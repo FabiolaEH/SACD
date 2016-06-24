@@ -17,6 +17,8 @@ namespace SACD.Clases
         public decimal valHoras { get; set; }
         public decimal horasPresen { get; set; } //presenciales del curso
         public bool isSelected { get; set; }
+        public bool botonEnabled { get; set; } //el botón de calcular
+        public bool textBxEnabled { get; set; } //el textbox horas
 
     }
 }
