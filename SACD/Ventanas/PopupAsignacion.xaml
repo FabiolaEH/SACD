@@ -50,18 +50,17 @@
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding numGrupo}" Header="Grupo" Width="70"/>
-                            <!-- <DataGridTextColumn Binding="{Binding valHoras}"  Header="Horas" Width="70"/> -->
                             <DataGridTemplateColumn Width="70" Header="Horas">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBox Width="40" Height="25" Text="{Binding valHoras, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="#FF666666"/>
+                                        <TextBox Width="40" Height="25" IsEnabled="{Binding textBxEnabled}" Text="{Binding valHoras, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="#FF666666"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <DataGridTemplateColumn Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button x:Name="btn_Calc" Content="Calcular" Uid="{Binding id}" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="55" Height="30" FontSize="14" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="calcularHoras"/>
+                                        <Button x:Name="btn_Calc" Content="Calcular" IsEnabled="{Binding botonEnabled}" Uid="{Binding id}" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="55" Height="30" FontSize="14" Style="{StaticResource RoundButton}" Foreground="#FF434343" Background="#FFEFEFEF" Cursor="Hand" Click="calcularHoras"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -129,14 +128,14 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <!--<DataGridTextColumn Binding="{Binding valHoras}" Header="Horas" Width="*"/>-->
-                            <DataGridTemplateColumn Width="*" Header="Horas">
+                            <DataGridTextColumn Binding="{Binding valHoras}" Header="Horas" Width="*"/>
+                            <!--<DataGridTemplateColumn Width="*" Header="Horas">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBox Width="40" Height="25" Text="{Binding valHoras, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="#FF666666"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
+                            </DataGridTemplateColumn> -->
                         </DataGrid.Columns>
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="{x:Type DataGridColumnHeader}" >
@@ -201,7 +200,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <!--<DataGridTextColumn Binding="{Binding valHoras}" Header="Horas" Width="100">
+                            <DataGridTextColumn Binding="{Binding valHoras}" Header="Horas" Width="100">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="ToolTip" Value="{Binding valHoras}" />
@@ -221,14 +220,16 @@
                                         </Setter>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn> -->
-                            <DataGridTemplateColumn Width="100" Header="Horas">
+                            </DataGridTextColumn>
+
+                            <!-- <DataGridTemplateColumn Width="100" Header="Horas">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBox Width="40" Height="25" Text="{Binding valHoras, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="#FF666666" FontWeight="Normal"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
+                            </DataGridTemplateColumn> -->
+                            
                             <DataGridTextColumn Binding="{Binding inicio}" Header="Inicio" Width="100">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
