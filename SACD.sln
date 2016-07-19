@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SACD_AccesoDatos", "SACD_Ac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SACD_Controlador", "SACD_Controlador\SACD_Controlador.csproj", "{31DF5AC8-BFE4-432D-AFE1-6A2C7EBC5ED9}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SACD_Setup", "SACD_Setup\SACD_Setup.vdproj", "{6DBAC907-B8BA-4900-97C2-C11AA5E1B2E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,8 @@ Global
 		{31DF5AC8-BFE4-432D-AFE1-6A2C7EBC5ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31DF5AC8-BFE4-432D-AFE1-6A2C7EBC5ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31DF5AC8-BFE4-432D-AFE1-6A2C7EBC5ED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DBAC907-B8BA-4900-97C2-C11AA5E1B2E9}.Debug|Any CPU.ActiveCfg = Debug
+		{6DBAC907-B8BA-4900-97C2-C11AA5E1B2E9}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

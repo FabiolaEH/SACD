@@ -267,7 +267,7 @@ namespace SACD.Ventanas
 
             //Guardar nuevas asignaciones seleccionadas
             string msj = guardarAsigs();
-            MessageBox.Show(msj);
+            //MessageBox.Show(msj);
 
             //Actualizar horas globales asignadas
             label_HorasAsig.Content = ProfesManager.calcHorasAsig(profeInfo);

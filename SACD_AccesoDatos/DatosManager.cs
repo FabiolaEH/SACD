@@ -16,9 +16,9 @@ namespace SACD_AccesoDatos
 
             //conn.ConnectionString = "Server = JHOELPC; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = BRANDON-PC; Database = SACD_DB; Trusted_Connection = true; Integrated Security = True";
-            conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
+            //conn.ConnectionString = "Server = DESKTOP-78JIJ14; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
             //conn.ConnectionString = "Server = ecRhin\\estudiantes; Database =SACD_DB; Trusted_Connection = true; Integrated Security=True";
-            //conn.ConnectionString = "Server = vtec-dev.itcr.ac.cr; Database =BDSACD; User Id=USR_BDSACD; Password=u5r8d54c4;";
+            conn.ConnectionString = "Server = vtec-dev.itcr.ac.cr; Database =BDSACD; User Id=USR_BDSACD; Password=u5r8d54c4;";
 
             try
             {
